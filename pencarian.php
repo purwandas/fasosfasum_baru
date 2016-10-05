@@ -125,11 +125,10 @@
 <article class="col-sm-12 col-md-12 col-lg-12 term">
 
 	<!-- Widget ID (each widget will need unique ID)-->
-	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-3" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
 	<header>
 		<span class="widget-icon"> <i class="fa fa-search"></i> </span>
-		<!-- <h2>Pencarian Data</h2> -->
-		<!-- <span style="padding-top:10px;">asdasdjbh</span> -->
+		<h2>Pencarian Data Fasos Fasum</h2>
 	</header>
 
 		<!-- widget div-->
@@ -201,7 +200,7 @@
 <article class="col-sm-12 col-md-12 col-lg-2 filter" id="filter">
 
 	<!-- Widget ID (each widget will need unique ID)-->
-	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-3" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 
 		<!-- widget div-->
 		<div class="smart-form">
@@ -518,7 +517,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
 <article class="col-sm-12 col-md-12 col-lg-10 data" id="data">
 
 	<!-- Widget ID (each widget will need unique ID)-->
-	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-3" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-2" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 
 		<!-- widget div-->
 		<div class="smart-form">

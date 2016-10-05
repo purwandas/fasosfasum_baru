@@ -467,13 +467,16 @@
 								<a href="#">Master Satuan Ukur</a>
 							</li> -->
 							<!-- <li>
-								<a href="#">Atribut Alamat</a>
+								<a href="#">Data Alamat</a>
 								<ul>
 									<li>
-										<a href="tambahdokacuan.php">Tambah Dok. Acuan</a>
+										<a href="index.php?hal=wilayah">Wilayah</a>
 									</li>
 									<li>
-										<a href="lihatdokacuan.php">Lihat Semua Dok. Acuan</a>
+										<a href="index.php?hal=kecamatan">Kecamatan</a>
+									</li>
+									<li>
+										<a href="index.php?hal=kelurahan">Kelurahan</a>
 									</li>
 								</ul>
 							</li> -->
