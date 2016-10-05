@@ -1,0 +1,29 @@
+// FUNGSI DATE CONVERT
+function jin_date_sql($date){
+	$exp = explode('/',$date);
+	if(count($exp) == 3) {
+		$date = $exp[2].'-'.$exp[1].'-'.$exp[0];
+	}
+	return $date;
+}
+ 
+function jin_date_str($date){
+	$exp = explode('-',$date);
+	if(count($exp) == 3) {
+		$date = $exp[2].'/'.$exp[1].'/'.$exp[0];
+	}
+	return $date;
+}
+
+
+Cara penggunaannya adalah sbb.:
+Convert dari tanggal DD/MM/YYYY ke YYYY-MM-DD untuk insert ke database mysql
+
+$data_tanggal_form = "23/02/2009"; // DD/MM/YYYY
+$data_tanggal_mysql = jin_date_sql($data_tanggal_form); // hasilnya: 2009-01-01 = YYYY-MM-DD
+
+Dan kebalikannya, yaitu ingin menampilkan.
+Convert dari tanggal YYYY-MM-DD ke DD/MM/YYYY untuk tampil ambil dari database mysql
+
+$data_tanggal_db = "2009-01-01"; // YYYY-MM-DD
+$data_tanggal_tampil = jin_date_str($data_tanggal_db); // hasilnya: 23/02/2009 =
