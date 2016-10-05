@@ -81,6 +81,7 @@
 		}
 	}
 	
+	$errflag = true;
 	//If there are input validations, redirect back to the registration form
 	if($errflag) {
 		$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
@@ -90,7 +91,7 @@
 	}
 
 	//Create INSERT query
-	$qry = "INSERT INTO members(firstname, lastname, login, passwd) VALUES('$fname','$lname','$login','".md5($_POST['password'])."')";
+	// $qry = "INSERT INTO members(firstname, lastname, login, passwd) VALUES('$fname','$lname','$login','".md5($_POST['password'])."')";
 	$result = @mysql_query($qry);
 	
 	//Check whether the query was successful or not

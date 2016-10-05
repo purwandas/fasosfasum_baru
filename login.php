@@ -112,7 +112,7 @@
 				            <br />
 				            <br />
 
-							<a href="login.php?register=1">Register</a>
+							<!-- <a href="login.php?register=1">Register</a> -->
 						</div>
 						<div class="modal-footer">
 							<center>
