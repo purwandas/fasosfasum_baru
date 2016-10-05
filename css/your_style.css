@@ -1,0 +1,68 @@
+/*
+ * It is advised not to edit the smartadmin_production.css
+ * as this will override any changes you make in the 
+ * later versions of this theme. 
+ * 
+ * We advise that you use use this CSS to override 
+ * SmartAdmin styles. 
+ * 
+ * Rename the stylesheet to whatever your liking so it will stay
+ * unique to you with each update of SmartAdmin.
+ */
+
+/*
+ * INDEX
+ * 
+ * - HTML
+ * - BODY
+ * - CUSTOM STYLES
+ */
+.smart-style-3 #header {
+background-color:#de0000;
+	background-image:-moz-linear-gradient(top,#de0000,#cc0003);
+	background-image:-webkit-gradient(linear,0 0,0 100%,from(#de0000),to(#cc0003));
+	background-image:-webkit-linear-gradient(top,#de0000,#cc0003);
+	background-image:-o-linear-gradient(top,#de0000,#cc0003);
+	background-image:linear-gradient(to bottom,#de0000,#cc0003);
+}
+
+.smart-style-3 .jarviswidget-color-darken>header{
+	background-color:#FF3B3B;
+	border-color:#FF3B3B!important
+}
+
+.smart-style-3 .page-footer{
+	background-color:#f2f2f2;
+	background-image:-moz-linear-gradient(top,#ffffff,#f2f2f2);
+	background-image:-webkit-gradient(linear,0 0,0 100%,from(#ffffff),to(#f2f2f2));
+	background-image:-webkit-linear-gradient(top,#ffffff,#f2f2f2);
+	background-image:-o-linear-gradient(top,#ffffff,#f2f2f2);
+	background-image:linear-gradient(to bottom,#ffffff,#f2f2f2);	
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.smart-style-3 #ribbon{
+	background-color:#f2f2f2;
+	border-bottom: 1px solid #ededed;
+}
+
+.smart-style-3 aside{
+	background-color: #ffffff;
+}
+
+header a{
+	color: #ffffff;
+}
+header a:visited{
+	color: #ffffff;
+}
+header a:active{
+	color: black;
+}
+header a:hover{
+	color: black;
+}
