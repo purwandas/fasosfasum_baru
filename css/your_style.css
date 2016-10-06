@@ -69,3 +69,9 @@ header a:hover{
 nav ul li, nav ul li ul li{
 	z-index: 1001;
 }
+.pagination .details{
+    padding-right: 10px;
+}
+.pagination label{
+	margin:3px;
+}
