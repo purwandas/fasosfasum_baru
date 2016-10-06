@@ -32,9 +32,9 @@
 				<fieldset>
 					<div class="row">
 						<section class="col col-sm-12 col-md-12 col-lg-12">
-							<table class="table table-striped table-hover" width="500" border="1" cellpadding="5" cellspacing="1">
+							<table class="table table-striped table-hover">
 					           
-					             <tr>
+					            <tr>
 					              <td class="center">No.</td>        	
 					              <td class="center">ID KATEGORI</td>
 					              <td class="center">DESKRIPSI KATEGORI</td>

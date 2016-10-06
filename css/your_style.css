@@ -66,3 +66,6 @@ header a:active{
 header a:hover{
 	color: black;
 }
+nav ul li, nav ul li ul li{
+	z-index: 1001;
+}
