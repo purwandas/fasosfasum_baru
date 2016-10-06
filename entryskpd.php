@@ -93,29 +93,32 @@ if (isset($_POST['submit'])){
 
 						         <form name="editdokumenacuan" action="" method="post">
 						           <input type="hidden" name="id" value="<?php echo $id; ?>" />
+						           <center>
 						           <table>
 						             
-						            <tr>
+						            <!-- <tr>
 						             <td >Id Peruntukan </td>           
-						             <td height="21"><input type="text" name="idperuntukan" maxlength="15" required="required" value="<?php echo $data['idperuntukan']; ?>"/></td>
-						           </tr>
+						             <td height="21"><label class='input'> -->
+						             <input type="hidden" name="idperuntukan" value="<?php echo $data['idperuntukan']; ?>"/>
+						             <!-- </label></td>
+						           </tr> -->
 						           <tr>
 						            <td >Deskripsi Peruntukan </td>           
-						            <td height="21"><input type="text" name="deskripsi" maxlength="80" required="required" value="<?php echo $data['deskripsi']; ?>"/></td>
+						            <td height="21"><label class='input'><input type="text" name="deskripsi" maxlength="80" required="required" value="<?php echo $data['deskripsi']; ?>"/></label></td>
 						          </tr>
 						          <tr>
 						            <td>Volume</td>
-						            <td><input type="text" name="volume" maxlength="50" required="required" value="<?php echo $data['volume']; ?>"/></td>
+						            <td><label class='input'><input type="text" name="volume" maxlength="50" required="required" value="<?php echo $data['volume']; ?>"/></label></td>
 						          </tr>
 						          <tr>
 						           <td>Nilai</td>
-						           <td><input type="text" name="nilaimix" maxlength="50" required="required" value="<?php echo $data['nilaimix']; ?>"/></td>
+						           <td><label class='input'><input type="text" name="nilaimix" maxlength="50" required="required" value="<?php echo $data['nilaimix']; ?>"/></label></td>
 						         </tr>
 						         <td>Id Aset</td>
-						         <td><input type="text" name="idaset" maxlength="50" required="required" value="<?php echo $data['idaset']; ?>"/></td>
+						         <td><label class='input'><input type="text" name="idaset" maxlength="50" required="required" value="<?php echo $data['idaset']; ?>"/></label></td>
 						       </tr>
 						       <td>No. BAST</td>
-						       <td><input type="text" name="nobast" maxlength="100" required="required" value="<?php echo $data['nobast']; ?>"/></td>
+						       <td><label class='input'><input type="text" name="nobast" maxlength="100" required="required" value="<?php echo $data['nobast']; ?>"/></label></td>
 						     </tr>
 						     <?php
 						     $query=mysql_query("select * from skpd where idperuntukan='$data[idperuntukan]'");
@@ -123,33 +126,34 @@ if (isset($_POST['submit'])){
 						     ?>
 						     <tr>
 						       <td>SKPD Pengguna</td>
-						       <td><input type="text" name="skpd" maxlength="90" required="required" value="<?php echo $data2['pengguna'];?>" /></td>
+						       <td><label class='input'><input type="text" name="skpd" maxlength="90" required="required" value="<?php echo $data2['pengguna'];?>" /></label></td>
 						     </tr>
 
 						     <tr>
 						       <td>Alamat Aset SKPD </td>
-						       <td><input type="text" name="alamatskpd" maxlength="200" required="required" value="<?php echo $data2['alamatskpd'];?>" /></td>
+						       <td><label class='input'><input type="text" name="alamatskpd" maxlength="200" required="required" value="<?php echo $data2['alamatskpd'];?>" /></label></td>
 						     </tr>
 
 						     <tr>
 						       <td>Luas Aset SKPD </td>
-						       <td><input type="text" name="luasskpd" maxlength="200" required="required" value="<?php echo $data2['luasskpd'];?>" /></td>
+						       <td><label class='input'><input type="text" name="luasskpd" maxlength="200" required="required" value="<?php echo $data2['luasskpd'];?>" /></label></td>
 						     </tr>
 
 						     <tr>
 						       <td>Nilai Aset SKPD </td>
-						       <td><input type="text" name="nilaiskpd" maxlength="200" required="required" value="<?php echo $data2['nilaiskpd'];?>" /></td>
+						       <td><label class='input'><input type="text" name="nilaiskpd" maxlength="200" required="required" value="<?php echo $data2['nilaiskpd'];?>" /></label></td>
 						     </tr>
 
 						     <tr>
 						       <td>Keterangan</td>
-						       <td><input type="text" name="ketskpd" maxlength="90" required="required" value="<?php echo $data2['keterangan'];?>" /></td>
+						       <td><label class='input'><input type="text" name="ketskpd" maxlength="90" required="required" value="<?php echo $data2['keterangan'];?>" /></label></td>
 						     </tr>
 						     <tr>		
-						      <td align="right" colspan="2"><input type="submit" name="submit" value="Simpan SKPD"> </td>
+						      <td align="center" colspan="2"><input type="submit" name="submit" value="Simpan SKPD" class="btn btn-lg btn-info"> </td>
 						    </tr>
 
 						  </table>
+						  </center>
 						</form>
 						</section>
 						

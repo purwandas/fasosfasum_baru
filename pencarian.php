@@ -66,40 +66,40 @@
         $(".rowdata").click(function(){
           $(this).closest('tr').next().toggle();
         });
-        $("#tahunsippt,#tahunsippt2").change(function(){
-          if($('#tahunsippt').val()!='' && $('#tahunsippt2').val()!=''){
+        $("#thnsippt,#thnsippt2").change(function(){
+          if($('#thnsippt').val()!='' && $('#thnsippt2').val()!=''){
             document.getElementById("formpencarian").submit();   
           }
         });
-        $("#tahunbast,#tahunbast2").change(function(){
-          if($('#tahunbast').val()!='' && $('#tahunbast2').val()!=''){
+        $("#thnbast,#thnbast2").change(function(){
+          if($('#thnbast').val()!='' && $('#thnbast2').val()!=''){
             document.getElementById("formpencarian").submit();   
           }
         });
-        $("#tahunpkk,#tahunpkk2").change(function(){
-          if($('#tahunpkk').val()!='' && $('#tahunpkk2').val()!=''){
+        $("#thnpkk,#thnpkk2").change(function(){
+          if($('#thnpkk').val()!='' && $('#thnpkk2').val()!=''){
             document.getElementById("formpencarian").submit();   
           }
         });
-        $("#btahunsippt").click(function(){
-          $("#tahunsippt").empty();
-          $("#tahunsippt2").empty();
-          $("#tahunsippt").append("<option value='' > -pilih- </option>");
-          $("#tahunsippt2").append("<option value='' > -pilih- </option>");
+        $("#bthnsippt").click(function(){
+          $("#thnsippt").empty();
+          $("#thnsippt2").empty();
+          $("#thnsippt").append("<option value='' > -pilih- </option>");
+          $("#thnsippt2").append("<option value='' > -pilih- </option>");
           document.getElementById("formpencarian").submit();   
         });
-        $("#btahunbast").click(function(){
-          $("#tahunbast").empty();
-          $("#tahunbast2").empty();
-          $("#tahunbast").append("<option value='' > -pilih- </option>");
-          $("#tahunbast2").append("<option value='' > -pilih- </option>");
+        $("#bthnbast").click(function(){
+          $("#thnbast").empty();
+          $("#thnbast2").empty();
+          $("#thnbast").append("<option value='' > -pilih- </option>");
+          $("#thnbast2").append("<option value='' > -pilih- </option>");
           document.getElementById("formpencarian").submit();   
         });
-        $("#btahunpkk").click(function(){
-          $("#tahunpkk").empty();
-          $("#tahunpkk2").empty();
-          $("#tahunpkk").append("<option value='' > -pilih- </option>");
-          $("#tahunpkk2").append("<option value='' > -pilih- </option>");
+        $("#bthnpkk").click(function(){
+          $("#thnpkk").empty();
+          $("#thnpkk2").empty();
+          $("#thnpkk").append("<option value='' > -pilih- </option>");
+          $("#thnpkk2").append("<option value='' > -pilih- </option>");
           document.getElementById("formpencarian").submit();   
         });
 
@@ -119,7 +119,7 @@
         document.getElementById("showButton").style.display = "none";
       }
 </script>
-<form action="index.php?hal=pencarian" method="get">
+<form action="index.php?hal=pencarian" method="get" id="formpencarian">
 <input type="hidden" name="hal" value="pencarian">
 <!-- NEW WIDGET START -->
 <article class="col-sm-12 col-md-12 col-lg-12 term">
@@ -145,7 +145,7 @@
             if(isset($_GET['kategori'])){
               if($_GET['kategori']=='dokacuan'){
                 $note='Input Nomor Dok. Acuan atau Nama Pemegang Dok. atau Jenis Dok. Acuan';
-                $query='select * from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ';
+                $query='select nodokacuan, tgldokacuan, haldokacuan, pemegangdokacuan, ketdokacuan, jenisdokumen from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ';
               }else{
                 $note='Input Nomor Bast atau Nama Pengembang atau Jenis Dok. Acuan';
                 $query="select bast.nobast, bast.keterangan, bast.tglbast, bast.pengembangbast, detaildokacuan.nodokacuan, detaildokacuan.pemegangdokacuan,dokumenacuan.jenisdokumen, detaildokacuan.tgldokacuan from bast inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ";
@@ -203,7 +203,7 @@
 	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 
 		<!-- widget div-->
-		<div class="smart-form">
+		<div class="smart-form" style="border-style: solid;border-top-color: #CCC !important;">
 			<div id="closeButton" onclick="closeFil()" >
 				<span>Sembunyikan Filter</span>
 				<i class="icon-append fa fa-chevron-left"></i>
@@ -214,7 +214,7 @@
 
 $submit=" onclick='submit()' ";
 $submitch=" onchange='submit()' ";
-
+$jmlFilter=0;
 if(isset($_GET['kategori'])){
   $kategori=$_GET['kategori'];
 }
@@ -236,10 +236,14 @@ if(isset($_GET['term'])&&$_GET['term']!='')
   if($_GET['kategori']=='dokacuan')
   {
     $query.=" where (detaildokacuan.nodokacuan like '%$term%'  or detaildokacuan.pemegangdokacuan like '%$term%' or dokumenacuan.jenisdokumen  like '%$term%')";
+    $filter[$jmlFilter]="Kata Pencarian";
+    $jmlFilter++;
   }
   else
   {
     $query.=" where  (bast.nobast like '%$term%' or bast.pengembangbast like '%$term%' or dokumenacuan.jenisdokumen  like '%$term%')";
+    $filter[$jmlFilter]="Kata Pencarian";
+    $jmlFilter++;
   }
 }
 
@@ -286,10 +290,14 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
           $dan=1;
           $dan2=1;
           $query.=" $ope ((nobast in (select nobastaset from $dfilter_m[ket] where $dfilter_m[name] like '%$wp%')))";
+          $filter[$jmlFilter]="$dfilter_m[nama]";
+          $jmlFilter++;
         }
         else
         {
           $query=substr($query,0,-2).") or (nobast in (select nobastaset from $dfilter_m[ket] where $dfilter_m[name] like '%$wp%')))";
+          $filter[$jmlFilter]="$dfilter_m[nama]";
+          $jmlFilter++;
         }
         $ck="checked";
         $dply="block";
@@ -365,6 +373,8 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
               $wp
             </option>
             ";
+            $filter[$jmlFilter]="$dfilter_m[nama]";
+            $jmlFilter++;
           }else{
             echo"
             <option value=''>
@@ -398,8 +408,12 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
               $dan=1;
               $dan2=1;
               $query.="$ope (detaildokacuan.nodokacuan in (SELECT DISTINCT $dfilter_m[ref_table].nodokacuan FROM $dfilter_m[ref_table] WHERE nobast='' and ($dfilter_m[ref_table].$dfilter_m[ref_field] like '%$wp%')))";
+              $filter[$jmlFilter]="$dfilter_m[nama]";
+              $jmlFilter++;
             }else{
               $query=substr($query,0,-3)." or $dfilter_m[ref_table].$dfilter_m[ref_field] like '%$wp%')))";
+              $filter[$jmlFilter]="$dfilter_m[nama]";
+              $jmlFilter++;
             }
 
           }else{
@@ -409,8 +423,12 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
               $dan=1;
               $dan2=1;
               $query.="$ope (bast.nobast in (select DISTINCT $dfilter_m[ref_table].nobast from $dfilter_m[ref_table] where $dfilter_m[ref_table].$dfilter_m[ref_field] like '%$wp%'))";
+              $filter[$jmlFilter]="$dfilter_m[nama]";
+              $jmlFilter++;
             }else{
               $query=substr($query,0,-2)." or $dfilter_m[ref_table].$dfilter_m[ref_field] like '%$wp%'))";
+              $filter[$jmlFilter]="$dfilter_m[nama]";
+              $jmlFilter++;
             }
             
           }
@@ -433,8 +451,12 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
             $ye1=$_GET["$dfilter_m[name]$dfilter[name]"];
             $ye2=$_GET["$dfilter_m[name]$dfilter[name]2"];
             $query.=" $ope ((year(STR_TO_DATE($dfilter[ref_table].$dfilter[ref_field], '%d/%m/%Y')) between '$ye1' and '$ye2') $dfilter[clause])";
+            $filter[$jmlFilter]="$dfilter_m[nama] $dfilter[display]";
+            $jmlFilter++;
           }else{
             $query=substr($query,0,-1)." or (year(STR_TO_DATE($dfilter[ref_table].$dfilter[ref_field], '%d/%m/%Y')) between '$ye1' and '$ye2') $dfilter[clause])";
+            $filter[$jmlFilter]="$dfilter_m[nama] $dfilter[display]";
+            $jmlFilter++;
           }
           $ck="checked";
         }else{
@@ -486,8 +508,12 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
             $dan=1;
             $dan2=1;
             $query.=" $ope ($dfilter_m[ref_table].$dfilter_m[ref_field] like '%$wp%')";
+            $filter[$jmlFilter]="$dfilter_m[nama]";
+            $jmlFilter++;
           }else{
             $query=substr($query,0,-1)." or $dfilter_m[ref_table].$dfilter_m[ref_field] like '%$wp%')";
+            $filter[$jmlFilter]="$dfilter_m[nama]";
+            $jmlFilter++;
           }
           $ck="checked";
         }else{
@@ -520,7 +546,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
 	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-2" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 
 		<!-- widget div-->
-		<div class="smart-form">
+		<div class="smart-form" style="border-style: solid;border-top-color: #CCC !important;">
 			<div id="showButton" onclick="showFil()">
 				<span>Tampilkan Filter</span>
 				<i class="icon-append fa fa-chevron-left"></i>
@@ -656,7 +682,11 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
 						<div class="table-responsive" style="float:left;">
 							<center>
 				<?php
-				// echo "$query->$totalData";
+        // echo"ini<hr>";
+        for($i=0;$i<$jmlFilter;$i++){
+          // echo $filter[$i].", ";
+        }
+				// echo "<hr>$query->$totalData";
                 if($totalData>0)
                 {
                   echo"
@@ -665,7 +695,6 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                     if(isset($_GET['kategori'])&&$_GET['kategori']=='dokacuan')
                     {
                       echo"
-                      <thead>
                         <tr>
                           <td class='text-center'><b>No.</b></td>
                           <td class='text-center'><b>No.Dok Acuan</b></td>
@@ -676,13 +705,11 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                           <td class='text-center'><b>Keterangan</b></td>
                           <td class='text-center'><b>Jenis Dok Acuan</b></td>
                         </tr>
-                      </thead>
                       ";
                     }
                     else
                     {
                       echo"
-                      <thead>
                         <tr>
                           <td class='text-center'><b>No.</b></td>
                           <td class='text-center'><b>No.BAST</b></td>
@@ -695,7 +722,6 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                           <td class='text-center'><b>Kategori BAST</b></td>
                           <td class='text-center'><b>Act.</b></td>
                         </tr>
-                      </thead>
                       ";
                     }
                     
@@ -711,14 +737,14 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                         	}
                         echo "
                         <tr class='rowdata $bgColor'>
-                          <td class='padding10 text-center'>$no</td>
-                          <td class='padding10'><a href='index.php?hal=bastbysippt&id=$data[nodokacuan]'>$data[nodokacuan]</a></td>
-                          <td class='padding10'>$data[tgldokacuan]</td>
-                          <td class='padding10'>$data[haldokacuan]</td>
-                          <td class='padding10'>$data[pemegangdokacuan]</td>
+                          <td class='text-center'>$no</td>
+                          <td><a href='index.php?hal=bastbysippt&id=$data[nodokacuan]'>$data[nodokacuan]</a></td>
+                          <td align='center'>$data[tgldokacuan]</td>
+                          <td>$data[haldokacuan]</td>
+                          <td align='center'>$data[pemegangdokacuan]</td>
 
-                          <td class='padding10'>$data[ketdokacuan]</td>
-                          <td class='padding10'>$data[jenisdokumen]</td>
+                          <td>$data[ketdokacuan]</td>
+                          <td align='center'>$data[jenisdokumen]</td>
 
                         </tr>
                         ";
@@ -729,7 +755,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                         echo"
                         <tr class='rowdetail'><td colspan=7><center>
                           List Kewajiban
-                          <table border='1px' class='table table-striped'>
+                          <table class='table table-striped'>
                             <tr>
                               <td>
                                 No.
@@ -743,7 +769,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                               <td>
                                 Luas (m<sup>2</sup>)
                               </td>
-                              <td>
+                              <td align='center'>
                                 Status Kewajiban
                               </td>
                             </tr>
@@ -758,11 +784,11 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                             }
                             echo "
                             <tr>
-                              <td class='padding5'>$number</td>
-                              <td class='padding5'>$data2[jenisfasos]</td>
-                              <td class='padding5'>$data2[deskripsi]</td>
-                              <td class='padding5'>$data2[luas]</td>
-                              <td class='padding5' align='center'>$sttskewajiban</td>
+                              <td>$number</td>
+                              <td>$data2[jenisfasos]</td>
+                              <td>$data2[deskripsi]</td>
+                              <td>$data2[luas]</td>
+                              <td align='center'>$sttskewajiban</td>
                             </tr>
                             ";
                           }
@@ -779,16 +805,16 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                         	}
                           echo "
                           <tr class='rowdata $bgColor'>
-                            <td  class='padding10 text-center'>$no</td>
-                            <td  class='padding10 '>$data[nobast]</td>
-                            <td  class='padding10 text-center'>$data[tglbast]</td>
-                            <td  class='padding10 '>$data[pengembangbast]</td>
-                            <td  class='padding10 text-center'>$data[jenisdokumen]</td>
+                            <td class='text-center'>$no</td>
+                            <td>$data[nobast]</td>
+                            <td class='text-center'>$data[tglbast]</td>
+                            <td>$data[pengembangbast]</td>
+                            <td class='text-center'>$data[jenisdokumen]</td>
 
-                            <td  class='padding10 '><a href='index.php?hal=bastbysippt&id=$data[nodokacuan]'>$data[nodokacuan]</a></td>
-                            <td  class='padding10 '>$data[pemegangdokacuan]</td>
-                            <td  class='padding10 '>$data[keterangan]</td>
-                            <td  class='padding10 text-center'><a href='index.php?hal=viewdetailbast&id=$data[nobast]'><img alt=' ' src='img/viewdetail.gif' border=0></a></td>
+                            <td><a href='index.php?hal=bastbysippt&id=$data[nodokacuan]'>$data[nodokacuan]</a></td>
+                            <td>$data[pemegangdokacuan]</td>
+                            <td>$data[keterangan]</td>
+                            <td class='text-center'><a href='index.php?hal=viewdetailbast&id=$data[nobast]'><img alt='Lihat Detail' src='img/viewdetail.gif' border=0></a></td>
                           </tr>
                           <tr class='rowdetail'>
                             <td colspan=9>
@@ -804,15 +830,15 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                                       </td>
                                     </tr>
                                     <tr>
-                                      <td class='padding5'>No.</td>
-                                      <td class='padding5'>Jenis Fasos Fasum</td>
-                                      <td class='padding5'>Status Sertifikat (SHP Pemprov)</td>
-                                      <td class='padding5'>Status Penggunaan</td>
-                                      <td class='padding5'>Status Plang</td>
-                                      <td class='padding5'>Sensus Fasos Fasum</td>
-                                      <td class='padding5'>Status Laporan Keuangan</td>
-                                      <td class='padding5'>Status Recon</td>
-                                      <td class='padding5' align='center'>KIB</td>
+                                      <td>No.</td>
+                                      <td>Jenis Fasos Fasum</td>
+                                      <td>Status Sertifikat<br>(SHP Pemprov)</td>
+                                      <td>Status Penggunaan</td>
+                                      <td>Status Plang</td>
+                                      <td>Sensus Fasos Fasum</td>
+                                      <td>Status Laporan Keuangan</td>
+                                      <td>Status Recon</td>
+                                      <td align='center'>KIB</td>
                                     </tr>
                                     ";
                                     $query3=mysql_query("select peruntukan.jenisfasos, peruntukan.statussertifikat, peruntukan.statuspenggunaan, peruntukan.statusplang, peruntukan.sensusfasos, peruntukan.statuslaporankeuangan, peruntukan.statusrecon, akun.kategoriaset from dataaset inner join peruntukan on dataaset.idaset=peruntukan.idaset inner join akun on peruntukan.idperuntukan=akun.idperuntukan where dataaset.idaset='$data2[idaset]'");

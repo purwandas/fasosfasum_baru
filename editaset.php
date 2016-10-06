@@ -72,16 +72,18 @@
 
                <form name="editbast" action="" method="post" enctype="multipart/form-data">
                  <input type="hidden" name="id" value="<?php echo $id; ?>" />
+                 <center>
                  <table>
 
                   <tr>
                     <td >ID Aset</td>           
-                    <td height="21"><input type="text" name="id" maxlength="20" required="required" value="<?php echo $data['idaset']; ?>" disabled /></td>
+                    <td height="21"><label class='input'><input type="text" name="id" maxlength="20" required="required" value="<?php echo $data['idaset']; ?>" disabled /></label>
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Alamat Aset </td>
-                    <td height="21"><input type="text" id="alamat" name="alamat" required="required" value="<?php echo $data['alamataset']; ?>"/>
+                    <td height="21"><label class='input'><input type="text" id="alamat" name="alamat" required="required" value="<?php echo $data['alamataset']; ?>"/></label>
                     </td>         
                   </tr>
                   <tr>
@@ -136,19 +138,22 @@
                   </tr>  
                   <tr>
                     <td>Latitude </td>
-                    <td><input type="text" name="latitude" maxlength="40" required="required" value="<?php echo $data['latitude']; ?>"/></td>
+                    <td><label class='input'><input type="text" name="latitude" maxlength="40" required="required" value="<?php echo $data['latitude']; ?>"/></label>
+                    </td>
                   </tr>
 
                   <tr>
                     <td>Longitude</td>
-                    <td><input type="text" name="longitude" maxlength="40" required="required" value="<?php echo $data['longitude']; ?>"/></td>
+                    <td><label class='input'><input type="text" name="longitude" maxlength="40" required="required" value="<?php echo $data['longitude']; ?>"/></label>
+                    </td>
                   </tr>
                   
                   <tr>
-                    <td align="right" colspan="2"><input type="submit" name="submitaset" value="Simpan Perubahan"> </td>
+                    <td align="center" colspan="2"><input type="submit" name="submitaset" value="Simpan Perubahan" class="btn btn-lg btn-info"> </td>
                   </tr>
 
                 </table>
+                </center>
               </form>
             </section>
             

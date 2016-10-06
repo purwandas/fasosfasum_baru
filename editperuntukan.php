@@ -84,15 +84,18 @@ if (isset($_POST['submit'])){
 
 				             <form name="editdokumenacuan" action="" method="post">
 				               <input type="hidden" name="id" value="<?php echo $id; ?>" />
+				               <center>
 				               <table>
 
-				                <tr>
+				                <!-- <tr>
 				                 <td >Id Peruntukan </td>           
-				                 <td height="21"><input type="text" name="idperuntukan" maxlength="15" required="required" value="<?php echo $data['idperuntukan']; ?>" disabled /></td>
-				               </tr>
+				                 <td height="21"><label class='input'> -->
+				                 <input type="hidden" name="idperuntukan" value="<?php echo $data['idperuntukan']; ?>" />
+				                 <!-- </label></td>
+				               </tr> -->
 				               <tr>
 				                <td >Deskripsi Peruntukan </td>           
-				                <td height="21"><input type="text" name="deskripsi" maxlength="80" required="required" value="<?php echo $data['deskripsi']; ?>"/></td>
+				                <td height="21"><label class='input'><input type="text" name="deskripsi" maxlength="80" required="required" value="<?php echo $data['deskripsi']; ?>"/></label></td>
 				              </tr>
 				              <tr>
 				               <td>Jenis Peruntukan</td>
@@ -102,7 +105,7 @@ if (isset($_POST['submit'])){
 
 				               <tr>
 				                <td>Volume </td>
-				                <td height="21"><input name="luas" type="text" id="luas" size="10" maxlenght="18" onkeypress="return isNumberKey(event)" required="required" value="<?php echo $data['luas']; ?>"/>
+				                <td height="21"><label class='input'><input name="luas" type="text" id="luas" size="10" maxlenght="18" onkeypress="return isNumberKey(event)" required="required" value="<?php echo $data['luas']; ?>"/></label>
 				                </td>         
 				              </tr>
 				              <tr>
@@ -112,7 +115,7 @@ if (isset($_POST['submit'])){
 				               </tr>
 				               <tr>
 				                 <td>Pemilik</td>
-				                 <td><input type="text" name="pemilik" maxlength="20" required="required" value="<?php echo $data['pemilik']; ?>"/></td>
+				                 <td><label class='input'><input type="text" name="pemilik" maxlength="20" required="required" value="<?php echo $data['pemilik']; ?>"/></label></td>
 				               </tr>
 
 				               <tr>
@@ -122,12 +125,12 @@ if (isset($_POST['submit'])){
 				                 </tr>
 				                 <tr>
 				                   <td>Masa Berlaku</td>
-				                   <td><input type="text" name="masaberlaku" maxlength="10" required="required" value="<?php echo $data['masaberlaku']; ?>"/></td>
+				                   <td><label class='input'><input type="text" name="masaberlaku" maxlength="10" required="required" value="<?php echo $data['masaberlaku']; ?>"/></label></td>
 				                 </tr>
 
 				                 <tr>
 				                   <td>Keterangan</td>
-				                   <td><input type="text" name="keterangan" maxlength="40" required="required" value="<?php echo $data['keterangan']; ?>"/></td>
+				                   <td><label class='input'><input type="text" name="keterangan" maxlength="40" required="required" value="<?php echo $data['keterangan']; ?>"/></label></td>
 				                 </tr>
 
 				                 <tr>
@@ -150,15 +153,15 @@ if (isset($_POST['submit'])){
 				               </tr>
 				               <tr>
 				                 <td>No.Sertifikat</td>
-				                 <td><input type="text" name="nosertifikat" maxlength="20" required="required" value="<?php echo $data['nosertifikat']; ?>"/></td>
+				                 <td><label class='input'><input type="text" name="nosertifikat" maxlength="20" required="required" value="<?php echo $data['nosertifikat']; ?>"/></label></td>
 				               </tr>
 				               <tr>
 				                 <td>Tgl.Sertifikat</td>
-				                 <td><input type="text" name="tglsertifikat" maxlength="20" required="required" value="<?php echo $data['tglsertifikat']; ?>"/></td>
+				                 <td><label class='input'><input type="text" name="tglsertifikat" maxlength="20" required="required" value="<?php echo $data['tglsertifikat']; ?>"/></label></td>
 				               </tr>
 				               <tr>
 				                 <td>Luas Sertifikat</td>
-				                 <td><input type="text" name="luassertifikat" maxlength="10" required="required" value="<?php echo $data['luassertifikat']; ?>"/></td>
+				                 <td><label class='input'><input type="text" name="luassertifikat" maxlength="10" required="required" value="<?php echo $data['luassertifikat']; ?>"/></label></td>
 				               </tr>
 				               <tr>
 				                 <td>Status Plang</td>
@@ -198,15 +201,15 @@ if (isset($_POST['submit'])){
 				           </tr>
 				           <tr>
 				           <td>No.SK</td>
-				             <td><input type="text" name="nosk" maxlength="20" required="required" value="<?php echo $data['nosk']; ?>"/></td>
+				             <td><label class='input'><input type="text" name="nosk" maxlength="20" required="required" value="<?php echo $data['nosk']; ?>"/></label></td>
 				           </tr>
 				           <tr>
 				             <td>Tgl.SK</td>
-				             <td><input type="text" name="tglsk" maxlength="20" required="required" value="<?php echo $data['tglsk']; ?>"/></td>
+				             <td><label class='input'><input type="text" name="tglsk" maxlength="20" required="required" value="<?php echo $data['tglsk']; ?>"/></label></td>
 				           </tr>
 				           <tr>
 				             <td>SKPD</td>
-				             <td><input type="text" name="skpd" maxlength="10" required="required" value="<?php echo $data['skpd']; ?>"/></td>
+				             <td><label class='input'><input type="text" name="skpd" maxlength="10" required="required" value="<?php echo $data['skpd']; ?>"/></label></td>
 				           </tr>
 				           <tr>
 				             <td>Sensus Fasos</td>
@@ -231,11 +234,12 @@ if (isset($_POST['submit'])){
 				           <td><input type="text" name="nodokacuan" maxlength="40" required="required" value="<?php echo $data['nodokacuan']; ?>"/></td>
 				         </tr> -->
 
-				         <tr>		
-				          <td align="right" colspan="2"><input type="submit" name="submit" value="Simpan Perubahan"> </td>
+				         <tr>	
+				          <td align="center" colspan="2"><input class='btn btn-lg btn-info' type="submit" name="submit" value="Simpan Perubahan"> </td>
 				        </tr>
 
 				      </table>
+				      </center>
 				    </form>
 						</section>
 						

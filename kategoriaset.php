@@ -35,10 +35,10 @@
 							<table class="table table-striped table-hover">
 					           
 					            <tr>
-					              <td class="center">No.</td>        	
-					              <td class="center">ID KATEGORI</td>
-					              <td class="center">DESKRIPSI KATEGORI</td>
-					              <td class="center">OPSI</td>
+					              <td>No.</td>        	
+					              <td>ID KATEGORI</td>
+					              <td>DESKRIPSI KATEGORI</td>
+					              <td>OPSI</td>
 					            </tr>
 					          
 					          <?php
@@ -48,10 +48,10 @@
 					          while ($data = mysql_fetch_array($query)) {
 					           ?>
 					             <tr>
-					               <td class="center"><?php echo $no; ?></td>
-					               <td class="center"><?php echo $data['kategoriaset']; ?></td>
-					               <td class="center"><?php echo $data['deskripsikategori']; ?></td>
-					               <td class="center"><a href="kategoriasetDelete.php?kat=<?php echo $data["kategoriaset"];?>">Hapus</a></td></a></td>
+					               <td><?php echo $no; ?></td>
+					               <td><?php echo $data['kategoriaset']; ?></td>
+					               <td><?php echo $data['deskripsikategori']; ?></td>
+					               <td><a href="kategoriasetDelete.php?kat=<?php echo $data["kategoriaset"];?>">Hapus</a></td></a></td>
 					             </tr>
 					           <?php
 					           $no++;
@@ -92,14 +92,14 @@
 						      <table>
 						        <tr>
 						        	<td>Id Kategori</td>           
-						          <td><input type="text" name="kategoriaset" maxlength="20" required="required"  /></td>
+						          <td><label class='input'><input type="text" name="kategoriaset" maxlength="20" required="required"  /></label></td>
 						        </tr>
 						        <tr>
 						         <td>Deskripsi Kategori </td>
-						         <td><input type="text" name="deskripsikategori" maxlength="40" required="required" /></td>
+						         <td><label class='input'><input type="text" name="deskripsikategori" maxlength="40" required="required" /></label></td>
 						       </tr>
 						       <tr>
-						        <td><input type="submit" name="submit" value="Simpan"/> </td>
+						        <td><input type="submit" name="submit" value="Simpan" class="btn btn-lg btn-info" /> </td>
 						      </tr>
 						    </table>
 						  </form> 

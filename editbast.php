@@ -73,21 +73,22 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
 
 					           <form name="editbast" action="" method="post" enctype="multipart/form-data">
 					             <input type="hidden" name="id" value="<?php echo $id; ?>" />
+					             <center>
 					             <table>
 
 					              <tr>
-					                <td >No.BAST</td>           
-					                <td height="21"><input type="text" name="nobast" maxlength="20" required="required" value="<?php echo $data['nobast']; ?>" disabled /></td>
+					                <td width="140px">No.BAST</td>           
+					                <td height="21"><label class="input"><input type="text" name="nobast" maxlength="20" required="required" value="<?php echo $data['nobast']; ?>" disabled /></label></td>
 					              </tr>
 
 					              <tr>
 					                <td>Tgl. BAST </td>
-					                <td height="21"><input type="text" id="tglbast" name="tglbast" maxlength="10" required="required" value="<?php echo $data['tglbast']; ?>"/>
+					                <td height="21"><label class="input"><input type="text" id="tglbast" name="tglbast" maxlength="10" required="required" value="<?php echo $data['tglbast']; ?>"/></label>
 					                </td>         
 					              </tr>
 					              <tr>
 					                <td>Nama Pengembang </td>
-					                <td><input type="text" name="pengembangbast" maxlength="40" required="required" value="<?php echo $data['pengembangbast']; ?>"/></td>
+					                <td><label class="input"><input type="text" name="pengembangbast" maxlength="40" required="required" value="<?php echo $data['pengembangbast']; ?>"/></label></td>
 					              </tr>
 					              <tr>
 					                <td>Perihal</td>
@@ -101,12 +102,12 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
 					              </tr>  
 					              <tr>
 					                <td>No.Dokumen Acuan </td>
-					                <td><input type="text" name="nodokacuan" maxlength="40" required="required" value="<?php echo $data['nodokacuan']; ?>"/></td>
+					                <td><label class="input"><input type="text" name="nodokacuan" maxlength="40" required="required" value="<?php echo $data['nodokacuan']; ?>"/></label></td>
 					              </tr>
 
 					              <tr>
 					                <td>Kode Arisp </td>
-					                <td><input type="text" name="kodearsip" maxlength="40" required="required" value="<?php echo $data['kodearsip']; ?>"/></td>
+					                <td><label class="input"><input type="text" name="kodearsip" maxlength="40" required="required" value="<?php echo $data['kodearsip']; ?>"/></label></td>
 					              </tr>
 					              <tr>
 					                <td>File Acuan </td>
@@ -125,10 +126,11 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
 					              </td>
 					            </tr>
 					            <tr>
-					              <td align="right" colspan="2"><input type="submit" name="submit" value="Simpan Perubahan"> </td>
+					              <td align="center" colspan="2"><input type="submit" name="submit" value="Simpan Perubahan" class="btn btn-lg btn-info"> </td>
 					            </tr>
 
 					          </table>
+					          </center>
 					        </form>
 						</section>
 						

@@ -83,10 +83,10 @@ function submit() {
 						          $totalData=mysql_num_rows(mysql_query($queryperuntukan));
 						          $page=ceil(mysql_num_rows(mysql_query($queryperuntukan))/$reclimit);
 						          $qpaging=$queryperuntukan;
-						          // echo $queryperuntukan;
+						          // echo $queryperuntukan.'lal';
 						          $queryperuntukan.=$limit;
 						          $no=$offset+1;
-						          echo "<div align='right'>".pagination($qpaging,$reclimit,$cp,"$pth")."</div> <br><br>";
+						          echo "<div align='left'>".pagination($qpaging,$reclimit,$cp,"$pth")."</div> <br><br>";
 
 						          ?>
 						        <div style="overflow:auto">
@@ -122,30 +122,30 @@ function submit() {
 						            </tr>
 						            <tr>
 						              <td><i class="fa fa-search"></i></td>
-						              <td><input type="text" value="<?php if(isset($_GET['deskripsi'])){echo $_GET['deskripsi'];} ?>" name="deskripsi" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['jenis'])){echo $_GET['jenis'];} ?>" name="jenis" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['luas'])){echo $_GET['luas'];} ?>" name="luas" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['sertifikasi'])){echo $_GET['sertifikasi'];} ?>" name="sertifikasi" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['pemilik'])){echo $_GET['pemilik'];} ?>" name="pemilik" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['jenissertifikat'])){echo $_GET['jenissertifikat'];} ?>" name="jenissertifikat" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['masaberlaku'])){echo $_GET['masaberlaku'];} ?>" name="masaberlaku" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['keterangan'])){echo $_GET['keterangan'];} ?>" name="keterangan" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['statuslaporankeuangan'])){echo $_GET['statuslaporankeuangan'];} ?>" name="statuslaporankeuangan" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['statusrecon'])){echo $_GET['statusrecon'];} ?>" name="statusrecon" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['statussertifikat'])){echo $_GET['statussertifikat'];} ?>" name="statussertifikat" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['nosertifikat'])){echo $_GET['nosertifikat'];} ?>" name="nosertifikat" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['tglsertifikat'])){echo $_GET['tglsertifikat'];} ?>" name="tglsertifikat" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['luassertifikat'])){echo $_GET['luassertifikat'];} ?>" name="luassertifikat" onchange="submit()"</td>
-						              <td><input type="text" value="<?php if(isset($_GET['statusplang'])){echo $_GET['statusplang'];} ?>" name="statusplang" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['statuspenggunaan'])){echo $_GET['statuspenggunaan'];} ?>" name="statuspenggunaan" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['nosk'])){echo $_GET['nosk'];} ?>" name="nosk" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['tglsk'])){echo $_GET['tglsk'];} ?>" name="tglsk" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['skpd'])){echo $_GET['skpd'];} ?>" name="skpd" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['sensusfasos'])){echo $_GET['sensusfasos'];} ?>" name="sensusfasos" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['jenisfasos'])){echo $_GET['jenisfasos'];} ?>" name="jenisfasos" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['nodokacuan'])){echo $_GET['nodokacuan'];} ?>" name="nodokacuan" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['nobast'])){echo $_GET['nobast'];} ?>" name="nobast" onchange="submit()"></td>
-						              <td><input type="text" value="<?php if(isset($_GET['idaset'])){echo $_GET['idaset'];} ?>" name="idaset" onchange="submit()"></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['deskripsi'])){echo $_GET['deskripsi'];} ?>" name="deskripsi" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['jenis'])){echo $_GET['jenis'];} ?>" name="jenis" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['luas'])){echo $_GET['luas'];} ?>" name="luas" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['sertifikasi'])){echo $_GET['sertifikasi'];} ?>" name="sertifikasi" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['pemilik'])){echo $_GET['pemilik'];} ?>" name="pemilik" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['jenissertifikat'])){echo $_GET['jenissertifikat'];} ?>" name="jenissertifikat" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['masaberlaku'])){echo $_GET['masaberlaku'];} ?>" name="masaberlaku" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['keterangan'])){echo $_GET['keterangan'];} ?>" name="keterangan" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['statuslaporankeuangan'])){echo $_GET['statuslaporankeuangan'];} ?>" name="statuslaporankeuangan" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['statusrecon'])){echo $_GET['statusrecon'];} ?>" name="statusrecon" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['statussertifikat'])){echo $_GET['statussertifikat'];} ?>" name="statussertifikat" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['nosertifikat'])){echo $_GET['nosertifikat'];} ?>" name="nosertifikat" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['tglsertifikat'])){echo $_GET['tglsertifikat'];} ?>" name="tglsertifikat" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['luassertifikat'])){echo $_GET['luassertifikat'];} ?>" name="luassertifikat" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['statusplang'])){echo $_GET['statusplang'];} ?>" name="statusplang" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['statuspenggunaan'])){echo $_GET['statuspenggunaan'];} ?>" name="statuspenggunaan" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['nosk'])){echo $_GET['nosk'];} ?>" name="nosk" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['tglsk'])){echo $_GET['tglsk'];} ?>" name="tglsk" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['skpd'])){echo $_GET['skpd'];} ?>" name="skpd" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['sensusfasos'])){echo $_GET['sensusfasos'];} ?>" name="sensusfasos" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['jenisfasos'])){echo $_GET['jenisfasos'];} ?>" name="jenisfasos" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['nodokacuan'])){echo $_GET['nodokacuan'];} ?>" name="nodokacuan" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['nobast'])){echo $_GET['nobast'];} ?>" name="nobast" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['idaset'])){echo $_GET['idaset'];} ?>" name="idaset" onchange="submit()"></label></td>
 						            </tr>
 						            <?php
 						            $queryperuntukan=mysql_query($queryperuntukan);
@@ -187,7 +187,7 @@ function submit() {
 						        </div>
 						        <?php
 									echo "<br><div align='left'> <b>*) $totalData Data ditemukan</b> </div>";
-				                	echo "<div align='right'>".pagination($qpaging,$reclimit,$cp,"$pth")."</div>";
+				                	echo "<div align='left'>".pagination($qpaging,$reclimit,$cp,"$pth")."</div>";
 				                ?>
 						      </div>
 						    </form>

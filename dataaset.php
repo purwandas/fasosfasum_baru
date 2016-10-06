@@ -107,25 +107,25 @@
 												<i class="fa fa-search"></i>
 											</td>
 											<td>
-												<input type="text" onchange="submit()" name="alamataset" placeholder="Alamat" value="<?php if(isset($_GET['alamataset'])){echo $_GET['alamataset'];}?>">
+												<label class='input'><input type="text" onchange="submit()" name="alamataset" placeholder="Alamat" value="<?php if(isset($_GET['alamataset'])){echo $_GET['alamataset'];}?>"></label>
 											</td>
 											<td>
-												<input type="text" onchange="submit()" name="wilayah" placeholder="Wilayah" value="<?php if(isset($_GET['wilayah'])){echo $_GET['wilayah'];}?>">
+												<label class='input'><input type="text" onchange="submit()" name="wilayah" placeholder="Wilayah" value="<?php if(isset($_GET['wilayah'])){echo $_GET['wilayah'];}?>"></label>
 											</td>
 											<td>
-												<input type="text" onchange="submit()" name="kecamatan" placeholder="Kecamatan" value="<?php if(isset($_GET['kecamatan'])){echo $_GET['kecamatan'];}?>">
+												<label class='input'><input type="text" onchange="submit()" name="kecamatan" placeholder="Kecamatan" value="<?php if(isset($_GET['kecamatan'])){echo $_GET['kecamatan'];}?>"></label>
 											</td>
 											<td>
-												<input type="text" onchange="submit()" name="kelurahan" placeholder="Kelurahan" value="<?php if(isset($_GET['kelurahan'])){echo $_GET['kelurahan'];}?>">
+												<label class='input'><input type="text" onchange="submit()" name="kelurahan" placeholder="Kelurahan" value="<?php if(isset($_GET['kelurahan'])){echo $_GET['kelurahan'];}?>"></label>
 											</td>
 											<td>
-												<input type="text" onchange="submit()" name="nobastaset" placeholder="No. Bast" value="<?php if(isset($_GET['nobastaset'])){echo $_GET['nobastaset'];}?>">
+												<label class='input'><input type="text" onchange="submit()" name="nobastaset" placeholder="No. Bast" value="<?php if(isset($_GET['nobastaset'])){echo $_GET['nobastaset'];}?>"></label>
 											</td>
 											<td>
-												<input type="text" onchange="submit()" name="latitude" placeholder="Latitude" value="<?php if(isset($_GET['latitude'])){echo $_GET['latitude'];}?>">
+												<label class='input'><input type="text" onchange="submit()" name="latitude" placeholder="Latitude" value="<?php if(isset($_GET['latitude'])){echo $_GET['latitude'];}?>"></label>
 											</td>
 											<td>
-												<input type="text" onchange="submit()" name="longitude" placeholder="Longitude" value="<?php if(isset($_GET['longitude'])){echo $_GET['longitude'];}?>">
+												<label class='input'><input type="text" onchange="submit()" name="longitude" placeholder="Longitude" value="<?php if(isset($_GET['longitude'])){echo $_GET['longitude'];}?>"></label>
 											</td>
 											<td>
 											</td>

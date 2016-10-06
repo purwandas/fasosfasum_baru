@@ -27,7 +27,7 @@ $id = $_GET['id'];
 			
 			<div class="widget-body no-padding">
 				<fieldset>
-					<div class="row">
+					<div class="row" style="height: 240px">
 					
 			        
 						<section class="col col-sm-12 col-md-12 col-lg-12">
@@ -98,7 +98,7 @@ $id = $_GET['id'];
 			
 			<div class="widget-body no-padding">
 				<fieldset>
-					<div class="row">
+					<div class="row"  style="height: 240px">
 					
 			        
 						<section class="col col-sm-12 col-md-12 col-lg-12">
@@ -242,20 +242,11 @@ $id = $_GET['id'];
 
 																?>
 																	<tr>
-																		<td class="center"><?php ?></td>
-																		<td class="left"><?php  ?></td>
-																		
-																		<td class="center"><?php  ?></td>
-																		<td class="right"><?php  ?></td>
-																		<td class="center"><?php  ?></td>
-																		<td class="left"><?php ?></td>
-																		<td class="left"><?php  ?></td>
+																		<td class="text-center" colspan="7">Total</td>
 																		<td class="center"><?php print number_format ($data1['totnjop'],2); ?></td>
 																		<td class="center"><?php print number_format ($data1['totbast'],2); ?></td>
 																		<td class="center"><?php print number_format ($data1['totmix'],2); ?></td>
-																		<td class="right"><?php ?></td>		
-																		<td class="center"><?php ?></td>
-																		<td class="center"><?php ?></td>
+																		<td colspan="3"><?php ?></td>		
 																	</tr>
 
 														</table>

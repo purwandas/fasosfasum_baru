@@ -205,30 +205,30 @@ $(document).ready(function() {
 						            </tr>
 						            <tr>
 					                    <th><i class="fa fa-search"></i></th>
-					                    <th><input type="text" class="form-control" placeholder="Deskripsi" /></th>
-					                    <th><input type="text" class="form-control" placeholder="Jenis" /></th>
-					                    <th><input type="text" class="form-control" placeholder="Luas" /></th>
-					                    <th><input type="text" class="form-control" placeholder="Sertifikasi" /></th>
-					                    <th><input type="text" class="form-control" placeholder="Pemilik" /></th>
-					                    <th><input type="text" class="form-control" placeholder="Jenis Sertifikat" /></th>
-					                    <th><input type="text" class="form-control" placeholder="No. Sertifikat" /></th>
-					                    <th><input type="text" class="form-control" placeholder="Masa Berlaku" /></th>
-					                    <th><input type="text" class="form-control" placeholder="Luas Sertifikat" /></th>
-					                    <th><input type="text" class="form-control" placeholder="Tgl. Sertifikat"/></th>
-					                    <th><input type="text" class="form-control" placeholder="No. SK"/></th>
-					                    <th><input type="text" class="form-control" placeholder="Tgl. SK"/></th>
-					                    <th><input type="text" class="form-control" placeholder="SKPD"/></th>
-					                    <th><input type="text" class="form-control" placeholder="Keterangan"/></th>
-					                    <th><input type="text" class="form-control" placeholder="Status Sertifikat"/></th>
-					                    <th><input type="text" class="form-control" placeholder="Status Plang"/></th>
-					                    <th><input type="text" class="form-control" placeholder="Status Penggunaan"/></th>
-					                    <th><input type="text" class="form-control" placeholder="Sensus Fasos"/></th>
-					                    <th><input type="text" class="form-control" placeholder="Jenis Fasos"/></th>
-					                    <th><input type="text" class="form-control" placeholder="Status Laporan Keuangan"/></th>
-					                    <th><input type="text" class="form-control" placeholder="Status Recon"/></th>
-					                    <th><input type="text" class="form-control" placeholder="No. Dokumen Acuan"/></th>
-					                    <th><input type="text" class="form-control" placeholder="No. BAST"/></th>
-					                    <th><input type="text" class="form-control" placeholder="ID Aset"/></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Deskripsi" /></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Jenis" /></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Luas" /></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Sertifikasi" /></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Pemilik" /></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Jenis Sertifikat" /></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="No. Sertifikat" /></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Masa Berlaku" /></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Luas Sertifikat" /></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Tgl. Sertifikat"/></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="No. SK"/></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Tgl. SK"/></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="SKPD"/></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Keterangan"/></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Status Sertifikat"/></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Status Plang"/></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Status Penggunaan"/></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Sensus Fasos"/></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Jenis Fasos"/></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Status Laporan Keuangan"/></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="Status Recon"/></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="No. Dokumen Acuan"/></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="No. BAST"/></label></th>
+					                    <th><label class="input em15"><input type="text" class="form-control" placeholder="ID Aset"/></label></th>
 					                    <th></th>
 						            </tr>
 						        </thead>

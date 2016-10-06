@@ -148,7 +148,7 @@
 
 		<!-- PAGE RELATED PLUGIN(S) 
 		<script src="..."></script>-->
-		<script src="JS/plugin/chartJS/chart.min.js"></script>
+		<script src="JS/plugin/chartjs/chart.min.js"></script>
 
 		<script type="text/javascript">
 
@@ -345,7 +345,7 @@
 			<!-- NAVIGATION : This navigation is also responsive-->
 			<nav>
 				<ul>
-					<li class="active">
+					<li>
 						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
 					</li>
 					<li>

@@ -31,20 +31,20 @@ $data = mysql_fetch_array($query);
 						<section class="col col-sm-12 col-md-12 col-lg-12">
 							<table class="size130">
 			                <tr>
-			                  <td>Jenis Acuan </td><td width="10px">: </td><td><?php echo $data['idkategori']; ?></td><td><a href="index.php?hal=editacuan&nodokacuan=<?php echo $data['nodokacuan']; ?>">[ Edit ]</a></td>
+			                  <td>Jenis Acuan </td><td width="15px" align="center">: </td><td><?php echo $data['idkategori']; ?></td><td><a href="index.php?hal=editacuan&nodokacuan=<?php echo $data['nodokacuan']; ?>">[ Edit ]</a></td>
 			                </tr>
-			                <td>No.Dok Acuan </td><td>: </td><td><?php echo $data['nodokacuan']; ?></td>
+			                <td>No.Dok Acuan </td><td align="center"> : </td><td><?php echo $data['nodokacuan']; ?></td>
 			              </tr>
-			              <tr><td>Tgl.Dok Acuan </td><td>: </td><td><?php echo $data['tgldokacuan']; ?></td>
-			              </tr>
-			              <tr>
-			                <td>Pemegang</td><td>: </td><td><?php echo $data['pemegangdokacuan']; ?></td>
+			              <tr><td>Tgl.Dok Acuan </td><td align="center"> : </td><td><?php echo $data['tgldokacuan']; ?></td>
 			              </tr>
 			              <tr>
-			                <td>Perihal</td><td>:</td><td><?php echo $data['haldokacuan']; ?></td> 
+			                <td>Pemegang</td><td align="center"> : </td><td><?php echo $data['pemegangdokacuan']; ?></td>
 			              </tr>
 			              <tr>
-			                <td>Keterangan </td><td>:</td><td><?php echo $data['ketdokacuan']; ?></td> 
+			                <td>Perihal</td><td align="center"> :</td><td><?php echo $data['haldokacuan']; ?></td> 
+			              </tr>
+			              <tr>
+			                <td>Keterangan </td><td align="center"> : </td><td><?php echo $data['ketdokacuan']; ?></td> 
 			              </tr>
 			              <tr>
 			                  <?php 
@@ -93,22 +93,22 @@ $data = mysql_fetch_array($query);
 						<section class="col col-sm-12 col-md-12 col-lg-12">
 							<table class="size130">
 			                <tr>
-			                  <td>No.BAST </td><td width="10px">: </td><td><?php echo $data['nobast']; ?></td><td><a href="index.php?hal=editbast&id=<?php echo $data['nobast']; ?>">[ Edit ]</a></td>
+			                  <td>No.BAST </td><td width="15px" align="center">: </td><td><?php echo $data['nobast']; ?></td><td><a href="index.php?hal=editbast&id=<?php echo $data['nobast']; ?>">[ Edit ]</a></td>
 
 			                </tr>
-			                <tr><td>Tgl. BAST </td><td>: </td><td><?php echo $data['tglbast']; ?></td>
+			                <tr><td>Tgl. BAST </td><td align="center">: </td><td><?php echo $data['tglbast']; ?></td>
 			                </tr>
 			                <tr>
-			                  <td>Pengembang </td><td>: </td><td><?php echo $data['pengembangbast']; ?></td>
+			                  <td>Pengembang </td><td align="center">: </td><td><?php echo $data['pengembangbast']; ?></td>
 			                </tr>
 			                <tr>
-			                  <td>Perihal</td><td>:</td><td><?php echo $data['perihalbast']; ?></td> 
+			                  <td>Perihal</td><td align="center">:</td><td><?php echo $data['perihalbast']; ?></td> 
 			                </tr>
 			                <tr>
-			                  <td>Kategori </td><td>:</td><td><?php echo $data['keterangan']; ?></td> 
+			                  <td>Kategori </td><td align="center">:</td><td><?php echo $data['keterangan']; ?></td> 
 			                </tr>
 			                <tr>
-			                  <td>Kode Arsip </td><td>: </td><td><?php echo $data['kodearsip']; ?></td>
+			                  <td>Kode Arsip </td><td align="center">: </td><td><?php echo $data['kodearsip']; ?></td>
 			                </tr>
 			                <tr>
 			                  <?php 
@@ -159,18 +159,18 @@ $data = mysql_fetch_array($query);
 		           $query3 = mysql_query("select * from dataaset where nobastaset='$id'") or die(mysql_error());
 		           while ($data3 = mysql_fetch_array($query3)){
 		             ?>
-		             <table>
+		             <table style="margin-left: 15px">
 		              <tr>
-		                <td>Alamat lokasi</td><td>:</td><td><?php echo $data3['alamataset']; ?></td><td><a href='index.php?hal=editaset<?php echo "&id=$data3[idaset]"; ?>' >[Edit]</a></td>
+		                <td>Alamat lokasi</td><td width="15px" align="center">:</td><td><?php echo $data3['alamataset']; ?></td><td><a href='index.php?hal=editaset<?php echo "&id=$data3[idaset]"; ?>' >[Edit]</a></td>
 		              </tr>
 		              <tr>
-		               <td >Wilayah</td><td>:</td><td colspan='2'><?php echo $data3['wilayah']; ?></td>
+		               <td >Wilayah</td><td align="center">:</td><td colspan='2'><?php echo $data3['wilayah']; ?></td>
 		             </tr>
 		             <tr>
-		               <td >Kecamatan</td><td>:</td><td colspan='2'><?php echo $data3['kecamatan']; ?></td>
+		               <td >Kecamatan</td><td align="center">:</td><td colspan='2'><?php echo $data3['kecamatan']; ?></td>
 		             </tr>
 		             <tr>
-		               <td >Kelurahan</td><td>:</td><td colspan='2'><?php echo $data3['kelurahan']; ?></td>
+		               <td >Kelurahan</td><td align="center">:</td><td colspan='2'><?php echo $data3['kelurahan']; ?></td>
 		             </tr>
 			    	</table>
 						<section class="col col-sm-12 col-md-12 col-lg-12 table-responsive">
@@ -236,7 +236,7 @@ $data = mysql_fetch_array($query);
 				                   <td class="right"><?php echo $data2['tglsk']; ?></td>
 				                   <td class="right"><?php echo $data2['skpd']; ?></td>
 				                  <td class="right"><?php echo $data2['sensusfasos']; ?></td>
-				                  <td class="center"><a href=bastbysippt.php?id=<?php echo $data2['nodokacuan'].">$data2[nodokacuan]"; ?></a></td>
+				                  <td class="center"><a href=index.php?hal=bastbysippt&id=<?php echo $data2['nodokacuan'].">$data2[nodokacuan]"; ?></a></td>
 				                   <td class="center"><a href="index.php?hal=editperuntukan&idperuntukan=<?php echo $data2['idperuntukan']; ?>">Edit</a>|<a href="hapusperuntukan.php?idperuntukan=<?php echo $data2['idperuntukan']."&id=$_GET[id]"; ?>" onClick="return konfirmasi()">Hapus</a></td>
 				                 </tr>
 				                <?php
@@ -387,7 +387,7 @@ $data = mysql_fetch_array($query);
 		                </td>
 		               </tr>
 		               <tr>
-		                 <td colspan="4" align="right"><input type="submit" value="Simpan Perubahan" name="submit22"></td>
+		                 <td colspan="4" align="right"><input type="submit" value="Simpan Perubahan" name="submit22" class="btn btn-lg btn-info"></td>
 		               </tr>
 		               
 		             </table>

@@ -14,43 +14,43 @@
 
 
      
-     td1.innerHTML="<input type='text' required name='alamataset[]'>";
-     td2.innerHTML="<select name='kecamatan[]'>           <?php
-     include "koneksi.php";
-     // query untuk menampilkan kecamatan
-     $query = "SELECT * FROM kecamatan";
-     $hasil = mysql_query($query);
-     while ($data = mysql_fetch_array($hasil))
-     {
-      echo "<option >".$data['namakecamatan']."</option>".$data['namakecamatan']."</option>";
-    }
-    ?></select>";
-
-    td3.innerHTML="<select name='kelurahan[]'>            <?php
-    include "koneksi.php";
-     // query untuk menampilkankelurahan
-    $query = "SELECT * FROM kelurahan";
-    $hasil = mysql_query($query);
-    while ($data = mysql_fetch_array($hasil))
-    {
-      echo "<option >".$data['namakelurahan']."</option>".$data['namakelurahan']."</option>";
-    }
-    ?></select>";
-
-    td4.innerHTML="<select name='wilayah[]'>            <?php
+     td1.innerHTML="<label class='input'><input type='text' required name='alamataset[]'></label>";
+     td2.innerHTML="<select name='wilayah[]'>            <?php
     include "koneksi.php";
      // query untuk menampilkanwilayah
     $query = "SELECT * FROM wilayah";
     $hasil = mysql_query($query);
     while ($data = mysql_fetch_array($hasil))
     {
-      echo "<option >".$data['wilayah']."</option>".$data['wilayah']."</option>";
+      echo "<option value='".$data['wilayah']."'>".$data['wilayah']."</option>";
     }
     ?></select>";
 
-    td5.innerHTML="<input type='text' required name='latitude[]'>";
+    td3.innerHTML="<select name='kecamatan[]'>           <?php
+     include "koneksi.php";
+     // query untuk menampilkan kecamatan
+     $query = "SELECT * FROM kecamatan";
+     $hasil = mysql_query($query);
+     while ($data = mysql_fetch_array($hasil))
+     {
+      echo "<option value='".$data['namakecamatan']."'>".$data['namakecamatan']."</option>";
+    }
+    ?></select>";
 
-    td6.innerHTML="<input type='text' required name='longitude[]'>";
+    td4.innerHTML="<select name='kelurahan[]'>            <?php
+    include "koneksi.php";
+     // query untuk menampilkankelurahan
+    $query = "SELECT * FROM kelurahan";
+    $hasil = mysql_query($query);
+    while ($data = mysql_fetch_array($hasil))
+    {
+      echo "<option value='".$data['namakelurahan']."'>".$data['namakelurahan']."</option>";
+    }
+    ?></select>";
+
+    td5.innerHTML="<label class='input'><input type='text' required name='latitude[]'></label>";
+
+    td6.innerHTML="<label class='input'><input type='text' required name='longitude[]'></label>";
 
 
     idrow++;
@@ -92,16 +92,18 @@
                 <tr>
                   <td>No.BAST </td>
                   <td>: </td>
-                  <td><input type="text" name="nobast" maxlength="50" required="required" /></td>
+                  <td><label class='input'>
+                    <input type="text" name="nobast" maxlength="50" required="required" />
+                  </label></td>
                 </tr>
                 <tr><td>Tgl. BAST </td>
                 <td>: </td>
-                <td><input type="text" id="tgldokacuan" name="tglbast" maxlength="10" required="required"/></td>
+                <td><label class='input'><input type="text" id="tgldokacuan" name="tglbast" maxlength="10" required="required"/></label></td>
                 </tr>
                 <tr>
                   <td>Pengembang </td>
                   <td>: </td>
-                  <td><input type="text" name="pengembangbast" maxlength="100" required="required" /></td>
+                  <td><label class='input'><input type="text" name="pengembangbast" maxlength="100" required="required" /></label></td>
                 </tr>
                 <tr>
                   <td>Perihal</td>
@@ -115,7 +117,7 @@
                 </tr>
                 <tr><td>Dokumen Acuan</td>
                 <td>:</td>
-                <td><select name='nodokacuan'>
+                <td><select name='nodokacuan' class="select2">
                  <?php
                  include "koneksi.php";
                  // query untuk menampilkan wilayah
@@ -123,14 +125,14 @@
                  $hasil = mysql_query($query);
                  while ($data = mysql_fetch_array($hasil))
                  {
-                  echo "<option >".$data['nodokacuan']."</option>".$data['nodokacuan']."</option>";
+                  echo "<option value='".$data['nodokacuan']."'>".$data['nodokacuan']."</option>";
                 }
                 ?>
               </select></td>
               </tr>       
 
               <tr>
-              <td>Kode Arsip </td><td>: </td><td><input type="text" name="kodearsip" maxlength="40" required="required" /></td>
+              <td>Kode Arsip </td><td>: </td><td><label class='input'><input type="text" name="kodearsip" maxlength="40" required="required" /></label></td>
               </tr>
               <tr>
                <td>File Acuan</td><td>: </td><td><input type="file" name="fileacuan"></td>
@@ -185,26 +187,40 @@
 
                <table class="table table-bordered table-striped" id=datatable >
                    <tr>
-                     <td class="center">ALAMAT ASET</td>
-                     <td class="center">KECAMATAN</td>
-                     <td class="center">KELURAHAN</td>
-                     <td class="center">WILAYAH</td>
-                     <td class="center">LATITUDE</td>
-                     <td class="center">LONGITUDE</td>
+                     <td>ALAMAT ASET</td>
+                     <td>WILAYAH</td>
+                     <td>KECAMATAN</td>
+                     <td>KELURAHAN</td>
+                     <td>LATITUDE</td>
+                     <td>LONGITUDE</td>
                    </tr>
 
                    <tr>
 
-                     <td><input type='text' required name='alamataset[]'></td>
+                     <td><label class='input'><input type='text' required name='alamataset[]'></label></td>
+
+                     <td><select name='wilayah[]'>
+
+                     <?php
+                   // query untuk menampilkan wilayah
+                     $query = "SELECT * FROM wilayah";
+                     $hasil = mysql_query($query);
+                     while ($data = mysql_fetch_array($hasil))
+                     {
+                      echo "<option value='".$data['wilayah']."''>".$data['wilayah']."</option>";
+                    }
+                    ?>
+                    </select></td>
+
                      <td><select name='kecamatan[]'>
 
                        <?php
-                 // query untuk menampilkan wilayah
+                 // query untuk menampilkan kecamatan
                        $query = "SELECT * FROM kecamatan";
                        $hasil = mysql_query($query);
                        while ($data = mysql_fetch_array($hasil))
                        {
-                        echo "<option >".$data['namakecamatan']."</option>".$data['namakecamatan']."</option>";
+                        echo "<option value='".$data['namakecamatan']."'>".$data['namakecamatan']."</option>";
                       }
                       ?>
                     </select></td>
@@ -217,25 +233,14 @@
                      $hasil = mysql_query($query);
                      while ($data = mysql_fetch_array($hasil))
                      {
-                      echo "<option >".$data['namakelurahan']."</option>".$data['namakelurahan']."</option>";
+                      echo "<option value='".$data['namakelurahan']."'>".$data['namakelurahan']."</option>";
                     }
                     ?>
                   </select></td>
 
-                  <td><select name='wilayah[]'>
-
-                   <?php
-                 // query untuk menampilkan wilayah
-                   $query = "SELECT * FROM wilayah";
-                   $hasil = mysql_query($query);
-                   while ($data = mysql_fetch_array($hasil))
-                   {
-                    echo "<option >".$data['wilayah']."</option>".$data['wilayah']."</option>";
-                  }
-                  ?>
-                </select></td>    
-                <td><input type='text' required name='latitude[]'></td>
-                <td><input type='text' required name='longitude[]'></td>
+                  
+                <td><label class='input'><input type='text' required name='latitude[]'></label></td>
+                <td><label class='input'><input type='text' required name='longitude[]'></label></td>
 
               </tr>
           </table>

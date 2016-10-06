@@ -258,13 +258,13 @@ if (isset($_POST['submit'])){
 																			<tr>
 																			<td></td>
 																			<td><b>Total Nilai PerGub132 : </b></td>
-																			<td><input type='text' value= "<?php echo $data4['totnjop']; ?>" name='total' id='total'/></td>
+																			<td><label class='input'><input type='text' value= "<?php echo $data4['totnjop']; ?>" name='total' id='total'/></label></td>
 																			</tr><tr>
-																			<td></td><td><b>Total Nilai BAST : </b></td><td><input type='text' value="<?php echo $data4['totbast']; ?>" name='total1' id='total1'/></td>
+																			<td></td><td><b>Total Nilai BAST : </b></td><td><label class='input'><input type='text' value="<?php echo $data4['totbast']; ?>" name='total1' id='total1'/></label></td>
 																			</tr><tr>
-																			<td></td><td><b>Total Nilai Kombinasi : </b></td><td><input type='text' value="<?php echo $data4['totmix']; ?>" name='total3' id='total3'/></td>
+																			<td></td><td><b>Total Nilai Kombinasi : </b></td><td><label class='input'><input type='text' value="<?php echo $data4['totmix']; ?>" name='total3' id='total3'/></label></td>
 																			</tr><tr>
-																			<td></td><td><b>Total Nilai Appraisal : </b></td><td><input type='text' value="<?php echo $data4['totapp']; ?>" name='total2' id='total2'/></td>
+																			<td></td><td><b>Total Nilai Appraisal : </b></td><td><label class='input'><input type='text' value="<?php echo $data4['totapp']; ?>" name='total2' id='total2'/></label></td>
 																			</tr><tr>
 
 																			

@@ -35,8 +35,8 @@
 
 
 
-      td1.innerHTML="<input type='text' name='deskripsi[]'>";
-      td2.innerHTML="<select name='jenisfasos[]'>           <?php
+      td1.innerHTML="<label class='input'><input type='text' name='deskripsi[]'></label>";
+      td2.innerHTML="<center><select name='jenisfasos[]'>           <?php
       include "koneksi.php";
       $query = "SELECT * FROM ref_jenisfasosfasum";
       $hasil = mysql_query($query);
@@ -44,9 +44,9 @@
       {
         echo "<option value='".$data['display']."'>".$data['display']."</option>";
       }
-      ?></select>";
+      ?></select></center>";
 
-      td3.innerHTML="<input type='number' name='luas[]'>";
+      td3.innerHTML="<label class='input'><input type='number' name='luas[]'></label>";
 
       idrow++;
     }
@@ -158,8 +158,7 @@ echo 'Data telah disimpan';
 
 			                    <tr><td>Pilih Jenis Dokumen Acuan</td>
 			                      <td>  
-			                        <select name="jenisdokacuan">
-			                          <option value=0 selected>- Pilih Jenis -</option>
+			                        <select name="jenisdokacuan" class="select2">
 			                          <?php
 			                          include "koneksi.php";
 			                 // query untuk menampilkan kecamatan
@@ -176,19 +175,19 @@ echo 'Data telah disimpan';
 
 			                    <tr>
 			                      <td >No.Dokumen </td>           
-			                      <td height="21"><input type="text" name="nodokacuan" maxlength="80" required="required"/ /></td>
+			                      <td ><label class='input'><input type="text" name="nodokacuan" maxlength="80" required="required" /></label></td>
 			                    </tr>
 
 			                    <tr>
 			                      <td>Tgl. Dokumen </td>
-			                      <td height="21"><input type="text" id="tgldokacuan" name="tgldokacuan" maxlength="10" required="required"/>
+			                      <td ><label class='input'><input type="text" id="tgldokacuan" name="tgldokacuan" maxlength="10" required="required"/></label>
 			                      </td>         
 			                    </tr>
 			                    <tr>
 
 			                      <tr>
 			                        <td>Pemegang Dokumen </td>
-			                        <td><input type="text" name="pemegangdokacuan" maxlength="40" required="required" /></td>
+			                        <td><label class='input'><input type="text" name="pemegangdokacuan" maxlength="40" required="required" /></label></td>
 			                      </tr>
 
 			                      <tr>
@@ -211,7 +210,7 @@ echo 'Data telah disimpan';
 						<section class="col col-sm-12 col-md-12 col-lg-6">
 							<h2>Input Data Kewajiban</h2><br>
 
-			                      <div style="width:20; height:110px;overflow:auto;">
+			                      <div style="width:20; height:210px;overflow:auto;">
 
 			                        <table class="table table-bordered table-striped" id=datatable >
 			                            <tr>
@@ -222,8 +221,8 @@ echo 'Data telah disimpan';
 
 			                            <tr>
 
-			                              <td><input type='text' name='deskripsi[]'></td>
-			                              <td><select name='jenisfasos[]'>
+			                              <td><label class='input'><input type='text' name='deskripsi[]'></label></td>
+			                              <td><center><select name='jenisfasos[]'>
 
 			                                <?php
 			                                include "koneksi.php";
@@ -235,9 +234,9 @@ echo 'Data telah disimpan';
 			                                  echo "<option value='".$data['display']."'>".$data['display']."</option>";
 			                                }
 			                                ?>
-			                              </select></td>
+			                              </select></center></td>
 
-			                              <td><input type='number' name='luas[]'></td>         
+			                              <td><label class='input'><input type='number' name='luas[]'></label></td>         
 			                            </tr>
 			                        </table>
 			                      </div>
@@ -247,7 +246,7 @@ echo 'Data telah disimpan';
 					</div>
 					<div class="row">
 						<section class="col col-sm-12 col-md-12 col-lg-12">
-			                      <center><input type="submit" name="submit" value="Simpan Data Acuan" class="btn btn-sm btn-default" /></center> 
+			                      <center><input type="submit" name="submit" value="Simpan Data Acuan" class="btn btn-lg btn-primary" /></center> 
 						</section>
 					</div>
 	                </form>
