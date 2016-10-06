@@ -152,7 +152,7 @@
 		<div>
 
 			<!-- widget edit box -->
-			<script type="text/javascript" src="js/jscharts.js"></script>
+			<script type="text/javascript" src="JS/jscharts.js"></script>
 
               <meta charset="utf-8">
               <meta name="viewport" content="width=device-width, initial-scale=1">
