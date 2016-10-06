@@ -23,9 +23,9 @@
 		</header>
 
 		<!-- widget div-->
-		<div>
+		<div style="height:250px">
 
-			<table>
+			<table style="line-height: 20px;">
 				<tr>
 					<td style="width:100%">
 						Total BAST:
@@ -125,7 +125,7 @@
 <!-- WIDGET END -->
 
 <!-- NEW WIDGET START -->
-<article class="col-sm-12 col-md-12 col-lg-6">
+<article class="col-sm-12 col-md-12 col-lg-6" style="z-index:1">
 
 	<!-- Widget ID (each widget will need unique ID)-->
 	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-2" data-widget-editbutton="false">
@@ -149,7 +149,7 @@
 		</header>
 
 		<!-- widget div-->
-		<div>
+		<div style="height:250px">
 
 			<!-- widget edit box -->
 			<script type="text/javascript" src="JS/jscharts.js"></script>
