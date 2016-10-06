@@ -65,66 +65,66 @@
 <!--=======================javascript=========================== -->
 
 		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
-		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>
+		<script data-pace-options='{ "restartOnRequestAfter": true }' src="JS/plugin/pace/pace.min.js"></script>
 
 		<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-		  <!-- <script type="text/javascript" src="js/libs/jquery-1.3.2.min.js"></script>
+		  <!-- <script type="text/javascript" src="JS/libs/jquery-1.3.2.min.js"></script>
   <script type="text/javascript" src="view/javascript/jquery/jquery-1.3.2.min.js"></script> -->
 		  
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script>
 			if (!window.jQuery) {
-				document.write('<script src="js/libs/jquery-2.1.1.min.js"><\/script>');
+				document.write('<script src="JS/libs/jquery-2.1.1.min.js"><\/script>');
 			}
 		</script>
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 		<script>
 			if (!window.jQuery.ui) {
-				document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+				document.write('<script src="JS/libs/jquery-ui-1.10.3.min.js"><\/script>');
 			}
 		</script>
 
 
 		<!-- IMPORTANT: APP CONFIG -->
-		<script src="js/app.config.js"></script>
+		<script src="JS/app.config.js"></script>
 
 		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
-		<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> 
+		<script src="JS/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> 
 
 		<!-- BOOTSTRAP JS -->
-		<script src="js/bootstrap/bootstrap.min.js"></script>
+		<script src="JS/bootstrap/bootstrap.min.js"></script>
 
 		<!-- CUSTOM NOTIFICATION -->
-		<script src="js/notification/SmartNotification.min.js"></script>
+		<script src="JS/notification/SmartNotification.min.js"></script>
 
 		<!-- JARVIS WIDGETS -->
-		<script src="js/smartwidgets/jarvis.widget.min.js"></script>
+		<script src="JS/smartwidgets/jarvis.widget.min.js"></script>
 
 		<!-- EASY PIE CHARTS -->
-		<script src="js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+		<script src="JS/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
 
 		<!-- SPARKLINES -->
-		<script src="js/plugin/sparkline/jquery.sparkline.min.js"></script>
+		<script src="JS/plugin/sparkline/jquery.sparkline.min.js"></script>
 
 		<!-- JQUERY VALIDATE -->
-		<script src="js/plugin/jquery-validate/jquery.validate.min.js"></script>
+		<script src="JS/plugin/jquery-validate/jquery.validate.min.js"></script>
 
 		<!-- JQUERY MASKED INPUT -->
-		<script src="js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+		<script src="JS/plugin/masked-input/jquery.maskedinput.min.js"></script>
 
 		<!-- JQUERY SELECT2 INPUT -->
-		<script src="js/plugin/select2/select2.min.js"></script>
+		<script src="JS/plugin/select2/select2.min.js"></script>
 
 		<!-- JQUERY UI + Bootstrap Slider -->
-		<script src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+		<script src="JS/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
 
 		<!-- browser msie issue fix -->
-		<script src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+		<script src="JS/plugin/msie-fix/jquery.mb.browser.min.js"></script>
 
 		<!-- FastClick: For mobile devices -->
-		<script src="js/plugin/fastclick/fastclick.min.js"></script>
+		<script src="JS/plugin/fastclick/fastclick.min.js"></script>
 
 		<!--[if IE 8]>
 
@@ -133,22 +133,22 @@
 		<![endif]-->
 
 		<!-- Demo purpose only -->
-		<!-- <script src="js/demo.min.js"></script> -->
+		<!-- <script src="JS/demo.min.js"></script> -->
 
 		<!-- MAIN APP JS FILE -->
-		<script src="js/app.min.js"></script>
+		<script src="JS/app.min.js"></script>
 
 		<!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
 		<!-- Voice command : plugin -->
-		<script src="js/speech/voicecommand.min.js"></script>
+		<script src="JS/speech/voicecommand.min.js"></script>
 
 		<!-- SmartChat UI : plugin -->
-		<script src="js/smart-chat-ui/smart.chat.ui.min.js"></script>
-		<script src="js/smart-chat-ui/smart.chat.manager.min.js"></script>
+		<script src="JS/smart-chat-ui/smart.chat.ui.min.js"></script>
+		<script src="JS/smart-chat-ui/smart.chat.manager.min.js"></script>
 
 		<!-- PAGE RELATED PLUGIN(S) 
 		<script src="..."></script>-->
-		<script src="js/plugin/chartjs/chart.min.js"></script>
+		<script src="JS/plugin/chartJS/chart.min.js"></script>
 
 		<script type="text/javascript">
 
@@ -193,7 +193,7 @@
 				 * var pagefunction = function() {
 				 *   ...
 				 * }
-				 * loadScript("js/plugin/_PLUGIN_NAME_.js", pagefunction);
+				 * loadScript("JS/plugin/_PLUGIN_NAME_.js", pagefunction);
 				 * 
 				 * TO LOAD A SCRIPT:
 				 * var pagefunction = function (){ 
@@ -214,13 +214,13 @@
 		</script>
 
 		<!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
-		<script src="js/plugin/flot/jquery.flot.cust.min.js"></script>
-		<script src="js/plugin/flot/jquery.flot.resize.min.js"></script>
-		<script src="js/plugin/flot/jquery.flot.fillbetween.min.js"></script>
-		<script src="js/plugin/flot/jquery.flot.orderBar.min.js"></script>
-		<script src="js/plugin/flot/jquery.flot.pie.min.js"></script>
-		<script src="js/plugin/flot/jquery.flot.time.min.js"></script>
-		<script src="js/plugin/flot/jquery.flot.tooltip.min.js"></script>
+		<script src="JS/plugin/flot/jquery.flot.cust.min.js"></script>
+		<script src="JS/plugin/flot/jquery.flot.resize.min.js"></script>
+		<script src="JS/plugin/flot/jquery.flot.fillbetween.min.js"></script>
+		<script src="JS/plugin/flot/jquery.flot.orderBar.min.js"></script>
+		<script src="JS/plugin/flot/jquery.flot.pie.min.js"></script>
+		<script src="JS/plugin/flot/jquery.flot.time.min.js"></script>
+		<script src="JS/plugin/flot/jquery.flot.tooltip.min.js"></script>
 
 		
 
