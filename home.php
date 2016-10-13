@@ -24,13 +24,7 @@
 
 		<!-- widget div-->
 		<center>
-		<div style="line-height: 20px; height: 250px; margin: 0; padding-top: 10px; padding-right: 10px; padding-left: 10px;
-border-width: 1px 1px 2px;
-border-style: solid;
-border-top: none;
-border-right-color: #CCC !important;
-border-bottom-color: #CCC !important;
-border-left-color: #CCC !important;">
+		<div style="line-height: 20px; height: 250px; margin: 0; padding-top: 10px; padding-right: 10px; padding-left: 10px;border-width: 1px 1px 2px;border-style: solid;border-top: none;border-right-color: #CCC !important;border-bottom-color: #CCC !important;border-left-color: #CCC !important;">
 
 			<?php
            $hasil1= mysql_query("select * from bast");
