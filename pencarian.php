@@ -144,9 +144,11 @@
             $query2c="";
             if(isset($_GET['kategori'])){
               if($_GET['kategori']=='dokacuan'){
+                $_SESSION['kategori']='1';
                 $note='Input Nomor Dok. Acuan atau Nama Pemegang Dok. atau Jenis Dok. Acuan';
                 $query='select nodokacuan, tgldokacuan, haldokacuan, pemegangdokacuan, ketdokacuan, jenisdokumen from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ';
               }else{
+                $_SESSION['kategori']='2';
                 $note='Input Nomor Bast atau Nama Pengembang atau Jenis Dok. Acuan';
                 $query="select bast.nobast, bast.keterangan, bast.tglbast, bast.pengembangbast, detaildokacuan.nodokacuan, detaildokacuan.pemegangdokacuan,dokumenacuan.jenisdokumen, detaildokacuan.tgldokacuan from bast inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ";
               }
@@ -156,6 +158,7 @@
              </option>
              ";
            }else{
+            $_SESSION['kategori']='2';
                 $note='Input Nomor Bast atau Nama Pengembang atau Jenis Dok. Acuan';
             $query="select bast.nobast, bast.keterangan, bast.tglbast, bast.pengembangbast, detaildokacuan.nodokacuan, detaildokacuan.pemegangdokacuan, dokumenacuan.jenisdokumen, detaildokacuan.tgldokacuan from bast inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ";
           }
@@ -825,12 +828,13 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                                   echo "
                                   <table border=1 style='border-collapse: collapse;' class='table table-striped'>
                                     <tr>
-                                      <td colspan=9>
+                                      <td colspan=10>
                                         <b>Wilayah</b>: $data2[wilayah], $data2[kecamatan], $data2[kelurahan]<br> <b>Tgl. Dokacuan</b>: $data2[tgldokacuan]
                                       </td>
                                     </tr>
                                     <tr>
                                       <td>No.</td>
+                                      <td>Deskripsi</td>
                                       <td>Jenis Fasos Fasum</td>
                                       <td>Status Sertifikat<br>(SHP Pemprov)</td>
                                       <td>Status Penggunaan</td>
@@ -841,7 +845,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                                       <td align='center'>KIB</td>
                                     </tr>
                                     ";
-                                    $query3=mysql_query("select peruntukan.jenisfasos, peruntukan.statussertifikat, peruntukan.statuspenggunaan, peruntukan.statusplang, peruntukan.sensusfasos, peruntukan.statuslaporankeuangan, peruntukan.statusrecon, akun.kategoriaset from dataaset inner join peruntukan on dataaset.idaset=peruntukan.idaset inner join akun on peruntukan.idperuntukan=akun.idperuntukan where dataaset.idaset='$data2[idaset]'");
+                                    $query3=mysql_query("select peruntukan.deskripsi, peruntukan.jenisfasos, peruntukan.statussertifikat, peruntukan.statuspenggunaan, peruntukan.statusplang, peruntukan.sensusfasos, peruntukan.statuslaporankeuangan, peruntukan.statusrecon, akun.kategoriaset from dataaset inner join peruntukan on dataaset.idaset=peruntukan.idaset inner join akun on peruntukan.idperuntukan=akun.idperuntukan where dataaset.idaset='$data2[idaset]'");
                                     $nomor=0;
                                     while ($data3=mysql_fetch_array($query3)) {
                                       if($data3['statussertifikat']=='SHP Pemprov. DKI Jakarta'){
@@ -873,6 +877,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                                       echo "
                                       <tr>
                                         <td align='center'>$nomor</td>
+                                        <td align='center'>$data3[deskripsi]</td>
                                         <td align='center'>$data3[jenisfasos]</td>
                                         <td align='center'>$statussertifikat</td>
                                         <td align='center'>$data3[statuspenggunaan]</td>

@@ -11,6 +11,20 @@ if(isset($_SESSION['query'])){
     /*******YOU DO NOT NEED TO EDIT ANYTHING BELOW THIS LINE*******/    
     //create MySQL connection   
     $sql = $_SESSION['query'];
+    if($_SESSION['kategori']==2){
+        $select="select bast.nobast, bast.tglbast, dokumenacuan.jenisdokumen, bast.nodokacuan, detaildokacuan.tgldokacuan, bast.pengembangbast, peruntukan.deskripsi, dataaset.alamataset, dataaset.kelurahan, dataaset.kecamatan, dataaset.wilayah, akun.kategoriaset, akun.volume, akun.satuan, akun.nilaimix, bast.keterangan 
+            from bast inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan
+            inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori
+            inner join dataaset on bast.nobast=dataaset.nobastaset
+            inner join peruntukan on dataaset.idaset=peruntukan.idaset
+            inner join akun on peruntukan.idperuntukan=akun.idperuntukan ";
+        $sql=$select.substr($sql,342);
+    }
+    // else{
+    //     $select=""
+    //     $sql=substr($sql,342);
+    // }
+    // echo $sql;
     $Connect = @mysql_connect($DB_Server, $DB_Username, $DB_Password) or die("Couldn't connect to MySQL:<br>" . mysql_error() . "<br>" . mysql_errno());
     //select database   
     $Db = @mysql_select_db($DB_DBName, $Connect) or die("Couldn't select database:<br>" . mysql_error(). "<br>" . mysql_errno());   
@@ -26,15 +40,19 @@ if(isset($_SESSION['query'])){
     //define separator (defines columns in excel & tabs in word)
     $sep = "\t"; //tabbed character
     //start of printing column names as names of MySQL fields
-    for ($i = 0; $i < mysql_num_fields($result); $i++) {
-    echo mysql_field_name($result,$i) . "\t";
-    }
+    // for ($i = 0; $i < mysql_num_fields($result); $i++) {
+    // echo mysql_field_name($result,$i) . "\t";
+    // }
+    echo "No. \t No. BAST \t Tgl. BAST \t Dasar BAST \t No. Dokumen Acuan \t Tgl. Acuan \t Pengembang \t Peruntukan \t Alamat \t Kelurahan \t Kecamatan \t Wilayah \t KIB \t Volume \t Satuan \t Nilai Rupiah \t Penandatangan BAST";
+    // bast.nobast, bast.tglbast, dokumenacuan.jenisdokumen, bast.nodokacuan, detaildokacuan.tgldokacuan, bast.pengembangbast, peruntukan.deskripsi, dataaset.alamataset, dataaset.kelurahan, dataaset.kecamatan, dataaset.wilayah, akun.kategoriaset, akun.volume, akun.satuan, akun.nilaimix, bast.keterangan
     print("\n");    
     //end of printing column names  
     //start while loop to get data
+        $no=1;
         while($row = mysql_fetch_row($result))
         {
             $schema_insert = "";
+            echo $no."\t";
             for($j=0; $j<mysql_num_fields($result);$j++)
             {
                 if(!isset($row[$j]))
@@ -49,6 +67,7 @@ if(isset($_SESSION['query'])){
             $schema_insert .= "\t";
             print(trim($schema_insert));
             print "\n";
+            $no++;
         }   
 }
 ?>

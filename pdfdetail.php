@@ -4,8 +4,7 @@ $id = $_GET['id'];
 
 //Queri untuk Menampilkan data
 
-	$query = "select deskripsi, jenis, luas,
-    sertifikasi,pemilik,jenissertifikat,nosertifikat,masaberlaku,luassertifikat from peruntukan where nobast='$id'";
+	$query = "select deskripsi, jenis, luas, sertifikasi, pemilik, jenissertifikat, masaberlaku, keterangan, jenisfasos, statussertifikat, nosertifikat, tglsertifikat, luassertifikat, statusplang, statuspenggunaan, nosk, tglsk, skpd, sensusfasos  from peruntukan where nobast='$id'";
 $db_query = mysql_query($query) or die("Query gagal");
 
 $query2 = "select nobast, tglbast, pengembangbast, keterangan, nodokacuan from bast where nobast='$id'";
@@ -34,6 +33,16 @@ while($data=mysql_fetch_row($db_query))
     $cell[$i][6] = $data[6];
     $cell[$i][7] = $data[7];
     $cell[$i][8] = $data[8];
+    $cell[$i][9] = $data[9];
+    $cell[$i][10] = $data[10];
+    $cell[$i][11] = $data[11];
+    $cell[$i][12] = $data[12];
+    $cell[$i][13] = $data[13];
+    $cell[$i][14] = $data[14];
+    $cell[$i][15] = $data[15];
+    $cell[$i][16] = $data[16];
+    $cell[$i][17] = $data[17];
+    $cell[$i][18] = $data[18];
  $i++;
 
 }
@@ -182,12 +191,13 @@ $pdf->Cell(9,1,$cell[$n][0],'LRTB',0,'L');
 $pdf->Cell(5,1,$cell[$n][1],'LRTB',0,'C');
 $pdf->Cell(5,1,$cell[$n][2],'LRTB',0,'C');
 $pdf->Cell(5,1,$cell[$n][3],'LRTB',0,'C');
-$pdf->Ln();}
+$pdf->Ln();
+}
 
 
 $pdf->Ln();
 
-$pdf->Cell(32,1,'DATA PERUNTUKAN','LRTB',0,'C');
+$pdf->Cell(33,1,'DATA PERUNTUKAN','LRTB',0,'C');
 $pdf->Ln();
 
         $pdf->SetFont('Arial','B',9);
@@ -217,7 +227,7 @@ for($j=0;$j<$i;$j++)
 //menampilkan data dari hasil query database
 
     $pdf->Cell(1,1,$j+1,'LBTR',0,'C');
-    $pdf->Cell(6,1,$cell[$j][0],'LBTR',0,'L');
+    $pdf->Cell(3,1,$cell[$j][0],'LBTR',0,'L');
     $pdf->Cell(2,1,$cell[$j][1],'LBTR',0,'L');
     $pdf->Cell(2,1,$cell[$j][2],'LBTR',0,'C');
     $pdf->Cell(2,1,$cell[$j][3],'LBTR',0,'C');
@@ -226,9 +236,9 @@ for($j=0;$j<$i;$j++)
     $pdf->Cell(2.5,1,$cell[$j][6],'LBTR',0,'C');
     $pdf->Cell(2.5,1,$cell[$j][7],'LBTR',0,'C');
     $pdf->Cell(2.5,1,$cell[$j][8],'LBTR',0,'L');
-    /*$pdf->Cell(2.5,1,$cell[$j][9],'LBTR',0,'C');
+    $pdf->Cell(2.5,1,$cell[$j][9],'LBTR',0,'C');
     $pdf->Cell(2.5,1,$cell[$j][10],'LBTR',0,'C');
-    $pdf->Cell(2,1,$cell[$j][11],'LBTR',0,'C');*/
+    $pdf->Cell(2,1,$cell[$j][11],'LBTR',0,'C');
 
 $pdf->Ln();
 
