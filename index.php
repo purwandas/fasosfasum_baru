@@ -225,7 +225,7 @@
 		
 
 		<!-- Your GOOGLE ANALYTICS CODE Below -->
-		<script type="text/javascript">
+		<!-- <script type="text/javascript">
 			var _gaq = _gaq || [];
 				_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
 				_gaq.push(['_trackPageview']);
@@ -239,7 +239,7 @@
 				s.parentNode.insertBefore(ga, s);
 			})();
 
-		</script>
+		</script> -->
 <!--================================================== -->
 
 
