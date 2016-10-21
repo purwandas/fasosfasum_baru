@@ -4,7 +4,10 @@
 function submit() {
   document.getElementById("formperuntukan").submit();
 }
-
+	$( function() {
+    	$( "#tglsertifikat" ).datepicker();
+    	$( "#tglsk" ).datepicker();
+  	} );
 </script>
 <article class="col-sm-12 col-md-12 col-lg-12">
 
@@ -30,34 +33,43 @@ function submit() {
 						          <?php
 						          include("koneksi.php");
 						          $queryperuntukan="select * from peruntukan";
-						          if(isset($_GET['deskripsi'])){
-						            $cek='0';
-						            if($_GET['deskripsi']!=''){$deskripsi="deskripsi like '%$_GET[deskripsi]%'";$cek='1';}else{$deskripsi='';}
-						            if($_GET['jenis']!=''){$jenis="jenis like '%$_GET[jenis]%'";if($cek!='0'){$jenis=' and '.$jenis;}}else{$jenis='';}
-						            if($_GET['luas']!=''){$luas="luas like '%$_GET[luas]%'";if($cek!='0'){$luas=' and '.$luas;}}else{$luas='';}
-						            if($_GET['sertifikasi']!=''){$sertifikasi="sertifikasi like '%$_GET[sertifikasi]%'";if($cek!='0'){$sertifikasi=' and '.$sertifikasi;}}else{$sertifikasi='';}
-						            if($_GET['pemilik']!=''){$pemilik="pemilik like '%$_GET[pemilik]%'";if($cek!='0'){$pemilik=' and '.$pemilik;}}else{$pemilik='';}
-						            if($_GET['jenissertifikat']!=''){$jenissertifikat="jenissertifikat like '%$_GET[jenissertifikat]%'";if($cek!='0'){$jenissertifikat=' and '.$jenissertifikat;}}else{$jenissertifikat='';}
-						            if($_GET['masaberlaku']!=''){$masaberlaku="masaberlaku like '%$_GET[masaberlaku]%'";if($cek!='0'){$masaberlaku=' and '.$masaberlaku;}}else{$masaberlaku='';}
-						            if($_GET['keterangan']!=''){$keterangan="keterangan like '%$_GET[keterangan]%'";if($cek!='0'){$keterangan=' and '.$keterangan;}}else{$keterangan='';}
-						            if($_GET['statuslaporankeuangan']!=''){$statuslaporankeuangan="statuslaporankeuangan like '%$_GET[statuslaporankeuangan]%'";if($cek!='0'){$statuslaporankeuangan=' and '.$statuslaporankeuangan;}}else{$statuslaporankeuangan='';}
-						            if($_GET['statusrecon']!=''){$statusrecon="statusrecon like '%$_GET[statusrecon]%'";if($cek!='0'){$statusrecon=' and '.$statusrecon;}}else{$statusrecon='';}
-						            if($_GET['statussertifikat']!=''){$statussertifikat="statussertifikat like '%$_GET[statussertifikat]%'";if($cek!='0'){$statussertifikat=' and '.$statussertifikat;}}else{$statussertifikat='';}
-						            if($_GET['nosertifikat']!=''){$nosertifikat="nosertifikat like '%$_GET[nosertifikat]%'";if($cek!='0'){$nosertifikat=' and '.$nosertifikat;}}else{$nosertifikat='';}
-						            if($_GET['tglsertifikat']!=''){$tglsertifikat="tglsertifikat like '%$_GET[tglsertifikat]%'";if($cek!='0'){$tglsertifikat=' and '.$tglsertifikat;}}else{$tglsertifikat='';}
-						            if($_GET['luassertifikat']!=''){$luassertifikat="luassertifikat like '%$_GET[luassertifikat]%'";if($cek!='0'){$luassertifikat=' and '.$luassertifikat;}}else{$luassertifikat='';}
-						            if($_GET['statusplang']!=''){$statusplang="statusplang like '%$_GET[statusplang]%'";if($cek!='0'){$statusplang=' and '.$statusplang;}}else{$statusplang='';}
-						            if($_GET['statuspenggunaan']!=''){$statuspenggunaan="statuspenggunaan like '%$_GET[statuspenggunaan]%'";$cek='1';if($cek!='0'){$statuspenggunaan=' and '.$statuspenggunaan;}}else{$statuspenggunaan='';}
-						            if($_GET['nosk']!=''){$nosk="nosk like '%$_GET[nosk]%'";$cek='1';if($cek!='0'){$nosk=' and '.$nosk;}}else{$nosk='';}
-						            if($_GET['tglsk']!=''){$tglsk="tglsk like '%$_GET[tglsk]%'";$cek='1';if($cek!='0'){$tglsk=' and '.$tglsk;}}else{$tglsk='';}
-						            if($_GET['skpd']!=''){$skpd="skpd like '%$_GET[skpd]%'";$cek='1';if($cek!='0'){$skpd=' and '.$skpd;}}else{$skpd='';}
-						            if($_GET['sensusfasos']!=''){$sensusfasos="sensusfasos like '%$_GET[sensusfasos]%'";$cek='1';if($cek!='0'){$sensusfasos=' and '.$sensusfasos;}}else{$sensusfasos='';}
-						            if($_GET['jenisfasos']!=''){$jenisfasos="jenisfasos like '%$_GET[jenisfasos]%'";$cek='1';if($cek!='0'){$jenisfasos=' and '.$jenisfasos;}}else{$jenisfasos='';}
-						            if($_GET['nodokacuan']!=''){$nodokacuan="nodokacuan like '%$_GET[nodokacuan]%'";$cek='1';if($cek!='0'){$nodokacuan=' and '.$nodokacuan;}}else{$nodokacuan='';}
-						            if($_GET['nobast']!=''){$nobast="nobast like '%$_GET[nobast]%'";$cek='1';if($cek!='0'){$nobast=' and '.$nobast;}}else{$nobast='';}
-						            if($_GET['idaset']!=''){$idaset="idaset like '%$_GET[idaset]%'";$cek='1';if($cek!='0'){$idaset=' and '.$idaset;}}else{$idaset='';}
-						              $queryperuntukan.=" where $deskripsi $jenis $luas $sertifikasi $pemilik $jenissertifikat $masaberlaku $keterangan $statuslaporankeuangan $statusrecon $statussertifikat $nosertifikat $tglsertifikat $luassertifikat $statusplang $statuspenggunaan $nosk $tglsk $skpd $sensusfasos $jenisfasos $nodokacuan $nobast $idaset";
-						          }
+if(isset($_GET['deskripsi'])){
+		function formatTahunBulanTanggal($tgl){
+  			return substr($tgl,-4).'-'.substr($tgl,0,2).'-'.substr($tgl,3,2);
+  		}
+$cek='0';
+if($_GET['deskripsi']!=''){$deskripsi="deskripsi like '%$_GET[deskripsi]%'";$cek='1';}else{$deskripsi='';}
+if($_GET['jenis']!=''){$jenis="jenis like '%$_GET[jenis]%'";if($cek!='0'){$jenis=' and '.$jenis;}$cek='1';}else{$jenis='';}
+if($_GET['luas']!=''){$luas="luas like '%$_GET[luas]%'";if($cek!='0'){$luas=' and '.$luas;}$cek='1';}else{$luas='';}
+if($_GET['sertifikasi']!=''){$sertifikasi="sertifikasi like '%$_GET[sertifikasi]%'";if($cek!='0'){$sertifikasi=' and '.$sertifikasi;}$cek='1';}else{$sertifikasi='';}
+if($_GET['pemilik']!=''){$pemilik="pemilik like '%$_GET[pemilik]%'";if($cek!='0'){$pemilik=' and '.$pemilik;}$cek='1';}else{$pemilik='';}
+if($_GET['jenissertifikat']!=''){$jenissertifikat="jenissertifikat like '%$_GET[jenissertifikat]%'";if($cek!='0'){$jenissertifikat=' and '.$jenissertifikat;}$cek='1';}else{$jenissertifikat='';}
+if($_GET['masaberlaku']!=''){$masaberlaku="masaberlaku like '%$_GET[masaberlaku]%'";if($cek!='0'){$masaberlaku=' and '.$masaberlaku;}$cek='1';}else{$masaberlaku='';}
+if($_GET['keterangan']!=''){$keterangan="keterangan like '%$_GET[keterangan]%'";if($cek!='0'){$keterangan=' and '.$keterangan;}$cek='1';}else{$keterangan='';}
+if($_GET['statuslaporankeuangan']!=''){$statuslaporankeuangan="statuslaporankeuangan like '%$_GET[statuslaporankeuangan]%'";if($cek!='0'){$statuslaporankeuangan=' and '.$statuslaporankeuangan;}$cek='1';}else{$statuslaporankeuangan='';}
+if($_GET['statusrecon']!=''){$statusrecon="statusrecon like '%$_GET[statusrecon]%'";if($cek!='0'){$statusrecon=' and '.$statusrecon;}$cek='1';}else{$statusrecon='';}
+if($_GET['statussertifikat']!=''){$statussertifikat="statussertifikat like '%$_GET[statussertifikat]%'";if($cek!='0'){$statussertifikat=' and '.$statussertifikat;}$cek='1';}else{$statussertifikat='';}
+if($_GET['nosertifikat']!=''){$nosertifikat="nosertifikat like '%$_GET[nosertifikat]%'";if($cek!='0'){$nosertifikat=' and '.$nosertifikat;}$cek='1';}else{$nosertifikat='';}
+if($_GET['tglsertifikat']!=''){$tglsertifikat=formatTahunBulanTanggal($_GET['tglsertifikat']);$tglsertifikat="tglsertifikat like '%$tglsertifikat%'";if($cek!='0'){$tglsertifikat=' and '.$tglsertifikat;}$cek='1';}else{$tglsertifikat='';}
+if($_GET['luassertifikat']!=''){$luassertifikat="luassertifikat like '%$_GET[luassertifikat]%'";if($cek!='0'){$luassertifikat=' and '.$luassertifikat;}$cek='1';}else{$luassertifikat='';}
+if($_GET['statusplang']!=''){$statusplang="statusplang like '%$_GET[statusplang]%'";if($cek!='0'){$statusplang=' and '.$statusplang;}$cek='1';}else{$statusplang='';}
+
+if($_GET['statuspenggunaan']!=''){$statuspenggunaan="statuspenggunaan like '%$_GET[statuspenggunaan]%'";if($cek!='0'){$statuspenggunaan=' and '.$statuspenggunaan;}$cek='1';}else{$statuspenggunaan='';}
+if($_GET['nosk']!=''){$nosk="nosk like '%$_GET[nosk]%'";if($cek!='0'){$nosk=' and '.$nosk;}$cek='1';}else{$nosk='';}
+if($_GET['tglsk']!=''){$tglsk=formatTahunBulanTanggal($_GET['tglsk']);$tglsk="tglsk like '%$tglsk%'";if($cek!='0'){$tglsk=' and '.$tglsk;}$cek='1';}else{$tglsk='';}
+if($_GET['skpd']!=''){$skpd="skpd like '%$_GET[skpd]%'";if($cek!='0'){$skpd=' and '.$skpd;}$cek='1';}else{$skpd='';}
+if($_GET['sensusfasos']!=''){$sensusfasos="sensusfasos like '%$_GET[sensusfasos]%'";if($cek!='0'){$sensusfasos=' and '.$sensusfasos;}$cek='1';}else{$sensusfasos='';}
+if($_GET['jenisfasos']!=''){$jenisfasos="jenisfasos like '%$_GET[jenisfasos]%'";if($cek!='0'){$jenisfasos=' and '.$jenisfasos;}$cek='1';}else{$jenisfasos='';}
+if($_GET['nodokacuan']!=''){$nodokacuan="nodokacuan like '%$_GET[nodokacuan]%'";if($cek!='0'){$nodokacuan=' and '.$nodokacuan;}$cek='1';}else{$nodokacuan='';}
+if($_GET['nobast']!=''){$nobast="nobast like '%$_GET[nobast]%'";if($cek!='0'){$nobast=' and '.$nobast;}$cek='1';}else{$nobast='';}
+if($_GET['idaset']!=''){$idaset="idaset like '%$_GET[idaset]%'";if($cek!='0'){$idaset=' and '.$idaset;}$cek='1';}else{$idaset='';}
+	$cekIsi="$deskripsi $jenis $luas $sertifikasi $pemilik $jenissertifikat $masaberlaku $keterangan $statuslaporankeuangan $statusrecon $statussertifikat $nosertifikat $tglsertifikat $luassertifikat $statusplang $statuspenggunaan $nosk $tglsk $skpd $sensusfasos $jenisfasos $nodokacuan $nobast $idaset";
+	// echo $cekIsi."llol";
+	if($cekIsi!='                       ')//23 sps
+	{
+	  $queryperuntukan.=" where $cekIsi ";
+	}
+}
 
 						          $reclimit=20;
 						          if(isset($_GET['page'])){
@@ -119,6 +131,7 @@ function submit() {
 						              <td><b>No. Dok. Acuan</b></td>
 						              <td><b>No. Bast</b></td>
 						              <td><b>ID Aset</b></td>
+						              <td><b>Act.</b></td>
 						            </tr>
 						            <tr>
 						              <td><i class="fa fa-search"></i></td>
@@ -134,18 +147,19 @@ function submit() {
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['statusrecon'])){echo $_GET['statusrecon'];} ?>" name="statusrecon" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['statussertifikat'])){echo $_GET['statussertifikat'];} ?>" name="statussertifikat" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['nosertifikat'])){echo $_GET['nosertifikat'];} ?>" name="nosertifikat" onchange="submit()"></label></td>
-						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['tglsertifikat'])){echo $_GET['tglsertifikat'];} ?>" name="tglsertifikat" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['tglsertifikat'])){echo $_GET['tglsertifikat'];} ?>" name="tglsertifikat" onchange="submit()" id="tglsertifikat"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['luassertifikat'])){echo $_GET['luassertifikat'];} ?>" name="luassertifikat" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['statusplang'])){echo $_GET['statusplang'];} ?>" name="statusplang" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['statuspenggunaan'])){echo $_GET['statuspenggunaan'];} ?>" name="statuspenggunaan" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['nosk'])){echo $_GET['nosk'];} ?>" name="nosk" onchange="submit()"></label></td>
-						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['tglsk'])){echo $_GET['tglsk'];} ?>" name="tglsk" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['tglsk'])){echo $_GET['tglsk'];} ?>" name="tglsk" onchange="submit()" id="tglsk"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['skpd'])){echo $_GET['skpd'];} ?>" name="skpd" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['sensusfasos'])){echo $_GET['sensusfasos'];} ?>" name="sensusfasos" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['jenisfasos'])){echo $_GET['jenisfasos'];} ?>" name="jenisfasos" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['nodokacuan'])){echo $_GET['nodokacuan'];} ?>" name="nodokacuan" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['nobast'])){echo $_GET['nobast'];} ?>" name="nobast" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['idaset'])){echo $_GET['idaset'];} ?>" name="idaset" onchange="submit()"></label></td>
+						              <td></td>
 						            </tr>
 						            <?php
 						            $queryperuntukan=mysql_query($queryperuntukan);
@@ -177,6 +191,11 @@ function submit() {
 						                <td>$dataperuntukan[nodokacuan]</td>
 						                <td>$dataperuntukan[nobast]</td>
 						                <td>$dataperuntukan[idaset]</td>
+						                <td>
+						              		<a href='index.php?hal=editperuntukan&idperuntukan=$dataperuntukan[idperuntukan]&p=lihatperuntukan'>
+							              	ubah
+							              	</a>
+							            </td>
 						              </tr>
 						              ";
 						              $no++;

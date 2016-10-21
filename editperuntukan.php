@@ -14,7 +14,7 @@
 
 <?php
 if (isset($_POST['submit'])){
-
+	include"koneksi.php";
 	$id=$_GET['idperuntukan'];
   $deskripsi= $_POST['deskripsi'];
   $jenis= $_POST['jenis'];
@@ -40,10 +40,6 @@ if (isset($_POST['submit'])){
 //update data ke database
   $query = mysql_query("update peruntukan set  deskripsi='$deskripsi',jenis='$jenis',luas='$luas',deskripsi='$deskripsi',jenis='$jenis',luas='$luas',sertifikasi='$sertifikasi',pemilik='$pemilik',jenissertifikat='$jenissertifikat',masaberlaku='$masaberlaku',keterangan='$keterangan',statussertifikat='$statussertifikat', nosertifikat='$nosertifikat',tglsertifikat='tglsertifikat', luassertifikat='$luassertifikat', statuspenggunaan='$statuspenggunaan', nosk='$nosk',tglsk='tglsk', skpd='$skpd', statusplang='$statusplang', sensusfasos='$sensusfasos' where idperuntukan='$id'") or die(mysql_error());
 
-
-
-  mysql_connect("localhost","root","");
-  mysql_select_db("phplogin");
   $waktu = gmdate("Y-m-d H:i:s", time()+60*60*7);
   $user = $_SESSION['SESS_FIRST_NAME'];
   $query9 = mysql_query("insert into loging values('','$user','edit Peruntukan no : $id, ','$waktu')") or die(mysql_error());
@@ -51,11 +47,13 @@ if (isset($_POST['submit'])){
 
 
   if ($query) {
-
-   echo 'simpan perbahan data peruntukan berhasil...........';
-
+  	$p=$_POST['p'];
+	header("Location: index.php?hal=$p");
+   // echo 'simpan perbahan data peruntukan berhasil...........';
  }
 }
+else
+{
 ?>
 <article class="col-sm-12 col-md-12 col-lg-6">
 
@@ -76,20 +74,26 @@ if (isset($_POST['submit'])){
 							<?php 
 				             include "koneksi.php";
 				             $id = $_GET['idperuntukan'];
+							  	$p=$_GET['p'];
+							  	if(isset($_GET['id'])&&$_GET['id']!=''){
+							  		$p.="&id=$_GET[id]";
+							  	}
 
 				             $query = mysql_query("select * from peruntukan where idperuntukan='$id'") or die(mysql_error());
 
 				             $data = mysql_fetch_array($query);
 				             ?>
 
-				             <form name="editdokumenacuan" action="" method="post">
+				             <form name="editdokumenacuan" action="editperuntukan.php" method="post">
 				               <input type="hidden" name="id" value="<?php echo $id; ?>" />
+				               <input type="hidden" name="p" value="<?php echo $p; ?>" />
 				               <center>
 				               <table>
 
 				                <!-- <tr>
 				                 <td >Id Peruntukan </td>           
 				                 <td height="21"><label class='input'> -->
+
 				                 <input type="hidden" name="idperuntukan" value="<?php echo $data['idperuntukan']; ?>" />
 				                 <!-- </label></td>
 				               </tr> -->
@@ -254,3 +258,6 @@ if (isset($_POST['submit'])){
 
 </article>
 <!-- WIDGET END -->
+<?php
+}
+?>

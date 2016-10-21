@@ -15,7 +15,7 @@
 
      
      td1.innerHTML="<label class='input'><input type='text' required name='alamataset[]'></label>";
-     td2.innerHTML="<select name='wilayah[]'>            <?php
+     td2.innerHTML="<select name='wilayah[]' class='btn btn-sm btn-default'>            <?php
     include "koneksi.php";
      // query untuk menampilkanwilayah
     $query = "SELECT * FROM wilayah";
@@ -26,7 +26,7 @@
     }
     ?></select>";
 
-    td3.innerHTML="<select name='kecamatan[]'>           <?php
+    td3.innerHTML="<select name='kecamatan[]' class='btn btn-sm btn-default'>           <?php
      include "koneksi.php";
      // query untuk menampilkan kecamatan
      $query = "SELECT * FROM kecamatan";
@@ -37,7 +37,7 @@
     }
     ?></select>";
 
-    td4.innerHTML="<select name='kelurahan[]'>            <?php
+    td4.innerHTML="<select name='kelurahan[]' class='btn btn-sm btn-default'>            <?php
     include "koneksi.php";
      // query untuk menampilkankelurahan
     $query = "SELECT * FROM kelurahan";
@@ -64,7 +64,14 @@
    }
  }
 
+  $( function() {
+    $( "#tglbast" ).datepicker();
+  } );
+
 </script>
+<script>
+  
+  </script>
 
 <article class="col-sm-12 col-md-12 col-lg-12">
 
@@ -98,7 +105,7 @@
                 </tr>
                 <tr><td>Tgl. BAST </td>
                 <td>: </td>
-                <td><label class='input'><input type="text" id="tgldokacuan" name="tglbast" maxlength="10" required="required"/></label></td>
+                <td><label class='input'><input type="text" id="tglbast" name="tglbast" maxlength="10" required="required"/></label></td>
                 </tr>
                 <tr>
                   <td>Pengembang </td>
@@ -199,7 +206,7 @@
 
                      <td><label class='input'><input type='text' required name='alamataset[]'></label></td>
 
-                     <td><select name='wilayah[]'>
+                     <td><select name='wilayah[]' class='btn btn-sm btn-default'>
 
                      <?php
                    // query untuk menampilkan wilayah
@@ -212,7 +219,7 @@
                     ?>
                     </select></td>
 
-                     <td><select name='kecamatan[]'>
+                     <td><select name='kecamatan[]' class='btn btn-sm btn-default'>
 
                        <?php
                  // query untuk menampilkan kecamatan
@@ -225,7 +232,7 @@
                       ?>
                     </select></td>
 
-                    <td><select name='kelurahan[]'>
+                    <td><select name='kelurahan[]' class='btn btn-sm btn-default'>
 
                      <?php
                  // query untuk menampilkan kelurahan
@@ -246,7 +253,8 @@
           </table>
         </div>
         <br>
-        <input type=button name=tambah1 value=Tambah onclick=tambah()><input type=button name=delete1 value=Delete onclick=hapus()>        
+        <input type=button  class='btn btn-sm btn-info' name=tambah1 value=Tambah onclick=tambah()>
+        <input type=button  class='btn btn-sm btn-default' name=delete1 value=Delete onclick=hapus()>        
 
     </div>
     <center><input type="submit" class='btn btn-lg btn-info' name="submit" value="Simpan Data BAST"/></center>

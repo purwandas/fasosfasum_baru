@@ -237,7 +237,7 @@ $data = mysql_fetch_array($query);
 				                   <td class="right"><?php echo $data2['skpd']; ?></td>
 				                  <td class="right"><?php echo $data2['sensusfasos']; ?></td>
 				                  <td class="center"><a href=index.php?hal=bastbysippt&id=<?php echo $data2['nodokacuan'].">$data2[nodokacuan]"; ?></a></td>
-				                   <td class="center"><a href="index.php?hal=editperuntukan&idperuntukan=<?php echo $data2['idperuntukan']; ?>">Edit</a>|<a href="hapusperuntukan.php?idperuntukan=<?php echo $data2['idperuntukan']."&id=$_GET[id]"; ?>" onClick="return konfirmasi()">Hapus</a></td>
+				                   <td class="center"><a href="index.php?hal=editperuntukan&idperuntukan=<?php echo $data2['idperuntukan'].'&p='.$_GET['hal'].'&id='.$_GET['id']; ?>">Edit</a>|<a href="hapusperuntukan.php?idperuntukan=<?php echo $data2['idperuntukan']."&id=$_GET[id]"; ?>" onClick="return konfirmasi()">Hapus</a></td>
 				                 </tr>
 				                <?php
 				                $no++;

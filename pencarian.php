@@ -671,8 +671,11 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
 								</label>
 							</section>
               <section class="col col-2">
-                <a href=excellPencarian.php target=_blank style='margin-left:20px'><img alt=' ' src='img/excel.jpg' border='0'>Buat File Excell</a> 
+                <a href=excellPencarian.php target=_blank style='margin-left:20px;'><img alt=' ' height='20px' src='img/excell.png' border='0'>Buat File Excell</a> 
               </section>
+              <!-- <section class="col col-2">
+                <a href=pdfPencarian2.php target=_blank style='margin-left:20px;'><img alt=' ' height='20px' src='img/pdf.png' border='0'>Buat File PDF</a> 
+              </section> -->
 						</div>
 						<br>
 				<?php

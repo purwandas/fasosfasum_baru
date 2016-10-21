@@ -36,7 +36,7 @@
 
 
       td1.innerHTML="<label class='input'><input type='text' name='deskripsi[]'></label>";
-      td2.innerHTML="<center><select name='jenisfasos[]'>           <?php
+      td2.innerHTML="<center><select name='jenisfasos[]' class='btn btn-sm btn-default'>           <?php
       include "koneksi.php";
       $query = "SELECT * FROM ref_jenisfasosfasum";
       $hasil = mysql_query($query);
@@ -59,6 +59,10 @@
      }
    }
 
+   	$( function() {
+    	$( "#tgldokacuan" ).datepicker();
+  	} );
+
  </script>
 <?php
 include "koneksi.php";
@@ -74,10 +78,12 @@ if (isset($_POST['submit'])){
     echo $namanya;
     $namabaru=incrementName($namanya);
   }
-  $target_file = $target_dir . "$namabaru.".$ext;
+  $target_file = $target_dir . "$namabaru.pdf";
   $ext=end(explode('.', $_FILES['fileacuan']['name']));
   $nodokacuan = $_POST['nodokacuan'];
-  $tgldokacuan= $_POST['tgldokacuan'];
+  $tgl= $_POST['tgldokacuan'];
+  $tgldokacuan=substr($tgl,3,2).'/'.substr($tgl,0,2).'/'.substr($tgl,-4);
+  echo $tgldokacuan;
   $haldokacuan= $_POST['haldokacuan'];
   $pemegangdokacuan= $_POST['pemegangdokacuan'];
   $ketdokacuan= $_POST['ketdokacuan'];
@@ -98,17 +104,23 @@ if (isset($_POST['submit'])){
   <?php
 
 }else
-
-if (move_uploaded_file($_FILES["fileacuan"]["tmp_name"], $target_file)) {
-  $namafile=$_FILES['fileacuan']['name'];
-  $upload=mysql_query("INSERT INTO `upload` (`id`, `nama_asli`, `nama_file`, `path`, `nodokacuan`, `nobast`) VALUES ('', '$namafile', '$namabaru.$ext', '$target_dir', '$nodokacuan', '');");
-    $query = mysql_query("insert into detaildokacuan values('$nodokacuan', '$tgldokacuan', '$haldokacuan', '$pemegangdokacuan', '$ketdokacuan', '$idkategori')") or die(mysql_error());
-    echo "The file <a href='$target_dir$namabaru.$ext'>". basename( $_FILES["fileacuan"]["name"]). "</a> has been uploaded.";
-} else {
-  echo "$target_file";
-  echo "Sorry, there was an error uploading your file.";
+if($_FILES["fileacuan"]["name"]!='')
+{
+	if (move_uploaded_file($_FILES["fileacuan"]["tmp_name"], $target_file)) {
+	  $namafile=$_FILES['fileacuan']['name'];
+	  $upload=mysql_query("INSERT INTO `upload` (`id`, `nama_asli`, `nama_file`, `path`, `nodokacuan`, `nobast`) VALUES ('', '$namafile', '$namabaru.$ext', '$target_dir', '$nodokacuan', '');");
+	    $qurey = mysql_query("insert into detaildokacuan values('$nodokacuan', '$tgldokacuan', '$haldokacuan', '$pemegangdokacuan', '$ketdokacuan', '$idkategori')") or die(mysql_error());
+	    echo "The file <a href='$target_dir$namabaru.$ext'>". basename( $_FILES["fileacuan"]["name"]). "</a> has been uploaded.";
+	} else {
+	  echo "$target_file";
+	  echo "Sorry, there was an error uploading your file.";
+	}
+	//simpan data ke database
 }
-//simpan data ke database
+else
+{
+	$qurey = mysql_query("insert into detaildokacuan values('$nodokacuan', '$tgldokacuan', '$haldokacuan', '$pemegangdokacuan', '$ketdokacuan', '$idkategori')") or die(mysql_error());
+}
 
 
 if ($query) {
@@ -201,7 +213,7 @@ echo 'Data telah disimpan';
 			                      </tr>  
 			                      <tr>
 			                        <td>File Acuan</td>
-			                        <td align="right"><input type="file" name="fileacuan"></td> 
+			                        <td align="right"><input type="file" class='btn btn-sm btn-default' name="fileacuan"></td> 
 			                      </tr>
 			                    </table>
 						</section>
@@ -222,7 +234,7 @@ echo 'Data telah disimpan';
 			                            <tr>
 
 			                              <td><label class='input'><input type='text' name='deskripsi[]'></label></td>
-			                              <td><center><select name='jenisfasos[]'>
+			                              <td><center><select name='jenisfasos[]' class='btn btn-sm btn-default'>
 
 			                                <?php
 			                                include "koneksi.php";
@@ -241,7 +253,8 @@ echo 'Data telah disimpan';
 			                        </table>
 			                      </div>
 			                      <br>
-			                      <input type=button name=tambah1 value=Tambah onclick=tambah()><input type=button name=delete1 value=Delete onclick=hapus()>
+			                      <input type=button class='btn btn-sm btn-info' name=tambah1 value=Tambah onclick=tambah()>
+			                      <input type=button class='btn btn-sm btn-default' name=delete1 value=Delete onclick=hapus()>
 						</section>
 					</div>
 					<div class="row">

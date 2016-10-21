@@ -442,10 +442,10 @@
 			              </li>
 			              <li><a href="#">SIPPT vs BAST</a>
 			              </li>        
-
+			              <li><a href="laporanirisan.php">Data Irisan</a>
+				            </li>  -->
 			            </li>
-			            <li><a href="laporanirisan.php">Data Irisan</a>
-			            </li>  -->  
+			            
 			          </ul>
 			        </li>
 			        <li>
