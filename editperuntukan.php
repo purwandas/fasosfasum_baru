@@ -8,14 +8,19 @@
       return false;
     return true;
   }
+	  	
 //-->
 </SCRIPT>
 
 
 <?php
+function formatTahunBulanTanggal($tgl){
+  			return substr($tgl,-4).'-'.substr($tgl,0,2).'-'.substr($tgl,3,2);
+  		}
 if (isset($_POST['submit'])){
+		
 	include"koneksi.php";
-	$id=$_GET['idperuntukan'];
+	$id=$_POST['idperuntukan'];
   $deskripsi= $_POST['deskripsi'];
   $jenis= $_POST['jenis'];
   $luas= $_POST['luas'];
@@ -26,11 +31,25 @@ if (isset($_POST['submit'])){
   $keterangan= $_POST['keterangan'];
   $statussertifikat=$_POST['statussertifikat'];
   $nosertifikat= $_POST['nosertifikat'];
-  $tglsertifikat=$_POST['tglsertifikat'];
+
+	 if(substr($_POST['tglsertifikat'],2,1)=='/')
+	 {
+	  $tglsertifikat=formatTahunBulanTanggal($_POST['tglsertifikat']);
+	 }
+	 else{
+	 $tglsertifikat=$_POST['tglsertifikat'];	
+	 }
   $luassertifikat= $_POST['luassertifikat'];
   $statuspenggunaan=$_POST['statuspenggunaan'];
   $nosk= $_POST['nosk'];
-  $tglsk=$_POST['tglsk'];
+  // $tglsk=formatTahunBulanTanggal($_POST['tglsk']);
+  	if(substr($_POST['tglsk'],2,1)=='/')
+	 {
+	  $tglsk=formatTahunBulanTanggal($_POST['tglsk']);
+	 }
+	 else{
+	 $tglsk=$_POST['tglsk'];	
+	 }
   $skpd= $_POST['skpd'];
   $statusplang=$_POST['statusplang'];
   $sensusfasos=$_POST['sensusfasos'];
@@ -38,7 +57,9 @@ if (isset($_POST['submit'])){
 
 
 //update data ke database
-  $query = mysql_query("update peruntukan set  deskripsi='$deskripsi',jenis='$jenis',luas='$luas',deskripsi='$deskripsi',jenis='$jenis',luas='$luas',sertifikasi='$sertifikasi',pemilik='$pemilik',jenissertifikat='$jenissertifikat',masaberlaku='$masaberlaku',keterangan='$keterangan',statussertifikat='$statussertifikat', nosertifikat='$nosertifikat',tglsertifikat='tglsertifikat', luassertifikat='$luassertifikat', statuspenggunaan='$statuspenggunaan', nosk='$nosk',tglsk='tglsk', skpd='$skpd', statusplang='$statusplang', sensusfasos='$sensusfasos' where idperuntukan='$id'") or die(mysql_error());
+  $query="update peruntukan set  deskripsi='$deskripsi',jenis='$jenis',luas='$luas',deskripsi='$deskripsi',jenis='$jenis',luas='$luas',sertifikasi='$sertifikasi',pemilik='$pemilik',jenissertifikat='$jenissertifikat',masaberlaku='$masaberlaku',keterangan='$keterangan',statussertifikat='$statussertifikat', nosertifikat='$nosertifikat',tglsertifikat='$tglsertifikat', luassertifikat='$luassertifikat', statuspenggunaan='$statuspenggunaan', nosk='$nosk',tglsk='$tglsk', skpd='$skpd', statusplang='$statusplang', sensusfasos='$sensusfasos' where idperuntukan='$id'";
+  // echo $query."LOL";
+  $query = mysql_query($query) or die(mysql_error());
 
   $waktu = gmdate("Y-m-d H:i:s", time()+60*60*7);
   $user = $_SESSION['SESS_FIRST_NAME'];
@@ -47,14 +68,25 @@ if (isset($_POST['submit'])){
 
 
   if ($query) {
-  	$p=$_POST['p'];
-	header("Location: index.php?hal=$p");
-   // echo 'simpan perbahan data peruntukan berhasil...........';
+ //  	if(isset($_POST['p'])&&$_POST['p']!=''&&$_POST['p']!='viewdetailbast')
+ //  	{
+	//   	$p=$_POST['p'];
+	// 	header("Location: index.php?hal=$p");
+	// }
+   echo 'simpan perbahan data peruntukan berhasil...........';
  }
 }
-else
-{
+// else
+// {
 ?>
+<script type="text/javascript">
+  $( function() {
+      $( "#tglsk" ).datepicker();
+    } );
+  $( function() {
+      $( "#tglsertifikat" ).datepicker();
+    } );
+ </script>
 <article class="col-sm-12 col-md-12 col-lg-6">
 
 	<!-- Widget ID (each widget will need unique ID)-->
@@ -74,19 +106,19 @@ else
 							<?php 
 				             include "koneksi.php";
 				             $id = $_GET['idperuntukan'];
-							  	$p=$_GET['p'];
-							  	if(isset($_GET['id'])&&$_GET['id']!=''){
-							  		$p.="&id=$_GET[id]";
-							  	}
+							  	// $p=$_GET['p'];
+							  	// if(isset($_GET['id'])&&$_GET['id']!=''){
+							  	// 	$p.="&id=$_GET[id]";
+							  	// }
 
 				             $query = mysql_query("select * from peruntukan where idperuntukan='$id'") or die(mysql_error());
 
 				             $data = mysql_fetch_array($query);
 				             ?>
 
-				             <form name="editdokumenacuan" action="editperuntukan.php" method="post">
+				             <form name="editdokumenacuan" action="" method="post">
 				               <input type="hidden" name="id" value="<?php echo $id; ?>" />
-				               <input type="hidden" name="p" value="<?php echo $p; ?>" />
+				               <!-- <input type="hidden" name="p" value="<?php echo $p; ?>" /> -->
 				               <center>
 				               <table>
 
@@ -103,7 +135,7 @@ else
 				              </tr>
 				              <tr>
 				               <td>Jenis Peruntukan</td>
-				               <td><select name="jenis">
+				               <td><select name="jenis" class='btn btn-sm btn-default'>
 				                 <option value="<?php echo $data['jenis']; ?>"><?php echo $data['jenis']; ?></option><option>Tanah</option><option>Non-Tanah</option></select></td> 
 				               </tr>
 
@@ -114,7 +146,7 @@ else
 				              </tr>
 				              <tr>
 				               <td>Sertifikasi</td>
-				               <td><select name="sertifikasi">
+				               <td><select name="sertifikasi" class='btn btn-sm btn-default'>
 				                 <option value="<?php echo $data['sertifikasi']; ?>"><?php echo $data['sertifikasi']; ?></option><option>Sertifikat</option><option>Non-Sertifikat</option></select></td>
 				               </tr>
 				               <tr>
@@ -124,7 +156,7 @@ else
 
 				               <tr>
 				                 <td>Jenis Sertifikat</td>
-				                 <td><select name="jenissertifikat">
+				                 <td><select name="jenissertifikat" class='btn btn-sm btn-default'>
 				                   <option value="<?php echo $data['jenissertifikat']; ?>"><?php echo $data['jenissertifikat']; ?></option><option>DKI</option><option>SHM</option><option>HGB</option><option>Non-Sertifikat</option></select></td>
 				                 </tr>
 				                 <tr>
@@ -140,7 +172,7 @@ else
 				                 <tr>
 				                   <td>Status Sertifikat</td>
 				                   <td>
-				                     <select name="statussertifikat">
+				                     <select name="statussertifikat" class='btn btn-sm btn-default'>
 				                      <option value="<?php echo $data['statussertifikat']; ?>">-<?php echo $data['statussertifikat']; ?></option>
 				                      <?php
 				                      $query=mysql_query("select display from ref_statussertifikat");
@@ -161,7 +193,9 @@ else
 				               </tr>
 				               <tr>
 				                 <td>Tgl.Sertifikat</td>
-				                 <td><label class='input'><input type="text" name="tglsertifikat" maxlength="20" required="required" value="<?php echo $data['tglsertifikat']; ?>"/></label></td>
+				                 <td><label class='input'>
+				                 <input type="text" id="tglsertifikat" name="tglsertifikat" value="<?php echo $data['tglsertifikat']; ?>"/>
+				                 </label></td>
 				               </tr>
 				               <tr>
 				                 <td>Luas Sertifikat</td>
@@ -170,7 +204,7 @@ else
 				               <tr>
 				                 <td>Status Plang</td>
 				                 <td>
-				                   <select name="statusplang">
+				                   <select name="statusplang" class='btn btn-sm btn-default'>
 				                    <option value="<?php echo $data['statusplang']; ?>">-<?php echo $data['statusplang']; ?></option>
 				                    <?php
 				                    $query=mysql_query("select display from ref_statusplangaset");
@@ -188,7 +222,7 @@ else
 				             <tr>
 				               <td>Status Penggunaan</td>
 				               <td>
-				                 <select name="statuspenggunaan">
+				                 <select name="statuspenggunaan" class='btn btn-sm btn-default'>
 				                  <option value="<?php echo $data['statuspenggunaan']; ?>">-<?php echo $data['statuspenggunaan']; ?></option>
 				                  <?php
 				                  $query=mysql_query("select display from ref_statuspenggunaanfasosfasum");
@@ -209,7 +243,7 @@ else
 				           </tr>
 				           <tr>
 				             <td>Tgl.SK</td>
-				             <td><label class='input'><input type="text" name="tglsk" maxlength="20" required="required" value="<?php echo $data['tglsk']; ?>"/></label></td>
+				             <td><label class='input'><input type="text" id="tglsk" name="tglsk" maxlength="20" required="required" value="<?php echo $data['tglsk']; ?>"/></label></td>
 				           </tr>
 				           <tr>
 				             <td>SKPD</td>
@@ -218,7 +252,7 @@ else
 				           <tr>
 				             <td>Sensus Fasos</td>
 				             <td>
-				               <select name="sensusfasos">
+				               <select name="sensusfasos" class='btn btn-sm btn-default'>
 				                <option value="<?php echo $data['sensusfasos']; ?>">-<?php echo $data['sensusfasos']; ?></option>
 				                <?php
 				                $query=mysql_query("select display from ref_sensusfasosfasum");
@@ -239,7 +273,9 @@ else
 				         </tr> -->
 
 				         <tr>	
-				          <td align="center" colspan="2"><input class='btn btn-lg btn-info' type="submit" name="submit" value="Simpan Perubahan"> </td>
+				          <td align="center" colspan="2">
+				          <br>
+				          <input class='btn btn-lg btn-info' type="submit" name="submit" value="Simpan Perubahan"> </td>
 				        </tr>
 
 				      </table>
@@ -258,6 +294,6 @@ else
 
 </article>
 <!-- WIDGET END -->
-<?php
-}
-?>
+<!-- <?php
+// }
+?> -->

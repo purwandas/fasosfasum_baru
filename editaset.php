@@ -89,7 +89,7 @@
                   <tr>
                     <td>Wilayah </td>
                     <td>
-                      <select name='wilayah' id='wilayah'>           
+                      <select name='wilayah' id='wilayah' class="btn btn-sm btn-default">
                         <?php
                         echo "<option >".$data['wilayah']."</option>".$data['wilayah']."</option>";
                         $queryWilayah = "SELECT * FROM wilayah";
@@ -105,7 +105,7 @@
                   <tr>
                     <td>Kecamatan</td>
                     <td>
-                      <select name='kecamatan' id='kecamatan'>           
+                      <select name='kecamatan' id='kecamatan' class="btn btn-sm btn-default">
                         <?php
                         echo "<option >".$data['kecamatan']."</option>".$data['kecamatan']."</option>";
                         $queryKecamatan = "SELECT * FROM kecamatan";
@@ -123,7 +123,7 @@
                   <tr>
                     <td>Kelurahan</td>
                     <td>
-                      <select name='kelurahan' id='kelurahan'>           
+                      <select name='kelurahan' id='kelurahan' class="btn btn-sm btn-default">
                         <?php
                         echo "<option >".$data['kelurahan']."</option>".$data['kelurahan']."</option>";
                         $queryKelurahan = "SELECT * FROM kelurahan";

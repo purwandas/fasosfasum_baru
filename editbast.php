@@ -16,6 +16,8 @@
     $target_file = $target_dir . "$namabaru.".$ext;
     $id=$_POST['id'];
     $tglbast= $_POST['tglbast'];
+    $tglbast=substr($tglbast, 3,2).'/'.substr($tglbast, 0,2).substr($tglbast, -5);
+    // echo "$tglbast";
     $perihalbast= $_POST['perihalbast'];
     $pengembangbast= $_POST['pengembangbast'];
     $keterangan= $_POST['keterangan'];
@@ -47,6 +49,11 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
    }
  }
  ?>
+ <script type="text/javascript">
+ 	$( function() {
+    	$( "#tglbast" ).datepicker();
+  	} );
+ </script>
  <article class="col-sm-12 col-md-12 col-lg-6">
 
 	<!-- Widget ID (each widget will need unique ID)-->
@@ -92,13 +99,34 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
 					              </tr>
 					              <tr>
 					                <td>Perihal</td>
-					                <td><textarea name=perihalbast rows=1 cols=30 required="required"/><?=$data['perihalbast'] ?> </textarea></td> 
+					                <td><label class="input">
+					                <input type="text" name=perihalbast  required="required" <? echo"value=$data[perihalbast]";?> > </label></td> 
 					              </tr> 
 
 
 					              <tr>
 					                <td>Kategori</td>
-					                <td><textarea name=keterangan rows=1 cols=30 required="required"/><?=$data['keterangan'] ?> </textarea></td> 
+					                <td>
+					                <select  name=keterangan  class="btn btn-default btn-sm">
+			                	<?php
+			                		echo"
+			                			<option value='$data[keterangan]'>
+			                			$data[keterangan]
+			                			</option>
+			                		";
+			                		$qKeterangan="select* from ref_penandatangananbast";
+			                		$qKeterangan=mysql_query($qKeterangan);
+			                		while ($dKet=mysql_fetch_array($qKeterangan))
+			                		{
+			                			echo"
+				                			<option value='$dKet[display]'>
+				                			$dKet[display]
+				                			</option>
+			                			";
+			                		}
+			                	?>
+					                </select>
+					                </td> 
 					              </tr>  
 					              <tr>
 					                <td>No.Dokumen Acuan </td>
@@ -122,11 +150,13 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
 					                }
 					                ?>
 					                <br>
-					                <input type="file" name="fileacuan">
+					                <input type="file" name="fileacuan" class="btn btn-sm btn-default">
 					              </td>
 					            </tr>
 					            <tr>
-					              <td align="center" colspan="2"><input type="submit" name="submit" value="Simpan Perubahan" class="btn btn-lg btn-info"> </td>
+					              <td align="center" colspan="2">
+					              <br>
+					              <input type="submit" name="submit" value="Simpan Perubahan" class="btn btn-lg btn-info"> </td>
 					            </tr>
 
 					          </table>

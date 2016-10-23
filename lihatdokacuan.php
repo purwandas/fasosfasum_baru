@@ -1,9 +1,9 @@
 <!-- PAGE RELATED PLUGIN(S) -->
-<script src="js/plugin/datatables/jquery.dataTables.min.js"></script>
-<script src="js/plugin/datatables/dataTables.colVis.min.js"></script>
-<script src="js/plugin/datatables/dataTables.tableTools.min.js"></script>
-<script src="js/plugin/datatables/dataTables.bootstrap.min.js"></script>
-<script src="js/plugin/datatable-responsive/datatables.responsive.min.js"></script>
+<script src="JS/plugin/datatables/jquery.dataTables.min.js"></script>
+<script src="JS/plugin/datatables/dataTables.colVis.min.js"></script>
+<script src="JS/plugin/datatables/dataTables.tableTools.min.js"></script>
+<script src="JS/plugin/datatables/dataTables.bootstrap.min.js"></script>
+<script src="JS/plugin/datatable-responsive/datatables.responsive.min.js"></script>
 
 <script type="text/javascript">
 

@@ -635,7 +635,11 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                 }else{
                   $qr='&';
                 }
-                
+                if($_GET['kategori']!='dokacuan'){
+                  $k=2;
+                }else{
+                  $k=3;
+                }
                 include ("pagination.php");
                 
                 if(isset($_GET['page']))
@@ -673,9 +677,9 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
               <section class="col col-2">
                 <a href=excellPencarian.php target=_blank style='margin-left:20px;'><img alt=' ' height='20px' src='img/excell.png' border='0'>Buat File Excell</a> 
               </section>
-              <!-- <section class="col col-2">
-                <a href=pdfPencarian2.php target=_blank style='margin-left:20px;'><img alt=' ' height='20px' src='img/pdf.png' border='0'>Buat File PDF</a> 
-              </section> -->
+              <section class="col col-2">
+                <a href="snappy.php?q=<?php echo $qpaging.'&k='.$k; ?>" target=_blank style='margin-left:20px;'><img alt=' ' height='20px' src='img/pdf.png' border='0'>Buat File PDF</a> 
+              </section>
 						</div>
 						<br>
 				<?php
@@ -695,6 +699,8 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
 				// echo "<hr>$query->$totalData";
                 if($totalData>0)
                 {
+              echo "<div align='left'> <i>*) $totalData Data ditemukan</i> </div>";
+
                   echo"
                   <table class='table-hover table-bordered table' style='font-size: 120%;'>
                     ";

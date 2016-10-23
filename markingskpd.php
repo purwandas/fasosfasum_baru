@@ -17,7 +17,7 @@
 						<div class="row">				
 								
 							<section class="col col-sm-3">
-								Masukan Kata Pencarian berikut :
+								<strong>Kata Pencarian:</strong>
 							</section>
 						</div>
 						<div class="row">				
@@ -25,10 +25,11 @@
 							<section class="col col-sm-3">
 															
 									<label class="input"> <i class="icon-append fa fa-question-circle"></i>
-										<input type="text" name="term" placeholder="Kata Pencarian">
+										<input type="text" name="term" placeholder="Kata Pencarian" 
+										<?php if(isset($_POST['term'])){echo"value=".$_POST['term'];}?>>
 										<b class="tooltip tooltip-bottom-right">
 										<i class="fa fa-warning txt-color-teal"></i> 
-										Input Nomor Bast atau Nama Pengembang atau Jenis Dok. Acuan
+										Input Nomor Bast atau Nama Pengembang atau Kelurahan atau Alamat atau Volume atau Peruntukan
 										</b> 
 									</label>
 																
@@ -46,9 +47,8 @@
 
 				<div class="row" style="overflow:auto;">										
 					<section class="col col-sm-12 col-md-12 col-lg-12">
-						<table class="table-hover table-bordered table" cellpadding="5" cellspacing="5">
+						<table class="table-hover table-bordered table table-striped">
 
-			              <thead>
 			                
 			                <tr>
 			                  <td class="center">NO.</td>        	
@@ -59,6 +59,7 @@
 			                  <td class="center">KECAMATAN</td>
 			                  <td class="center">WILAYAH</td>
 			                  <td class="center">PERUNTUKAN</td>
+			                  <td class="center">PENGEMBANG</td>
 			                  <td class="center">VOLUME</td>
 			                  <td class="center">SATUAN</td>
 			                  <td class="center">NILAI</td>
@@ -66,7 +67,6 @@
 
 			                  
 			                </tr>
-			              </thead>
 
 
 
@@ -78,7 +78,7 @@
 			               
 			               $term = $_POST['term']; 
 			               
-			               $query = "SELECT * FROM akun a inner join bast b on a.nobast=b.nobast inner join detaildokacuan d on b.nodokacuan=d.nodokacuan inner join dataaset s on a.idaset=s.idaset inner join peruntukan p on a.idperuntukan=p.idperuntukan inner join lokasidokumen l on a.nobast=l.nobastlokasi where pengembangbast like '%$term%' or kelurahan like '%$term%' or alamataset like '%$term%' or volume like '%$term%' or deskripsi like '%$term%' or kategoriaset like '%$term%' or a.nobast like '%$term%'";
+			               $query = "SELECT * FROM akun a inner join bast b on a.nobast=b.nobast inner join detaildokacuan d on b.nodokacuan=d.nodokacuan inner join dataaset s on a.idaset=s.idaset inner join peruntukan p on a.idperuntukan=p.idperuntukan inner join lokasidokumen l on a.nobast=l.nobastlokasi where pengembangbast like '%$term%' or kelurahan like '%$term%' or alamataset like '%$term%' or volume like '%$term%' or deskripsi like '%$term%' or a.nobast like '%$term%'";
 
 			             }else
 
@@ -92,7 +92,6 @@
 			             $no = 1;
 			             while ($data = mysql_fetch_array($query)) {
 			               ?>
-			               <tbody>
 			                 <tr>
 			                   <td class="center"><?php echo $no; ?></td>
 			                   <td class="left"><?php echo $data['nobast']; ?></td>
@@ -102,13 +101,13 @@
 			                   <td class="left"><?php echo $data['kecamatan']; ?></td>
 			                   <td class="left"><?php echo $data['wilayah']; ?></td>
 			                   <td class="left"><?php echo $data['deskripsi']; ?></td>
+			                   <td class="left"><?php echo $data['pengembangbast']; ?></td>
 			                   <td class="center"><?php echo $data['volume']; ?></td>
 			                   <td class="center"><?php echo $data['satuan']; ?></td>
 			                   <td class="left"><?php  print number_format  ($data['nilaimix'],2); ?></td>
 
 			                   <td class="center"><a href="index.php?hal=entryskpd&id=<?php echo $data['idperuntukan']; ?>">Marking SKPD</a></td>
 			                 </tr>
-			               </tbody>
 			               <?php
 			               $no++;
 			             }

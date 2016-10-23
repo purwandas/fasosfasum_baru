@@ -32,7 +32,8 @@ function submit() {
 						        
 						          <?php
 						          include("koneksi.php");
-						          $queryperuntukan="select * from peruntukan";
+						          $queryperuntukan="select * from peruntukan inner join akun on peruntukan.idperuntukan=akun.idperuntukan inner join detaildokacuan on peruntukan.nodokacuan=detaildokacuan.nodokacuan";
+						          ///join sama aset bast akun
 if(isset($_GET['deskripsi'])){
 		function formatTahunBulanTanggal($tgl){
   			return substr($tgl,-4).'-'.substr($tgl,0,2).'-'.substr($tgl,3,2);
@@ -192,7 +193,7 @@ if($_GET['idaset']!=''){$idaset="idaset like '%$_GET[idaset]%'";if($cek!='0'){$i
 						                <td>$dataperuntukan[nobast]</td>
 						                <td>$dataperuntukan[idaset]</td>
 						                <td>
-						              		<a href='index.php?hal=editperuntukan&idperuntukan=$dataperuntukan[idperuntukan]&p=lihatperuntukan'>
+						              		<a href='index.php?hal=editperuntukan&idperuntukan=$dataperuntukan[idperuntukan]&p=lihatperuntukan' target='_blank'>
 							              	ubah
 							              	</a>
 							            </td>

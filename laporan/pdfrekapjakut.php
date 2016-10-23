@@ -38,8 +38,7 @@
 
 	
 <?php
-mysql_connect("localhost","root","");
-mysql_select_db("bpkd2012");
+include "koneksi.php";
 $query = mysql_query("select * from bast b inner join (select distinct nobastaset, wilayah from dataaset)a on a.nobastaset=b.nobast where wilayah='Jakarta Utara'");
 	$no = 1;
 	while ($data = mysql_fetch_array($query)) {

@@ -10,12 +10,13 @@
       $ext=end(explode('.', $nama['nama_file']));      
       $namanya=basename($nama['nama_file'],".".$ext);  
     }
-    echo $namanya;
+    // echo $namanya;
     $namabaru=incrementName($namanya);
     $ext=end(explode('.', $_FILES['fileacuan']['name']));
     $target_file = $target_dir . "$namabaru.".$ext;
     $jenisacuan=$_POST['jenisacuan'];
     $tgldokacuan= $_POST['tgldokacuan'];
+    $tgldokacuan=substr($tgldokacuan, 3,2).'/'.substr($tgldokacuan, 0,2).substr($tgldokacuan, -5);
     $haldokacuan= $_POST['haldokacuan'];
     $pemegangdokacuan= $_POST['pemegangdokacuan'];
     $ketdokacuan= $_POST['ketdokacuan'];
@@ -52,6 +53,7 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
  }
  if (isset($_POST['submit2'])){
    $nodokacuan2=$_POST['nodokacuan2'];
+   // echo $nodokacuan2."lol";
    if(!$_POST){  
     die('Tidak ada data yang disimpan!');  
   }  
@@ -86,6 +88,11 @@ if(isset($_GET['delete'])){
 
 }
 ?>
+ <script type="text/javascript">
+  $( function() {
+      $( "#tgldokacuan" ).datepicker();
+    } );
+ </script>
 <article class="col-sm-12 col-md-12 col-lg-6">
 
   <!-- Widget ID (each widget will need unique ID)-->
@@ -149,13 +156,18 @@ if(isset($_GET['delete'])){
 
               <tr>
                 <td>Perihal</td>
-                <td><textarea name=haldokacuan rows=1 cols=30 required="required"/><?=$data['haldokacuan'] ?> </textarea></td> 
+                <td>
+                <label class='input'><input type="text" name=haldokacuan required="required" value="<?=$data['haldokacuan'] ?>" ></label>
+                <!-- <textarea name=haldokacuan rows=1 cols=30 required="required"/><?=$data['haldokacuan'] ?> </textarea> -->
+                </td> 
               </tr> 
 
 
               <tr>
                 <td>Keterangan</td>
-                <td><textarea name=ketdokacuan rows=1 cols=30 required="required"/><?=$data['ketdokacuan'] ?> </textarea></td> 
+                <td>
+                <label class='input'><input type="text" name=ketdokacuan required="required" value="<?=$data['ketdokacuan'] ?>" ></label>
+                </td> 
               </tr>  
               <tr>
 
@@ -167,19 +179,21 @@ if(isset($_GET['delete'])){
                     $qp=mysql_query($qr);
                     while ($dq=mysql_fetch_array($qp)) {
                       echo"
-                      <a href='download.php?type=a&id=$data[nodokacuan]'>$dq[nama_asli]</a>
+                      <a href='download.php?type=a&id=$data[nodokacuan]' target='_blank'>$dq[nama_asli]</a>
                       ";
                     }
                     ?>
                     <br>
-                    <input type="file" name="fileacuan">
+                    <input type="file" name="fileacuan" class="btn btn-sm btn-default">
                   </td> 
                 </tr>  
                 <tr>
 
 
 
-                  <td align="center" colspan="2"><input type="submit" name="submit" value="Simpan Perubahan"  class="btn btn-lg btn-info"> </td>
+                  <td align="center" colspan="2"> <br>
+                  <input type="submit" name="submit" value="Simpan Perubahan"  class="btn btn-lg btn-info"> 
+                  </td>
                 </tr>
 
               </table>
@@ -217,7 +231,7 @@ if(isset($_GET['delete'])){
               
             <section class="col col-sm-12 col-md-12 col-lg-12">
               <form name="inputlokasiaset" action="" method="post">
-                No.Dokumen Acuan :  <label class='input'><input type="text" name="nodokacuan2" value="<?php echo $id; ?>"/ disabled> </label>
+                No.Dokumen Acuan :  <label class='input'><input type="text" name="nodokacuan2" value="<?php echo $id; ?>"/> </label>
 
                   <br><p>
                   <div style=" width:20; height:150px;overflow:auto;">
@@ -241,7 +255,7 @@ if(isset($_GET['delete'])){
                               <input type='hidden' name='idperuntukan[]' value='$d0[idperuntukan]'>
                               <label class='input'><input type='text' name='deskripsi[]' value='$d0[deskripsi]'></label>
                             </td>
-                            <td><center><select name='jenisfasos[]'>
+                            <td><center><select name='jenisfasos[]' class='btn btn-sm btn-default'>
                               <option value='$d0[jenisfasos]'>$d0[jenisfasos]</option>
                               ";
                               $query = "SELECT * FROM ref_jenisfasosfasum";
@@ -256,15 +270,16 @@ if(isset($_GET['delete'])){
                             <td>
                               <label class='input'><input type='number' name='luas[]' value='$d0[luas]'></label>
                             </td>  
-                            <td><a href='index.php?hal=editsippt&nodokacuan=$id&delete=$d0[idperuntukan]'>hapus</a></td>
+                            <td><a href='index.php?hal=editacuan&nodokacuan=$id&delete=$d0[idperuntukan]' ";?>onclick="return confirm('Are you sure?')">hapus</a></td>
                           </tr>
-                          ";
+                        <?php
                         }
                         ?>
                     </table>
                   </div>
                   <br>
-                  <input type=button name=tambah1 value=Tambah onclick=tambah()><input type=button name=delete1 value=Delete onclick=hapus()>
+                  <input type=button name=tambah1 value=Tambah onclick=tambah() class="btn btn-sm btn-info">
+                  <input type=button name=delete1 value=Delete onclick=hapus() class="btn btn-sm btn-default">
                   <center><input type="submit" name="submit2" value="Simpan Data Kewajiban"  class="btn btn-lg btn-info"/></center>
                   <script>
                     var idrow = <?php echo $row; ?>;
@@ -276,7 +291,7 @@ if(isset($_GET['delete'])){
                       var td3=x.insertCell(2);
 
                       td1.innerHTML="<label class='input'><input type='text' name='deskripsi[]'><input type='hidden' name='idperuntukan[]' value='kosong'></label>";
-                      td2.innerHTML="<center><select name='jenisfasos[]'>           <?php
+                      td2.innerHTML="<center><select name='jenisfasos[]' class='btn btn-sm btn-default'>           <?php
                       include "koneksi.php";
                       $query = "SELECT * FROM ref_jenisfasosfasum";
                       $hasil = mysql_query($query);

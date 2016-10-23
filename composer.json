@@ -1,0 +1,6 @@
+{
+    "require": {
+        "knplabs/knp-snappy": "^0.4.3",
+        "h4cc/wkhtmltopdf-i386": "0.12.x"
+    }
+}

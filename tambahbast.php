@@ -115,12 +115,32 @@
                 <tr>
                   <td>Perihal</td>
                   <td>:</td>
-                  <td><textarea name=perihalbast rows=1 cols=30 required="required" /> </textarea></td> 
+                  <td><label class='input'><input type="text" name=perihalbast required="required" /></label></td> 
                 </tr>
                 <tr>
                   <td>Kategori </td>
                   <td>:</td>
-                  <td><textarea name=keterangan rows=1 cols=30 required="required" /> </textarea></td> 
+                  <td>
+                    <select  name=keterangan  class="btn btn-default btn-sm">
+                        <?php
+                          echo"
+                            <option value=''>
+                            -pilih-
+                            </option>
+                          ";
+                          $qKeterangan="select* from ref_penandatangananbast";
+                          $qKeterangan=mysql_query($qKeterangan);
+                          while ($dKet=mysql_fetch_array($qKeterangan))
+                          {
+                            echo"
+                              <option value='$dKet[display]'>
+                              $dKet[display]
+                              </option>
+                            ";
+                          }
+                        ?>
+                    </select>
+                  </td> 
                 </tr>
                 <tr><td>Dokumen Acuan</td>
                 <td>:</td>
@@ -142,7 +162,7 @@
               <td>Kode Arsip </td><td>: </td><td><label class='input'><input type="text" name="kodearsip" maxlength="40" required="required" /></label></td>
               </tr>
               <tr>
-               <td>File Acuan</td><td>: </td><td><input type="file" name="fileacuan"></td>
+               <td>File Acuan</td><td>: </td><td><input type="file" name="fileacuan" class='btn btn-sm btn-default'></td>
               </tr>
             </table>
             <!-- <right><input type="submit" name="submit" value="Simpan Data BAST"/></right> -->

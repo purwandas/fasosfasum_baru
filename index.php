@@ -1,4 +1,4 @@
-<?php
+<?php 
 	require_once('auth.php');
 	include("koneksi.php");
 ?>
@@ -87,8 +87,7 @@
 		</script>
 
 
-		<!-- IMPORTANT: APP CONFIG -->
-		<script src="JS/app.config.js"></script>
+		
 
 		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
 		<script src="JS/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> 
@@ -135,84 +134,17 @@
 		<!-- Demo purpose only -->
 		<!-- <script src="JS/demo.min.js"></script> -->
 
-		<!-- MAIN APP JS FILE -->
-		<script src="JS/app.min.js"></script>
 
-		<!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
-		<!-- Voice command : plugin -->
-		<script src="JS/speech/voicecommand.min.js"></script>
+
+		
 
 		<!-- SmartChat UI : plugin -->
 		<script src="JS/smart-chat-ui/smart.chat.ui.min.js"></script>
 		<script src="JS/smart-chat-ui/smart.chat.manager.min.js"></script>
 
-		<!-- PAGE RELATED PLUGIN(S) 
-		<script src="..."></script>-->
-		<script src="JS/plugin/chartjs/chart.min.js"></script>
-
-		<script type="text/javascript">
-
-			$(document).ready(function() {
-			 	
-				/* DO NOT REMOVE : GLOBAL FUNCTIONS!
-				 *
-				 * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
-				 *
-				 * // activate tooltips
-				 * $("[rel=tooltip]").tooltip();
-				 *
-				 * // activate popovers
-				 * $("[rel=popover]").popover();
-				 *
-				 * // activate popovers with hover states
-				 * $("[rel=popover-hover]").popover({ trigger: "hover" });
-				 *
-				 * // activate inline charts
-				 * runAllCharts();
-				 *
-				 * // setup widgets
-				 * setup_widgets_desktop();
-				 *
-				 * // run form elements
-				 * runAllForms();
-				 *
-				 ********************************
-				 *
-				 * pageSetUp() is needed whenever you load a page.
-				 * It initializes and checks for all basic elements of the page
-				 * and makes rendering easier.
-				 *
-				 */
-				
-				 pageSetUp();
-				 
-				/*
-				 * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
-				 * eg alert("my home function");
-				 * 
-				 * var pagefunction = function() {
-				 *   ...
-				 * }
-				 * loadScript("JS/plugin/_PLUGIN_NAME_.js", pagefunction);
-				 * 
-				 * TO LOAD A SCRIPT:
-				 * var pagefunction = function (){ 
-				 *  loadScript(".../plugin.js", run_after_loaded);	
-				 * }
-				 * 
-				 * OR
-				 * 
-				 * loadScript(".../plugin.js", run_after_loaded);
-				 */
-
-				 // reference: http://www.chartjs.org/docs/
-
-			    
-				
-			})
 		
-		</script>
 
+		
 		<!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
 		<script src="JS/plugin/flot/jquery.flot.cust.min.js"></script>
 		<script src="JS/plugin/flot/jquery.flot.resize.min.js"></script>
@@ -420,9 +352,9 @@
 			                  <li><a target="_blank" href="pdf58.php">Data Lokasi 58</a></li>
 			                  <li><a target="_blank" href="pdfdtr.php">Semua DTR</a></li>
 			                  <li><a target="_blank" href="pdfdtraja.php">DTR Tanpa Irisan</a></li>
-			                  <li><a target="_blank" href="bastirisanrekon.php">Data irisan Rekon</a></li>
+			                  <!-- <li><a target="_blank" href="bastirisanrekon.php">Data irisan Rekon</a></li> -->
 			                  <li><a target="_blank" href="pdfbpk.php">Semua LK2010</a></li>
-			                  <li><a target="_blank" href="pdfbpkaja.php">LK2010 Tanpa Iris</a></li>
+			                  <!-- <li><a target="_blank" href="pdfbpkaja.php">LK2010 Tanpa Iris</a></li> -->
 
 			                </ul>
 			              </li>
@@ -575,6 +507,76 @@
 		<!-- END PAGE FOOTER -->
 
 		
+		<!-- IMPORTANT: APP CONFIG -->
+		<script src="JS/app.config.js"></script>
+		<!-- MAIN APP JS FILE -->
+		<script src="JS/app.min.js"></script>
+		<!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
+		<!-- Voice command : plugin -->
+		<script src="JS/speech/voicecommand.min.js"></script>
+		<script type="text/javascript">
+
+			$(document).ready(function() {
+			 	
+				/* DO NOT REMOVE : GLOBAL FUNCTIONS!
+				 *
+				 * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
+				 *
+				 * // activate tooltips
+				 * $("[rel=tooltip]").tooltip();
+				 *
+				 * // activate popovers
+				 * $("[rel=popover]").popover();
+				 *
+				 * // activate popovers with hover states
+				 * $("[rel=popover-hover]").popover({ trigger: "hover" });
+				 *
+				 * // activate inline charts
+				 * runAllCharts();
+				 *
+				 * // setup widgets
+				 * setup_widgets_desktop();
+				 *
+				 * // run form elements
+				 * runAllForms();
+				 *
+				 ********************************
+				 *
+				 * pageSetUp() is needed whenever you load a page.
+				 * It initializes and checks for all basic elements of the page
+				 * and makes rendering easier.
+				 *
+				 */
+				
+				 pageSetUp();
+				 
+				/*
+				 * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
+				 * eg alert("my home function");
+				 * 
+				 * var pagefunction = function() {
+				 *   ...
+				 * }
+				 * loadScript("JS/plugin/_PLUGIN_NAME_.js", pagefunction);
+				 * 
+				 * TO LOAD A SCRIPT:
+				 * var pagefunction = function (){ 
+				 *  loadScript(".../plugin.js", run_after_loaded);	
+				 * }
+				 * 
+				 * OR
+				 * 
+				 * loadScript(".../plugin.js", run_after_loaded);
+				 */
+
+				 // reference: http://www.chartjs.org/docs/
+
+			    
+				
+			})
+		
+		</script>
+
 
 		<!--================================================== -->
 

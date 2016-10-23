@@ -8,11 +8,11 @@
 		include "koneksi.php";
 		foreach ($_POST['deskripsi'] as $key => $value) {
 			if($_POST['idaset'][$key]!=''){
-
-				$queryBast="select nobast from dataaset where idaset='{$_POST['wilayah'][$key]}'";
+				$idaset=$_POST['idaset'][$key];
+				$queryBast="select nobastaset from dataaset where idaset='$idaset'";
 				$queryBast=mysql_query($queryBast);
-				$dataNoBast=mysql_fetch_array(result);
-				$nobast=$dataNoBast['nobast'];
+				$dataNoBast=mysql_fetch_array($queryBast);
+				$nobast=$dataNoBast['nobastaset'];
 			}else{
 				$nobast='';
 			}
@@ -31,9 +31,9 @@
 				statusplang='{$_POST['statusplang'][$key]}',
 				statuspenggunaan='{$_POST['statuspenggunaan'][$key]}',nosk='{$_POST['nosk'][$key]}',
 				tglsk='{$tglsk}',
-				skpd='{$_POST['skpd'][$key]}',sensusfasos='{$_POST['sensusfasos'][$key]}'
+				skpd='{$_POST['skpd'][$key]}',sensusfasos='{$_POST['sensusfasos'][$key]}', nobast='{$nobast}'
 				where idperuntukan='{$_POST['idperuntukan'][$key]}'";
-			// mysql_query($queryUpdatePeruntukan);
+			mysql_query($queryUpdatePeruntukan);
 			// echo "$queryUpdatePeruntukan<br>";
 				header('Location: index.php?hal=tambahbast');
 		}

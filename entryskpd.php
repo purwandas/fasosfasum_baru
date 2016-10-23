@@ -149,7 +149,9 @@ if (isset($_POST['submit'])){
 						       <td><label class='input'><input type="text" name="ketskpd" maxlength="90" required="required" value="<?php echo $data2['keterangan'];?>" /></label></td>
 						     </tr>
 						     <tr>		
-						      <td align="center" colspan="2"><input type="submit" name="submit" value="Simpan SKPD" class="btn btn-lg btn-info"> </td>
+						      <td align="center" colspan="2">
+						      <br>
+						      <input type="submit" name="submit" value="Simpan SKPD" class="btn btn-lg btn-info"> </td>
 						    </tr>
 
 						  </table>

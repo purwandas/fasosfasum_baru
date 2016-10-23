@@ -19,7 +19,8 @@ if(isset($_GET['type'])&&isset($_GET['id'])){
 		echo"bukan file PDF".$extention['1'];
 	}
 
-	$file_path  = $universal_path.$path.$file_name;
+	// $file_path  = $universal_path.$path.$file_name;
+	$file_path  = $path.$file_name;
 	$file=$file_path;
 	
 	if(file_exists($file)) {

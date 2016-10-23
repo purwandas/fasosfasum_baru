@@ -63,7 +63,7 @@
     	$( "#tgldokacuan" ).datepicker();
   	} );
 
- </script>
+ </script
 <?php
 include "koneksi.php";
 if (isset($_POST['submit'])){
@@ -75,7 +75,7 @@ if (isset($_POST['submit'])){
     $nama=mysql_fetch_array(mysql_query("select * from upload order by id desc"));
     $ext=end(explode('.', $nama['nama_file']));      
     $namanya=basename($nama['nama_file'],".".$ext);
-    echo $namanya;
+    // echo $namanya;
     $namabaru=incrementName($namanya);
   }
   $target_file = $target_dir . "$namabaru.pdf";
@@ -83,7 +83,7 @@ if (isset($_POST['submit'])){
   $nodokacuan = $_POST['nodokacuan'];
   $tgl= $_POST['tgldokacuan'];
   $tgldokacuan=substr($tgl,3,2).'/'.substr($tgl,0,2).'/'.substr($tgl,-4);
-  echo $tgldokacuan;
+  // echo $tgldokacuan;
   $haldokacuan= $_POST['haldokacuan'];
   $pemegangdokacuan= $_POST['pemegangdokacuan'];
   $ketdokacuan= $_POST['ketdokacuan'];
@@ -204,12 +204,12 @@ echo 'Data telah disimpan';
 
 			                      <tr>
 			                        <td>Perihal</td>
-			                        <td><textarea name=haldokacuan rows=1 cols=30 required="required" /> </textarea></td> 
+			                        <td><label class="input"><input type="text" name=haldokacuan required="required" /> </label></td> 
 			                      </tr> 
 
 			                      <tr>
 			                        <td>Keterangan</td>
-			                        <td><textarea name=ketdokacuan rows=1 cols=30 required="required" /> </textarea></td> 
+			                        <td><label class="input"><input type="text" name=ketdokacuan required="required" /> </label></td> 
 			                      </tr>  
 			                      <tr>
 			                        <td>File Acuan</td>

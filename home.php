@@ -1,4 +1,6 @@
-<!-- NEW WIDGET START -->
+		<!-- PAGE RELATED PLUGIN(S) 
+		<script src="..."></script>-->
+		<script src="JS/plugin/chartjs/chart.min.js"></script><!-- NEW WIDGET START -->
 <article class="col-sm-12 col-md-12 col-lg-6">
 
 	<!-- Widget ID (each widget will need unique ID)-->

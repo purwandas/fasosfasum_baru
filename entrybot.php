@@ -81,7 +81,7 @@ if (isset($_POST['submit'])){
 				             $data = mysql_fetch_array($query);
 				             ?>
 
-				             <form name="editdokumenacuan" action="index.php?hal=entrybot<?php echo'&id=$id'; ?>" method="post">
+				             <form name="editdokumenacuan" action="index.php?hal=entrybot<?php echo'&id='.$id; ?>" method="post">
 				               <input type="hidden" name="id" value="<?php echo $id; ?>" />
 				               <center>
 				               <table>
@@ -127,7 +127,7 @@ if (isset($_POST['submit'])){
 
 				         <tr>
 				           <td>Luas Aset BOT/BTO </td>
-				           <td><label class='input'><input type="text" name="luasbot" maxlength="200" required="required" value="<?php echo $data2['luatbot'];?>" /></label></td>
+				           <td><label class='input'><input type="text" name="luasbot" maxlength="200" required="required" value="<?php echo $data2['luasbot'];?>" /></label></td>
 				         </tr>
 
 				         <tr>
@@ -140,7 +140,9 @@ if (isset($_POST['submit'])){
 				           <td><label class='input'><input type="text" name="ketbot" maxlength="90" required="required" value="<?php echo $data2['keterangan'];?>" /></label></td>
 				         </tr>
 				         <tr>		
-				          <td align="center" colspan="2"><input type="submit" name="submit" value="Simpan BOT/BTO" class="btn btn-lg btn-info"> </td>
+				          <td align="center" colspan="2">
+				          <br>
+				          <input type="submit" name="submit" value="Simpan BOT/BTO" class="btn btn-lg btn-info"> </td>
 				        </tr>
 
 				      </table>
