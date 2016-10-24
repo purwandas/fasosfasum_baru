@@ -76,7 +76,7 @@ if($_GET['idaset']!=''){$idaset="idaset like '%$_GET[idaset]%'";if($cek!='0'){$i
 	{
 	  $queryperuntukan.=" where $cekIsi ";
 	}
-	echo "$queryperuntukan";
+	// echo "$queryperuntukan";
 }
 
 						          $reclimit=20;
