@@ -11,7 +11,7 @@ if(isset($_SESSION['query'])){
     /*******YOU DO NOT NEED TO EDIT ANYTHING BELOW THIS LINE*******/    
     //create MySQL connection   
     $sql = $_SESSION['query'];
-    echo "$sql<hr>";
+    // echo "$sql<hr>";
     if($_SESSION['kategori']==2){
         $select="select bast.nobast, bast.tglbast, dokumenacuan.jenisdokumen, bast.nodokacuan, detaildokacuan.tgldokacuan, bast.pengembangbast, peruntukan.deskripsi, dataaset.alamataset, dataaset.kelurahan, dataaset.kecamatan, dataaset.wilayah, akun.kategoriaset, akun.volume, akun.satuan, akun.nilaimix, bast.keterangan 
             from bast inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan
