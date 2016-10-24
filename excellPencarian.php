@@ -45,10 +45,8 @@ if(isset($_SESSION['query'])){
     // echo mysql_field_name($result,$i) . "\t";
     // }
     echo "No. \t No. BAST \t Tgl. BAST \t Dasar BAST \t No. Dokumen Acuan \t Tgl. Acuan \t Pengembang \t Peruntukan \t Alamat \t Kelurahan \t Kecamatan \t Wilayah \t KIB \t Volume \t Satuan \t Nilai Rupiah \t Penandatangan BAST";
-    // bast.nobast, bast.tglbast, dokumenacuan.jenisdokumen, bast.nodokacuan, detaildokacuan.tgldokacuan, bast.pengembangbast, peruntukan.deskripsi, dataaset.alamataset, dataaset.kelurahan, dataaset.kecamatan, dataaset.wilayah, akun.kategoriaset, akun.volume, akun.satuan, akun.nilaimix, bast.keterangan
+    
     print("\n");    
-    //end of printing column names  
-    //start while loop to get data
         $no=1;
         while($row = mysql_fetch_row($result))
         {
@@ -61,8 +59,8 @@ if(isset($_SESSION['query'])){
                 elseif ($row[$j] != "")
                 {
                     $dataKolom = trim(preg_replace('/\t/', ' ', $row[$j]));
-                    $dataKolom = preg_replace("/,/", '.', $dataKolom);
-                    $schema_insert .= "$dataKolom".$sep;
+                    // $dataKolom = preg_replace("/,/", '.', $dataKolom);
+                    $schema_insert .= '"'.$dataKolom.'"'.$sep;
                 }
                 else
                     $schema_insert .= "".$sep;
