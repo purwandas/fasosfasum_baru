@@ -381,7 +381,7 @@
 			          </ul>
 			        </li>
 			        <li>
-						<a href="index.php?hal=table"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">Master Data</a>
+						<a href="#"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">Master Data</a>
 						<ul>
 							<li>
 								<a href="index.php?hal=lihatperuntukan">Data Peruntukan</a>

@@ -36,7 +36,7 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
       $query = mysql_query("update detaildokacuan set  idkategori='$dKategoriAcuan[idkategori]', tgldokacuan='$tgldokacuan', haldokacuan='$haldokacuan',pemegangdokacuan='$pemegangdokacuan',ketdokacuan='$ketdokacuan' where nodokacuan='$id'") or die(mysql_error());
       echo "The file <a href='$target_dir$namabaru.$ext'>". basename( $_FILES["fileacuan"]["name"]). "</a> has been uploaded.";
     } else {
-      echo "$target_file";
+      echo "$target_file- ";
       echo "Sorry, there was an error uploading your file.";
     }
 }else{

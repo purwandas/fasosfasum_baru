@@ -9,7 +9,7 @@ $content = ob_get_clean();
 
     // convert to PDF
     
-require_once('../fasosfasum/html2pdf/html2pdf.class.php'); 
+require_once('html2pdf/html2pdf.class.php'); 
    
 try
     
