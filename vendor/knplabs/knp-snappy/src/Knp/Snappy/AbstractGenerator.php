@@ -18,7 +18,7 @@ abstract class AbstractGenerator implements GeneratorInterface
     private $binary;
     private $options = array();
     private $env;
-    private $timeout = false;
+    private $timeout = 3600;//false as default
     private $defaultExtension;
 
     /**
