@@ -32,7 +32,9 @@ function submit() {
 						        
 						          <?php
 						          include("koneksi.php");
-						          $queryperuntukan="select * from peruntukan inner join akun on peruntukan.idperuntukan=akun.idperuntukan inner join detaildokacuan on peruntukan.nodokacuan=detaildokacuan.nodokacuan";
+						          $queryperuntukan="select * from peruntukan ";
+						          //peruntukan.idperuntukan, peruntukan.deskripsi, peruntukan.jenis, peruntukan.luas, peruntukan.sertifikasi, peruntukan.pemilik, peruntukan.jenissertifikast, peruntukan.masaberlaku, peruntukan.keterangan, peruntukan.statuslaporankeuangan, peruntukan.statusrecon, peruntukan.statussertifikat, peruntukan.nosertifikat, peruntukan.tglsertifikat, peruntukan.luassertifikat, peruntukan.statusplang, peruntukan.statuspenggunaan, peruntukan.nosk, peruntukan.tglsk, peruntukan.skpd, peruntukan.sensusfasos, peruntukan.jenisfasos, peruntukan.nodokacuan, peruntukan.nobast, peruntukan.idaset
+						          //inner join akun on peruntukan.idperuntukan=akun.idperuntukan inner join detaildokacuan on peruntukan.nodokacuan=detaildokacuan.nodokacuan inner join bast on peruntukan.nobast=bast.nobast inner join dataaset on dataaset.nobastaset=bast.nobast
 						          ///join sama aset bast akun
 if(isset($_GET['deskripsi'])){
 		function formatTahunBulanTanggal($tgl){
@@ -99,7 +101,9 @@ if($_GET['idaset']!=''){$idaset="idaset like '%$_GET[idaset]%'";if($cek!='0'){$i
 						          // echo $queryperuntukan.'lal';
 						          $queryperuntukan.=$limit;
 						          $no=$offset+1;
-						          echo "<div align='left'>".pagination($qpaging,$reclimit,$cp,"$pth")."</div> <br><br>";
+						          echo "<div align='left'>".pagination($qpaging,$reclimit,$cp,"$pth")."</div>";
+									echo "<br><div align='left'> <b>*) $totalData Data ditemukan</b> </div>";
+						          
 
 						          ?>
 						        <div style="overflow:auto">
