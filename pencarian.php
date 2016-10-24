@@ -160,8 +160,11 @@
            }else{
             $_SESSION['kategori']='2';
                 $note='Input Nomor Bast atau Nama Pengembang atau Jenis Dok. Acuan';
-            $query="select bast.nobast, bast.keterangan, bast.tglbast, bast.pengembangbast, detaildokacuan.nodokacuan, detaildokacuan.pemegangdokacuan, dokumenacuan.jenisdokumen, detaildokacuan.tgldokacuan from bast inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ";
+                $query="select bast.nobast, bast.keterangan, bast.tglbast, bast.pengembangbast, detaildokacuan.nodokacuan, detaildokacuan.pemegangdokacuan,dokumenacuan.jenisdokumen, detaildokacuan.tgldokacuan from bast inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ";
+                
+            // $query="select bast.nobast, bast.keterangan, bast.tglbast, bast.pengembangbast, detaildokacuan.nodokacuan, detaildokacuan.pemegangdokacuan, dokumenacuan.jenisdokumen, detaildokacuan.tgldokacuan from bast inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ";
           }
+          $_SESSION['query']=$query;
           ?>
 								<option value="bast">BAST</option>
 								<option value="aset">Aset</option>
@@ -920,6 +923,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
 							</center>
 						</div>
 						<?php
+              // echo "-> $query";
 							echo "<br><div align='left'> <b>*) $totalData Data ditemukan</b> </div>";
 		                	echo "<div align='right'>".pagination($qpaging,$reclimit,$cp,"$pth")."</div>";
 		                ?>

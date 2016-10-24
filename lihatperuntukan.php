@@ -32,8 +32,12 @@ function submit() {
 						        
 						          <?php
 						          include("koneksi.php");
-						          $queryperuntukan="select * from peruntukan ";
+						          $queryperuntukan="select peruntukan.idperuntukan, peruntukan.deskripsi, peruntukan.jenis, peruntukan.luas, peruntukan.sertifikasi, peruntukan.pemilik, peruntukan.jenissertifikat, peruntukan.masaberlaku, peruntukan.keterangan, peruntukan.statuslaporankeuangan, peruntukan.statusrecon, peruntukan.statussertifikat, peruntukan.nosertifikat, peruntukan.tglsertifikat, peruntukan.luassertifikat, peruntukan.statusplang, peruntukan.statuspenggunaan, peruntukan.nosk, peruntukan.tglsk, peruntukan.skpd, peruntukan.sensusfasos, peruntukan.jenisfasos, peruntukan.nodokacuan, peruntukan.nobast, peruntukan.idaset from peruntukan ";
 						          //peruntukan.idperuntukan, peruntukan.deskripsi, peruntukan.jenis, peruntukan.luas, peruntukan.sertifikasi, peruntukan.pemilik, peruntukan.jenissertifikast, peruntukan.masaberlaku, peruntukan.keterangan, peruntukan.statuslaporankeuangan, peruntukan.statusrecon, peruntukan.statussertifikat, peruntukan.nosertifikat, peruntukan.tglsertifikat, peruntukan.luassertifikat, peruntukan.statusplang, peruntukan.statuspenggunaan, peruntukan.nosk, peruntukan.tglsk, peruntukan.skpd, peruntukan.sensusfasos, peruntukan.jenisfasos, peruntukan.nodokacuan, peruntukan.nobast, peruntukan.idaset
+						          //bast.perihalbast, bast.tglbast, bast.pengembangbast, bast.keterangan, bast.kodearsip
+						          //dokumenacuan.jenisdokumen
+						          //dataaset.alamataset, dataaset.wilayah, dataaset.kecamatan, dataaset.kelurahan
+						          //akun.kategoriaset
 						          //inner join akun on peruntukan.idperuntukan=akun.idperuntukan inner join detaildokacuan on peruntukan.nodokacuan=detaildokacuan.nodokacuan inner join bast on peruntukan.nobast=bast.nobast inner join dataaset on dataaset.nobastaset=bast.nobast
 						          ///join sama aset bast akun
 if(isset($_GET['deskripsi'])){
@@ -72,6 +76,7 @@ if($_GET['idaset']!=''){$idaset="idaset like '%$_GET[idaset]%'";if($cek!='0'){$i
 	{
 	  $queryperuntukan.=" where $cekIsi ";
 	}
+	echo "$queryperuntukan";
 }
 
 						          $reclimit=20;
@@ -103,7 +108,7 @@ if($_GET['idaset']!=''){$idaset="idaset like '%$_GET[idaset]%'";if($cek!='0'){$i
 						          $no=$offset+1;
 						          echo "<div align='left'>".pagination($qpaging,$reclimit,$cp,"$pth")."</div>";
 									echo "<br><div align='left'> <b>*) $totalData Data ditemukan</b> </div>";
-						          
+
 
 						          ?>
 						        <div style="overflow:auto">

@@ -11,6 +11,7 @@ if(isset($_SESSION['query'])){
     /*******YOU DO NOT NEED TO EDIT ANYTHING BELOW THIS LINE*******/    
     //create MySQL connection   
     $sql = $_SESSION['query'];
+    echo "$sql<hr>";
     if($_SESSION['kategori']==2){
         $select="select bast.nobast, bast.tglbast, dokumenacuan.jenisdokumen, bast.nodokacuan, detaildokacuan.tgldokacuan, bast.pengembangbast, peruntukan.deskripsi, dataaset.alamataset, dataaset.kelurahan, dataaset.kecamatan, dataaset.wilayah, akun.kategoriaset, akun.volume, akun.satuan, akun.nilaimix, bast.keterangan 
             from bast inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan
@@ -24,7 +25,7 @@ if(isset($_SESSION['query'])){
     //     $select=""
     //     $sql=substr($sql,342);
     // }
-    // echo $sql;
+    echo $sql;
     $Connect = @mysql_connect($DB_Server, $DB_Username, $DB_Password) or die("Couldn't connect to MySQL:<br>" . mysql_error() . "<br>" . mysql_errno());
     //select database   
     $Db = @mysql_select_db($DB_DBName, $Connect) or die("Couldn't select database:<br>" . mysql_error(). "<br>" . mysql_errno());   
