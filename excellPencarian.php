@@ -59,11 +59,16 @@ if(isset($_SESSION['query'])){
                 if(!isset($row[$j]))
                     $schema_insert .= "NULL".$sep;
                 elseif ($row[$j] != "")
-                    $schema_insert .= "$row[$j]".$sep;
+                {
+                    $dataKolom = trim(preg_replace('/\t/', ' ', $row[$j]));
+                    $dataKolom = preg_replace("/,/", '.', $dataKolom);
+                    $schema_insert .= "$dataKolom".$sep;
+                }
                 else
                     $schema_insert .= "".$sep;
             }
             $schema_insert = str_replace($sep."$", "", $schema_insert);
+            // $schema_insert = trim(preg_replace('/\t+/', ' ', $schema_insert));
             $schema_insert = preg_replace("/\r\n|\n\r|\n|\r/", " ", $schema_insert);
             $schema_insert .= "\t";
             print(trim($schema_insert));
