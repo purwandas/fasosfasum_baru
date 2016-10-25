@@ -27,7 +27,8 @@
 
 if($_FILES["fileacuan"]["tmp_name"]!='')
 {
-    if (move_uploaded_file($_FILES["fileacuan"]["tmp_name"], $target_file)) {
+    if (move_uploaded_file($_FILES["fileacuan"]["tmp_name"], $target_file)) 
+    {
       $namafile=$_FILES['fileacuan']['name'];
       if($id!=''){
         $dupload=mysql_query("delete from upload where nodokacuan='$id'");

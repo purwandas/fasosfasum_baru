@@ -1,9 +1,9 @@
 <link href="css/pagination.css" rel="stylesheet" type="text/css" />
 <link href="css/B_blue.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-function submit() {
-  document.getElementById("formperuntukan").submit();
-}
+	function submit() {
+	  document.getElementById("formperuntukan").submit();
+	}
 	$( function() {
     	$( "#tglsertifikat" ).datepicker();
     	$( "#tglsk" ).datepicker();
@@ -27,52 +27,68 @@ function submit() {
 						<section class="col col-sm-12 col-md-12 col-lg-12">
 							<form method="get" action="index.php?hal=lihatperuntukan" id="formperuntukan">
 							<input type="hidden" name="hal" value="lihatperuntukan">
-
+							
 						      <div id="content" class="box">
 						        
 						          <?php
 						          include("koneksi.php");
-						          $queryperuntukan="select peruntukan.idperuntukan, peruntukan.deskripsi, peruntukan.jenis, peruntukan.luas, peruntukan.sertifikasi, peruntukan.pemilik, peruntukan.jenissertifikat, peruntukan.masaberlaku, peruntukan.keterangan, peruntukan.statuslaporankeuangan, peruntukan.statusrecon, peruntukan.statussertifikat, peruntukan.nosertifikat, peruntukan.tglsertifikat, peruntukan.luassertifikat, peruntukan.statusplang, peruntukan.statuspenggunaan, peruntukan.nosk, peruntukan.tglsk, peruntukan.skpd, peruntukan.sensusfasos, peruntukan.jenisfasos, peruntukan.nodokacuan, peruntukan.nobast, peruntukan.idaset from peruntukan ";
-						          //peruntukan.idperuntukan, peruntukan.deskripsi, peruntukan.jenis, peruntukan.luas, peruntukan.sertifikasi, peruntukan.pemilik, peruntukan.jenissertifikast, peruntukan.masaberlaku, peruntukan.keterangan, peruntukan.statuslaporankeuangan, peruntukan.statusrecon, peruntukan.statussertifikat, peruntukan.nosertifikat, peruntukan.tglsertifikat, peruntukan.luassertifikat, peruntukan.statusplang, peruntukan.statuspenggunaan, peruntukan.nosk, peruntukan.tglsk, peruntukan.skpd, peruntukan.sensusfasos, peruntukan.jenisfasos, peruntukan.nodokacuan, peruntukan.nobast, peruntukan.idaset
-						          //bast.perihalbast, bast.tglbast, bast.pengembangbast, bast.keterangan, bast.kodearsip
-						          //dokumenacuan.jenisdokumen
-						          //dataaset.alamataset, dataaset.wilayah, dataaset.kecamatan, dataaset.kelurahan
-						          //akun.kategoriaset
-						          //inner join akun on peruntukan.idperuntukan=akun.idperuntukan inner join detaildokacuan on peruntukan.nodokacuan=detaildokacuan.nodokacuan inner join bast on peruntukan.nobast=bast.nobast inner join dataaset on dataaset.nobastaset=bast.nobast
-						          ///join sama aset bast akun
+						          $queryperuntukan="select peruntukan.idperuntukan, peruntukan.deskripsi, peruntukan.jenis, peruntukan.luas, peruntukan.sertifikasi, peruntukan.pemilik, peruntukan.jenissertifikat, peruntukan.masaberlaku, peruntukan.keterangan as ket_peruntukan, peruntukan.statuslaporankeuangan, peruntukan.statusrecon, peruntukan.statussertifikat, peruntukan.nosertifikat, peruntukan.tglsertifikat, peruntukan.luassertifikat, peruntukan.statusplang, peruntukan.statuspenggunaan, peruntukan.nosk, peruntukan.tglsk, peruntukan.skpd, peruntukan.sensusfasos, peruntukan.jenisfasos, peruntukan.nodokacuan, peruntukan.nobast, peruntukan.idaset from peruntukan ";
+						          $queryperuntukan=substr($queryperuntukan, 0, -16)." ,
+						          bast.perihalbast, bast.tglbast, bast.pengembangbast, bast.keterangan as ket_bast, bast.kodearsip,
+						          dokumenacuan.jenisdokumen,
+						          dataaset.alamataset, dataaset.wilayah, dataaset.kecamatan, dataaset.kelurahan,
+						          akun.kategoriaset
+						          from peruntukan
+						          inner join akun on peruntukan.idperuntukan=akun.idperuntukan inner join detaildokacuan on peruntukan.nodokacuan=detaildokacuan.nodokacuan inner join dokumenacuan on dokumenacuan.idkategori=detaildokacuan.idkategori inner join bast on peruntukan.nobast=bast.nobast inner join dataaset on dataaset.nobastaset=bast.nobast";
+						          // echo "$queryperuntukan";
+						          
 if(isset($_GET['deskripsi'])){
 		function formatTahunBulanTanggal($tgl){
   			return substr($tgl,-4).'-'.substr($tgl,0,2).'-'.substr($tgl,3,2);
   		}
 $cek='0';
-if($_GET['deskripsi']!=''){$deskripsi="deskripsi like '%$_GET[deskripsi]%'";$cek='1';}else{$deskripsi='';}
-if($_GET['jenis']!=''){$jenis="jenis like '%$_GET[jenis]%'";if($cek!='0'){$jenis=' and '.$jenis;}$cek='1';}else{$jenis='';}
-if($_GET['luas']!=''){$luas="luas like '%$_GET[luas]%'";if($cek!='0'){$luas=' and '.$luas;}$cek='1';}else{$luas='';}
-if($_GET['sertifikasi']!=''){$sertifikasi="sertifikasi like '%$_GET[sertifikasi]%'";if($cek!='0'){$sertifikasi=' and '.$sertifikasi;}$cek='1';}else{$sertifikasi='';}
-if($_GET['pemilik']!=''){$pemilik="pemilik like '%$_GET[pemilik]%'";if($cek!='0'){$pemilik=' and '.$pemilik;}$cek='1';}else{$pemilik='';}
-if($_GET['jenissertifikat']!=''){$jenissertifikat="jenissertifikat like '%$_GET[jenissertifikat]%'";if($cek!='0'){$jenissertifikat=' and '.$jenissertifikat;}$cek='1';}else{$jenissertifikat='';}
-if($_GET['masaberlaku']!=''){$masaberlaku="masaberlaku like '%$_GET[masaberlaku]%'";if($cek!='0'){$masaberlaku=' and '.$masaberlaku;}$cek='1';}else{$masaberlaku='';}
-if($_GET['keterangan']!=''){$keterangan="keterangan like '%$_GET[keterangan]%'";if($cek!='0'){$keterangan=' and '.$keterangan;}$cek='1';}else{$keterangan='';}
-if($_GET['statuslaporankeuangan']!=''){$statuslaporankeuangan="statuslaporankeuangan like '%$_GET[statuslaporankeuangan]%'";if($cek!='0'){$statuslaporankeuangan=' and '.$statuslaporankeuangan;}$cek='1';}else{$statuslaporankeuangan='';}
-if($_GET['statusrecon']!=''){$statusrecon="statusrecon like '%$_GET[statusrecon]%'";if($cek!='0'){$statusrecon=' and '.$statusrecon;}$cek='1';}else{$statusrecon='';}
-if($_GET['statussertifikat']!=''){$statussertifikat="statussertifikat like '%$_GET[statussertifikat]%'";if($cek!='0'){$statussertifikat=' and '.$statussertifikat;}$cek='1';}else{$statussertifikat='';}
-if($_GET['nosertifikat']!=''){$nosertifikat="nosertifikat like '%$_GET[nosertifikat]%'";if($cek!='0'){$nosertifikat=' and '.$nosertifikat;}$cek='1';}else{$nosertifikat='';}
-if($_GET['tglsertifikat']!=''){$tglsertifikat=formatTahunBulanTanggal($_GET['tglsertifikat']);$tglsertifikat="tglsertifikat like '%$tglsertifikat%'";if($cek!='0'){$tglsertifikat=' and '.$tglsertifikat;}$cek='1';}else{$tglsertifikat='';}
-if($_GET['luassertifikat']!=''){$luassertifikat="luassertifikat like '%$_GET[luassertifikat]%'";if($cek!='0'){$luassertifikat=' and '.$luassertifikat;}$cek='1';}else{$luassertifikat='';}
-if($_GET['statusplang']!=''){$statusplang="statusplang like '%$_GET[statusplang]%'";if($cek!='0'){$statusplang=' and '.$statusplang;}$cek='1';}else{$statusplang='';}
+if($_GET['deskripsi']!=''){$deskripsi="peruntukan.deskripsi like '%$_GET[deskripsi]%'";$cek='1';}else{$deskripsi='';}
+if($_GET['jenis']!=''){$jenis="peruntukan.jenis like '%$_GET[jenis]%'";if($cek!='0'){$jenis=' and '.$jenis;}$cek='1';}else{$jenis='';}
+if($_GET['luas']!=''){$luas="peruntukan.luas like '%$_GET[luas]%'";if($cek!='0'){$luas=' and '.$luas;}$cek='1';}else{$luas='';}
+if($_GET['sertifikasi']!=''){$sertifikasi="peruntukan.sertifikasi like '%$_GET[sertifikasi]%'";if($cek!='0'){$sertifikasi=' and '.$sertifikasi;}$cek='1';}else{$sertifikasi='';}
+if($_GET['pemilik']!=''){$pemilik="peruntukan.pemilik like '%$_GET[pemilik]%'";if($cek!='0'){$pemilik=' and '.$pemilik;}$cek='1';}else{$pemilik='';}
+if($_GET['jenissertifikat']!=''){$jenissertifikat="peruntukan.jenissertifikat like '%$_GET[jenissertifikat]%'";if($cek!='0'){$jenissertifikat=' and '.$jenissertifikat;}$cek='1';}else{$jenissertifikat='';}
+if($_GET['masaberlaku']!=''){$masaberlaku="peruntukan.masaberlaku like '%$_GET[masaberlaku]%'";if($cek!='0'){$masaberlaku=' and '.$masaberlaku;}$cek='1';}else{$masaberlaku='';}
+if($_GET['keterangan']!=''){$keterangan="peruntukan.keterangan like '%$_GET[keterangan]%'";if($cek!='0'){$keterangan=' and '.$keterangan;}$cek='1';}else{$keterangan='';}
+if($_GET['statuslaporankeuangan']!=''){$statuslaporankeuangan="peruntukan.statuslaporankeuangan like '%$_GET[statuslaporankeuangan]%'";if($cek!='0'){$statuslaporankeuangan=' and '.$statuslaporankeuangan;}$cek='1';}else{$statuslaporankeuangan='';}
+if($_GET['statusrecon']!=''){$statusrecon="peruntukan.statusrecon like '%$_GET[statusrecon]%'";if($cek!='0'){$statusrecon=' and '.$statusrecon;}$cek='1';}else{$statusrecon='';}
+if($_GET['statussertifikat']!=''){$statussertifikat="peruntukan.statussertifikat like '%$_GET[statussertifikat]%'";if($cek!='0'){$statussertifikat=' and '.$statussertifikat;}$cek='1';}else{$statussertifikat='';}
+if($_GET['nosertifikat']!=''){$nosertifikat="peruntukan.nosertifikat like '%$_GET[nosertifikat]%'";if($cek!='0'){$nosertifikat=' and '.$nosertifikat;}$cek='1';}else{$nosertifikat='';}
+if($_GET['tglsertifikat']!=''){$tglsertifikat=formatTahunBulanTanggal($_GET['tglsertifikat']);$tglsertifikat="peruntukan.tglsertifikat like '%$tglsertifikat%'";if($cek!='0'){$tglsertifikat=' and '.$tglsertifikat;}$cek='1';}else{$tglsertifikat='';}
+if($_GET['luassertifikat']!=''){$luassertifikat="peruntukan.luassertifikat like '%$_GET[luassertifikat]%'";if($cek!='0'){$luassertifikat=' and '.$luassertifikat;}$cek='1';}else{$luassertifikat='';}
+if($_GET['statusplang']!=''){$statusplang="peruntukan.statusplang like '%$_GET[statusplang]%'";if($cek!='0'){$statusplang=' and '.$statusplang;}$cek='1';}else{$statusplang='';}
 
-if($_GET['statuspenggunaan']!=''){$statuspenggunaan="statuspenggunaan like '%$_GET[statuspenggunaan]%'";if($cek!='0'){$statuspenggunaan=' and '.$statuspenggunaan;}$cek='1';}else{$statuspenggunaan='';}
-if($_GET['nosk']!=''){$nosk="nosk like '%$_GET[nosk]%'";if($cek!='0'){$nosk=' and '.$nosk;}$cek='1';}else{$nosk='';}
+if($_GET['statuspenggunaan']!=''){$statuspenggunaan="peruntukan.statuspenggunaan like '%$_GET[statuspenggunaan]%'";if($cek!='0'){$statuspenggunaan=' and '.$statuspenggunaan;}$cek='1';}else{$statuspenggunaan='';}
+if($_GET['nosk']!=''){$nosk="peruntukan.nosk like '%$_GET[nosk]%'";if($cek!='0'){$nosk=' and '.$nosk;}$cek='1';}else{$nosk='';}
 if($_GET['tglsk']!=''){$tglsk=formatTahunBulanTanggal($_GET['tglsk']);$tglsk="tglsk like '%$tglsk%'";if($cek!='0'){$tglsk=' and '.$tglsk;}$cek='1';}else{$tglsk='';}
-if($_GET['skpd']!=''){$skpd="skpd like '%$_GET[skpd]%'";if($cek!='0'){$skpd=' and '.$skpd;}$cek='1';}else{$skpd='';}
-if($_GET['sensusfasos']!=''){$sensusfasos="sensusfasos like '%$_GET[sensusfasos]%'";if($cek!='0'){$sensusfasos=' and '.$sensusfasos;}$cek='1';}else{$sensusfasos='';}
-if($_GET['jenisfasos']!=''){$jenisfasos="jenisfasos like '%$_GET[jenisfasos]%'";if($cek!='0'){$jenisfasos=' and '.$jenisfasos;}$cek='1';}else{$jenisfasos='';}
-if($_GET['nodokacuan']!=''){$nodokacuan="nodokacuan like '%$_GET[nodokacuan]%'";if($cek!='0'){$nodokacuan=' and '.$nodokacuan;}$cek='1';}else{$nodokacuan='';}
-if($_GET['nobast']!=''){$nobast="nobast like '%$_GET[nobast]%'";if($cek!='0'){$nobast=' and '.$nobast;}$cek='1';}else{$nobast='';}
-if($_GET['idaset']!=''){$idaset="idaset like '%$_GET[idaset]%'";if($cek!='0'){$idaset=' and '.$idaset;}$cek='1';}else{$idaset='';}
-	$cekIsi="$deskripsi $jenis $luas $sertifikasi $pemilik $jenissertifikat $masaberlaku $keterangan $statuslaporankeuangan $statusrecon $statussertifikat $nosertifikat $tglsertifikat $luassertifikat $statusplang $statuspenggunaan $nosk $tglsk $skpd $sensusfasos $jenisfasos $nodokacuan $nobast $idaset";
+if($_GET['skpd']!=''){$skpd="peruntukan.skpd like '%$_GET[skpd]%'";if($cek!='0'){$skpd=' and '.$skpd;}$cek='1';}else{$skpd='';}
+if($_GET['sensusfasos']!=''){$sensusfasos="peruntukan.sensusfasos like '%$_GET[sensusfasos]%'";if($cek!='0'){$sensusfasos=' and '.$sensusfasos;}$cek='1';}else{$sensusfasos='';}
+if($_GET['jenisfasos']!=''){$jenisfasos="peruntukan.jenisfasos like '%$_GET[jenisfasos]%'";if($cek!='0'){$jenisfasos=' and '.$jenisfasos;}$cek='1';}else{$jenisfasos='';}
+if($_GET['nodokacuan']!=''){$nodokacuan="peruntukan.nodokacuan like '%$_GET[nodokacuan]%'";if($cek!='0'){$nodokacuan=' and '.$nodokacuan;}$cek='1';}else{$nodokacuan='';}
+if($_GET['nobast']!=''){$nobast="peruntukan.nobast like '%$_GET[nobast]%'";if($cek!='0'){$nobast=' and '.$nobast;}$cek='1';}else{$nobast='';}
+if($_GET['idaset']!=''){$idaset="peruntukan.idaset like '%$_GET[idaset]%'";if($cek!='0'){$idaset=' and '.$idaset;}$cek='1';}else{$idaset='';}
+if($_GET['perihalbast']!=''){$perihalbast="bast.perihalbast like '%$_GET[perihalbast]%'";if($cek!='0'){$perihalbast=' and '.$perihalbast;}$cek='1';}else{$perihalbast='';}
+if($_GET['tglbast']!=''){$tglbast="bast.tglbast like '%$_GET[tglbast]%'";if($cek!='0'){$tglbast=' and '.$tglbast;}$cek='1';}else{$tglbast='';}
+if($_GET['pengembangbast']!=''){$pengembangbast="bast.pengembangbast like '%$_GET[pengembangbast]%'";if($cek!='0'){$pengembangbast=' and '.$pengembangbast;}$cek='1';}else{$pengembangbast='';}
+if($_GET['keteranganbast']!=''){$keteranganbast="bast.keterangan like '%$_GET[keteranganbast]%'";if($cek!='0'){$keteranganbast=' and '.$keteranganbast;}$cek='1';}else{$keteranganbast='';}
+if($_GET['kodearsip']!=''){$kodearsip="bast.kodearsip like '%$_GET[kodearsip]%'";if($cek!='0'){$kodearsip=' and '.$kodearsip;}$cek='1';}else{$kodearsip='';}
+if($_GET['jenisdokumen']!=''){$jenisdokumen="dokumenacuan.jenisdokumen like '%$_GET[jenisdokumen]%'";if($cek!='0'){$jenisdokumen=' and '.$jenisdokumen;}$cek='1';}else{$jenisdokumen='';}
+if($_GET['alamataset']!=''){$alamataset="dataaset.alamataset like '%$_GET[alamataset]%'";if($cek!='0'){$alamataset=' and '.$alamataset;}$cek='1';}else{$alamataset='';}
+if($_GET['wilayah']!=''){$wilayah="dataaset.wilayah like '%$_GET[wilayah]%'";if($cek!='0'){$wilayah=' and '.$wilayah;}$cek='1';}else{$wilayah='';}
+if($_GET['kecamatan']!=''){$kecamatan="dataaset.kecamatan like '%$_GET[kecamatan]%'";if($cek!='0'){$kecamatan=' and '.$kecamatan;}$cek='1';}else{$kecamatan='';}
+if($_GET['kelurahan']!=''){$kelurahan="dataaset.kelurahan like '%$_GET[kelurahan]%'";if($cek!='0'){$kelurahan=' and '.$kelurahan;}$cek='1';}else{$kelurahan='';}
+if($_GET['kategoriaset']!=''){$kategoriaset="akun.kategoriaset like '%$_GET[kategoriaset]%'";if($cek!='0'){$kategoriaset=' and '.$kategoriaset;}$cek='1';}else{$kategoriaset='';}
+
+
+	$cekIsi="$deskripsi $jenis $luas $sertifikasi $pemilik $jenissertifikat $masaberlaku $keterangan $statuslaporankeuangan $statusrecon $statussertifikat $nosertifikat $tglsertifikat $luassertifikat $statusplang $statuspenggunaan $nosk $tglsk $skpd $sensusfasos $jenisfasos $nodokacuan $nobast $idaset $perihalbast $tglbast $pengembangbast $keteranganbast $jenisdokumen $alamataset $wilayah $kecamatan $kelurahan $kategoriaset";
 	// echo $cekIsi."llol";
-	if($cekIsi!='                       ')//23 sps
+	
+	if(trim($cekIsi)!='')//23 sps
 	{
 	  $queryperuntukan.=" where $cekIsi ";
 	}
@@ -103,15 +119,23 @@ if($_GET['idaset']!=''){$idaset="idaset like '%$_GET[idaset]%'";if($cek!='0'){$i
 						          $totalData=mysql_num_rows(mysql_query($queryperuntukan));
 						          $page=ceil(mysql_num_rows(mysql_query($queryperuntukan))/$reclimit);
 						          $qpaging=$queryperuntukan;
-						          // echo $queryperuntukan.'lal';
+						          $_SESSION['query']=$queryperuntukan;
 						          $queryperuntukan.=$limit;
+						          // echo $queryperuntukan.'lal';
+
 						          $no=$offset+1;
-						          echo "<div align='left'>".pagination($qpaging,$reclimit,$cp,"$pth")."</div>";
-									echo "<br><div align='left'> <b>*) $totalData Data ditemukan</b> </div>";
+						          echo "<div class='col-md-12'>".pagination($qpaging,$reclimit,$cp,"$pth")."</div>";
+									echo "<br><div class='col-md-12'> <b>*) $totalData Data ditemukan</b> </div>";
 
 
 						          ?>
-						        <div style="overflow:auto">
+						          <!-- <div class="col col-2" style="float: right;">
+					                <a href=excellPeruntukan.php target=_blank style='margin-left:20px;'><img alt=' ' height='20px' src='img/excell.png' border='0'>Buat File Excell</a> 
+					             </div>
+					             <div class="col col-2" style="float: right;">
+					                <a href="snappy.php?q=<?php echo $qpaging.'&k='.$k; ?>" target=_blank style='margin-left:20px;'><img alt=' ' height='20px' src='img/pdf.png' border='0'>Buat File PDF</a> 
+					              </div> -->
+						        <div style="overflow:auto" class="col-md-12 col-sm-12 col-lg-12">
 
 						          <table class="table table-striped table-hover">
 						            
@@ -140,7 +164,18 @@ if($_GET['idaset']!=''){$idaset="idaset like '%$_GET[idaset]%'";if($cek!='0'){$i
 						              <td><b>Jenis Fasos Fasum</b></td>
 						              <td><b>No. Dok. Acuan</b></td>
 						              <td><b>No. Bast</b></td>
+						              <td><b>Perihal BAST</b></td>
+						              <td><b>Tgl. BAST</b></td>
+						              <td><b>Pengembang BAST</b></td>
+						              <td><b>Penandatangan BAST</b></td>
+						              <td><b>Kode Arsip BAST</b></td>
+						              <td><b>Jenis Dok. Acuan</b></td>
 						              <td><b>ID Aset</b></td>
+						              <td><b>Alamat Aset</b></td>
+						              <td><b>Wilayah Aset</b></td>
+						              <td><b>Kecamatan Aset</b></td>
+						              <td><b>Kelurahan Aset</b></td>
+						              <td><b>KIB</b></td>
 						              <td><b>Act.</b></td>
 						            </tr>
 						            <tr>
@@ -168,9 +203,23 @@ if($_GET['idaset']!=''){$idaset="idaset like '%$_GET[idaset]%'";if($cek!='0'){$i
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['jenisfasos'])){echo $_GET['jenisfasos'];} ?>" name="jenisfasos" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['nodokacuan'])){echo $_GET['nodokacuan'];} ?>" name="nodokacuan" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['nobast'])){echo $_GET['nobast'];} ?>" name="nobast" onchange="submit()"></label></td>
+						              
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['perihalbast'])){echo $_GET['perihalbast'];} ?>" name="perihalbast" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['tglbast'])){echo $_GET['tglbast'];} ?>" name="tglbast" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['pengembangbast'])){echo $_GET['pengembangbast'];} ?>" name="pengembangbast" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['keteranganbast'])){echo $_GET['keteranganbast'];} ?>" name="keteranganbast" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['kodearsip'])){echo $_GET['kodearsip'];} ?>" name="kodearsip" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['jenisdokumen'])){echo $_GET['jenisdokumen'];} ?>" name="jenisdokumen" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['idaset'])){echo $_GET['idaset'];} ?>" name="idaset" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['alamataset'])){echo $_GET['alamataset'];} ?>" name="alamataset" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['wilayah'])){echo $_GET['wilayah'];} ?>" name="wilayah" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['kecamatan'])){echo $_GET['kecamatan'];} ?>" name="kecamatan" onchange="submit()"></label></td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['kelurahan'])){echo $_GET['kelurahan'];} ?>" name="kelurahan" onchange="submit()"></label>
+						              </td>
+						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['kategoriaset'])){echo $_GET['kategoriaset'];} ?>" name="kategoriaset" onchange="submit()"></label></td>
 						              <td></td>
 						            </tr>
+
 						            <?php
 						            $queryperuntukan=mysql_query($queryperuntukan);
 						            while ($dataperuntukan=mysql_fetch_array($queryperuntukan)) {
@@ -184,7 +233,7 @@ if($_GET['idaset']!=''){$idaset="idaset like '%$_GET[idaset]%'";if($cek!='0'){$i
 						                <td>$dataperuntukan[pemilik]</td>
 						                <td>$dataperuntukan[jenissertifikat]</td>
 						                <td>$dataperuntukan[masaberlaku]</td>
-						                <td>$dataperuntukan[keterangan]</td>
+						                <td>$dataperuntukan[ket_peruntukan]</td>
 						                <td>$dataperuntukan[statuslaporankeuangan]</td>
 						                <td>$dataperuntukan[statusrecon]</td>
 						                <td>$dataperuntukan[statussertifikat]</td>
@@ -200,7 +249,18 @@ if($_GET['idaset']!=''){$idaset="idaset like '%$_GET[idaset]%'";if($cek!='0'){$i
 						                <td>$dataperuntukan[jenisfasos]</td>
 						                <td>$dataperuntukan[nodokacuan]</td>
 						                <td>$dataperuntukan[nobast]</td>
+						                <td>$dataperuntukan[perihalbast]</td>
+						                <td>$dataperuntukan[tglbast]</td>
+						                <td>$dataperuntukan[pengembangbast]</td>
+						                <td>$dataperuntukan[ket_bast]</td>
+						                <td>$dataperuntukan[kodearsip]</td>
+						                <td>$dataperuntukan[jenisdokumen]</td>
 						                <td>$dataperuntukan[idaset]</td>
+						                <td>$dataperuntukan[alamataset]</td>
+						                <td>$dataperuntukan[wilayah]</td>
+						                <td>$dataperuntukan[kecamatan]</td>
+						                <td>$dataperuntukan[kelurahan]</td>
+						                <td>$dataperuntukan[kategoriaset]</td>
 						                <td>
 						              		<a href='index.php?hal=editperuntukan&idperuntukan=$dataperuntukan[idperuntukan]&p=lihatperuntukan' target='_blank'>
 							              	ubah
@@ -208,6 +268,10 @@ if($_GET['idaset']!=''){$idaset="idaset like '%$_GET[idaset]%'";if($cek!='0'){$i
 							            </td>
 						              </tr>
 						              ";
+						              // bast.perihalbast, bast.tglbast, bast.pengembangbast, bast.keterangan, bast.kodearsip,
+// 						          dokumenacuan.jenisdokumen,
+// 						          dataaset.alamataset, dataaset.wilayah, dataaset.kecamatan, dataaset.kelurahan,
+// 						          akun.kategoriaset
 						              $no++;
 						            }
 						            ?>
@@ -215,8 +279,8 @@ if($_GET['idaset']!=''){$idaset="idaset like '%$_GET[idaset]%'";if($cek!='0'){$i
 
 						        </div>
 						        <?php
-									echo "<br><div align='left'> <b>*) $totalData Data ditemukan</b> </div>";
-				                	echo "<div align='left'>".pagination($qpaging,$reclimit,$cp,"$pth")."</div>";
+									echo "<div class='col-md-12'> <b>*) $totalData Data ditemukan</b> </div>";
+				                	echo "<div class='col-md-12'>".pagination($qpaging,$reclimit,$cp,"$pth")."</div>";
 				                ?>
 						      </div>
 						    </form>

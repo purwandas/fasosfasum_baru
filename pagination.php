@@ -12,7 +12,7 @@ function pagination($query, $per_page,$page = 1, $url = '?'){
 
     $prev = $page - 1;                          
     $next = $page + 1;
-    $lastpage = floor($total/$per_page);
+    $lastpage = ceil($total/$per_page);
     $lpm1 = $lastpage - 1;
 
     $pagination = "";
