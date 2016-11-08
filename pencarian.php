@@ -699,7 +699,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
         for($i=0;$i<$jmlFilter;$i++){
           // echo $filter[$i].", ";
         }
-				// echo "<hr>$query->$totalData";
+				echo "<hr>$query->$totalData";
                 if($totalData>0)
                 {
               echo "<div align='left'> <i>*) $totalData Data ditemukan</i> </div>";

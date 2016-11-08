@@ -72,18 +72,18 @@
   <script type="text/javascript" src="view/javascript/jquery/jquery-1.3.2.min.js"></script> -->
 		  
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 		<script>
-			if (!window.jQuery) {
+			// if (!window.jQuery) {
 				document.write('<script src="JS/libs/jquery-2.1.1.min.js"><\/script>');
-			}
+			// }
 		</script>
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<!-- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script> -->
 		<script>
-			if (!window.jQuery.ui) {
+			// if (!window.jQuery.ui) {
 				document.write('<script src="JS/libs/jquery-ui-1.10.3.min.js"><\/script>');
-			}
+			// }
 		</script>
 
 

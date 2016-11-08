@@ -71,7 +71,7 @@ if($_GET['sensusfasos']!=''){$sensusfasos="peruntukan.sensusfasos like '%$_GET[s
 if($_GET['jenisfasos']!=''){$jenisfasos="peruntukan.jenisfasos like '%$_GET[jenisfasos]%'";if($cek!='0'){$jenisfasos=' and '.$jenisfasos;}$cek='1';}else{$jenisfasos='';}
 if($_GET['nodokacuan']!=''){$nodokacuan="peruntukan.nodokacuan like '%$_GET[nodokacuan]%'";if($cek!='0'){$nodokacuan=' and '.$nodokacuan;}$cek='1';}else{$nodokacuan='';}
 if($_GET['nobast']!=''){$nobast="peruntukan.nobast like '%$_GET[nobast]%'";if($cek!='0'){$nobast=' and '.$nobast;}$cek='1';}else{$nobast='';}
-if($_GET['idaset']!=''){$idaset="peruntukan.idaset like '%$_GET[idaset]%'";if($cek!='0'){$idaset=' and '.$idaset;}$cek='1';}else{$idaset='';}
+// if($_GET['idaset']!=''){$idaset="peruntukan.idaset like '%$_GET[idaset]%'";if($cek!='0'){$idaset=' and '.$idaset;}$cek='1';}else{$idaset='';}
 if($_GET['perihalbast']!=''){$perihalbast="bast.perihalbast like '%$_GET[perihalbast]%'";if($cek!='0'){$perihalbast=' and '.$perihalbast;}$cek='1';}else{$perihalbast='';}
 if($_GET['tglbast']!=''){$tglbast="bast.tglbast like '%$_GET[tglbast]%'";if($cek!='0'){$tglbast=' and '.$tglbast;}$cek='1';}else{$tglbast='';}
 if($_GET['pengembangbast']!=''){$pengembangbast="bast.pengembangbast like '%$_GET[pengembangbast]%'";if($cek!='0'){$pengembangbast=' and '.$pengembangbast;}$cek='1';}else{$pengembangbast='';}
@@ -85,7 +85,8 @@ if($_GET['kelurahan']!=''){$kelurahan="dataaset.kelurahan like '%$_GET[kelurahan
 if($_GET['kategoriaset']!=''){$kategoriaset="akun.kategoriaset like '%$_GET[kategoriaset]%'";if($cek!='0'){$kategoriaset=' and '.$kategoriaset;}$cek='1';}else{$kategoriaset='';}
 
 
-	$cekIsi="$deskripsi $jenis $luas $sertifikasi $pemilik $jenissertifikat $masaberlaku $keterangan $statuslaporankeuangan $statusrecon $statussertifikat $nosertifikat $tglsertifikat $luassertifikat $statusplang $statuspenggunaan $nosk $tglsk $skpd $sensusfasos $jenisfasos $nodokacuan $nobast $idaset $perihalbast $tglbast $pengembangbast $keteranganbast $jenisdokumen $alamataset $wilayah $kecamatan $kelurahan $kategoriaset";
+	$cekIsi="$deskripsi $jenis $luas $sertifikasi $pemilik $jenissertifikat $masaberlaku $keterangan $statuslaporankeuangan $statusrecon $statussertifikat $nosertifikat $tglsertifikat $luassertifikat $statusplang $statuspenggunaan $nosk $tglsk $skpd $sensusfasos $jenisfasos $nodokacuan $nobast $perihalbast $tglbast $pengembangbast $keteranganbast $jenisdokumen $alamataset $wilayah $kecamatan $kelurahan $kategoriaset";
+	// $idaset 
 	// echo $cekIsi."llol";
 	
 	if(trim($cekIsi)!='')//23 sps
@@ -129,11 +130,11 @@ if($_GET['kategoriaset']!=''){$kategoriaset="akun.kategoriaset like '%$_GET[kate
 
 
 						          ?>
-						          <!-- <div class="col col-2" style="float: right;">
+						          <!-- <div class="col col-2" style="float: right;">BELUM!!
 					                <a href=excellPeruntukan.php target=_blank style='margin-left:20px;'><img alt=' ' height='20px' src='img/excell.png' border='0'>Buat File Excell</a> 
 					             </div>
-					             <div class="col col-2" style="float: right;">
-					                <a href="snappy.php?q=<?php echo $qpaging.'&k='.$k; ?>" target=_blank style='margin-left:20px;'><img alt=' ' height='20px' src='img/pdf.png' border='0'>Buat File PDF</a> 
+					             <div class="col col-2" style="float: right;">BELUM!!
+					                <a href="snappy.php?q=<?php echo $qpaging; ?>" target=_blank style='margin-left:20px;'><img alt=' ' height='20px' src='img/pdf.png' border='0'>Buat File PDF</a> 
 					              </div> -->
 						        <div style="overflow:auto" class="col-md-12 col-sm-12 col-lg-12">
 
@@ -170,7 +171,7 @@ if($_GET['kategoriaset']!=''){$kategoriaset="akun.kategoriaset like '%$_GET[kate
 						              <td><b>Penandatangan BAST</b></td>
 						              <td><b>Kode Arsip BAST</b></td>
 						              <td><b>Jenis Dok. Acuan</b></td>
-						              <td><b>ID Aset</b></td>
+						              <!-- <td><b>ID Aset</b></td> -->
 						              <td><b>Alamat Aset</b></td>
 						              <td><b>Wilayah Aset</b></td>
 						              <td><b>Kecamatan Aset</b></td>
@@ -210,7 +211,7 @@ if($_GET['kategoriaset']!=''){$kategoriaset="akun.kategoriaset like '%$_GET[kate
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['keteranganbast'])){echo $_GET['keteranganbast'];} ?>" name="keteranganbast" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['kodearsip'])){echo $_GET['kodearsip'];} ?>" name="kodearsip" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['jenisdokumen'])){echo $_GET['jenisdokumen'];} ?>" name="jenisdokumen" onchange="submit()"></label></td>
-						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['idaset'])){echo $_GET['idaset'];} ?>" name="idaset" onchange="submit()"></label></td>
+						              <!-- <td><label class='input'><input type="text" value="<?php if(isset($_GET['idaset'])){echo $_GET['idaset'];} ?>" name="idaset" onchange="submit()"></label></td> -->
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['alamataset'])){echo $_GET['alamataset'];} ?>" name="alamataset" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['wilayah'])){echo $_GET['wilayah'];} ?>" name="wilayah" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['kecamatan'])){echo $_GET['kecamatan'];} ?>" name="kecamatan" onchange="submit()"></label></td>

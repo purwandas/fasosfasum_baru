@@ -1,8 +1,8 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	
-		<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/data.js"></script>
-<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<!-- <script type="text/javascript" src="JS/jquery.min.js"></script> -->
+<script type="text/javascript" src="JS/highcharts.js"></script>
+<script type="text/javascript" src="JS/modules.data.js"></script>
+<script type="text/javascript" src="JS/modules.drilldown.js"></script>
+
                 <?php
                 $query = mysql_query("select * from bast b inner join (select distinct nobastaset, wilayah from dataaset)a on a.nobastaset=b.nobast where wilayah='Jakarta Utara'");
               while ( $data = mysql_fetch_array($query)) {

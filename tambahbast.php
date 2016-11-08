@@ -165,10 +165,8 @@
                <td>File Acuan</td><td>: </td><td><input type="file" name="fileacuan" class='btn btn-sm btn-default'></td>
               </tr>
             </table>
-            <!-- <right><input type="submit" name="submit" value="Simpan Data BAST"/></right> -->
-          <!-- </form> -->
-
             </section>
+            <!-- 
             <section class="col col-sm-12 col-md-12 col-lg-6">
               <h1>Lokasi Dokumen BAST</h1><br>
      
@@ -197,14 +195,10 @@
                  <tr>
                  <td  colspan='2'><input type="checkbox" name="mutasi" value="1" /> Data Mutasi<br/></td>
                  </tr>
-               <!-- <tr>
-               <td align="right" colspan="2"><input type="submit" value="Simpan Perubahan" name="submit22"></td>
-               </tr> -->
+               
              </table>
              
-           <!-- </form>  -->
-
-            </section>
+            </section> -->
             <section class="col col-sm-12 col-md-12 col-lg-12">
               <!-- <form name="inputlokasiaset" action="" method="post"> -->
            <!-- No.BAST :  <input type="text" name="nobast" value="<?php if(isset($nobastlokasi)){echo $nobastlokasi;} ?>"/>  -->
