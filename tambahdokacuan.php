@@ -136,8 +136,8 @@ die('Tidak ada data yang disimpan!');
 //menyimpan data ke tabel peruntukan
 foreach($_POST['deskripsi'] as $key => $deskripsi){  
 if($deskripsi){
- $sql = "insert into peruntukan(idperuntukan,deskripsi,jenisfasos,luas,statussertifikat,statusplang,statuspenggunaan,sensusfasos,nodokacuan)   
- values ('','{$deskripsi}','{$_POST['jenisfasos'][$key]}','{$_POST['luas'][$key]}','Belum SHP Pemprov. DKI Jakarta','Belum Terpasang','Idle','Belum dilakukan Sensus','$nodokacuan2');";  
+ $sql = "INSERT INTO `kewajiban` (`idkewajiban`, `nodokacuan`, `deskripsi`, `jenisfasos`, `luas`, `pelunasan`) VALUES ('', '{$nodokacuan2}', '{$deskripsi}', '{$_POST['jenisfasos'][$key]}', '{$_POST['luas'][$key]}', '0')";  
+ 
  mysql_query($sql); 
  // echo $sql; 
 } 
