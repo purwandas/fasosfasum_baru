@@ -146,7 +146,7 @@
               if($_GET['kategori']=='dokacuan'){
                 $_SESSION['kategori']='1';
                 $note='Input Nomor Dok. Acuan atau Nama Pemegang Dok. atau Jenis Dok. Acuan';
-                $query='select nodokacuan, tgldokacuan, haldokacuan, pemegangdokacuan, ketdokacuan, jenisdokumen from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ';
+                $query='select detaildokacuan.nodokacuan, tgldokacuan, haldokacuan, pemegangdokacuan, ketdokacuan, jenisdokumen from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori inner join kewajiban on kewajiban.nodokacuan=detaildokacuan.nodokacuan';
               }else{
                 $_SESSION['kategori']='2';
                 $note='Input Nomor Bast atau Nama Pengembang atau Jenis Dok. Acuan';
@@ -677,16 +677,23 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
 
 								</label>
 							</section>
+            <?php
+              if($_GET['kategori']!='dokacuan')
+              {
+            ?>
               <section class="col col-2">
                 <a href=excellPencarian.php target=_blank style='margin-left:20px;'><img alt=' ' height='20px' src='img/excell.png' border='0'>Buat File Excell</a> 
               </section>
               <section class="col col-2">
                 <a href="snappy.php?q=<?php echo $qpaging.'&k='.$k; ?>" target=_blank style='margin-left:20px;'><img alt=' ' height='20px' src='img/pdf.png' border='0'>Buat File PDF</a> 
               </section>
+            <?php
+              }
+            ?>
 						</div>
 						<br>
 				<?php
-					// echo "$query<--";
+					echo "$query<--";
                     $qs=mysql_query($query);
                     $sudah="<i class='fa fa-check-circle' aria-hidden='true' style='color:green'></i>";
                     $belum="<i class='fa fa-times-circle' aria-hidden='true' style='color:red'></i>";
@@ -924,7 +931,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
 						</div>
 						<?php
               // echo "-> $query";
-							echo "<br><div align='left'> <b>*) $totalData Data ditemukan</b> </div>";
+							echo "<br><div align='left' class='col-md-6'> <b>*) $totalData Data ditemukan</b> </div>";
 		                	echo "<div align='right'>".pagination($qpaging,$reclimit,$cp,"$pth")."</div>";
 		                ?>
 					</div>

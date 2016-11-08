@@ -150,7 +150,7 @@ if (isset($_POST['submit'])){
                       <td><b>Keterangan</b></td>
                     </tr>
                     <?php
-                      $qrPeruntukan="select * from kewajiban where nodokacuan='$nodokacuan' and luas>pelunasan";
+                      $qrPeruntukan="select * from kewajiban where nodokacuan='$nodokacuan' and luas>0";
                       $queryP=mysql_query($qrPeruntukan);
                       while($d3=mysql_fetch_array($queryP))
                       {
