@@ -39,12 +39,14 @@ if(isset($_SESSION['query'])){
     header("Expires: 0");
     /*******Start of Formatting for Excel*******/   
     //define separator (defines columns in excel & tabs in word)
-    $sep = "\t"; //tabbed character
+    
     //start of printing column names as names of MySQL fields
     // for ($i = 0; $i < mysql_num_fields($result); $i++) {
     // echo mysql_field_name($result,$i) . "\t";
     // }
-    echo "No. \t No. BAST \t Tgl. BAST \t Dasar BAST \t No. Dokumen Acuan \t Tgl. Acuan \t Pengembang \t Peruntukan \t Alamat \t Kelurahan \t Kecamatan \t Wilayah \t KIB \t Volume \t Satuan \t Nilai Rupiah \t Penandatangan BAST";
+
+    $sep = "\t"; //tabbed character
+    echo "No. \tNo. BAST \tTgl. BAST \tDasar BAST \tNo. Dokumen Acuan \tTgl. Acuan \tPengembang \tPeruntukan \tAlamat \tKelurahan \tKecamatan \tWilayah \tKIB \tVolume \tSatuan \tNilai Rupiah \tPenandatangan BAST";
     
     print("\n");    
         $no=1;

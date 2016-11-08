@@ -295,13 +295,13 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
         {
           $dan=1;
           $dan2=1;
-          $query.=" $ope ((nobast in (select nobastaset from $dfilter_m[ket] where $dfilter_m[name] like '%$wp%')))";
+          $query.=" $ope ((bast.nobast in (select nobastaset from $dfilter_m[ket] where $dfilter_m[name] like '%$wp%')))";
           $filter[$jmlFilter]="$dfilter_m[nama]";
           $jmlFilter++;
         }
         else
         {
-          $query=substr($query,0,-2).") or (nobast in (select nobastaset from $dfilter_m[ket] where $dfilter_m[name] like '%$wp%')))";
+          $query=substr($query,0,-2).") or (bast.nobast in (select nobastaset from $dfilter_m[ket] where $dfilter_m[name] like '%$wp%')))";
           $filter[$jmlFilter]="$dfilter_m[nama]";
           $jmlFilter++;
         }
@@ -699,7 +699,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
         for($i=0;$i<$jmlFilter;$i++){
           // echo $filter[$i].", ";
         }
-				echo "<hr>$query->$totalData";
+				// echo "<hr>$query->$totalData";
                 if($totalData>0)
                 {
               echo "<div align='left'> <i>*) $totalData Data ditemukan</i> </div>";
@@ -860,7 +860,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                                     $query3=mysql_query("select peruntukan.deskripsi, peruntukan.jenisfasos, peruntukan.statussertifikat, peruntukan.statuspenggunaan, peruntukan.statusplang, peruntukan.sensusfasos, peruntukan.statuslaporankeuangan, peruntukan.statusrecon, akun.kategoriaset from dataaset inner join peruntukan on dataaset.idaset=peruntukan.idaset inner join akun on peruntukan.idperuntukan=akun.idperuntukan where dataaset.idaset='$data2[idaset]'");
                                     $nomor=0;
                                     while ($data3=mysql_fetch_array($query3)) {
-                                      if($data3['statussertifikat']=='SHP Pemprov. DKI Jakarta'){
+                                      if($data3['statussertifikat']=='Sudah SHP Pemprov. DKI Jakarta'){
                                         $statussertifikat=$sudah;
                                       }else{
                                         $statussertifikat=$belum;

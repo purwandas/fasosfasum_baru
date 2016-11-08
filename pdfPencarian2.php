@@ -89,7 +89,7 @@ tr { page-break-inside: avoid }
     $no++;
     echo"
       <tr>
-        <td rowspan='2'>$no</td>
+        <td rowspan='1'>$no</td>
         <td colspan='2'>$d[nobast]</td>
         <td>$d[tglbast]</td>
         <td>$d[jenisdokumen]</td>
@@ -99,6 +99,7 @@ tr { page-break-inside: avoid }
         <td>$d[deskripsi]</td>
       </tr>
       <tr>
+        <td></td>
         <td>$d[alamataset]</td>
         <td>$d[kelurahan]</td>
         <td>$d[kecamatan]</td>

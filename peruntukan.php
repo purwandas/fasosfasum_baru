@@ -125,9 +125,17 @@ if (isset($_POST['submit'])){
                       <td><b>Tgl. SK</b></td>
                       <td><b>SKPD</b></td>
                       <td><b>Sensus Fasos</b></td>
+                      <td><b>Kategori Aset</b></td>
+                      <td><b>Volume</b></td>
+                      <td><b>Satuan</b></td>
+                      <td><b>Nilai Pengali (Rp)</b></td>
+                      <td><b>Penilaian PerGub 132 (Rp)</b></td>
+                      <td><b>Nilai BAST (Rp)</b></td>
+                      <td><b>Nilai Kombinasi (Rp)</b></td>
+                      <td><b>Keterangan</b></td>
                     </tr>
                     <?php
-                      $qrPeruntukan="select * from peruntukan where nodokacuan='$nodokacuan' order by nobast";
+                      $qrPeruntukan="select * from kewajiban where nodokacuan='$nodokacuan' and luas>pelunasan";
                       $queryP=mysql_query($qrPeruntukan);
                       while($d3=mysql_fetch_array($queryP))
                       {
@@ -137,7 +145,7 @@ if (isset($_POST['submit'])){
                             <td>
                               <input type='text' name='deskripsi[]' value='$d3[deskripsi]'>
                               <input type='hidden' name='nodokacuan[]' value='$d3[nodokacuan]'>
-                              <input type='hidden' name='idperuntukan[]' value='$d3[idperuntukan]'>
+                              <input type='hidden' name='idperuntukan[]' value='$d3[idperuntukan]'> <--
                             </td>
                             <td>
                               <select name='jenisfasos[]' class='btn btn-sm btn-default'>
@@ -152,26 +160,21 @@ if (isset($_POST['submit'])){
                                 </option>
                                 ";
                               }
-                              if($d3['idaset']=='')
-                              {$warna="class='btn btn-sm btn-success'";}
-                              else
-                              {$warna="class='btn btn-sm btn-default'";}
+                              
                                   
                               echo"
                               </select>
                             </td>
                             <td>
-                              <select name='idaset[]' $warna>
+                              <select name='idaset[]'>
                               ";
-                                if($d3['idaset']=='')
-                                {
+                                
                                   $queryCB="select nobast from bast where nodokacuan='$d3[nodokacuan]'";
                                   $qCariBast=mysql_query($queryCB);
                                   echo "<option value=''>-pilih-</option>";
 
                                   while ($dCariBast=mysql_fetch_array($qCariBast)) 
                                   {
-                                  // echo "<option value=''>-$dCariBast[nobast]-</option>";
                                     $query=mysql_query("select idaset, alamataset, kelurahan from dataaset where nobastaset='$dCariBast[nobast]'");
                                     while ($dset=mysql_fetch_array($query)) 
                                     {
@@ -182,35 +185,20 @@ if (isset($_POST['submit'])){
                                       ";
                                     }
                                   }
-                                }
-                                else
-                                {
-                                  $qAset=mysql_query("select alamataset,kelurahan from dataaset where idaset='$d3[idaset]'");
-                                  $dAset=mysql_fetch_array($qAset);
-                                  echo"<option value='$d3[idaset]'>$dAset[alamataset] - $dAset[kelurahan]</option>";
-                                  $query=mysql_query("select idaset, alamataset, kelurahan from dataaset where nobastaset='$d3[nobast]'");
-                                  while ($dset=mysql_fetch_array($query)) 
-                                  {
-                                    echo"
-                                    <option value='$dset[idaset]'>
-                                      $dset[alamataset] - $dset[kelurahan]
-                                    </option>
-                                    ";
-                                  }
-                                }
+                                
+                                
                               
                               echo"
                               </select>
                             </td>
                             <td>
                               <select name='jenis[]' class='btn btn-sm btn-default'>
-                                <option value='$d3[jenis]'>$d3[jenis]</option>
                                 <option value='Tanah'>Tanah</option>
                                 <option value='Non-Tanah'>Non-Tanah</option>
                               </select>
                             </td>
                             <td>
-                              <input type='text' name='luas[]' value='$d3[luas]'>
+                              <input type='text' name='luas[]'>
                             </td>
                             ";
                             // <td>
@@ -222,16 +210,16 @@ if (isset($_POST['submit'])){
                             // </td>
                               echo"
                             <td>
-                              <input type='text' name='pemilik[]' value='$d3[pemilik]'>
+                              <input type='text' name='pemilik[]'>
                             </td>
                             <td>
-                              <input type='text' name='nokrk[]' value='$d3[nokrk]'>
+                              <input type='text' name='nokrk[]'>
                             </td>
                             <td>
-                              <input type='text' name='noimb[]' value='$d3[noimb]'>
+                              <input type='text' name='noimb[]'>
                             </td>
                             <td>
-                              <input type='text' name='noblokplan[]' value='$d3[noblokplan]'>
+                              <input type='text' name='noblokplan[]'>
                             </td>
                             ";
                             // <td>
@@ -245,10 +233,10 @@ if (isset($_POST['submit'])){
                             // </td>
                             echo "
                             <td>
-                              <input type='text' name='masaberlaku[]' value='$d3[masaberlaku]'>
+                              <input type='text' name='masaberlaku[]'>
                             </td>
                             <td>
-                              <input type='text' name='keterangan[]' value='$d3[keterangan]'>
+                              <input type='text' name='keterangan[]'>
                             </td>
                             <td>
                               <select name='statuslaporankeuangan[]' class='btn btn-sm btn-default'>
@@ -281,7 +269,7 @@ if (isset($_POST['submit'])){
                               </select>
                             </td>
                             <td>
-                              <input type='text' name='nosertifikat[]' value='$d3[nosertifikat]'>
+                              <input type='text' name='nosertifikat[]'>
                             </td>
                             <td>
                             ";
@@ -293,10 +281,10 @@ if (isset($_POST['submit'])){
                                  </script>
                               ";
                             echo"
-                              <input type='text' name='tglsertifikat[]' value='$d3[tglsertifikat]' id='tgl$d3[idperuntukan]'>
+                              <input type='text' name='tglsertifikat[]' id='tgl$d3[idperuntukan]'>
                             </td>
                             <td>
-                              <input type='text' name='luassertifikat[]' value='$d3[luassertifikat]'>
+                              <input type='text' name='luassertifikat[]'>
                             </td>
                             <td>
                               <select name='statusplang[]' class='btn btn-sm btn-default'>
@@ -331,7 +319,7 @@ if (isset($_POST['submit'])){
                               </select>
                             </td>
                             <td>
-                              <input type='text' name='nosk[]' value='$d3[nosk]'>
+                              <input type='text' name='nosk[]'>
                             </td>
                             <td>
                             ";
@@ -343,10 +331,10 @@ if (isset($_POST['submit'])){
                                  </script>
                               ";
                             echo"
-                              <input type='text' name='tglsk[]' value='$d3[tglsk]' id='tglsk$d3[idperuntukan]'>
+                              <input type='text' name='tglsk[]' id='tglsk$d3[idperuntukan]'>
                             </td>
                             <td>
-                              <input type='text' name='skpd[]' value='$d3[skpd]'>
+                              <input type='text' name='skpd[]'>
                             </td>
                             <td>
                               <select name='sensusfasos[]' class='btn btn-sm btn-default'>
@@ -364,6 +352,36 @@ if (isset($_POST['submit'])){
                               echo"
                               </select>
                             </td>
+                            <td>
+                              <select name='kategori[]'>
+                                <option>KIB A</option>
+                                <option>KIB B</option>
+                                <option>KIB C</option>
+                                <option>KIB D</option>
+                                <option>KIB E</option>
+                              </select>
+                            </td>
+                            <td>
+                              <input type='text' id='volume' name='volume[]' class='volume'>
+                            </td>
+                            <td>
+                              <select name='satuan[]'>
+                                <option>m2</option>
+                                <option>m</option>
+                                <option>m1</option>
+                                <option>m3</option>
+                                <option>unit</option>
+                                <option>set</option>
+                                <option>titik</option>
+                                <option>buah</option>
+                                <option>paket</option>
+                              </select>
+                            </td>
+                            <td><input type='text' id='nilainjop' name='nilainjop[]'  class='nilainjop'></td>
+                            <td><input type='text' id='jmlnjop' name='jmlnjop[]' class='jmlnjop'></td>
+                            <td><input type='text' name='nilaibast[]'  class='nilaibast'></td>
+                            <td><input type='text' name='nilaimix[]'  class='nilaimix'></td>
+                            <td><input type='text' name='ketakun[]'></td>
                           </tr>
                         ";
                       }

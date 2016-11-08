@@ -1,7 +1,7 @@
 		<!-- PAGE RELATED PLUGIN(S) 
 		<script src="..."></script>-->
 		<script src="JS/plugin/chartjs/chart.min.js"></script><!-- NEW WIDGET START -->
-<article class="col-sm-12 col-md-12 col-lg-6">
+<article class="col-sm-12 col-md-12 col-lg-4">
 
 	<!-- Widget ID (each widget will need unique ID)-->
 	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
@@ -26,7 +26,7 @@
 
 		<!-- widget div-->
 		<center>
-		<div style="line-height: 20px; height: 250px; margin: 0; padding-top: 10px; padding-right: 10px; padding-left: 10px;border-width: 1px 1px 2px;border-style: solid;border-top: none;border-right-color: #CCC !important;border-bottom-color: #CCC !important;border-left-color: #CCC !important;">
+		<div style="line-height: 30px; height: 400px; margin: 0; padding-top: 20px; padding-right: 10px; padding-left: 10px;border-width: 1px 1px 2px;border-style: solid;border-top: none;border-right-color: #CCC !important;border-bottom-color: #CCC !important;border-left-color: #CCC !important;">
 
 			<?php
            $hasil1= mysql_query("select * from bast");
@@ -133,33 +133,19 @@
 <!-- WIDGET END -->
 
 <!-- NEW WIDGET START -->
+<!-- 
 <article class="col-sm-12 col-md-12 col-lg-6" style="z-index:1">
 
-	<!-- Widget ID (each widget will need unique ID)-->
 	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-editbutton="false">
-		<!-- widget options:
-		usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-
-		data-widget-colorbutton="false"
-		data-widget-editbutton="false"
-		data-widget-togglebutton="false"
-		data-widget-deletebutton="false"
-		data-widget-fullscreenbutton="false"
-		data-widget-custombutton="false"
-		data-widget-collapsed="true"
-		data-widget-sortable="false"
-
-		-->
+		
 		<header>
 			<span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>
 			<h2>Pie Chart Lokasi DTR </h2>
 
 		</header>
 
-		<!-- widget div-->
 		<div style="height:250px">
 
-			<!-- widget edit box -->
 			<script type="text/javascript" src="JS/jscharts.js"></script>
 
               <meta charset="utf-8">
@@ -169,19 +155,16 @@
               </center>
               
 
-			<!-- end widget content -->
 
 		</div>
-		<!-- end widget div -->
 
 	</div>
-	<!-- end widget -->
 
-</article>
+</article> -->
 <!-- WIDGET END -->
 
 <!-- NEW WIDGET START -->
-<article class="col-sm-12 col-md-12 col-lg-12">
+<article class="col-sm-12 col-md-12 col-lg-8">
 
 	<!-- Widget ID (each widget will need unique ID)-->
 	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-2" data-widget-editbutton="false">
@@ -240,7 +223,7 @@
             $jmldtr = mysql_num_rows($tanpairisan);
 		?>
 
-	    <script type="text/javascript">
+	   <!--  <script type="text/javascript">
 
 	       var myChart = new JSChart('graph', 'pie');
 	       myChart.setDataArray([['irisan pulomas',<?php echo $jmlirpm; ?>],['irisan 129', <?php echo $jmlir129; ?> ],['irisan 54', <?php echo $jmlir54; ?> ],['irisan 101',<?php echo $jmlir101; ?> ],['irisan 163', <?php echo $jmlir163; ?> ],['irisan lok.58', <?php echo $jmlir58; ?> ],['Tanpa Irisan', <?php echo $jmldtr; ?> ]]);
@@ -270,4 +253,4 @@
 	       myChart.set3D(true);
 	       myChart.draw();
 
-	     </script>
+	     </script> -->

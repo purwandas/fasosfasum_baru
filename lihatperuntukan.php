@@ -211,7 +211,7 @@ if($_GET['kategoriaset']!=''){$kategoriaset="akun.kategoriaset like '%$_GET[kate
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['keteranganbast'])){echo $_GET['keteranganbast'];} ?>" name="keteranganbast" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['kodearsip'])){echo $_GET['kodearsip'];} ?>" name="kodearsip" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['jenisdokumen'])){echo $_GET['jenisdokumen'];} ?>" name="jenisdokumen" onchange="submit()"></label></td>
-						              <!-- <td><label class='input'><input type="text" value="<?php if(isset($_GET['idaset'])){echo $_GET['idaset'];} ?>" name="idaset" onchange="submit()"></label></td> -->
+						              <!-- <td><label class='input'><input type="text" value="<?php //if(isset($_GET['idaset'])){echo $_GET['idaset'];} ?>" name="idaset" onchange="submit()"></label></td> -->
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['alamataset'])){echo $_GET['alamataset'];} ?>" name="alamataset" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['wilayah'])){echo $_GET['wilayah'];} ?>" name="wilayah" onchange="submit()"></label></td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['kecamatan'])){echo $_GET['kecamatan'];} ?>" name="kecamatan" onchange="submit()"></label></td>
@@ -256,7 +256,7 @@ if($_GET['kategoriaset']!=''){$kategoriaset="akun.kategoriaset like '%$_GET[kate
 						                <td>$dataperuntukan[ket_bast]</td>
 						                <td>$dataperuntukan[kodearsip]</td>
 						                <td>$dataperuntukan[jenisdokumen]</td>
-						                <td>$dataperuntukan[idaset]</td>
+						                
 						                <td>$dataperuntukan[alamataset]</td>
 						                <td>$dataperuntukan[wilayah]</td>
 						                <td>$dataperuntukan[kecamatan]</td>

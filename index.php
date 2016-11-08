@@ -306,7 +306,7 @@
 						</ul>
 					</li>
 					
-					<li>
+					<!-- <li>
 						<a href="#"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">BOT/BTO</span></a>
 						<ul>
 							<li>
@@ -352,34 +352,15 @@
 			                  <li><a target="_blank" href="pdf58.php">Data Lokasi 58</a></li>
 			                  <li><a target="_blank" href="pdfdtr.php">Semua DTR</a></li>
 			                  <li><a target="_blank" href="pdfdtraja.php">DTR Tanpa Irisan</a></li>
-			                  <!-- <li><a target="_blank" href="bastirisanrekon.php">Data irisan Rekon</a></li> -->
 			                  <li><a target="_blank" href="pdfbpk.php">Semua LK2010</a></li>
-			                  <!-- <li><a target="_blank" href="pdfbpkaja.php">LK2010 Tanpa Iris</a></li> -->
 
 			                </ul>
 			              </li>
 
-
-
-			             <!--  <li><a href="laporanperkecamatan.php">Laporan Perkecamatan</a>
-			              </li> -->
-
-			              <!-- <li><a class="parent">Laporan SIPPT</a>
-			                <ul>
-			                  <li><a target="_blank" href="pdfsippt.php">Data SIPPT</a></li>
-			                  <li><a target="_blank" href="pdfnonsippt.php">Data Non SIPPT</a></li>
-			                  <li><a target="_blank" href="pdfhitung.php">Aril Mop</a></li>
-			                  <li><a href="#">Data Kewajiban</a></li>
-			                </ul>
-			              </li>
-			              <li><a href="#">SIPPT vs BAST</a>
-			              </li>        
-			              <li><a href="laporanirisan.php">Data Irisan</a>
-				            </li>  -->
 			            </li>
 			            
 			          </ul>
-			        </li>
+			        </li> -->
 			        <li>
 						<a href="#"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">Master Data</a>
 						<ul>
