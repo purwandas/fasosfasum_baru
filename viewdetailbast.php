@@ -3,14 +3,14 @@ $id = $_GET['id'];
 $query = mysql_query("select * from bast b inner join detaildokacuan d on b.nodokacuan=d.nodokacuan inner join dataaset a on b.nobast=a.nobastaset where nobast='$id'") or die(mysql_error());
 $data = mysql_fetch_array($query);
 ?>
-<p class="alert alert-warning" align="right">
+<!-- <p class="alert alert-warning" align="right">
 	<span>
     <a><img alt=" " src="img/printer.gif" border=0></a>&nbsp;
     <a target="_blank" href="pdfdetail.php?id=<?php echo $data['nobast']; ?>">
       Print this page
     </a>
     </span>
-</p>
+</p> -->
 <article class="col-sm-12 col-md-12 col-lg-6">
 
 	<!-- Widget ID (each widget will need unique ID)-->

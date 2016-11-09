@@ -218,7 +218,7 @@ if($_GET['kategoriaset']!=''){$kategoriaset="akun.kategoriaset like '%$_GET[kate
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['kelurahan'])){echo $_GET['kelurahan'];} ?>" name="kelurahan" onchange="submit()"></label>
 						              </td>
 						              <td><label class='input'><input type="text" value="<?php if(isset($_GET['kategoriaset'])){echo $_GET['kategoriaset'];} ?>" name="kategoriaset" onchange="submit()"></label></td>
-						              <td></td>
+						              <td><i class="fa fa-search"></i></td>
 						            </tr>
 
 						            <?php

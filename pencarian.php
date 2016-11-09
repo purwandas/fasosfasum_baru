@@ -146,7 +146,7 @@
               if($_GET['kategori']=='dokacuan'){
                 $_SESSION['kategori']='1';
                 $note='Input Nomor Dok. Acuan atau Nama Pemegang Dok. atau Jenis Dok. Acuan';
-                $query='select detaildokacuan.nodokacuan, tgldokacuan, haldokacuan, pemegangdokacuan, ketdokacuan, jenisdokumen from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori inner join kewajiban on kewajiban.nodokacuan=detaildokacuan.nodokacuan';
+                $query='select detaildokacuan.nodokacuan, tgldokacuan, haldokacuan, pemegangdokacuan, ketdokacuan, jenisdokumen, kewajiban.luas from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori inner join kewajiban on kewajiban.nodokacuan=detaildokacuan.nodokacuan';
               }else{
                 $_SESSION['kategori']='2';
                 $note='Input Nomor Bast atau Nama Pengembang atau Jenis Dok. Acuan';
@@ -678,7 +678,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
 								</label>
 							</section>
             <?php
-              if($_GET['kategori']!='dokacuan')
+              if(isset($_GET['kategori'])&&$_GET['kategori']!='dokacuan')
               {
             ?>
               <section class="col col-2">
@@ -693,7 +693,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
 						</div>
 						<br>
 				<?php
-					echo "$query<--";
+					// echo "$query<--";
                     $qs=mysql_query($query);
                     $sudah="<i class='fa fa-check-circle' aria-hidden='true' style='color:green'></i>";
                     $belum="<i class='fa fa-times-circle' aria-hidden='true' style='color:red'></i>";
@@ -771,7 +771,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                         </tr>
                         ";
                         $number=0;
-                      $query2=mysql_query("select * from peruntukan where nodokacuan='$data[nodokacuan]'");//nobast='' and 
+                      $query2=mysql_query("select peruntukan.deskripsi, peruntukan.jenisfasos, peruntukan.luas luasp, kewajiban.luas as luask from peruntukan inner join kewajiban on kewajiban.idkewajiban=peruntukan.idkewajiban where peruntukan.nodokacuan='$data[nodokacuan]'");//nobast='' and 
                       $mxrow=mysql_num_rows($query2);
                       if($mxrow>0){
                         echo"
@@ -799,17 +799,17 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                           }
                           while ($data2=mysql_fetch_array($query2)) {
                             $number++;
-                            if($data2['nobast']==''){
-                              $sttskewajiban=$belum;
-                            }else{
+                            if($data2['luask']=='0'){
                               $sttskewajiban=$sudah;
+                            }else{
+                              $sttskewajiban=$belum;
                             }
                             echo "
                             <tr>
                               <td>$number</td>
                               <td>$data2[jenisfasos]</td>
                               <td>$data2[deskripsi]</td>
-                              <td>$data2[luas]</td>
+                              <td>$data2[luasp]</td>
                               <td align='center'>$sttskewajiban</td>
                             </tr>
                             ";
