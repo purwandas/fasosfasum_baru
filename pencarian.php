@@ -678,8 +678,10 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
 								</label>
 							</section>
             <?php
-              if(isset($_GET['kategori'])&&$_GET['kategori']!='dokacuan')
+              if(isset($_GET['kategori'])&&($_GET['kategori']=='dokacuan'))
               {
+
+              }else{
             ?>
               <section class="col col-2">
                 <a href=excellPencarian.php target=_blank style='margin-left:20px;'><img alt=' ' height='20px' src='img/excell.png' border='0'>Buat File Excell</a> 
