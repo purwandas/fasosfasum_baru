@@ -701,7 +701,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                     $belum="<i class='fa fa-times-circle' aria-hidden='true' style='color:red'></i>";
                     echo "<div align='right'>".pagination($qpaging,$reclimit,$cp,"$pth")."</div><br>";
 				?>
-						<div class="table-responsive" style="float:left;">
+						<div class="table-responsive col-md-12" style="float:left;">
 							<center>
 				<?php
         // echo"ini<hr>";
