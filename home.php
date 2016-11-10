@@ -4,7 +4,7 @@
 <article class="col-sm-12 col-md-12 col-lg-6">
 
   <!-- Widget ID (each widget will need unique ID)-->
-  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false"data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" >
     <!-- widget options:
     usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
@@ -82,27 +82,27 @@
             </tr>
             <tr>
               <td>Total BAST  SIPPT:</td>
-              <td align="right"><a href="bastsippt.php"><?php echo $totalrowbastsippt; ?></a></td>
+              <td align="right"><a href="#"><?php echo $totalrowbastsippt; ?></a></td>
             </tr>
             <tr>
               <td>Total BAST NON SIPPT:</td>
-              <td align="right"><a href="bastnonsippt.php"><?php echo $totalrowbastnonsippt; ?></a></td>
+              <td align="right"><a href="#"><?php echo $totalrowbastnonsippt; ?></a></td>
             </tr>
             <tr>
               <td>Total BAST Gubernur:</td>
-              <td align="right"><a href="bastgubernur.php"><?php echo $totalrowgubernur; ?></a></td>
+              <td align="right"><a href="#"><?php echo $totalrowgubernur; ?></a></td>
             </tr>
             <tr>
               <td>Total BAST Walikota:</td>
-              <td align="right"><a href="bastwalikota.php"><?php echo $totalrowwalikota; ?></a></td>
+              <td align="right"><a href="#"><?php echo $totalrowwalikota; ?></a></td>
             </tr>
               <tr>
                 <td>Total BAST Biro Perlengkapan:</td>
-                <td align="right"><a href="bastbiro.php"><?php echo $totalrowbiro; ?></a></td>
+                <td align="right"><a href="#"><?php echo $totalrowbiro; ?></a></td>
               </tr>
               <tr>
                 <td>Total BAST Sekwilda:</td>
-                <td align="right"><a href="bastsekwilda.php"><?php echo $totalrowsekwilda; ?></a></td>
+                <td align="right"><a href="#"><?php echo $totalrowsekwilda; ?></a></td>
               </tr>
               <tr>
                 <td>Total Luas Tanah:</td>
@@ -110,16 +110,16 @@
               </tr>
               <tr>
                 <td>Total HGB:</td>
-                <td align="right"><a href="hgb.php"><?php echo $totalrowHGB; ?></a></td>
+                <td align="right"><a href="#"><?php echo $totalrowHGB; ?></a></td>
               </tr>
               <tr>
                 <td>Total SHM:</td>
-                <td align="right"><a href="shm.php"><?php echo $totalrowSHM; ?></a></td>
+                <td align="right"><a href="#"><?php echo $totalrowSHM; ?></a></td>
               </tr>
 
               <tr>
                 <td>Total SHP:</td>
-                <td align="right"><a href="shp.php"><?php echo $totalrowDKI; ?></a></td>
+                <td align="right"><a href="#"><?php echo $totalrowDKI; ?></a></td>
               </tr>
               </table>
     </div>
@@ -136,7 +136,7 @@
 <article class="col-sm-12 col-md-12 col-lg-6" style="z-index:1">
 
   <!-- Widget ID (each widget will need unique ID)-->
-  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-editbutton="false">
+  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" >
     <!-- widget options:
     usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
@@ -146,7 +146,7 @@
     data-widget-deletebutton="false"
     data-widget-fullscreenbutton="false"
     data-widget-custombutton="false"
-    data-widget-collapsed="true"
+    data-widget-collapsed="false"
     data-widget-sortable="false"
 
     -->
@@ -184,7 +184,7 @@
 <article class="col-sm-12 col-md-12 col-lg-12">
 
   <!-- Widget ID (each widget will need unique ID)-->
-  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-2" data-widget-editbutton="false">
+  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-2" data-widget-editbutton="false"data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" >
     
     <header>
       <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>

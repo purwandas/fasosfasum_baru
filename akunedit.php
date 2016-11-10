@@ -119,8 +119,7 @@ if (isset($_POST['submit'])){
 
 	}
 
-	mysql_connect("localhost","root","");
-	mysql_select_db("phplogin");
+	
 	$waktu = gmdate("Y-m-d H:i:s", time()+60*60*7);
 	$user = $_SESSION['SESS_FIRST_NAME'];
 	$query33 = mysql_query("insert into loging values('','$user','edit nilai akuntansi bast : $nobast','$waktu')") or die(mysql_error());
