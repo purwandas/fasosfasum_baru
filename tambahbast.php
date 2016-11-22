@@ -1,3 +1,4 @@
+
 <script>
    var idrow = 2;
 
@@ -158,9 +159,9 @@
               </select></td>
               </tr>       
 
-              <tr>
+              <!-- <tr>
               <td>Kode Arsip </td><td>: </td><td><label class='input'><input type="text" name="kodearsip" maxlength="40" required="required" /></label></td>
-              </tr>
+              </tr> -->
               <tr>
                <td>File Acuan</td><td>: </td><td><input type="file" name="fileacuan" class='btn btn-sm btn-default'></td>
               </tr>

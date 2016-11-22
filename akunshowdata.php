@@ -189,7 +189,15 @@ $id = $_GET['id'];
 																	<td class="center">Nilai Kombinasi (Rp)</td>
 																	<td class="center">Keterangan</td>
 																	<td class="center">Journal Koreksi</td>
-																	<td class="center">Action</td>
+																<?php
+										                          if($_SESSION['SESS_LEVEL']==1)
+										                          {
+										                              ?>
+										                              <td class="center">Action</td>
+										                              <?php
+										                          }
+										                          ?>
+																	
 																</tr>
 
 																<script language="JavaScript">
@@ -226,8 +234,16 @@ $id = $_GET['id'];
 																		<td class="center"><?php print number_format  ($data2['nilaibast'],2); ?></td>
 																		<td class="center"><?php print number_format  ($data2['nilaimix'],2); ?></td>
 																		<td class="right"><?php echo $data2['ketakun']; ?></td>	
-																		<td class="right"><?php echo $data2['bastdokumen']; ?></td>		
-																		<td class="center"><a href="index.php?hal=akunedit&id=<?php echo $data2['nobast']; ?>">Edit</a>|<a href="akunhapus.php?id=<?php echo $data2['idperuntukan'];  echo "&id2=".$data2['nobast']; ?>" onClick="return konfirmasi()">Hapus</a></td>
+																		<td class="right"><?php echo $data2['bastdokumen']; ?></td>	
+																<?php
+										                          if($_SESSION['SESS_LEVEL']==1)
+										                          {
+										                              ?>
+										                              <td class="center"><a href="index.php?hal=akunedit&id=<?php echo $data2['nobast']; ?>">Edit</a>|<a href="akunhapus.php?id=<?php echo $data2['idperuntukan'];  echo "&id2=".$data2['nobast']; ?>" onClick="return konfirmasi()">Hapus</a></td>
+										                              <?php
+										                          }
+										                          ?>	
+																		
 																	</tr>
 
 

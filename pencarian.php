@@ -481,7 +481,8 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
           <option value=''>-pilih-</option>
           ";
         }
-        for($i=1980;$i<=date("Y");$i++){
+        for($i=date("Y");$i>=1980;$i--){
+        // for($i=1980;$i<=date("Y");$i++){
           echo"
           <option value='$i'>$i</option>
           ";

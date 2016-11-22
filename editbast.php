@@ -60,7 +60,7 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
 	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 	<header>
 		<span class="widget-icon"> <i class="fa fa-file-text-o"></i></span>
-		<h2>Edit BAST</h2>
+		<h6> &nbsp; Ubah BAST</h6>
 	</header>
 
 		<!-- widget div-->

@@ -168,20 +168,22 @@ echo 'Data telah disimpan';
 
 			                   <table>
 
-			                    <tr><td>Pilih Jenis Dokumen Acuan</td>
+			                    <tr><td>Dokumen Acuan</td>
 			                      <td>  
-			                        <select name="jenisdokacuan" class="select2">
+			                      	<input type="hidden" name="jenisdokacuan" value="1">
+			                      	SIPPT
+			                        <!-- <select name="jenisdokacuan" class="select2">
 			                          <?php
-			                          include "koneksi.php";
-			                 // query untuk menampilkan kecamatan
-			                          $query = "SELECT * FROM dokumenacuan";
-			                          $hasil = mysql_query($query);
-			                          while ($data = mysql_fetch_array($hasil))
-			                          {
-			                            echo "<option value='".$data['idkategori']."'>".$data['jenisdokumen']."</option>";
-			                          }
+			                 //          include "koneksi.php";
+			                 // // query untuk menampilkan kecamatan
+			                 //          $query = "SELECT * FROM dokumenacuan";
+			                 //          $hasil = mysql_query($query);
+			                 //          while ($data = mysql_fetch_array($hasil))
+			                 //          {
+			                 //            echo "<option value='".$data['idkategori']."'>".$data['jenisdokumen']."</option>";
+			                 //          }
 			                          ?>
-			                        </select>
+			                        </select> -->
 			                      </td>
 			                    </tr>
 

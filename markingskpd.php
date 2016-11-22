@@ -45,8 +45,8 @@
 					</fieldset>
 				</form>
 
-				<div class="row" style="overflow:auto;">										
-					<section class="col col-sm-12 col-md-12 col-lg-12">
+				<section class="col col-sm-12 col-md-12 col-lg-12">
+					<div class="row" style="overflow:auto;">										
 						<table class="table-hover table-bordered table table-striped">
 
 			                
@@ -83,7 +83,7 @@
 			             }else
 
 
-			             $query = "SELECT * FROM akun a inner join dataaset s on a.idaset=s.idaset inner join peruntukan p on a.idperuntukan=p.idperuntukan ";
+			             $query = "SELECT * FROM akun a inner join bast b on a.nobast=b.nobast inner join detaildokacuan d on b.nodokacuan=d.nodokacuan inner join dataaset s on a.idaset=s.idaset inner join peruntukan p on a.idperuntukan=p.idperuntukan inner join lokasidokumen l on a.nobast=l.nobastlokasi ";
 
 			             // echo $query;
 			             $query=mysql_query($query) or die(mysql_error());
@@ -116,8 +116,8 @@
 			             ?>
 
 			           </table>
-					</section>
-				</div>
+					</div>
+				</section>
 
 			</div>
 		</div>

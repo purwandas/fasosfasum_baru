@@ -18,7 +18,8 @@ if (isset($_POST['submit'])){
   $perihalbast= $_POST['perihalbast'];
   $keterangan= $_POST['keterangan'];
   $nodokacuan= $_POST['nodokacuan'];
-  $kodearsip=$_POST['kodearsip'];
+  $kodearsip="";
+  // $_POST['kodearsip'];
 
 
   $check = mysql_query("SELECT nobast FROM bast WHERE nobast = '$nobast'") or die(mysql_error());
@@ -68,7 +69,12 @@ if (isset($_POST['submit'])){
      mysql_query($sql);  
    } 
  }
- echo 'Data telah disimpan';  
+
+ //update checklist
+  $queryCheckList="update checklistdetail set nobast='$nobast' where nobast='NOBAST-'";
+  mysql_query($queryCheckList);
+
+ echo 'Data BAST telah disimpan';  
  
 }
 }

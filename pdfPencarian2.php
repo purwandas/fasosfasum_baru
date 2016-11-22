@@ -21,6 +21,9 @@ if(isset($_GET['q'])){
 <head>
   <title>Export PDF</title>
   <link rel='stylesheet' type='text/css' media='screen' href='css/bootstrap.min.css'>
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
   <style>
     /*thead, tfoot { display: table-row-group }*/
 

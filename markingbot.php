@@ -71,7 +71,7 @@
 			                 }else
 
 
-			                 $query = mysql_query("SELECT * FROM akun a inner join dataaset s on a.idaset=s.idaset inner join peruntukan p on a.idperuntukan=p.idperuntukan ");
+			                 $query = mysql_query("SELECT * FROM akun a inner join bast b on a.nobast=b.nobast inner join detaildokacuan d on b.nodokacuan=d.nodokacuan inner join dataaset s on a.idaset=s.idaset inner join peruntukan p on a.idperuntukan=p.idperuntukan inner join lokasidokumen l on a.nobast=l.nobastlokasi ");
 
 
 			                 $no = 1;
