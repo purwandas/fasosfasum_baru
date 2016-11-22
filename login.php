@@ -90,7 +90,7 @@
 								if(isset($_GET['e'])){
 									echo"
 									<p class='alert alert-danger'>
-									Periksa kembali Username/Password
+									Ada Kesalahan Username/Password
 									</p>
 									";
 								}

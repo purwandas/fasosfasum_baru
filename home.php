@@ -106,7 +106,7 @@
               </tr>
               <tr>
                 <td>Total Luas Tanah:</td>
-                <td align="right"><?php print number_format($b['tot'],2); ?> m2</td>
+                <td align="right"><?php print number_format($b['tot'],2); ?> m<sup>2</sup></td>
               </tr>
               <tr>
                 <td>Total HGB:</td>

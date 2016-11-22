@@ -31,7 +31,18 @@ $data = mysql_fetch_array($query);
 						<section class="col col-sm-12 col-md-12 col-lg-12">
 							<table class="size130">
 			                <tr>
-			                  <td>Jenis Acuan </td><td width="15px" align="center">: </td><td><?php echo $data['idkategori']; ?></td><td><a href="index.php?hal=editacuan&nodokacuan=<?php echo $data['nodokacuan']; ?>" target='_blank'>[ Edit ]</a></td>
+			                  <td>Jenis Acuan </td><td width="15px" align="center">: </td><td><?php echo $data['idkategori']; ?></td>
+			                  <td>
+			                  
+			                  <?php
+                      	if($_SESSION['SESS_LEVEL']==1)
+                      	{
+                        	?>
+                        	<a href="index.php?hal=editacuan&nodokacuan=<?php echo $data['nodokacuan']; ?>" target='_blank'>[ Edit ]</a>
+                        	<?php
+                      	}
+                      	?>
+			                  </td>
 			                </tr>
 			                <td>No.Dok Acuan </td><td align="center"> : </td><td><?php echo $data['nodokacuan']; ?></td>
 			              </tr>
@@ -93,7 +104,17 @@ $data = mysql_fetch_array($query);
 						<section class="col col-sm-12 col-md-12 col-lg-12">
 							<table class="size130">
 			                <tr>
-			                  <td>No.BAST </td><td width="15px" align="center">: </td><td><?php echo $data['nobast']; ?></td><td><a href="index.php?hal=editbast&id=<?php echo $data['nobast']; ?>" target='_blank'>[ Edit ]</a></td>
+			                  <td>No.BAST </td><td width="15px" align="center">: </td><td><?php echo $data['nobast']; ?></td>
+			                  <td>
+		                  <?php
+			            if($_SESSION['SESS_LEVEL']==1)
+                      	{
+                        	?>
+                        	<a href="index.php?hal=editbast&id=<?php echo $data['nobast']; ?>" target='_blank'>[ Edit ]</a>
+                        	<?php
+                      	}
+                      	?>
+			                  </td>
 
 			                </tr>
 			                <tr><td>Tgl. BAST </td><td align="center">: </td><td><?php echo $data['tglbast']; ?></td>
@@ -161,7 +182,17 @@ $data = mysql_fetch_array($query);
 		             ?>
 		             <table style="margin-left: 15px">
 		              <tr>
-		                <td>Alamat lokasi</td><td width="15px" align="center">:</td><td><?php echo $data3['alamataset']; ?></td><td><a href='index.php?hal=editaset<?php echo "&id=$data3[idaset]"; ?>'  target='_blank'>[Edit]</a></td>
+		                <td>Alamat lokasi</td><td width="15px" align="center">:</td><td><?php echo $data3['alamataset']; ?></td>
+		                <td>
+		                <?php
+                      	if($_SESSION['SESS_LEVEL']==1)
+                      	{
+                        	?>
+                        	<a href='index.php?hal=editaset<?php echo "&id=$data3[idaset]"; ?>'  target='_blank'>[Edit]</a>
+                        	<?php
+                      	}
+                      	?>
+		                </td>
 		              </tr>
 		              <tr>
 		               <td >Wilayah</td><td align="center">:</td><td colspan='2'><?php echo $data3['wilayah']; ?></td>
@@ -197,7 +228,13 @@ $data = mysql_fetch_array($query);
 				                    <td class="center">SKPD</td>
 				                  <td class="right">Sensus Fasos Fasum</td>
 				                  <td class="center">No. Acuan</td>
-				                    <td class="center">Action</td>
+				               <?php
+	                          if($_SESSION['SESS_LEVEL']==1)
+	                          {
+	                              echo "<td class='center'>Action</td>";
+	                          }
+	                          ?>
+				                    
 				                  </tr>
 				                  <script language="JavaScript">
 				                    function konfirmasi(){
@@ -237,7 +274,14 @@ $data = mysql_fetch_array($query);
 				                   <td class="right"><?php echo $data2['skpd']; ?></td>
 				                  <td class="right"><?php echo $data2['sensusfasos']; ?></td>
 				                  <td class="center"><a href=index.php?hal=bastbysippt&id=<?php echo $data2['nodokacuan'].">$data2[nodokacuan]"; ?></a></td>
-				                   <td class="center"><a href="index.php?hal=editperuntukan&idperuntukan=<?php echo $data2['idperuntukan'].'&p='.$_GET['hal'].'&id='.$_GET['id']; ?>"  target='_blank'>Edit</a>|<a href="hapusperuntukan.php?idperuntukan=<?php echo $data2['idperuntukan']."&id=$_GET[id]"; ?>" onClick="return konfirmasi()">Hapus</a></td>
+				                  <?php
+		                          if($_SESSION['SESS_LEVEL']==1)
+		                          {
+		                              ?>
+		                              <td class="center"><a href="index.php?hal=editperuntukan&idperuntukan=<?php echo $data2['idperuntukan'].'&p='.$_GET['hal'].'&id='.$_GET['id']; ?>"  target='_blank'>Edit</a>|<a href="hapusperuntukan.php?idperuntukan=<?php echo $data2['idperuntukan']."&id=$_GET[id]"; ?>" onClick="return konfirmasi()">Hapus</a></td>
+		                              <?php
+		                          }
+		                          ?>
 				                 </tr>
 				                <?php
 				                $no++;

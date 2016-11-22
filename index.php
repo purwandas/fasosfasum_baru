@@ -275,6 +275,10 @@
 			
 
 			<!-- NAVIGATION : This navigation is also responsive-->
+		<?php
+		if($_SESSION['SESS_LEVEL']=='1')
+		{
+		?>
 			<nav>
 				<ul>
 					<li>
@@ -298,7 +302,7 @@
 						<a href="#"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">BAST</span></a>
 						<ul>
 							<li>
-								<a href="index.php?hal=tambahbast">Tambah BAST</a>
+								<a href="index.php?hal=checklist">Tambah BAST</a>
 							</li>
 							<li>
 								<a href="index.php?hal=lihatbast">Lihat Semua BAST</a>
@@ -306,7 +310,7 @@
 						</ul>
 					</li>
 					
-					<!-- <li>
+					<li>
 						<a href="#"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">BOT/BTO</span></a>
 						<ul>
 							<li>
@@ -328,7 +332,7 @@
 							</li>
 						</ul>
 					</li>
-					<li id="reports">
+					<!-- <li id="reports">
 					<a class="top"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">Laporan</span></a>
 			          <ul>
 			            <li><a class="parent">Rekapitulasi BAST</a>
@@ -397,6 +401,41 @@
 					</li>
 				</ul>
 			</nav>
+		<?php
+		}
+		else if($_SESSION['SESS_LEVEL']=='2')
+		{
+
+		}
+		else if($_SESSION['SESS_LEVEL']=='3')
+		{
+
+		}
+		else if($_SESSION['SESS_LEVEL']=='4')
+		{
+
+		}
+		else if($_SESSION['SESS_LEVEL']=='5')
+		{
+
+		}
+		else if($_SESSION['SESS_LEVEL']=='6')
+		{
+			?>
+			<nav>
+				<ul>
+					<li>
+						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=pencarian"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pencarian</span></a>
+					</li>
+				</ul>
+			</nav>
+			<?php
+		}
+		
+		?>
 			<span class="minifyme" data-action="minifyMenu"> 
 				<i class="fa fa-arrow-circle-left hit"></i> 
 			</span>
@@ -462,7 +501,30 @@
 						<?php
 
 							if(isset($_GET['hal'])){
-								include "$_GET[hal].php";
+								if($_SESSION['SESS_LEVEL']==1)
+								{
+									include "$_GET[hal].php";
+								}
+								else if($_SESSION['SESS_LEVEL']==2)
+								{
+									include "$_GET[hal].php";
+								}
+								else if($_SESSION['SESS_LEVEL']==3)
+								{
+									include "$_GET[hal].php";
+								}
+								else if($_SESSION['SESS_LEVEL']==4)
+								{
+									include "$_GET[hal].php";
+								}
+								else if($_SESSION['SESS_LEVEL']==5)
+								{
+									include "$_GET[hal].php";
+								}
+								else if($_SESSION['SESS_LEVEL']==6)
+								{
+									include "admin/$_GET[hal].php";
+								}
 							}else{
 								include "home.php";
 							}
