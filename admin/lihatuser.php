@@ -1,4 +1,5 @@
 <?php
+	require"admin/auth.php";
 	if(isset($_POST['ubah']) || isset($_POST['tambah']))
 	{
 		
@@ -7,26 +8,29 @@
 		$level=$_POST['level'];
 		$username=$_POST['username'];
 		$password=$_POST['password'];
-		
+		$waktu = gmdate("Y-m-d H:i:s", time()+60*60*7);
+		$user = $_SESSION['SESS_FIRST_NAME'].' '.$_SESSION['SESS_LAST_NAME'];
 		if(isset($_POST['ubah']))
 		{
 			if($password!=''){
 				$password=", passwd='".md5($password)."'";
 			}
 			$id=$_POST['id'];
-			echo"
-				$nama[0] . $nama[1] . $wilayah . $level . $username . $password
-			";
+			// echo"
+			// 	$nama[0] . $nama[1] . $wilayah . $level . $username . $password
+			// ";
+			$query = mysql_query("insert into loging values('','$user','Ubah User: $nama[0] $nama[1]','$waktu')") or die(mysql_error());
 			mysql_query("update members set firstname='$nama[0]', lastname='$nama[1]', wilayah='$wilayah', level='$level', login='$username' $password where member_id='$id'");
 		}
 		else
 		if(isset($_POST['tambah']))
 		{
 			$password=md5($password);
-			echo"
-				$nama[0] . $wilayah . $level . $username . $password
-			";
-			mysql_query("INSERT INTO `members` (`member_id`, `firstname`, `lastname`, `wilayah`, `level`, `login`, `passwd`) VALUES ('', '$nama[0]', '$nama[1]', '$wilayah', '$level', '$username', '$password')");
+			// echo"
+			// 	$nama[0] . $wilayah . $level . $username . $password
+			// ";
+			$query = mysql_query("insert into loging values('','$user','Tambah User: $nama[0] $nama[1]','$waktu')") or die(mysql_error());
+			mysql_query("INSERT INTO `members` (`member_id`, `firstname`, `lastname`, `wilayah`, `level`, `login`, `passwd`, `status`) VALUES ('', '$nama[0]', '$nama[1]', '$wilayah', '$level', '$username', '$password', '1')");
 		}
 	}
 ?>
@@ -71,7 +75,7 @@
 								</tr>
 								<?php
 									$no=0;
-									$queryUser=mysql_query("select * from members inner join memberslevel on members.level=memberslevel.level where members.level<6 ORDER BY `members`.`member_id` ASC");
+									$queryUser=mysql_query("select * from members inner join memberslevel on members.level=memberslevel.level where members.level<6 and status='1' ORDER BY `members`.`member_id` ASC");
 									while ($dataUser=mysql_fetch_array($queryUser)) 
 									{
 										$no++;

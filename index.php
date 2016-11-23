@@ -528,7 +528,9 @@
 								}
 								else if($_SESSION['SESS_LEVEL']==6)
 								{
-									include "admin/$_GET[hal].php";
+									// include "admin/$_GET[hal].php";
+									if(!@include("admin/$_GET[hal].php"))
+										echo"<img src='img/404.jpg' width='100%'>";
 								}
 							}else{
 								include "home.php";
