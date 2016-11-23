@@ -430,12 +430,17 @@
 					<li>
 						<a href="index.php?hal=pencarian"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pencarian</span></a>
 					</li>
+					<li>
+						<a href="index.php?hal=lihatuser"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Data User</span></a>
+					</li>
 				</ul>
 			</nav>
+			
 			<?php
 		}
-		
+			
 		?>
+			
 			<span class="minifyme" data-action="minifyMenu"> 
 				<i class="fa fa-arrow-circle-left hit"></i> 
 			</span>

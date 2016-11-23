@@ -69,6 +69,7 @@
 			$_SESSION['SESS_LAST_NAME'] = $member['lastname'];
 			$_SESSION['SESS_LEVEL']= $member['level'];
 			$_SESSION['SESS_WILAYAH']= $member['wilayah'];
+			// $_SESSION['SESS_JABATAN']= $member['jabatan'];
 			session_write_close();
 
 
