@@ -30,7 +30,14 @@
 			// 	$nama[0] . $wilayah . $level . $username . $password
 			// ";
 			$query = mysql_query("insert into loging values('','$user','Tambah User: $nama[0] $nama[1]','$waktu')") or die(mysql_error());
-			mysql_query("INSERT INTO `members` (`member_id`, `firstname`, `lastname`, `wilayah`, `level`, `login`, `passwd`, `status`) VALUES ('', '$nama[0]', '$nama[1]', '$wilayah', '$level', '$username', '$password', '1')");
+			$query2 = mysql_query("INSERT INTO `members` (`member_id`, `firstname`, `lastname`, `wilayah`, `level`, `login`, `passwd`, `status`) VALUES ('', '$nama[0]', '$nama[1]', '$wilayah', '$level', '$username', '$password', '1')");
+			if(!$query2){
+				echo"
+				<p class='alert alert-warning'>
+				".mysql_error($koneksi)."
+				</p>
+				";
+			}
 		}
 	}
 ?>
