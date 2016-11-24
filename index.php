@@ -372,7 +372,7 @@
 								<a href="index.php?hal=lihatperuntukan">Data Peruntukan</a>
 							</li>
 							<li>
-								<a href="index.php?hal=dataaset">Data Aset</a>
+								<a href="index.php?hal=dataaset">Data Lokasi Aset</a>
 							</li>
 							<!-- <li>
 								<a href="#">Data Pengembang</a>
@@ -508,7 +508,9 @@
 							if(isset($_GET['hal'])){
 								if($_SESSION['SESS_LEVEL']==1)
 								{
-									include "$_GET[hal].php";
+									// include "$_GET[hal].php";
+									if(!@include("$_GET[hal].php"))
+										echo"<img src='img/404.jpg' width='100%'>";
 								}
 								else if($_SESSION['SESS_LEVEL']==2)
 								{

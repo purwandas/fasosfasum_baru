@@ -42,30 +42,29 @@ $(document).ready(function() {
 			<div class="widget-body no-padding">
 				<fieldset>
 					<div class="row">
-						<section class="col col-sm-12 col-md-12 col-lg-12">
-							<table class="table table-striped table-bordered table-hover" width="100%">
+						<section class="col col-sm-12 col-md-12 col-lg-12 table-responsive">
+
+										<table class="table table-bordered table-hover" width="100%">
 											<thead>			                
 												<tr>
 													<th>No.</th>
 													<th>No. Dokumen Acuan</th>
-													<th>Tanggal Acuan</th>
+													<th class="text-center">Tanggal Acuan</th>
 													<th>Perihal Acuan</th>
 													<th>Pemegang Acuan</th>
 													<th>Keterangan</th>
 													<th>Kategori</th>
-													<th>Act.</th>
+													<th class="text-center">Act.</th>
 												</tr>
 											</thead>
 											<tbody>
 												<?php
 													$no=0;
-													$query="select * from detaildokacuan";
+													$query="select nodokacuan, tgldokacuan, haldokacuan, pemegangdokacuan, ketdokacuan, max(versi), jenisdokumen from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori group by nodokacuan";
 													$query=mysql_query($query);
 													while ($data=mysql_fetch_array($query)) 
 													{
 														$no++;
-														$query2=mysql_query("select jenisdokumen from dokumenacuan where idkategori='$data[idkategori]'");
-														$data2=mysql_fetch_array($query2);
 														echo "
 															<tr class='rowdata'>
 																<td>$no</td>
@@ -74,9 +73,13 @@ $(document).ready(function() {
 																<td>$data[haldokacuan]</td>
 																<td>$data[pemegangdokacuan]</td>
 																<td>$data[ketdokacuan]</td>
-																<td>$data2[jenisdokumen]</td>
-																<td>
-																	<a href='index.php?hal=editacuan&nodokacuan=$data[nodokacuan]'>ubah</a>
+																<td>$data[jenisdokumen]</td>
+																<td valign='middle'>
+																	<center>
+																		<a href='index.php?hal=editacuan&nodokacuan=$data[nodokacuan]' class='btn btn-sm btn-info' style='width:60px;'>Ubah</a>
+																		 <hr>
+																		<a href='index.php?hal=adendum&nodokacuan=$data[nodokacuan]' class='btn btn-sm btn-success' style='width:60px;padding-left:3px;'>Adendum</a> 
+																	</center>
 																</td>
 															</tr>
 														";

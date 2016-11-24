@@ -63,23 +63,13 @@
     	$( "#tgldokacuan" ).datepicker();
   	} );
 
- </script
+ </script>
 <?php
-include "koneksi.php";
-if (isset($_POST['submit'])){
+if (isset($_POST['submit']))
+{
   include("config_dir.php");
-
-  if(mysql_num_rows(mysql_query("select * from upload"))==0){
-    $namabaru=$namadefault;
-  }else{
-    $nama=mysql_fetch_array(mysql_query("select * from upload order by id desc"));
-    $ext=end(explode('.', $nama['nama_file']));      
-    $namanya=basename($nama['nama_file'],".".$ext);
-    // echo $namanya;
-    $namabaru=incrementName($namanya);
-  }
-  $target_file = $target_dir . "$namabaru.pdf";
-  $ext=end(explode('.', $_FILES['fileacuan']['name']));
+	include"tracking.php";
+  $idacuan=lastidacuan();
   $nodokacuan = $_POST['nodokacuan'];
   $tgl= $_POST['tgldokacuan'];
   $tgldokacuan=substr($tgl,3,2).'/'.substr($tgl,0,2).'/'.substr($tgl,-4);
@@ -89,60 +79,78 @@ if (isset($_POST['submit'])){
   $ketdokacuan= $_POST['ketdokacuan'];
   $idkategori= $_POST['jenisdokacuan'];
 
-  
   $check = mysql_query("SELECT nodokacuan FROM detaildokacuan WHERE nodokacuan = '$nodokacuan'") or die(mysql_error());
   $check2 = mysql_num_rows($check);
 
 	//if the name exists it gives an error
-  if ($check2 != 0)
-  {
-   ?>
-   <script type="text/javascript">
+  	if ($check2 != 0)
+  	{
+   		?>
+   		<script type="text/javascript">
     alert("Dokumen Acuan No:  <?php echo $nodokacuan; ?> has already registered. use has already available item ");
     history.back();
-  </script>
-  <?php
-
-}else
-if($_FILES["fileacuan"]["name"]!='')
-{
-	if (move_uploaded_file($_FILES["fileacuan"]["tmp_name"], $target_file)) {
-	  $namafile=$_FILES['fileacuan']['name'];
-	  $upload=mysql_query("INSERT INTO `upload` (`id`, `nama_asli`, `nama_file`, `path`, `nodokacuan`, `nobast`) VALUES ('', '$namafile', '$namabaru.$ext', '$target_dir', '$nodokacuan', '');");
-	    $qurey = mysql_query("insert into detaildokacuan values('$nodokacuan', '$tgldokacuan', '$haldokacuan', '$pemegangdokacuan', '$ketdokacuan', '$idkategori')") or die(mysql_error());
-	    echo "The file <a href='$target_dir$namabaru.$ext'>". basename( $_FILES["fileacuan"]["name"]). "</a> has been uploaded.";
-	} else {
-	  echo "$target_file";
-	  echo "Sorry, there was an error uploading your file.";
+  		</script>
+  		<?php
 	}
-	//simpan data ke database
-}
-else
-{
-	$qurey = mysql_query("insert into detaildokacuan values('$nodokacuan', '$tgldokacuan', '$haldokacuan', '$pemegangdokacuan', '$ketdokacuan', '$idkategori')") or die(mysql_error());
-}
+	else
+	{
+		if($_FILES["fileacuan"]["name"]!='')
+		{
+		  if(mysql_num_rows(mysql_query("select * from upload"))==0){
+		    $namabaru=$namadefault;
+		  }else{
+		    $nama=mysql_fetch_array(mysql_query("select * from upload order by id desc"));
+		    $ext=end(explode('.', $nama['nama_file']));      
+		    $namanya=basename($nama['nama_file'],".".$ext);
+		    // echo $namanya;
+		    $namabaru=incrementName($namanya);
+		  }
+		  $target_file = $target_dir . "$namabaru.pdf";
+		  $ext=end(explode('.', $_FILES['fileacuan']['name']));
+			if (move_uploaded_file($_FILES["fileacuan"]["tmp_name"], $target_file)) {
+			  $namafile=$_FILES['fileacuan']['name'];
+			  $upload=mysql_query("INSERT INTO `upload` (`id`, `nama_asli`, `nama_file`, `path`, `nodokacuan`, `nobast`) VALUES ('', '$namafile', '$namabaru.$ext', '$target_dir', '$nodokacuan', '');");
+			    $query = mysql_query("INSERT INTO `detaildokacuan` (`idacuan`, `nodokacuan`, `tgldokacuan`, `haldokacuan`, `pemegangdokacuan`, `ketdokacuan`, `idkategori`, `versi`) VALUES ('$idacuan', '$nodokacuan', '$tgldokacuan', '$haldokacuan', '$pemegangdokacuan', '$ketdokacuan', '$idkategori', '0')");
 
+			    echo "The file <a href='$target_dir$namabaru.$ext'>". basename( $_FILES["fileacuan"]["name"]). "</a> has been uploaded.";
+			} else {
+			  echo "$target_file";
+			  echo "Sorry, there was an error uploading your file.";
+			}
+			//simpan data ke database
+		}
+		else
+		{
+			$query = mysql_query("INSERT INTO `detaildokacuan` (`idacuan`, `nodokacuan`, `tgldokacuan`, `haldokacuan`, `pemegangdokacuan`, `ketdokacuan`, `idkategori`, `versi`) VALUES ('$idacuan', '$nodokacuan', '$tgldokacuan', '$haldokacuan', '$pemegangdokacuan', '$ketdokacuan', '$idkategori', '0')");
+		}
+	}
 
-if ($query) {
- echo 'input jenis dokumen berhasil...........';
+	if ($query) {
+	 echo 'input jenis dokumen berhasil...........';
+	 tracking("Input SIPPT: $nodokacuan");
+	}
 
-}
+	$nodokacuan2=$_POST['nodokacuan'];
+	if(!$_POST){  
+	die('Tidak ada data yang disimpan!');  
+	}  
 
-$nodokacuan2=$_POST['nodokacuan'];
-if(!$_POST){  
-die('Tidak ada data yang disimpan!');  
-}  
-
-//menyimpan data ke tabel peruntukan
-foreach($_POST['deskripsi'] as $key => $deskripsi){  
-if($deskripsi){
- $sql = "INSERT INTO `kewajiban` (`idkewajiban`, `nodokacuan`, `deskripsi`, `jenisfasos`, `luas`, `pelunasan`) VALUES ('', '{$nodokacuan2}', '{$deskripsi}', '{$_POST['jenisfasos'][$key]}', '{$_POST['luas'][$key]}', '0')";  
- 
- mysql_query($sql); 
- // echo $sql; 
-} 
-}
-echo 'Data telah disimpan';  
+	//menyimpan data ke tabel peruntukan
+	foreach($_POST['deskripsi'] as $key => $deskripsi)
+	{  
+		if($deskripsi)
+		{
+		 $sql = "INSERT INTO `kewajiban` (`idkewajiban`, `nodokacuan`, `deskripsi`, `jenisfasos`, `luas`, `pelunasan`) VALUES ('', '{$nodokacuan2}', '{$deskripsi}', '{$_POST['jenisfasos'][$key]}', '{$_POST['luas'][$key]}', '0')";  
+		 
+		 // $sql = mysql_query($sql); 
+		 // echo $sql; 
+		 if($sql)
+		 {
+			echo 'Data Kewajiban telah disimpan';  
+		 	tracking("Input Kewajiban: $nodokacuan");
+		 }
+		}
+	}
 }
 ?>
 <article class="col-sm-12 col-md-12 col-lg-12">
@@ -164,26 +172,14 @@ echo 'Data telah disimpan';
 					<div class="row">
 			        
 						<section class="col col-sm-12 col-md-12 col-lg-6">
-							<h2>Input Deskripsi Acuan</h2><br>
-
-			                   <table>
+							<h2 style="margin-left: 10%">Deskripsi Acuan</h2><br>
+							<center>
+			                   <table width="80%">
 
 			                    <tr><td>Dokumen Acuan</td>
 			                      <td>  
 			                      	<input type="hidden" name="jenisdokacuan" value="1">
 			                      	SIPPT
-			                        <!-- <select name="jenisdokacuan" class="select2">
-			                          <?php
-			                 //          include "koneksi.php";
-			                 // // query untuk menampilkan kecamatan
-			                 //          $query = "SELECT * FROM dokumenacuan";
-			                 //          $hasil = mysql_query($query);
-			                 //          while ($data = mysql_fetch_array($hasil))
-			                 //          {
-			                 //            echo "<option value='".$data['idkategori']."'>".$data['jenisdokumen']."</option>";
-			                 //          }
-			                          ?>
-			                        </select> -->
 			                      </td>
 			                    </tr>
 
@@ -218,13 +214,14 @@ echo 'Data telah disimpan';
 			                        <td align="right"><input type="file" class='btn btn-sm btn-default' name="fileacuan"></td> 
 			                      </tr>
 			                    </table>
+		                    </center>
 						</section>
 						
 
 						<section class="col col-sm-12 col-md-12 col-lg-6">
-							<h2>Input Data Kewajiban</h2><br>
+							<h2>Data Kewajiban</h2><br>
 
-			                      <div style="width:20; height:210px;overflow:auto;">
+			                      <div style="width:20;overflow:auto;">
 
 			                        <table class="table table-bordered table-striped" id=datatable >
 			                            <tr>
