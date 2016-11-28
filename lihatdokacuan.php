@@ -1,22 +1,23 @@
-<!-- PAGE RELATED PLUGIN(S) -->
-<script src="JS/plugin/datatables/jquery.dataTables.min.js"></script>
-<script src="JS/plugin/datatables/dataTables.colVis.min.js"></script>
-<script src="JS/plugin/datatables/dataTables.tableTools.min.js"></script>
-<script src="JS/plugin/datatables/dataTables.bootstrap.min.js"></script>
-<script src="JS/plugin/datatable-responsive/datatables.responsive.min.js"></script>
+<link href="css/pagination.css" rel="stylesheet" type="text/css" />
+<link href="css/B_blue.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
 
 // DO NOT REMOVE : GLOBAL FUNCTIONS!
 
-$(document).ready(function() {
+	$(document).ready(function() {
 
-    $(".rowdata").click(function(){
-      $(this).closest('tr').next().toggle();
-    });
-	
-});
-
+	    $(".rowdata").click(function(){
+	      $(this).closest('tr').next().toggle();
+	    });
+		
+	});
+	function submit() {
+	  document.getElementById("formacuan").submit();
+	}
+	$( function() {
+    	$( "#tgldokacuan" ).datepicker();
+  	} );
 </script>
 <style type="text/css">
 	.rowdata{
@@ -43,8 +44,132 @@ $(document).ready(function() {
 				<fieldset>
 					<div class="row">
 						<section class="col col-sm-12 col-md-12 col-lg-12 table-responsive">
+						<?php
+							$query="select nodokacuan, tgldokacuan, haldokacuan, pemegangdokacuan, ketdokacuan, max(versi), jenisdokumen from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ";
+							if (isset($_POST)) 
+							{
+								$cek=0;
+								if($_POST['nodokacuan']!="")
+								{
+									$nodokacuan=" nodokacuan like '%".$_POST['nodokacuan']."%'";
+									$nodokacuanv="value='".$_POST['nodokacuan']."'";
+									$cek=1;
+								}else{
+									$nodokacuan="";
+									$nodokacuanv="pret";
+								}
+								if($_POST['tgldokacuan']!=""){
+									$tgldokacuan=" tgldokacuan like '%".$_POST['tgldokacuan']."%'";
+									$tgldokacuanv="value='".$_POST['tgldokacuan']."'";
+									if($cek!='0'){$tgldokacuan=' and '.$tgldokacuan;}
+									$cek='1';
+								}else{
+									$tgldokacuan="";
+									$tgldokacuanv="";
+								}
+								if($_POST['perihal']!=""){
+									$perihal=" haldokacuan like '%".$_POST['perihal']."%'";
+									$perihalv="value='".$_POST['perihal']."'";
+									if($cek!='0'){$perihal=' and '.$perihal;}
+									$cek='1';
+								}else{
+									$perihal="";
+									$perihalv="";
+								}
+								if($_POST['pemegangdokacuan']!=""){
+									$pemegangdokacuan=" pemegangdokacuan like '%".$_POST['pemegangdokacuan']."%'";
+									$pemegangdokacuanv="value='".$_POST['pemegangdokacuan']."'";
+									if($cek!='0'){$pemegangdokacuan=' and '.$pemegangdokacuan;}
+									$cek='1';
+								}else{
+									$pemegangdokacuan="";
+									$pemegangdokacuanv="";
+								}
+								if($_POST['keterangan']!=""){
+									$keterangan=" keterangan like '%".$_POST['keterangan']."%'";
+									$keteranganv="value='".$_POST['keterangan']."'";
+									if($cek!='0'){$keterangan=' and '.$keterangan;}
+									$cek='1';
+								}else{
+									$keterangan="";
+									$keteranganv="";
+								}
+								if($_POST['kategori']!=""){
+									$kategori=" jenisdokumen like '%".$_POST['kategori']."%'";
+									$kategoriv="value='".$_POST['kategori']."'";
+									if($cek!='0'){$kategori=' and '.$kategori;}
+									$cek='1';
+								}else{
+									$kategori="";
+									$kategoriv="";
+								}
 
-										<table class="table table-bordered table-hover" width="100%">
+								if($cek!=0){
+									$where="where";
+								}else{
+									$where="";
+								}
+								$query.=" $where $nodokacuan $tgldokacuan $perihal $pemegangdokacuan $keterangan $kategori group by nodokacuan ";
+							}
+							// echo mysql_num_rows(mysql_query($query))."<--rows<br>$query";
+						?>			
+									<form id="formacuan" method="post" action="index.php?hal=lihatdokacuan">
+									<?
+										$reclimit=20;
+						                if(isset($_GET['page']))
+						                {
+						                  $offset=($_GET['page']-1)*$reclimit;
+						                }
+						                else
+						                {
+						                  $offset=0;
+						                }
+						                if(empty($_GET)){
+						                  $qr='?';
+						                }else{
+						                  $qr='&';
+						                }
+						                if($_GET['kategori']!='dokacuan'){
+						                  $k=2;
+						                }else{
+						                  $k=3;
+						                }
+						                include ("pagination.php");
+						                
+						                if(isset($_GET['page']))
+						                {
+						                  $plng=strlen($_GET['page']);
+						                  $pth=substr("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]",0,strlen("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]")-(5+$plng));
+						                  $cp=$_GET['page'];
+						                }
+						                else
+						                {
+						                  $pth="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]$qr";
+						                  $cp=1;
+						                }
+
+						                $limit=" LIMIT $offset, $reclimit";
+						                $query.=$order;
+						                $_SESSION['query']=$query;
+						                $qpaging=$_SESSION['query'];
+						                $totalData=mysql_num_rows(mysql_query($qpaging));
+						                $page=ceil(mysql_num_rows(mysql_query($query))/$reclimit);
+						                $query.=$limit;
+						                $no=$offset+1;
+
+
+						                $jmlRow=mysql_num_rows(mysql_query($qpaging));
+						                
+					                    echo "
+					                    	<div align='right' class='col-md-4 text-left'>
+					                    	* <b>$jmlRow</b> <i>Data ditemukan</i>
+					                    	</div>
+					                    	<div align='right' class='col-md-8'>
+					                    		".pagination($qpaging,$reclimit,$cp,"$pth")."<br><br> 
+					                    	</div>
+					                    ";
+									?>
+										<table class="table table-bordered table-hover table-responsive" width="100%">
 											<thead>			                
 												<tr>
 													<th>No.</th>
@@ -58,9 +183,46 @@ $(document).ready(function() {
 												</tr>
 											</thead>
 											<tbody>
+												<tr>
+													<th class="text-center">
+														<i class="fa fa-lg fa-fw fa-search"></i>
+													</th>
+													<th>
+														<label class="input">
+															<input type="text" <?php echo $nodokacuanv; ?> name="nodokacuan" onchange="submit()">
+														</label>
+													</th>
+													<th>
+														<label class="input">
+															<input type="text" <?php echo $tgldokacuanv; ?> name="tgldokacuan" onchange="submit()" id="tgldokacuan">
+														</label>
+													</th>
+													<th>
+														<label class="input">
+															<input type="text" <?php echo $perihalv; ?> name="perihal" onchange="submit()">
+														</label>
+													</th>
+													<th>
+														<label class="input">
+															<input type="text" <?php echo $pemegangdokacuanv; ?> name="pemegangdokacuan" onchange="submit()">
+														</label>
+													</th>
+													<th>
+														<label class="input">
+															<input type="text" <?php echo $keteranganv; ?> name="keterangan" onchange="submit()">
+														</label>
+													</th>
+													<th>
+														<label class="input">
+															<input type="text" <?php echo $kategoriv; ?> name="kategori" onchange="submit()">
+														</label>
+													</th>
+													<th class="text-center">
+														<i class="fa fa-lg fa-fw fa-search"></i>
+													</th>
+												</tr>
 												<?php
-													$no=0;
-													$query="select nodokacuan, tgldokacuan, haldokacuan, pemegangdokacuan, ketdokacuan, max(versi), jenisdokumen from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori group by nodokacuan";
+													$no=($offset);
 													$query=mysql_query($query);
 													while ($data=mysql_fetch_array($query)) 
 													{
@@ -113,6 +275,7 @@ $(document).ready(function() {
 												
 											</tbody>
 										</table>
+									</form>
 						</section>
 						
 					</div>

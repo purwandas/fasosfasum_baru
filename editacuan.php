@@ -1,4 +1,7 @@
 <?php
+  include"tracking.php";
+
+  //simpan data SIPPT
   if (isset($_POST['submit'])){
 
     include("config_dir.php");
@@ -35,36 +38,37 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
         $dupload=mysql_query("delete from upload where nodokacuan='$id'");
       }
       $upload=mysql_query("INSERT INTO `upload` (`id`, `nama_asli`, `nama_file`, `path`, `nodokacuan`, `nobast`) VALUES ('', '$namafile', '$namabaru.$ext', '$target_dir', '$id', '');");
-      $query = mysql_query("update detaildokacuan set  idkategori='$idkategori', tgldokacuan='$tgldokacuan', haldokacuan='$haldokacuan',pemegangdokacuan='$pemegangdokacuan',ketdokacuan='$ketdokacuan' where nodokacuan='$id'") or die(mysql_error());
-      echo "The file <a href='$target_dir$namabaru.$ext'>". basename( $_FILES["fileacuan"]["name"]). "</a> has been uploaded.";
+      $query = "update detaildokacuan set  idkategori='$idkategori', tgldokacuan='$tgldokacuan', haldokacuan='$haldokacuan',pemegangdokacuan='$pemegangdokacuan',ketdokacuan='$ketdokacuan' where nodokacuan='$id'";
+      // echo "The file <a href='$target_dir$namabaru.$ext'>". basename( $_FILES["fileacuan"]["name"]). "</a> has been uploaded.";
     } else {
       echo "$target_file- ";
       echo "Sorry, there was an error uploading your file.";
     }
 }else{
-  $query = mysql_query("update detaildokacuan set  tgldokacuan='$tgldokacuan', haldokacuan='$haldokacuan',pemegangdokacuan='$pemegangdokacuan',ketdokacuan='$ketdokacuan', idkategori='$idkategori' where nodokacuan='$id'") or die(mysql_error());
+  $query = "update detaildokacuan set  tgldokacuan='$tgldokacuan', haldokacuan='$haldokacuan',pemegangdokacuan='$pemegangdokacuan',ketdokacuan='$ketdokacuan', idkategori='$idkategori' where nodokacuan='$id'";
 }
 //update data ke database
     
 
-   //  if ($query) {
+    if ($query=mysql_query($query)) {
+      tracking("Ubah Dok. Acuan: $id");
+     // echo 'simpan perbahan dokumen acuan berhasil...........';
+    }
+} 
+//------------------------------------------------------------------------------
 
-   //   echo 'simpan perbahan dokumen acuan berhasil...........';
-
-   // }
- }
+//simpan data kewajiban
  if (isset($_POST['submit2'])){
    $nodokacuan2=$_POST['nodokacuan2'];
    // echo $nodokacuan2."lol";
    if(!$_POST){  
     die('Tidak ada data yang disimpan!');  
   }  
-
-    //menyimpan data ke tabel dataaset
-  foreach($_POST['idperuntukan'] as $key => $idperuntukan){  
-    if($idperuntukan){
+    //menyimpan data ke tabel kewajiban
+  foreach($_POST['idkewajiban'] as $key => $idkewajiban){  
+    if($idkewajiban){
       // echo ">--> $idperuntukan";
-      if($idperuntukan=='kosong'){
+      if($idkewajiban=='kosong'){
         $check=0;
       }else{
         $check=1;
@@ -72,23 +76,52 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
       // echo "<br>$idperuntukan - $check";
       if($check>0)
       {
-        $sql = "update peruntukan set deskripsi='{$_POST['deskripsi'][$key]}',jenisfasos='{$_POST['jenisfasos'][$key]}',luas='{$_POST['luas'][$key]}' where nodokacuan='$nodokacuan2' and idperuntukan='$idperuntukan';";  
+        $sisaLuas=$_POST['luas'][$key]-$_POST['pelunasan'][$key];
+        $sql = "update kewajiban set deskripsi='{$_POST['deskripsi'][$key]}',jenisfasos='{$_POST['jenisfasos'][$key]}',luas='{$sisaLuas}' where idkewajiban='$idkewajiban';";  
+        $msg="Ubah Data Kewajiban: $idkewajiban ($nodokacuan2)";
       }else{
-        $sql = "insert into peruntukan
-        (idperuntukan,deskripsi,jenisfasos,luas,statussertifikat,statusplang,statuspenggunaan,sensusfasos,nodokacuan)   
-             values 
-             ('','{$_POST['deskripsi'][$key]}','{$_POST['jenisfasos'][$key]}','{$_POST['luas'][$key]}','Belum SHP Pemprov. DKI Jakarta','Belum Terpasang','Idle','Belum dilakukan Sensus','$nodokacuan2');";
+        // $sql = "insert into kewajiban
+        // (idperuntukan,deskripsi,jenisfasos,luas,statussertifikat,statusplang,statuspenggunaan,sensusfasos,nodokacuan)   
+        //      values 
+        //      ('','{$_POST['deskripsi'][$key]}','{$_POST['jenisfasos'][$key]}','{$_POST['luas'][$key]}','Belum SHP Pemprov. DKI Jakarta','Belum Terpasang','Idle','Belum dilakukan Sensus','$nodokacuan2');";
+        if($_POST['deskripsi'][$key]!='')
+        {
+         $sql = "INSERT INTO `kewajiban` (`idkewajiban`, `idacuan`, `nodokacuan`, `deskripsi`, `jenisfasos`, `luas`, `pelunasan`) VALUES ('', '{$_POST['idacuan']}', '{$nodokacuan2}', '{$_POST['deskripsi'][$key]}', '{$_POST['jenisfasos'][$key]}', '{$_POST['luas'][$key]}', '0');";
+         $msg="Tambah Data Kewajiban baru: {$_POST['deskripsi'][$key]} ($nodokacuan2)";
+       }else{
+        $sql="FAIL";
+       }
       }
-      mysql_query($sql); 
-   // echo $sql."<br>"; 
+
+      if($sql=mysql_query($sql))
+      {
+        tracking($msg);
+      }
+   // echo $sql."- >   $msg<br>"; 
     } 
   }
-  echo 'Data telah disimpan';  
+  // echo 'Data telah disimpan';  
 }
-if(isset($_GET['delete'])){
-  $qdelete=mysql_query("delete from peruntukan where idperuntukan='$_GET[delete]'");
 
+//delete kewajiban
+if(isset($_GET['delete'])){
+  $qCekStatus="select status from kewajiban where idkewajiban='$_GET[delete]'";
+  // echo "$qCekStatus";
+  $qCekStatus=mysql_query($qCekStatus);
+  $dCekStatus=mysql_fetch_array($qCekStatus);
+  $cek=$dCekStatus['status'];
+  // echo $cek."<--cek";
+  if($cek==0)
+  {
+    $qdelete="update kewajiban set status='1' where idkewajiban='$_GET[delete]'";
+    // echo "$qdelete";
+    if($qdelete=mysql_query($qdelete))
+    {
+      tracking("Hapus Data Kewajiban: $_GET[delete]");
+    }
+  }
 }
+
 ?>
  <script type="text/javascript">
   $( function() {
@@ -117,7 +150,7 @@ if(isset($_GET['delete'])){
                include "koneksi.php";
                $id = $_GET['nodokacuan'];
 
-               $query = mysql_query("select nodokacuan, idkategori, tgldokacuan, pemegangdokacuan, haldokacuan, ketdokacuan, max(versi) from detaildokacuan where nodokacuan='$id'") or die(mysql_error());
+               $query = mysql_query("select idacuan, nodokacuan, idkategori, tgldokacuan, pemegangdokacuan, haldokacuan, ketdokacuan, max(versi) from detaildokacuan where nodokacuan='$id'") or die(mysql_error());
 
                $data = mysql_fetch_array($query);
                ?>
@@ -130,7 +163,7 @@ if(isset($_GET['delete'])){
                  <tr>
                    <td >No.Dokumen </td>           
                    <td height="21">
-                    <label class='input'><input type="text" name="nodokacuan" maxlength="20" required="required" value="<?php echo $data['nodokacuan']; ?>" disabled /></label>
+                    <label class='input'><input type="text" name="nodokacuan" maxlength="20" required="required" value="<?php echo $data['nodokacuan']; ?>" readonly /></label>
                     </td>
                  </tr>
 
@@ -248,28 +281,35 @@ if(isset($_GET['delete'])){
               
             <section class="col col-sm-12 col-md-12 col-lg-12">
               <form name="inputlokasiaset" action="" method="post">
-                No.Dokumen Acuan :  <label class='input'><input type="text" name="nodokacuan2" value="<?php echo $id; ?>" disabled/> </label>
+                No.Dokumen Acuan :  
+                <label class='input'>
+                  <input type="text" name="nodokacuan2" value="<?php echo $id; ?>" readonly/> 
+                  <input type="hidden" name="idacuan" value="<?php echo $data['idacuan'];?>">
+                </label>
 
                   <br><p>
                   <div style=" width:20; height:150px;overflow:auto;">
 
                     <table class="table table-striped table-hover" id=datatable >
                         <tr>
-                          <td class="center">Deskripsi</td>
-                          <td class="center">Jenis Fasos Fasum</td>
-                          <td class="center">Luas</td>
-                          <td class="center">Act.</td>
+                          <td class="center"><b>Deskripsi</b></td>
+                          <td class="center"><b>Jenis Fasos Fasum</b></td>
+                          <td class="center"><b>Luas</b></td>
+                          <td class="center"><b>Act.</b></td>
                         </tr>
 
                         <?php
                         $row=1;
-                        $query0=mysql_query("select idperuntukan,deskripsi, jenisfasos, luas from peruntukan where nodokacuan='$id'");
+                        $query0="select idkewajiban, deskripsi, jenisfasos, luas, pelunasan from kewajiban where nodokacuan='$id' and status='0'";
+                        // echo "$query0";
+                        $query0=mysql_query($query0);
                         while ($d0=mysql_fetch_array($query0)) {
                           $row++;
+                          $luas=$d0['luas']+$d0['pelunasan'];
                           echo"
                           <tr>
                             <td>
-                              <input type='hidden' name='idperuntukan[]' value='$d0[idperuntukan]'>
+                              <input type='hidden' name='idkewajiban[]' value='$d0[idkewajiban]'>
                               <label class='input'><input type='text' name='deskripsi[]' value='$d0[deskripsi]'></label>
                             </td>
                             <td><center><select name='jenisfasos[]' class='btn btn-sm btn-default'>
@@ -285,9 +325,11 @@ if(isset($_GET['delete'])){
                             </select></center></td>
 
                             <td>
-                              <label class='input'><input type='number' name='luas[]' value='$d0[luas]'></label>
+                              <label class='input'>
+                                <input type='number' name='luas[]' value='$luas'>
+                                </label>
                             </td>  
-                            <td><a href='index.php?hal=editacuan&nodokacuan=$id&delete=$d0[idperuntukan]' ";?>onclick="return confirm('Are you sure?')">hapus</a></td>
+                            <td><a href='index.php?hal=editacuan&nodokacuan=$id&delete=$d0[idkewajiban]' ";?>onclick="return confirm('Are you sure?')">hapus</a></td>
                           </tr>
                         <?php
                         }
@@ -307,7 +349,7 @@ if(isset($_GET['delete'])){
                       var td2=x.insertCell(1);
                       var td3=x.insertCell(2);
 
-                      td1.innerHTML="<label class='input'><input type='text' name='deskripsi[]'><input type='hidden' name='idperuntukan[]' value='kosong'></label>";
+                      td1.innerHTML="<label class='input'><input type='text' name='deskripsi[]'><input type='hidden' name='idkewajiban[]' value='kosong'></label>";
                       td2.innerHTML="<center><select name='jenisfasos[]' class='btn btn-sm btn-default'>           <?php
                       include "koneksi.php";
                       $query = "SELECT * FROM ref_jenisfasosfasum";
