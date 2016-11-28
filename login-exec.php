@@ -55,7 +55,7 @@
 	}
 	
 	//Create query
-	$qry="SELECT * FROM members WHERE login='$login' AND passwd='".md5($_POST['password'])."'";
+	$qry="SELECT * FROM members inner join memberslevel on members.level=memberslevel.level WHERE login='$login' AND passwd='".md5($_POST['password'])."'";
 	$result=mysql_query($qry);
 	
 	//Check whether the query was successful or not
@@ -69,7 +69,7 @@
 			$_SESSION['SESS_LAST_NAME'] = $member['lastname'];
 			$_SESSION['SESS_LEVEL']= $member['level'];
 			$_SESSION['SESS_WILAYAH']= $member['wilayah'];
-			// $_SESSION['SESS_JABATAN']= $member['jabatan'];
+			$_SESSION['SESS_JABATAN']= $member['role'];
 			session_write_close();
 
 

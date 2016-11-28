@@ -7,7 +7,7 @@
       <div class="modal-header">
         <!-- <h4 class="modal-title">CheckList</h4> -->
       </div>
-      <div class="modal-body smart-form">
+      <div class="modal-body smart-form" style="font-size: 15px;">
         <table class="table">
           <tr>
             <td><b>No.</b></td>

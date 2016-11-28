@@ -29,14 +29,46 @@ tr { page-break-inside: avoid }
       <center>
         <table>
           <tr>
-            <td>
-              <img src='img/logoDkiJakarta.png' style='width: 75px;'>
+            <td align="center" colspan="3">
+              <h3>
+                <STRONG>
+                  DOKUMEN ADMINISTRASI SEBAGAI LAMPIRAN</BR>
+                  BERITA ACARA SERAH TERIMA
+                </STRONG>
+              </h3>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" width="30%">
+              <h6>Yang Diserahkan</h6>
+            </td>
+            <td valign="top">
+              <h6>:</h6>
+            </td>
+            <td width="68%">
+              <h6>Tanah Kosong / Taman / Jalan / Saluran / Gedung / Bangunana Utilitas Umum - Sosial</h6>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">
+              <h6>Nama Pengembang</h6>
+            </td>
+            <td valign="top">
+              <h6>:</h6>
             </td>
             <td>
-              <h1>
-              Badan Pengelola Keuangan Daerah<br/>
-              Pemerintah Provinsi DKI Jakarta
-              </h1>
+              <h6><?php echo $_GET['p']; ?></h6>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">
+              <h6>Nomor SIPPT</h6>
+            </td>
+            <td valign="top">
+              <h6>:</h6>
+            </td>
+            <td>
+              <h6><?php echo $_GET['s']; ?></h6>
             </td>
           </tr>
         </table>
@@ -68,10 +100,10 @@ tr { page-break-inside: avoid }
               $no++;
               echo"
               <tr>
-                <td>$no</td>
+                <td align='right'>$no</td>
                 <td>$dataCheckList[ket]</td>
                 <td>
-                  <center><img src='/img/check.png' height='20px'></center>
+                  <center><img src='/img/check.png' height='15px'></center>
                 </td>
               </tr>
               ";
@@ -79,10 +111,13 @@ tr { page-break-inside: avoid }
           }
         ?>
       </table>
-      <div align='right'>
-        .... , .....................
-        <br><br><br>
-        ............................
+      <div style="width:300px;float: right;">
+        <br>
+        <center>
+          <?php echo $_GET['a']; ?>
+          <br><br><br><br>
+          <?php echo $_GET['b']; ?>
+        </center>
       </div>
     </div>
   </div>
