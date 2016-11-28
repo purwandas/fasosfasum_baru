@@ -163,7 +163,7 @@ if(isset($_GET['delete'])){
                  <tr>
                    <td >No.Dokumen </td>           
                    <td height="21">
-                    <label class='input'><input type="text" name="nodokacuan" maxlength="20" required="required" value="<?php echo $data['nodokacuan']; ?>" readonly /></label>
+                    <label class='input'><input type="text" name="nodokacuan" maxlength="20" required="required" value="<?php echo $id; ?>" readonly /></label>
                     </td>
                  </tr>
 
@@ -274,7 +274,8 @@ if(isset($_GET['delete'])){
     <!-- widget div-->
     <div class="smart-form">
       
-      <div class="widget-body no-padding"  style="height: 360px;" >
+      <div class="widget-body no-padding" >
+       <!-- style="height: 360px;" > -->
         <fieldset>
           <div class="row">
           
@@ -288,8 +289,8 @@ if(isset($_GET['delete'])){
                 </label>
 
                   <br><p>
-                  <div style=" width:20; height:150px;overflow:auto;">
-
+                  <div style=" width:20; overflow:auto;">
+                    <!-- height:150px; -->
                     <table class="table table-striped table-hover" id=datatable >
                         <tr>
                           <td class="center"><b>Deskripsi</b></td>
