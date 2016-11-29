@@ -45,7 +45,7 @@
 					<div class="row">
 						<section class="col col-sm-12 col-md-12 col-lg-12 table-responsive">
 						<?php
-							$query="select nodokacuan, tgldokacuan, haldokacuan, pemegangdokacuan, ketdokacuan, max(versi), jenisdokumen from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ";
+							$query="select idacuan, nodokacuan, tgldokacuan, haldokacuan, pemegangdokacuan, ketdokacuan, versi, jenisdokumen from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ";
 							if (isset($_POST)) 
 							{
 								$cek=0;
@@ -109,7 +109,7 @@
 								}else{
 									$where="";
 								}
-								$query.=" $where $nodokacuan $tgldokacuan $perihal $pemegangdokacuan $keterangan $kategori group by nodokacuan ";
+								$query.=" $where $nodokacuan $tgldokacuan $perihal $pemegangdokacuan $keterangan $kategori where versi='0' group by nodokacuan ";
 							}
 							// echo mysql_num_rows(mysql_query($query))."<--rows<br>$query";
 						?>			
@@ -149,6 +149,7 @@
 						                }
 
 						                $limit=" LIMIT $offset, $reclimit";
+						                $order=" ORDER BY `detaildokacuan`.`idacuan` DESC ";
 						                $query.=$order;
 						                $_SESSION['query']=$query;
 						                $qpaging=$_SESSION['query'];
@@ -223,6 +224,7 @@
 												</tr>
 												<?php
 													$no=($offset);
+													echo "$query <- query";
 													$query=mysql_query($query);
 													while ($data=mysql_fetch_array($query)) 
 													{
@@ -240,7 +242,7 @@
 																	<center>
 																		<a href='index.php?hal=editacuan&nodokacuan=$data[nodokacuan]' class='btn btn-sm btn-info' style='width:60px;'>Ubah</a>
 																		 <hr>
-																		<a href='index.php?hal=adendum&nodokacuan=$data[nodokacuan]' class='btn btn-sm btn-success' style='width:60px;padding-left:3px;'>Adendum</a> 
+																		<a href='index.php?hal=adendum&idacuan=$data[idacuan]' class='btn btn-sm btn-success' style='width:60px;padding-left:3px;'>Adendum</a> 
 																	</center>
 																</td>
 															</tr>

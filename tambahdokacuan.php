@@ -6,6 +6,8 @@ if (isset($_POST['submit']))
   $idacuan=lastidacuan()+1;
   $nodokacuan = $_POST['nodokacuan'];
   $tgl= $_POST['tgldokacuan'];
+  $tgldokacuand=substr($tgl, -4).'-'.substr($tgl, 0,2)."-".substr($tgl, 3,2);
+
   $tgldokacuan=substr($tgl,3,2).'/'.substr($tgl,0,2).'/'.substr($tgl,-4);
   // echo $tgldokacuan;
   $haldokacuan= $_POST['haldokacuan'];
@@ -43,8 +45,8 @@ if (isset($_POST['submit']))
 		  $ext=end(explode('.', $_FILES['fileacuan']['name']));
 			if (move_uploaded_file($_FILES["fileacuan"]["tmp_name"], $target_file)) {
 			  $namafile=$_FILES['fileacuan']['name'];
-			  $upload=mysql_query("INSERT INTO `upload` (`id`, `nama_asli`, `nama_file`, `path`, `nodokacuan`, `nobast`) VALUES ('', '$namafile', '$namabaru.$ext', '$target_dir', '$nodokacuan', '');");
-			    $query = "INSERT INTO `detaildokacuan` (`idacuan`, `nodokacuan`, `tgldokacuan`, `haldokacuan`, `pemegangdokacuan`, `ketdokacuan`, `idkategori`, `versi`) VALUES ('$idacuan', '$nodokacuan', '$tgldokacuan', '$haldokacuan', '$pemegangdokacuan', '$ketdokacuan', '$idkategori', '0')";
+			  $upload=mysql_query("INSERT INTO `upload` (`id`, `nama_asli`, `nama_file`, `path`, `idacuan`, `nobast`) VALUES ('', '$namafile', '$namabaru.$ext', '$target_dir', '$idacuan', '');");
+			    $query = "INSERT INTO `detaildokacuan` (`idacuan`, `nodokacuan`, `tgldokacuan`, `haldokacuan`, `pemegangdokacuan`, `ketdokacuan`, `idkategori`, `versi`, `tgldokacuand`) VALUES ('$idacuan', '$nodokacuan', '$tgldokacuan', '$haldokacuan', '$pemegangdokacuan', '$ketdokacuan', '$idkategori', '0','$tgldokacuand')";
 
 			    // echo "The file <a href='$target_dir$namabaru.$ext'>". basename( $_FILES["fileacuan"]["name"]). "</a> has been uploaded.";
 			} else {
@@ -55,7 +57,7 @@ if (isset($_POST['submit']))
 		}
 		else
 		{
-			$query = "INSERT INTO `detaildokacuan` (`idacuan`, `nodokacuan`, `tgldokacuan`, `haldokacuan`, `pemegangdokacuan`, `ketdokacuan`, `idkategori`, `versi`) VALUES ('$idacuan', '$nodokacuan', '$tgldokacuan', '$haldokacuan', '$pemegangdokacuan', '$ketdokacuan', '$idkategori', '0')";
+			$query = "INSERT INTO `detaildokacuan` (`idacuan`, `nodokacuan`, `tgldokacuan`, `haldokacuan`, `pemegangdokacuan`, `ketdokacuan`, `idkategori`, `versi`, `tgldokacuand`) VALUES ('$idacuan', '$nodokacuan', '$tgldokacuan', '$haldokacuan', '$pemegangdokacuan', '$ketdokacuan', '$idkategori', '0','$tgldokacuand')";
 		}
 	}
 	// echo $query."<--query nih<hr>";
@@ -208,12 +210,12 @@ if (isset($_POST['submit']))
 
 			                      <tr>
 			                        <td>Perihal</td>
-			                        <td><label class="input"><input type="text" name=haldokacuan required="required" /> </label></td> 
+			                        <td><label class="input"><input type="text" name=haldokacuan /> </label></td> 
 			                      </tr> 
 
 			                      <tr>
 			                        <td>Keterangan</td>
-			                        <td><label class="input"><input type="text" name=ketdokacuan required="required" /> </label></td> 
+			                        <td><label class="input"><input type="text" name=ketdokacuan /> </label></td> 
 			                      </tr>  
 			                      <tr>
 			                        <td>File Acuan</td>
@@ -231,9 +233,9 @@ if (isset($_POST['submit']))
 
 			                        <table class="table table-bordered table-striped" id=datatable >
 			                            <tr>
-			                              <td>Deskripsi</td>
-			                              <td class="text-center">Jenis Fasos Fasum</td>
-			                              <td>Luas</td>
+			                              <td><b>Deskripsi</b></td>
+			                              <td class="text-center"><b>Jenis Fasos Fasum</b></td>
+			                              <td><b>Luas / Jumlah</b></td>
 			                            </tr>
 
 			                            <tr>

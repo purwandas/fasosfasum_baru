@@ -19,12 +19,24 @@
     $target_file = $target_dir . "$namabaru.".$ext;
     // $jenisacuan=$_POST['jenisacuan'];
     $idkategori=$_POST['idkategori'];
+
+    $id=$_GET['nodokacuan'];
+
     $tgldokacuan= $_POST['tgldokacuan'];
-    $tgldokacuan=substr($tgldokacuan, 3,2).'/'.substr($tgldokacuan, 0,2).substr($tgldokacuan, -5);
+    $cekTgl=mysql_query("select tgldokacuan from detaildokacuan where nodokacuan='$id' and versi='0'");
+    $cekTgl=mysql_fetch_array($cekTgl);
+    if($cekTgl['tgldokacuan']!=$tgldokacuan)
+    {
+      $tgldokacuand=substr($tgldokacuan, -4).'-'.substr($tgldokacuan, 0,2)."-".substr($tgldokacuan, 3,2);
+      $tgldokacuan=substr($tgldokacuan, 3,2).'/'.substr($tgldokacuan, 0,2).substr($tgldokacuan, -5);
+    }else{
+      $tgldokacuand=substr($tgldokacuan,-4).'-'.substr($tgldokacuan, 3,2).'-'.substr($tgldokacuan, 0,2);
+    }
+    
     $haldokacuan= $_POST['haldokacuan'];
     $pemegangdokacuan= $_POST['pemegangdokacuan'];
     $ketdokacuan= $_POST['ketdokacuan'];
-    $id=$_GET['nodokacuan'];
+    $idacuan=$_POST['idacuan'];
 
     // $qKategoriAcuan=mysql_query("select * from dokumenacuan where jenisdokumen='$jenisacuan'");
     // $dKategoriAcuan=mysql_fetch_array($qKategoriAcuan);
@@ -34,21 +46,23 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
     if (move_uploaded_file($_FILES["fileacuan"]["tmp_name"], $target_file)) 
     {
       $namafile=$_FILES['fileacuan']['name'];
-      if($id!=''){
-        $dupload=mysql_query("delete from upload where nodokacuan='$id'");
+      if($idacuan!=''){
+        $dupload=mysql_query("delete from upload where idacuan='$idacuan'");
       }
-      $upload=mysql_query("INSERT INTO `upload` (`id`, `nama_asli`, `nama_file`, `path`, `nodokacuan`, `nobast`) VALUES ('', '$namafile', '$namabaru.$ext', '$target_dir', '$id', '');");
-      $query = "update detaildokacuan set  idkategori='$idkategori', tgldokacuan='$tgldokacuan', haldokacuan='$haldokacuan',pemegangdokacuan='$pemegangdokacuan',ketdokacuan='$ketdokacuan' where nodokacuan='$id'";
+      $upload=mysql_query("INSERT INTO `upload` (`id`, `nama_asli`, `nama_file`, `path`, `idacuan`, `nobast`) VALUES ('', '$namafile', '$namabaru.$ext', '$target_dir', '$idacuan', '');");
+      $query = "update detaildokacuan set  idkategori='$idkategori', tgldokacuan='$tgldokacuan', tgldokacuand='$tgldokacuand', haldokacuan='$haldokacuan',pemegangdokacuan='$pemegangdokacuan',ketdokacuan='$ketdokacuan' where idacuan='$idacuan'";
       // echo "The file <a href='$target_dir$namabaru.$ext'>". basename( $_FILES["fileacuan"]["name"]). "</a> has been uploaded.";
     } else {
       echo "$target_file- ";
       echo "Sorry, there was an error uploading your file.";
     }
 }else{
-  $query = "update detaildokacuan set  tgldokacuan='$tgldokacuan', haldokacuan='$haldokacuan',pemegangdokacuan='$pemegangdokacuan',ketdokacuan='$ketdokacuan', idkategori='$idkategori' where nodokacuan='$id'";
+  $query = "update detaildokacuan set  idkategori='$idkategori', tgldokacuan='$tgldokacuan', tgldokacuand='$tgldokacuand', haldokacuan='$haldokacuan',pemegangdokacuan='$pemegangdokacuan',ketdokacuan='$ketdokacuan' where idacuan='$idacuan'";
+  // $query = "update detaildokacuan set  tgldokacuan='$tgldokacuan', haldokacuan='$haldokacuan',pemegangdokacuan='$pemegangdokacuan',ketdokacuan='$ketdokacuan', idkategori='$idkategori' where nodokacuan='$id'";
 }
 //update data ke database
     
+    // echo "$query";
 
     if ($query=mysql_query($query)) {
       tracking("Ubah Dok. Acuan: $id");
@@ -150,13 +164,14 @@ if(isset($_GET['delete'])){
                include "koneksi.php";
                $id = $_GET['nodokacuan'];
 
-               $query = mysql_query("select idacuan, nodokacuan, idkategori, tgldokacuan, pemegangdokacuan, haldokacuan, ketdokacuan, max(versi) from detaildokacuan where nodokacuan='$id'") or die(mysql_error());
+               $query = mysql_query("select idacuan, nodokacuan, idkategori, tgldokacuan, pemegangdokacuan, haldokacuan, ketdokacuan from detaildokacuan where nodokacuan='$id' and versi='0'") or die(mysql_error());
 
                $data = mysql_fetch_array($query);
                ?>
 
                <form name="editdokumenacuan" action="" method="post" enctype="multipart/form-data">
                  <input type="hidden" name="id" value="<?php echo $id; ?>" />
+                 <input type="hidden" name="idacuan" value="<?php echo $data['idacuan'];?>">
                  <center>
                  <table>
 
@@ -206,7 +221,7 @@ if(isset($_GET['delete'])){
               <tr>
                 <td>Perihal</td>
                 <td>
-                <label class='input'><input type="text" name=haldokacuan required="required" value="<?=$data['haldokacuan'] ?>" ></label>
+                <label class='input'><input type="text" name=haldokacuan value="<?=$data['haldokacuan'] ?>" ></label>
                 <!-- <textarea name=haldokacuan rows=1 cols=30 required="required"/><?=$data['haldokacuan'] ?> </textarea> -->
                 </td> 
               </tr> 
@@ -215,7 +230,7 @@ if(isset($_GET['delete'])){
               <tr>
                 <td>Keterangan</td>
                 <td>
-                <label class='input'><input type="text" name=ketdokacuan required="required" value="<?=$data['ketdokacuan'] ?>" ></label>
+                <label class='input'><input type="text" name=ketdokacuan value="<?=$data['ketdokacuan'] ?>" ></label>
                 </td> 
               </tr>  
               <tr>
@@ -224,15 +239,15 @@ if(isset($_GET['delete'])){
                   <td>File Acuan</td>
                   <td align="right">
                     <?php 
-                    $qr="select nama_asli,nama_file,path from upload where nodokacuan='$data[nodokacuan]'";
+                    $qr="select nama_asli,nama_file,path from upload where idacuan='$data[idacuan]'";
                     $qp=mysql_query($qr);
                     while ($dq=mysql_fetch_array($qp)) {
                       echo"
-                      <a href='download.php?type=a&id=$data[nodokacuan]' target='_blank'>$dq[nama_asli]</a>
+                      <a href='download.php?type=a&id=$data[idacuan]' target='_blank'>$dq[nama_asli]</a><br>
                       ";
                     }
                     ?>
-                    <br>
+                    
                     <input type="file" name="fileacuan" class="btn btn-sm btn-default">
                   </td> 
                 </tr>  
@@ -295,7 +310,7 @@ if(isset($_GET['delete'])){
                         <tr>
                           <td class="center"><b>Deskripsi</b></td>
                           <td class="center"><b>Jenis Fasos Fasum</b></td>
-                          <td class="center"><b>Luas</b></td>
+                          <td class="center"><b>Luas / Jumlah</b></td>
                           <td class="center"><b>Act.</b></td>
                         </tr>
 

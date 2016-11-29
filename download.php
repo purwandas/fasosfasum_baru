@@ -5,7 +5,7 @@ if(isset($_GET['type'])&&isset($_GET['id'])){
 	$field=$_GET['type'];
 	$id=$_GET['id'];
 	if($field=='a'){
-		$field='nodokacuan';
+		$field='idacuan';
 	}else{
 		$field='nobast';
 	}
