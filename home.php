@@ -136,7 +136,7 @@
 <article class="col-sm-12 col-md-12 col-lg-6" style="z-index:1">
 
   <!-- Widget ID (each widget will need unique ID)-->
-  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" >
+  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-17" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" >
     <!-- widget options:
     usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
@@ -184,7 +184,7 @@
 <article class="col-sm-12 col-md-12 col-lg-12">
 
   <!-- Widget ID (each widget will need unique ID)-->
-  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-2" data-widget-editbutton="false"data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" >
+  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-16" data-widget-editbutton="false"data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" >
     
     <header>
       <span class="widget-icon"> <i class="fa fa-bar-chart-o"></i> </span>

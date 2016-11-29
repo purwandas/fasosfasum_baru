@@ -1,4 +1,6 @@
-
+<?php
+  $wilayah=$_SESSION['SESS_WILAYAH'];
+?>
 <script>
    var idrow = 2;
 
@@ -19,7 +21,7 @@
      td2.innerHTML="<select name='wilayah[]' class='btn btn-sm btn-default'>            <?php
     include "koneksi.php";
      // query untuk menampilkanwilayah
-    $query = "SELECT * FROM wilayah";
+    $query = "SELECT * FROM wilayah where wilayah='$wilayah'";
     $hasil = mysql_query($query);
     while ($data = mysql_fetch_array($hasil))
     {
@@ -30,7 +32,7 @@
     td3.innerHTML="<select name='kecamatan[]' class='btn btn-sm btn-default'>           <?php
      include "koneksi.php";
      // query untuk menampilkan kecamatan
-     $query = "SELECT * FROM kecamatan";
+     $query = "SELECT * FROM kecamatan where wilayah='$wilayah'";
      $hasil = mysql_query($query);
      while ($data = mysql_fetch_array($hasil))
      {
@@ -41,7 +43,7 @@
     td4.innerHTML="<select name='kelurahan[]' class='btn btn-sm btn-default'>            <?php
     include "koneksi.php";
      // query untuk menampilkankelurahan
-    $query = "SELECT * FROM kelurahan";
+    $query = "SELECT * FROM kelurahan where wilayah='$wilayah'";
     $hasil = mysql_query($query);
     while ($data = mysql_fetch_array($hasil))
     {
@@ -147,9 +149,9 @@
                 <td>:</td>
                 <td><select name='nodokacuan' class="select2">
                  <?php
-                 include "koneksi.php";
+                 // include "koneksi.php";
                  // query untuk menampilkan wilayah
-                 $query = "SELECT * FROM detaildokacuan";
+                 $query = "SELECT * FROM detaildokacuan where versi='0'";
                  $hasil = mysql_query($query);
                  while ($data = mysql_fetch_array($hasil))
                  {
@@ -224,8 +226,9 @@
                      <td><select name='wilayah[]' class='btn btn-sm btn-default'>
 
                      <?php
+                     
                    // query untuk menampilkan wilayah
-                     $query = "SELECT * FROM wilayah";
+                     $query = "SELECT * FROM wilayah where wilayah='$wilayah'";
                      $hasil = mysql_query($query);
                      while ($data = mysql_fetch_array($hasil))
                      {
@@ -238,7 +241,7 @@
 
                        <?php
                  // query untuk menampilkan kecamatan
-                       $query = "SELECT * FROM kecamatan";
+                       $query = "SELECT * FROM kecamatan where wilayah='$wilayah'";
                        $hasil = mysql_query($query);
                        while ($data = mysql_fetch_array($hasil))
                        {
@@ -251,7 +254,7 @@
 
                      <?php
                  // query untuk menampilkan kelurahan
-                     $query = "SELECT * FROM kelurahan";
+                     $query = "SELECT * FROM kelurahan where wilayah='$wilayah'";
                      $hasil = mysql_query($query);
                      while ($data = mysql_fetch_array($hasil))
                      {

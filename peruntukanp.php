@@ -11,6 +11,7 @@
 			return $date;
 		}
 		include "koneksi.php";
+		include"tracking.php";
 		$nobast=$_POST['nobast'];
 		$cariTglBast=mysql_query("select tglbast from bast where nobast='$nobast'");
 		$cariTglBast=mysql_fetch_array($cariTglBast);
@@ -39,7 +40,7 @@
 				$idperuntukan2=$idperuntukan['idperuntukan']+1;
 				$queryInsertPeruntukan="
 				INSERT INTO `peruntukan` 
-				(`idperuntukan`, `deskripsi`, `jenis`,
+				(`idperuntukan`, `deskripsi`, 
 				 `luas`, `nokrk`, `noimb`,
 				 `noblokplan`, `sertifikasi`, `pemilik`,
 				 `jenissertifikat`, `nosertifikat`, `masaberlaku`,
@@ -50,7 +51,7 @@
 				 `jenisfasos`, `statuslaporankeuangan`, `statusrecon`,
 				 `nodokacuan`, `idkewajiban`) 
 				 VALUES 
-				 ('$idperuntukan2', '{$value}', '{$_POST['jenis'][$key]}',
+				 ('$idperuntukan2', '{$value}', 
 				 '{$_POST['luas'][$key]}', '{$_POST['nokrk'][$key]}', '{$_POST['noimb'][$key]}',
 				 '{$_POST['noblokplan'][$key]}', '-', '{$_POST['pemilik'][$key]}',
 				 '-', '{$_POST['nosertifikat'][$key]}', '{$_POST['masaberlaku'][$key]}',
@@ -76,9 +77,18 @@
 				$sisaKewajiban=$_POST['kewajiban'][$key]-$_POST['luas'][$key];
 				$queryUpdateKewajiban="Update kewajiban set pelunasan = '{$_POST['luas'][$key]}', luas='$sisaKewajiban' where idkewajiban='{$_POST['idkewajiban'][$key]}'";
 				// echo "$queryInsertPeruntukan<br>$queryInsertAkun<br>$queryUpdateKewajiban<hr>";
-				$queryInsertPeruntukan=mysql_query($queryInsertPeruntukan);
-				$queryInsertAkun=mysql_query($queryInsertAkun);
-				$queryUpdateKewajiban=mysql_query($queryUpdateKewajiban);
+				if(mysql_query($queryInsertPeruntukan))
+				{
+					tracking("Tambah Peruntukan: $idperuntukan2");
+				}
+				if(mysql_query($queryInsertAkun))
+				{
+					tracking("Tambah Akun: $idperuntukan2");
+				}
+				if(mysql_query($queryUpdateKewajiban))
+				{
+					tracking("Update Kewajiban: {$_POST['idkewajiban'][$key]} ($idperuntukan2)");
+				}
 			}
 		}
 		//update total total di akun yang bast nya ini, per id aset
@@ -102,7 +112,7 @@
 				$updateAkunAset=mysql_query($updateAkunAset);
 			}
 		}
-		header('Location: index.php?hal=tambahbast');
+		header('Location: index.php?hal=checklist');
 	}
 ?>
 

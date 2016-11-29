@@ -206,7 +206,7 @@
 <article class="col-sm-12 col-md-12 col-lg-2 filter" id="filter">
 
 	<!-- Widget ID (each widget will need unique ID)-->
-	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-14" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 
 		<!-- widget div-->
 		<div class="smart-form" style="border-style: solid;border-top-color: #CCC !important;">
@@ -550,7 +550,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
 <article class="col-sm-12 col-md-12 col-lg-10 data" id="data">
 
 	<!-- Widget ID (each widget will need unique ID)-->
-	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-2" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-15" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 
 		<!-- widget div-->
 		<div class="smart-form" style="border-style: solid;border-top-color: #CCC !important;">

@@ -1,6 +1,7 @@
 <?php
 if (isset($_POST['submit'])){
   include("config_dir.php");
+  include"tracking.php";
   if(mysql_num_rows(mysql_query("select * from upload"))==0){
     $namabaru=$namadefault;
   }else{
@@ -14,6 +15,8 @@ if (isset($_POST['submit'])){
   $target_file = $target_dir . "$namabaru.".$ext;
   $nobast = $_POST['nobast'];
   $tglbast= $_POST['tglbast'];
+  $tglbastd=substr($tglbast, -4).'-'.substr($tglbast, 0,2)."-".substr($tglbast, 3,2);
+  $tglbast=substr($tglbast,3,2).'/'.substr($tglbast,0,2).'/'.substr($tglbast,-4);
   $pengembangbast= $_POST['pengembangbast'];
   $perihalbast= $_POST['perihalbast'];
   $keterangan= $_POST['keterangan'];
@@ -29,10 +32,10 @@ if (isset($_POST['submit'])){
   if ($check2 != 0)
   {
     ?>
-    <!-- <script type="text/javascript">
+    <script type="text/javascript">
      alert("BAST No:  <?php echo $nobast; ?> has already registered.");
      history.back();
-   </script> -->
+   </script>
    <?php
 
   }
@@ -42,8 +45,10 @@ if (isset($_POST['submit'])){
     {
       if (move_uploaded_file($_FILES["fileacuan"]["tmp_name"], $target_file)) {
         $namafile=$_FILES['fileacuan']['name'];
-        $upload=mysql_query("INSERT INTO `upload` (`id`, `nama_asli`, `nama_file`, `path`, `nodokacuan`, `nobast`) VALUES ('', '$namafile', '$namabaru.$ext', '$target_dir', '', '$nobast');");
-        $query = mysql_query("insert into bast values('$nobast', '$tglbast', '$perihalbast', '$pengembangbast', '$keterangan', '$nodokacuan', '$kodearsip')") or die(mysql_error());
+        $upload=mysql_query("INSERT INTO `upload` (`id`, `nama_asli`, `nama_file`, `path`, `idacuan`, `nobast`) VALUES ('', '$namafile', '$namabaru.$ext', '$target_dir', '', '$nobast');");
+
+        $query ="INSERT INTO `bast` (`nobast`, `tglbast`, `tglbastd`, `perihalbast`, `pengembangbast`, `keterangan`, `nodokacuan`, `checklistwalikota`) VALUES ('$nobast', '$tglbast', '$tglbastd', '$perihalbast', '$pengembangbast', '$keterangan', '$nodokacuan', '1')";
+        // insert into bast values('$nobast', '$tglbast', '$perihalbast', '$pengembangbast', '$keterangan', '$nodokacuan', '$kodearsip')";
       // echo "The file <a href='$target_dir$namabaru.$ext'>". basename( $_FILES["fileacuan"]["name"]). "</a> has been uploaded.";
       } 
       else 
@@ -54,10 +59,16 @@ if (isset($_POST['submit'])){
     }
     else
     {
-      $query = mysql_query("insert into bast values('$nobast', '$tglbast', '$perihalbast', '$pengembangbast', '$keterangan', '$nodokacuan', '$kodearsip')") or die(mysql_error());
+      $query ="INSERT INTO `bast` (`nobast`, `tglbast`, `tglbastd`, `perihalbast`, `pengembangbast`, `keterangan`, `nodokacuan`, `checklistwalikota`) VALUES ('$nobast', '$tglbast', '$tglbastd', '$perihalbast', '$pengembangbast', '$keterangan', '$nodokacuan', '1')";
 
     }
   
+    // echo "$query <-- queryBAST<br>";
+    if($query=mysql_query($query))
+    {
+      tracking("Tambah BAST: $nobast");
+    }
+
    $nobastaset=$nobast;
    
     //menyimpan data ke tabel dataaset
@@ -66,15 +77,12 @@ if (isset($_POST['submit'])){
       $sql = "insert into dataaset(alamataset,wilayah,kecamatan,kelurahan,nobastaset,latitude,longitude)   
      values ('{$alamataset}','{$_POST['wilayah'][$key]}','{$_POST['kecamatan'][$key]}','{$_POST['kelurahan'][$key]}','{$_POST['nobast']}','{$_POST['latitude'][$key]}','{$_POST['longitude'][$key]}')";  
      // echo "$sql";
-     mysql_query($sql);  
+     if($sql=mysql_query($sql))
+     {
+      tracking("Tambah Lokasi Aset: $alamataset ($nobast)");
+     }
    } 
  }
-
- //update checklist
-  $queryCheckList="update checklistdetail set nobast='$nobast' where nobast='NOBAST-'";
-  mysql_query($queryCheckList);
-
- echo 'Data BAST telah disimpan';  
  
 }
 }
@@ -124,8 +132,8 @@ if (isset($_POST['submit'])){
                       <td><b>Peruntukan</b></td>
                       <td><b>Jenis Fasos</b></td>
                       <td><b>Lokasi Aset</b></td>
-                      <td><b>Jenis</b></td>
-                      <td><b>Luas Kwjbn (M<sup>2</sup>)</b></td>
+                      <!-- <td><b>Jenis</b></td> -->
+                      <td><b>Luas / Jumlah</b></td>
                       <!-- <td><b>Sertifikasi</b></td> -->
                       <td><b>Pemilik</b></td>
                       <td><b>No. KRK</b></td>
@@ -147,7 +155,7 @@ if (isset($_POST['submit'])){
                       <td><b>SKPD</b></td>
                       <td><b>Sensus Fasos</b></td>
                       <td><b>Kategori Aset</b></td>
-                      <td><b>Volume</b></td>
+                      <td><b>Volume / Jumlah</b></td>
                       <td><b>Satuan</b></td>
                       <td><b>Nilai Pengali (Rp)</b></td>
                       <td><b>Penilaian PerGub 132 (Rp)</b></td>
@@ -190,13 +198,13 @@ if (isset($_POST['submit'])){
                               <select name='idaset[]' class='btn btn-sm btn-default'>
                               ";
                                 
-                                  $queryCB="select nobast from bast where nodokacuan='$d3[nodokacuan]'";
-                                  $qCariBast=mysql_query($queryCB);
+                                  // $queryCB="select nobast from bast where nodokacuan='$d3[nodokacuan]'";
+                                  // $qCariBast=mysql_query($queryCB);
                                   echo "<option value=''>-pilih-</option>";
 
-                                  while ($dCariBast=mysql_fetch_array($qCariBast)) 
-                                  {
-                                    $query=mysql_query("select idaset, alamataset, kelurahan from dataaset where nobastaset='$dCariBast[nobast]'");
+                                  // while ($dCariBast=mysql_fetch_array($qCariBast)) 
+                                  // {
+                                    $query=mysql_query("select idaset, alamataset, kelurahan from dataaset where nobastaset='$nobast'");
                                     while ($dset=mysql_fetch_array($query)) 
                                     {
                                       echo"
@@ -205,19 +213,19 @@ if (isset($_POST['submit'])){
                                       </option>
                                       ";
                                     }
-                                  }
+                                  // }
                                 
-                                
+                            //< td>
+                            //   <select name='jenis[]' class='btn btn-sm btn-default'>
+                            //     <option value='Tanah'>Tanah</option>
+                            //     <option value='Non-Tanah'>Non-Tanah</option>
+                            //   </select>
+                            // </td>    
                               
                               echo"
                               </select>
                             </td>
-                            <td>
-                              <select name='jenis[]' class='btn btn-sm btn-default'>
-                                <option value='Tanah'>Tanah</option>
-                                <option value='Non-Tanah'>Non-Tanah</option>
-                              </select>
-                            </td>
+                            
                             <td>
                               <input type='text' name='luas[]' value='$d3[luas]' class='luas'>
                               <input type='hidden' name='kewajiban[]' value='$d3[luas]'>

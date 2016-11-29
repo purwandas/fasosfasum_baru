@@ -31,15 +31,26 @@
 						      <div id="content" class="box">
 						        
 						          <?php
-						          include("koneksi.php");
+						          // include("koneksi.php");
 						          $queryperuntukan="select peruntukan.idperuntukan, peruntukan.deskripsi, peruntukan.jenis, peruntukan.luas, peruntukan.sertifikasi, peruntukan.pemilik, peruntukan.jenissertifikat, peruntukan.masaberlaku, peruntukan.keterangan as ket_peruntukan, peruntukan.statuslaporankeuangan, peruntukan.statusrecon, peruntukan.statussertifikat, peruntukan.nosertifikat, peruntukan.tglsertifikat, peruntukan.luassertifikat, peruntukan.statusplang, peruntukan.statuspenggunaan, peruntukan.nosk, peruntukan.tglsk, peruntukan.skpd, peruntukan.sensusfasos, peruntukan.jenisfasos, peruntukan.nodokacuan, peruntukan.nobast, peruntukan.idaset from peruntukan ";
 						          $queryperuntukan=substr($queryperuntukan, 0, -16)." ,
 						          bast.perihalbast, bast.tglbast, bast.pengembangbast, bast.keterangan as ket_bast, bast.kodearsip,
-						          dokumenacuan.jenisdokumen,
 						          dataaset.alamataset, dataaset.wilayah, dataaset.kecamatan, dataaset.kelurahan,
-						          akun.kategoriaset
-						          from peruntukan
-						          inner join akun on peruntukan.idperuntukan=akun.idperuntukan inner join detaildokacuan on peruntukan.nodokacuan=detaildokacuan.nodokacuan inner join dokumenacuan on dokumenacuan.idkategori=detaildokacuan.idkategori inner join bast on peruntukan.nobast=bast.nobast inner join dataaset on dataaset.nobastaset=bast.nobast";
+						          akun.kategoriaset,
+						          dokumenacuan.jenisdokumen
+						          from 
+									bast 
+									inner JOIN dataaset on dataaset.nobastaset=bast.nobast 
+									inner JOIN peruntukan on bast.nobast=peruntukan.nobast
+									INNER JOIN akun ON akun.idperuntukan=peruntukan.idperuntukan
+									inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan
+									inner join dokumenacuan on dokumenacuan.idkategori=detaildokacuan.idkategori
+						          ";
+						          // dokumenacuan.jenisdokumen, 
+						   //        inner JOIN detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan 
+									// INNER JOIN dokumenacuan on dokumenacuan.idkategori=detaildokacuan.idkategori
+						          // from peruntukan
+						          // inner join akun on peruntukan.idperuntukan=akun.idperuntukan inner join detaildokacuan on peruntukan.nodokacuan=detaildokacuan.nodokacuan inner join dokumenacuan on dokumenacuan.idkategori=detaildokacuan.idkategori inner join bast on peruntukan.nobast=bast.nobast inner join dataaset on dataaset.nobastaset=bast.nobast
 						          // echo "$queryperuntukan";
 						          
 if(isset($_GET['deskripsi'])){
@@ -77,7 +88,7 @@ if($_GET['tglbast']!=''){$tglbast="bast.tglbast like '%$_GET[tglbast]%'";if($cek
 if($_GET['pengembangbast']!=''){$pengembangbast="bast.pengembangbast like '%$_GET[pengembangbast]%'";if($cek!='0'){$pengembangbast=' and '.$pengembangbast;}$cek='1';}else{$pengembangbast='';}
 if($_GET['keteranganbast']!=''){$keteranganbast="bast.keterangan like '%$_GET[keteranganbast]%'";if($cek!='0'){$keteranganbast=' and '.$keteranganbast;}$cek='1';}else{$keteranganbast='';}
 if($_GET['kodearsip']!=''){$kodearsip="bast.kodearsip like '%$_GET[kodearsip]%'";if($cek!='0'){$kodearsip=' and '.$kodearsip;}$cek='1';}else{$kodearsip='';}
-if($_GET['jenisdokumen']!=''){$jenisdokumen="dokumenacuan.jenisdokumen like '%$_GET[jenisdokumen]%'";if($cek!='0'){$jenisdokumen=' and '.$jenisdokumen;}$cek='1';}else{$jenisdokumen='';}
+if($_GET['jenisdokumen']!=''){$jenisdokumen="and dokumenacuan.jenisdokumen like '%$_GET[jenisdokumen]%'";if($cek!='0'){$jenisdokumen=' and '.$jenisdokumen;}$cek='1';}else{$jenisdokumen='';}
 if($_GET['alamataset']!=''){$alamataset="dataaset.alamataset like '%$_GET[alamataset]%'";if($cek!='0'){$alamataset=' and '.$alamataset;}$cek='1';}else{$alamataset='';}
 if($_GET['wilayah']!=''){$wilayah="dataaset.wilayah like '%$_GET[wilayah]%'";if($cek!='0'){$wilayah=' and '.$wilayah;}$cek='1';}else{$wilayah='';}
 if($_GET['kecamatan']!=''){$kecamatan="dataaset.kecamatan like '%$_GET[kecamatan]%'";if($cek!='0'){$kecamatan=' and '.$kecamatan;}$cek='1';}else{$kecamatan='';}
@@ -85,13 +96,17 @@ if($_GET['kelurahan']!=''){$kelurahan="dataaset.kelurahan like '%$_GET[kelurahan
 if($_GET['kategoriaset']!=''){$kategoriaset="akun.kategoriaset like '%$_GET[kategoriaset]%'";if($cek!='0'){$kategoriaset=' and '.$kategoriaset;}$cek='1';}else{$kategoriaset='';}
 
 
-	$cekIsi="$deskripsi $jenis $luas $sertifikasi $pemilik $jenissertifikat $masaberlaku $keterangan $statuslaporankeuangan $statusrecon $statussertifikat $nosertifikat $tglsertifikat $luassertifikat $statusplang $statuspenggunaan $nosk $tglsk $skpd $sensusfasos $jenisfasos $nodokacuan $nobast $perihalbast $tglbast $pengembangbast $keteranganbast $jenisdokumen $alamataset $wilayah $kecamatan $kelurahan $kategoriaset";
+	$cekIsi="$deskripsi $jenis $luas $sertifikasi $pemilik $jenissertifikat $masaberlaku $keterangan $statuslaporankeuangan $statusrecon $statussertifikat $nosertifikat $tglsertifikat $luassertifikat $statusplang $statuspenggunaan $nosk $tglsk $skpd $sensusfasos $jenisfasos $nodokacuan $nobast $perihalbast $tglbast $pengembangbast $keteranganbast $alamataset $wilayah $kecamatan $kelurahan $kategoriaset";
+
+
 	// $idaset 
 	// echo $cekIsi."llol";
 	
 	if(trim($cekIsi)!='')//23 sps
 	{
-	  $queryperuntukan.=" where $cekIsi ";
+	  $queryperuntukan.=" where $cekIsi and detaildokacuan.versi='0'";
+	}else{
+	  $queryperuntukan.=" where detaildokacuan.versi='0'";
 	}
 	// echo "$queryperuntukan";
 }
@@ -116,12 +131,14 @@ if($_GET['kategoriaset']!=''){$kategoriaset="akun.kategoriaset like '%$_GET[kate
 						            $pth="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]$qr";
 						            $cp=1;
 						          }
+									// $queryperuntukan.=" GROUP BY detaildokacuan.nodokacuan ";
+
 						          $limit=" LIMIT $offset, $reclimit";
 						          $totalData=mysql_num_rows(mysql_query($queryperuntukan));
 						          $page=ceil(mysql_num_rows(mysql_query($queryperuntukan))/$reclimit);
 						          $qpaging=$queryperuntukan;
 						          $_SESSION['query']=$queryperuntukan;
-						          $queryperuntukan.=$limit;
+						          // $queryperuntukan.=$limit;
 						          // echo $queryperuntukan.'lal';
 
 						          $no=$offset+1;
@@ -222,8 +239,10 @@ if($_GET['kategoriaset']!=''){$kategoriaset="akun.kategoriaset like '%$_GET[kate
 						            </tr>
 
 						            <?php
+						            // echo $queryperuntukan." <-- peruntukan";
 						            $queryperuntukan=mysql_query($queryperuntukan);
 						            while ($dataperuntukan=mysql_fetch_array($queryperuntukan)) {
+
 						              echo "
 						              <tr>
 						                <td>$no</td>

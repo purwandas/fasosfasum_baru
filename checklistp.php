@@ -19,11 +19,11 @@
         	}
         }
 
-        if($check=="success")
-        {
-	        header("Location:index.php?hal=tambahbast");
-	    }else{
-	        header("Location:index.php?hal=checklist");
-	    }
+                if($check=="success")
+                {
+                        header("Location:index.php?hal=tambahbast");
+        	}else{
+        	        header("Location:index.php?hal=checklist&e=1");
+        	}
 	}
 ?>

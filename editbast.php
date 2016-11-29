@@ -30,21 +30,22 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
       if($id!=''){
         $dupload=mysql_query("delete from upload where nobast='$id'");
       }
-      $upload=mysql_query("INSERT INTO `upload` (`id`, `nama_asli`, `nama_file`, `path`, `nodokacuan`, `nobast`) VALUES ('', '$namafile', '$namabaru.$ext', '$target_dir', '', '$id');");
-      $query = mysql_query("update bast set  tglbast='$tglbast', perihalbast='$perihalbast',pengembangbast='$pengembangbast',keterangan='$keterangan',kodearsip='$kodearsip',nodokacuan='$nodokacuan' where nobast='$id'") or die(mysql_error());
-      echo "The file <a href='$target_dir$namabaru.$ext'>". basename( $_FILES["fileacuan"]["name"]). "</a> has been uploaded.";
+      $upload=mysql_query("INSERT INTO `upload` (`id`, `nama_asli`, `nama_file`, `path`, `idacuan`, `nobast`) VALUES ('', '$namafile', '$namabaru.$ext', '$target_dir', '', '$id');");
+      $query ="update bast set  tglbast='$tglbast', perihalbast='$perihalbast',pengembangbast='$pengembangbast',keterangan='$keterangan',nodokacuan='$nodokacuan' where nobast='$id'";
+      // echo "The file <a href='$target_dir$namabaru.$ext'>". basename( $_FILES["fileacuan"]["name"]). "</a> has been uploaded.";
     } else {
       echo "$target_file";
       echo "Sorry, there was an error uploading your file.";
     }
 }else{
-      $query = mysql_query("update bast set  tglbast='$tglbast', perihalbast='$perihalbast',pengembangbast='$pengembangbast',keterangan='$keterangan',kodearsip='$kodearsip',nodokacuan='$nodokacuan' where nobast='$id'") or die(mysql_error());
+      $query ="update bast set  tglbast='$tglbast', perihalbast='$perihalbast',pengembangbast='$pengembangbast',keterangan='$keterangan',nodokacuan='$nodokacuan' where nobast='$id'";
 }
 //update data ke database
 
-    if ($query) {
-
-     echo 'simpan perbahan data bast berhasil...........';
+    if ($query=mysql_query($query)) {
+    	include 'tracking.php';
+    	tracking("Ubah BAST: $id");
+     // echo 'simpan perbahan data bast berhasil...........';
 
    }
  }
@@ -57,10 +58,10 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
  <article class="col-sm-12 col-md-12 col-lg-6">
 
 	<!-- Widget ID (each widget will need unique ID)-->
-	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-20" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 	<header>
 		<span class="widget-icon"> <i class="fa fa-file-text-o"></i></span>
-		<h6> &nbsp; Ubah BAST</h6>
+		<h2> Ubah BAST</h2>
 	</header>
 
 		<!-- widget div-->
@@ -130,26 +131,39 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
 					              </tr>  
 					              <tr>
 					                <td>No.Dokumen Acuan </td>
-					                <td><label class="input"><input type="text" name="nodokacuan" maxlength="40" required="required" value="<?php echo $data['nodokacuan']; ?>"/></label></td>
+					                <td><select name='nodokacuan' class="select2">
+						                 <?php
+						                 	echo"
+					                			<option value='$data[nodokacuan]'>
+					                			$data[nodokacuan]
+					                			</option>
+					                		";
+						                 $queryAcuan = "SELECT * FROM detaildokacuan where versi='0'";
+						                 $hasilAcuan = mysql_query($queryAcuan);
+						                 while ($dataAcuan = mysql_fetch_array($hasilAcuan))
+						                 {
+						                  echo "<option value='".$dataAcuan['nodokacuan']."'>".$dataAcuan['nodokacuan']."</option>";
+						                }
+						                ?>
+						              </select>
+						            </td>
 					              </tr>
 
-					              <tr>
-					                <td>Kode Arisp </td>
-					                <td><label class="input"><input type="text" name="kodearsip" maxlength="40" required="required" value="<?php echo $data['kodearsip']; ?>"/></label></td>
-					              </tr>
+					              
 					              <tr>
 					                <td>File Acuan </td>
 					                <td>
 					                 <?php 
 					                 $qr="select nama_asli,nama_file,path from upload where nobast='$data[nobast]'";
+					                 // echo "$qr";
 					                 $qp=mysql_query($qr);
 					                 while ($dq=mysql_fetch_array($qp)) {
 					                  echo"
-					                  <a href='download.php?type=b&id=$data[nobast]'>$dq[nama_asli]</a>
+					                  <a target='_blank' href='download.php?type=b&id=$data[nobast]'>$dq[nama_asli]</a>
+					                  <br>
 					                  ";
 					                }
 					                ?>
-					                <br>
 					                <input type="file" name="fileacuan" class="btn btn-sm btn-default">
 					              </td>
 					            </tr>

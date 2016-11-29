@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Export PDF</title>
+  <title>PDF Checklist</title>
   <link rel='stylesheet' type='text/css' media='screen' href='css/bootstrap.min.css'>
     <!-- FAVICONS -->
     <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
@@ -76,10 +76,11 @@ tr { page-break-inside: avoid }
       <br>
     </div>
     <div class='col-md-12'>
-      <table class='table table-bordered table-hover'>
+      <table class='table table-bordered'>
         <tr>
           <td><b>No.</b></td>
           <td><b>Nama Dokumen</b></td>
+          <td><b>Keterangan</b></td>
           <td><b>Checklist</b></td>
         </tr>
         <?php
@@ -88,7 +89,7 @@ tr { page-break-inside: avoid }
           {
             echo"
               <tr>
-                <td colspan=3> 
+                <td colspan=4> 
                   <b>$dataGroupCheckList[kodegroup]. $dataGroupCheckList[deskripsi]</b>
                 </td>
               </tr>
@@ -102,7 +103,8 @@ tr { page-break-inside: avoid }
               <tr>
                 <td align='right'>$no</td>
                 <td>$dataCheckList[ket]</td>
-                <td>
+                <td align='center' valign='middle'>$dataCheckList[walikota]</td>
+                <td align='center' valign='middle'>
                   <center><img src='/img/check.png' height='15px'></center>
                 </td>
               </tr>

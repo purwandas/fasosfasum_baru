@@ -188,6 +188,7 @@ $(document).ready(function() {
               <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
                       <thead>                     
                         <tr>
+                          <th>No.</th>
                           <th >No. BAST</th>
                           <th >Tanggal BAST</th>
                           <th >Perihal BAST</th>
@@ -200,12 +201,15 @@ $(document).ready(function() {
                       </thead>
                       <tbody>
                         <?php
-                          $query="select * from bast";
+                          $query="select * from bast order by idbast desc";
                           $query=mysql_query($query);
+                          $no=0;
                           while ($data=mysql_fetch_array($query)) 
                           {
+                            $no++;
                             echo "
                               <tr>
+                                <td>$no</td>
                                 <td>$data[nobast]</td>
                                 <td>$data[tglbast]</td>
                                 <td>$data[perihalbast]</td>
@@ -214,7 +218,21 @@ $(document).ready(function() {
                                 <td><a href='index.php?hal=bastbysippt&id=$data[nodokacuan]'>$data[nodokacuan]</a></td>
                                 <td>$data[kodearsip]</td>
                                 <td>
-                                  <a href='index.php?hal=viewdetailbast&id=$data[nobast]'><img alt='Lihat Detil' src='img/viewdetail.gif' border='0'></a>
+                                  <a href='index.php?hal=editbast&id=$data[nobast]' target='_blank'>Ubah</a>
+                                  <br>
+                                  ";
+                                  if($data['checklistwalikota']=='1')
+                                  {
+                                    echo "
+                                      <a href='index.php'>Print Checklist</a>
+                                      <a href='index.php'>Upload Checklist</a>
+                                    ";
+                                  }else{
+                                    echo"
+                                      <a href='index.php'>Buat Checklist</a>
+                                    ";
+                                  }
+                                echo"
                                 </td>
                               </tr>
                             ";
