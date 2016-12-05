@@ -45,7 +45,12 @@
 					<div class="row">
 						<section class="col col-sm-12 col-md-12 col-lg-12 table-responsive">
 						<?php
-							$query="select idacuan, nodokacuan, tgldokacuan, haldokacuan, pemegangdokacuan, ketdokacuan, versi, jenisdokumen from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ";
+							$query="select idacuan, nodokacuan, tgldokacuan, haldokacuan, pemegangdokacuan, ketdokacuan, versi, jenisdokumen from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori 
+								INNER JOIN 
+								(SELECT nodokacuan as noacuan, max(versi) as versidok FROM detaildokacuan 
+								GROUP BY nodokacuan
+								ORDER BY idacuan DESC) b on detaildokacuan.nodokacuan=b.noacuan and detaildokacuan.versi=b.versidok
+								";
 							if (isset($_POST)) 
 							{
 								$cek=0;
@@ -109,7 +114,7 @@
 								}else{
 									$where="";
 								}
-								$query.=" $where $nodokacuan $tgldokacuan $perihal $pemegangdokacuan $keterangan $kategori where versi='0' group by nodokacuan ";
+								$query.=" $where $nodokacuan $tgldokacuan $perihal $pemegangdokacuan $keterangan $kategori group by nodokacuan ";
 							}
 							// echo mysql_num_rows(mysql_query($query))."<--rows<br>$query";
 						?>			
@@ -180,54 +185,65 @@
 													<th>Pemegang Acuan</th>
 													<th>Keterangan</th>
 													<th>Kategori</th>
+													<th>File Acuan</th>
 													<th class="text-center">Act.</th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr>
-													<th class="text-center">
+													<td class="text-center">
 														<i class="fa fa-lg fa-fw fa-search"></i>
-													</th>
-													<th>
+													</td>
+													<td>
 														<label class="input">
 															<input type="text" <?php echo $nodokacuanv; ?> name="nodokacuan" onchange="submit()">
 														</label>
-													</th>
-													<th>
+													</td>
+													<td>
 														<label class="input">
 															<input type="text" <?php echo $tgldokacuanv; ?> name="tgldokacuan" onchange="submit()" id="tgldokacuan">
 														</label>
-													</th>
-													<th>
+													</td>
+													<td>
 														<label class="input">
 															<input type="text" <?php echo $perihalv; ?> name="perihal" onchange="submit()">
 														</label>
-													</th>
-													<th>
+													</td>
+													<td>
 														<label class="input">
 															<input type="text" <?php echo $pemegangdokacuanv; ?> name="pemegangdokacuan" onchange="submit()">
 														</label>
-													</th>
-													<th>
+													</td>
+													<td>
 														<label class="input">
 															<input type="text" <?php echo $keteranganv; ?> name="keterangan" onchange="submit()">
 														</label>
-													</th>
-													<th>
+													</td>
+													<td>
 														<label class="input">
 															<input type="text" <?php echo $kategoriv; ?> name="kategori" onchange="submit()">
 														</label>
-													</th>
-													<th class="text-center">
+													</td>
+													<td></td>
+													<td class="text-center">
 														<i class="fa fa-lg fa-fw fa-search"></i>
-													</th>
+													</td>
 												</tr>
 												<?php
 													$no=($offset);
-													echo "$query <- query";
+													// echo "$query <- query";
 													$query=mysql_query($query);
+													$file='';
 													while ($data=mysql_fetch_array($query)) 
 													{
+														$sfile="select nama_asli from upload where idacuan='$data[idacuan]'";
+														$selectFile=mysql_query($sfile);
+														$selectFile=mysql_fetch_array($selectFile);
+														if(isset($selectFile['nama_asli']) and $selectFile['nama_asli']!=''){
+															$file="<a href='download.php?type=a&id=$data[idacuan]' target='_blank'>$selectFile[nama_asli]</a>";
+														}else{
+															$file="-";
+														}
 														$no++;
 														echo "
 															<tr class='rowdata'>
@@ -238,6 +254,9 @@
 																<td>$data[pemegangdokacuan]</td>
 																<td>$data[ketdokacuan]</td>
 																<td>$data[jenisdokumen]</td>
+																<td>
+																	$file
+																</td>
 																<td valign='middle'>
 																	<center>
 																		<a href='index.php?hal=editacuan&nodokacuan=$data[nodokacuan]' class='btn btn-sm btn-info' style='width:60px;'>Ubah</a>

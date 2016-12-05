@@ -1,154 +1,3 @@
-<?php
-  include"tracking.php";
-
-  //simpan data SIPPT
-  if (isset($_POST['submit'])){
-
-    include("config_dir.php");
-    $nama=mysql_fetch_array(mysql_query("select * from upload order by id desc"));
-    if($nama=='')
-    {
-      $namanya=$namadefault;
-    }else{
-      $ext=end(explode('.', $nama['nama_file']));      
-      $namanya=basename($nama['nama_file'],".".$ext);  
-    }
-    // echo $namanya;
-    $namabaru=incrementName($namanya);
-    $ext=end(explode('.', $_FILES['fileacuan']['name']));
-    $target_file = $target_dir . "$namabaru.".$ext;
-    $idkategori=$_POST['idkategori'];
-    
-    $id=$_POST['nodokacuan'];
-
-    $tgldokacuan= $_POST['tgldokacuan'];
-    $cekTgl=mysql_query("select tgldokacuan from detaildokacuan where nodokacuan='$id' and versi='0'");
-    $cekTgl=mysql_fetch_array($cekTgl);
-    // echo "$cekTgl[tgldokacuan] != $tgldokacuan <-- tgl<br>";
-    if($cekTgl['tgldokacuan']!=$tgldokacuan)
-    {
-      $tgldokacuand=substr($tgldokacuan, -4).'-'.substr($tgldokacuan, 0,2)."-".substr($tgldokacuan, 3,2);
-      $tgldokacuan=substr($tgldokacuan, 3,2).'/'.substr($tgldokacuan, 0,2).substr($tgldokacuan, -5);
-    }else{
-      $tgldokacuand=substr($tgldokacuan,-4).'-'.substr($tgldokacuan, 3,2).'-'.substr($tgldokacuan, 0,2);
-    }
-
-    // $tgldokacuan=substr($tgl,3,2).'/'.substr($tgl,0,2).'/'.substr($tgl,-4);
-    // $tgldokacuan=substr($tgldokacuan, 3,2).'/'.substr($tgldokacuan, 0,2).substr($tgldokacuan, -5);
-    $haldokacuan= $_POST['haldokacuan'];
-    $pemegangdokacuan= $_POST['pemegangdokacuan'];
-    $ketdokacuan= $_POST['ketdokacuan'];
-    $idacuan=$_POST['idacuan'];
-    // $versi=$_POST['versi'];
-    
-$selectAcuanLama=mysql_query("select * from detaildokacuan where idacuan='$idacuan'");
-$selectAcuanLama=mysql_fetch_array($selectAcuanLama);
-$selectMaxIdacuan=mysql_query("select max(idacuan) as max from detaildokacuan");
-$selectMaxIdacuan=mysql_fetch_array($selectMaxIdacuan);
-$selectMaxVersi=mysql_query("select max(versi) as max from detaildokacuan where nodokacuan='$id'");
-$selectMaxVersi=mysql_fetch_array($selectMaxVersi);
-$idacuanMax=$selectMaxIdacuan['max']+1;
-$versiMax=$selectMaxVersi['max']+1;
-$insertAcuanLama="INSERT INTO `detaildokacuan` (`idacuan`, `nodokacuan`, `tgldokacuan`, `tgldokacuand`, `haldokacuan`, `pemegangdokacuan`, `ketdokacuan`, `idkategori`, `versi`) VALUES ('$idacuanMax', '$id', '$selectAcuanLama[tgldokacuan]', '$selectAcuanLama[tgldokacuand]', '$selectAcuanLama[haldokacuan]', '$selectAcuanLama[pemegangdokacuan]', '$selectAcuanLama[ketdokacuan]', '$selectAcuanLama[idkategori]', '$versiMax')";
-// echo "$insertAcuanLama <-- Lama<br>";
-$insertAcuanLama=mysql_query($insertAcuanLama);
-$updateUpload="Update upload set idacuan='$idacuanMax' where idacuan='$idacuan'";
-// echo "$updateUpload <-- uploadupd<br>";
-$updateUpload=mysql_query($updateUpload);
-
-if($_FILES["fileacuan"]["tmp_name"]!='')
-{
-    if (move_uploaded_file($_FILES["fileacuan"]["tmp_name"], $target_file)) 
-    {
-      $namafile=$_FILES['fileacuan']['name'];
-      // if($idacuan!=''){
-      //   $dupload=mysql_query("delete from upload where idacuan='$idacuan'");
-      // }
-      $upload=mysql_query("INSERT INTO `upload` (`id`, `nama_asli`, `nama_file`, `path`, `idacuan`, `nobast`) VALUES ('', '$namafile', '$namabaru.$ext', '$target_dir', '$idacuan', '');");
-      $query = "update detaildokacuan set  idkategori='$idkategori', tgldokacuan='$tgldokacuan', tgldokacuand='$tgldokacuand', haldokacuan='$haldokacuan',pemegangdokacuan='$pemegangdokacuan',ketdokacuan='$ketdokacuan' where idacuan='$idacuan'";
-      // echo "The file <a href='$target_dir$namabaru.$ext'>". basename( $_FILES["fileacuan"]["name"]). "</a> has been uploaded.";
-    } else {
-      echo "$target_file- ";
-      echo "Sorry, there was an error uploading your file.";
-    }
-}else{
-  $query = "update detaildokacuan set  idkategori='$idkategori', tgldokacuan='$tgldokacuan', tgldokacuand='$tgldokacuand', haldokacuan='$haldokacuan',pemegangdokacuan='$pemegangdokacuan',ketdokacuan='$ketdokacuan' where idacuan='$idacuan'";
-  // $query = "update detaildokacuan set  tgldokacuan='$tgldokacuan', haldokacuan='$haldokacuan',pemegangdokacuan='$pemegangdokacuan',ketdokacuan='$ketdokacuan', idkategori='$idkategori' where nodokacuan='$id'";
-}
-//update data ke database
-    
-  // echo "$query <-- update versi 0<br>";
-    if ($query=mysql_query($query)) {
-      tracking("Adendum Dok. Acuan: $id");
-     // echo 'simpan perbahan dokumen acuan berhasil...........';
-    }else{
-      echo mysql_error($koneksi);
-    }
-// } 
-//------------------------------------------------------------------------------
-
-//simpan data kewajiban
- // if (isset($_POST['submit2'])){
-   $nodokacuan2=$_POST['nodokacuan2'];
-   // echo $nodokacuan2."lol";
-   if(!$_POST){  
-    die('Tidak ada data yang disimpan!');  
-  }  
-    //menyimpan data ke tabel kewajiban
-  foreach($_POST['idkewajiban'] as $key => $idkewajiban){  
-    if($idkewajiban){
-      // echo ">--> $idperuntukan";
-      if($idkewajiban=='kosong'){
-        $check=0;
-      }else{
-        $check=1;
-      }
-      // echo "<br>$idperuntukan - $check";
-      if($check>0)
-      {
-        $sisaLuas=$_POST['luas'][$key]-$_POST['pelunasan'][$key];
-        $sql = "update kewajiban set deskripsi='{$_POST['deskripsi'][$key]}',jenisfasos='{$_POST['jenisfasos'][$key]}',luas='{$sisaLuas}' where idkewajiban='$idkewajiban';";  
-        $msg="Ubah Data Kewajiban(Adendum): $idkewajiban ($nodokacuan2)";
-      }else{
-        if($_POST['deskripsi'][$key]!='')
-        {
-         $sql = "INSERT INTO `kewajiban` (`idkewajiban`, `idacuan`, `nodokacuan`, `deskripsi`, `jenisfasos`, `luas`, `pelunasan`) VALUES ('', '{$_POST['idacuan']}', '{$nodokacuan2}', '{$_POST['deskripsi'][$key]}', '{$_POST['jenisfasos'][$key]}', '{$_POST['luas'][$key]}', '0');";
-         $msg="Tambah Data Kewajiban baru(Adendum): {$_POST['deskripsi'][$key]} ($nodokacuan2)";
-       }else{
-        $sql="FAIL";
-       }
-      }
-
-      if($sql=mysql_query($sql))
-      {
-        tracking($msg);
-      }
-   // echo $sql."- >   $msg<br>"; 
-    } 
-  }
-  // echo 'Data telah disimpan';  
-}
-
-//delete kewajiban
-if(isset($_GET['delete'])){
-  $qCekStatus="select status from kewajiban where idkewajiban='$_GET[delete]'";
-  // echo "$qCekStatus";
-  $qCekStatus=mysql_query($qCekStatus);
-  $dCekStatus=mysql_fetch_array($qCekStatus);
-  $cek=$dCekStatus['status'];
-  // echo $cek."<--cek";
-  if($cek==0)
-  {
-    $qdelete="update kewajiban set status='1' where idkewajiban='$_GET[delete]'";
-    // echo "$qdelete";
-    if($qdelete=mysql_query($qdelete))
-    {
-      tracking("Hapus Data Kewajiban: $_GET[delete]");
-    }
-  }
-}
-
-?>
  <script type="text/javascript">
   $( function() {
       $( "#tgldokacuan" ).datepicker();
@@ -169,7 +18,7 @@ if(isset($_GET['delete'])){
       <div class="widget-body no-padding" >
         <!-- style="height: 360px;" > -->
         <fieldset>
-         <form name="editdokumenacuan" action="" method="post" enctype="multipart/form-data">
+         <form name="editdokumenacuan" action="adendump.php" method="post" enctype="multipart/form-data">
           <div class="row">
             <section class="col col-sm-12 col-md-12 col-lg-6">
               <?php 
@@ -296,6 +145,7 @@ if(isset($_GET['delete'])){
                           <tr>
                             <td>
                               <input type='hidden' name='idkewajiban[]' value='$d0[idkewajiban]'>
+                              <input type='hidden' name='pelunasan[]' value='$d0[pelunasan]'>
                               <label class='input'><input type='text' name='deskripsi[]' value='$d0[deskripsi]'></label>
                             </td>
                             <td><center><select name='jenisfasos[]' class='btn btn-sm btn-default'>
@@ -409,18 +259,18 @@ if(isset($_GET['delete'])){
                 </tr>
               <?php
                 $no=0;
-                $selectAdendum="select * from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori where nodokacuan='$nodokacuan' and versi>0 order by versi ASC";
+                $selectAdendum="select * from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori where nodokacuan='$nodokacuan' order by versi ASC";
                 // echo "$selectAdendum";
                 $selectAdendum=mysql_query($selectAdendum);
                 // echo mysql_num_rows($selectAdendum);
                 while ($dselectAdendum=mysql_fetch_array($selectAdendum)) 
                 {
                   $no++;
-                  if($dselectAdendum['versi']=='1')
+                  if($dselectAdendum['versi']=='0')
                   {
                     $versi="Asli";
                   }else{
-                    $versi="Adendum ke-".($dselectAdendum['versi']-1);
+                    $versi="Adendum ke-".($dselectAdendum['versi']);
                   }
                   $qr="select nama_asli,nama_file,path from upload where idacuan='$dselectAdendum[idacuan]'";
                   $qp=mysql_query($qr);
@@ -438,22 +288,6 @@ if(isset($_GET['delete'])){
                     </tr>
                   ";
                 }
-                $no++;
-                $qr="select nama_asli,nama_file,path from upload where idacuan='$idacuan'";
-                $qp=mysql_query($qr);
-                $dq=mysql_fetch_array($qp);
-                echo "
-                  <tr>
-                    <td>$no</td>
-                    <td>$jenisdokumen</td>
-                    <td>$tgldokacuan</td>
-                    <td>$pemegangdokacuan</td>
-                    <td>$perihal</td>
-                    <td>$ketdokacuan</td>
-                    <td><a href='download.php?type=a&id=$idacuan' target='_blank'>$dq[nama_asli]</a></td>
-                    <td>Adendum Akhir</td>
-                  </tr>
-                ";
               ?>
               </table>
             </section>

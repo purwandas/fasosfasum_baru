@@ -191,7 +191,7 @@ if (isset($_POST['submit']))
 			                    </tr>
 
 			                    <tr>
-			                      <td >No.Dokumen </td>           
+			                      <td >No. Dokumen </td>           
 			                      <td ><label class='input'><input type="text" name="nodokacuan" maxlength="80" required="required" /></label></td>
 			                    </tr>
 

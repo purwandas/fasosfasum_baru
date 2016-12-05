@@ -45,6 +45,10 @@
 									INNER JOIN akun ON akun.idperuntukan=peruntukan.idperuntukan
 									inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan
 									inner join dokumenacuan on dokumenacuan.idkategori=detaildokacuan.idkategori
+									INNER JOIN 
+									(SELECT nodokacuan as noacuan, max(versi) as versidok FROM detaildokacuan 
+									GROUP BY nodokacuan
+									ORDER BY idacuan DESC) b on detaildokacuan.nodokacuan=b.noacuan and detaildokacuan.versi=b.versidok
 						          ";
 						          // dokumenacuan.jenisdokumen, 
 						   //        inner JOIN detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan 
@@ -88,7 +92,7 @@ if($_GET['tglbast']!=''){$tglbast="bast.tglbast like '%$_GET[tglbast]%'";if($cek
 if($_GET['pengembangbast']!=''){$pengembangbast="bast.pengembangbast like '%$_GET[pengembangbast]%'";if($cek!='0'){$pengembangbast=' and '.$pengembangbast;}$cek='1';}else{$pengembangbast='';}
 if($_GET['keteranganbast']!=''){$keteranganbast="bast.keterangan like '%$_GET[keteranganbast]%'";if($cek!='0'){$keteranganbast=' and '.$keteranganbast;}$cek='1';}else{$keteranganbast='';}
 if($_GET['kodearsip']!=''){$kodearsip="bast.kodearsip like '%$_GET[kodearsip]%'";if($cek!='0'){$kodearsip=' and '.$kodearsip;}$cek='1';}else{$kodearsip='';}
-if($_GET['jenisdokumen']!=''){$jenisdokumen="and dokumenacuan.jenisdokumen like '%$_GET[jenisdokumen]%'";if($cek!='0'){$jenisdokumen=' and '.$jenisdokumen;}$cek='1';}else{$jenisdokumen='';}
+if($_GET['jenisdokumen']!=''){$jenisdokumen="dokumenacuan.jenisdokumen like '%$_GET[jenisdokumen]%'";if($cek!='0'){$jenisdokumen=' and '.$jenisdokumen;}$cek='1';}else{$jenisdokumen='';}
 if($_GET['alamataset']!=''){$alamataset="dataaset.alamataset like '%$_GET[alamataset]%'";if($cek!='0'){$alamataset=' and '.$alamataset;}$cek='1';}else{$alamataset='';}
 if($_GET['wilayah']!=''){$wilayah="dataaset.wilayah like '%$_GET[wilayah]%'";if($cek!='0'){$wilayah=' and '.$wilayah;}$cek='1';}else{$wilayah='';}
 if($_GET['kecamatan']!=''){$kecamatan="dataaset.kecamatan like '%$_GET[kecamatan]%'";if($cek!='0'){$kecamatan=' and '.$kecamatan;}$cek='1';}else{$kecamatan='';}
@@ -96,7 +100,7 @@ if($_GET['kelurahan']!=''){$kelurahan="dataaset.kelurahan like '%$_GET[kelurahan
 if($_GET['kategoriaset']!=''){$kategoriaset="akun.kategoriaset like '%$_GET[kategoriaset]%'";if($cek!='0'){$kategoriaset=' and '.$kategoriaset;}$cek='1';}else{$kategoriaset='';}
 
 
-	$cekIsi="$deskripsi $jenis $luas $sertifikasi $pemilik $jenissertifikat $masaberlaku $keterangan $statuslaporankeuangan $statusrecon $statussertifikat $nosertifikat $tglsertifikat $luassertifikat $statusplang $statuspenggunaan $nosk $tglsk $skpd $sensusfasos $jenisfasos $nodokacuan $nobast $perihalbast $tglbast $pengembangbast $keteranganbast $alamataset $wilayah $kecamatan $kelurahan $kategoriaset";
+	$cekIsi="$deskripsi $jenis $luas $sertifikasi $pemilik $jenissertifikat $masaberlaku $keterangan $statuslaporankeuangan $statusrecon $statussertifikat $nosertifikat $tglsertifikat $luassertifikat $statusplang $statuspenggunaan $nosk $tglsk $skpd $sensusfasos $jenisfasos $nodokacuan $nobast $perihalbast $tglbast $pengembangbast $keteranganbast $jenisdokumen $alamataset $wilayah $kecamatan $kelurahan $kategoriaset";
 
 
 	// $idaset 
@@ -104,9 +108,7 @@ if($_GET['kategoriaset']!=''){$kategoriaset="akun.kategoriaset like '%$_GET[kate
 	
 	if(trim($cekIsi)!='')//23 sps
 	{
-	  $queryperuntukan.=" where $cekIsi and detaildokacuan.versi='0'";
-	}else{
-	  $queryperuntukan.=" where detaildokacuan.versi='0'";
+	  $queryperuntukan.=" where $cekIsi";
 	}
 	// echo "$queryperuntukan";
 }
@@ -138,7 +140,7 @@ if($_GET['kategoriaset']!=''){$kategoriaset="akun.kategoriaset like '%$_GET[kate
 						          $page=ceil(mysql_num_rows(mysql_query($queryperuntukan))/$reclimit);
 						          $qpaging=$queryperuntukan;
 						          $_SESSION['query']=$queryperuntukan;
-						          // $queryperuntukan.=$limit;
+						          $queryperuntukan.=$limit;
 						          // echo $queryperuntukan.'lal';
 
 						          $no=$offset+1;

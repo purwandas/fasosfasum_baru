@@ -326,6 +326,7 @@ if(isset($_GET['delete'])){
                           <tr>
                             <td>
                               <input type='hidden' name='idkewajiban[]' value='$d0[idkewajiban]'>
+                              <input type='hidden' name='pelunasan[]' value='$d0[pelunasan]'>
                               <label class='input'><input type='text' name='deskripsi[]' value='$d0[deskripsi]'></label>
                             </td>
                             <td><center><select name='jenisfasos[]' class='btn btn-sm btn-default'>
