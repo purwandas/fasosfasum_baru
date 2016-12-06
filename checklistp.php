@@ -29,6 +29,8 @@
                                 else if ($level=='2') 
                                 {
                                         $insertDetailChecklist=mysql_query("INSERT INTO `checklistdetail` (`no`, `nobast`, `idchecklist`, `user1`, `user2`, `user3`) VALUES ('', '-NOBAST', '$dataCheckList[idchecklist]', '0', '1', '0')");
+                                }else{
+                                      $insertDetailChecklist=mysql_query("INSERT INTO `checklistdetail` (`no`, `nobast`, `idchecklist`, `user1`, `user2`, `user3`) VALUES ('', '-NOBAST', '$dataCheckList[idchecklist]', '0', '0', '1')");  
                                 }
                                 
                         }
@@ -49,9 +51,18 @@
 
                 if($check=="success")
                 {
-                        if($level=='2'){
+                        if($level=='2')
+                        {
                                 $nobast=$_POST['nobast'];
                                 $nobastq="update bast set checklistarsip='1' where nobast='$nobast'";
+                                $nobastq=mysql_query($nobastq);
+                                $qUpdateChecklistDetail=mysql_query("update checklistdetail set nobast='$nobast' where nobast='-NOBAST'");
+                                tracking("Checklist BAST: ".$nobast);
+                        }
+                        else if ($level=='3') 
+                        {
+                                $nobast=$_POST['nobast'];
+                                $nobastq="update bast set checklistaset='1' where nobast='$nobast'";
                                 $nobastq=mysql_query($nobastq);
                                 $qUpdateChecklistDetail=mysql_query("update checklistdetail set nobast='$nobast' where nobast='-NOBAST'");
                                 tracking("Checklist BAST: ".$nobast);

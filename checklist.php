@@ -47,6 +47,7 @@
                 $nobast="<input type='hidden' name='nobast' value='$_GET[nobast]'>";
               }else{
                 $jenisDokumen='penerimaanaset';
+                $nobast="<input type='hidden' name='nobast' value='$_GET[nobast]'>";
               }
               while ($dataCheckList=mysql_fetch_array($queryCheckList)) 
               {

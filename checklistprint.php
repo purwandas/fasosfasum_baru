@@ -1,4 +1,6 @@
 <?php
+$jabatan="$_GET[j]";
+// echo "$jabatan <- jabatan";
   include 'koneksi.php';  
 ?>
 <!DOCTYPE html>
@@ -137,9 +139,22 @@
               {
                 $img="<img src='/img/check.png' height='15px'>";
               }else{
-                $cek=mysql_query("select * from checklistdetail where nobast='$nobast' and idchecklist='$dataCheckList[idchecklist]'");
+                $cek="select * from checklistdetail where nobast='$nobast' and idchecklist='$dataCheckList[idchecklist]' ORDER BY `checklistdetail`.`no` DESC";
+                // echo "$cek <-- cek<br>";
+                $cek=mysql_query($cek);
                 $cek=mysql_fetch_array($cek);
-                if($cek['user1']!='1')
+                if ($jabatan=='Walikota') 
+                {
+                  $user=$cek['user1'];
+                }
+                else if ($jabatan=='BPAD') 
+                {
+                  $user=$cek['user2'];
+                }else{
+                  $user=$cek['user3'];
+                }
+                // echo "$user <-- user<br>";
+                if($user!='1')
                 {
                   $img="<img src='/img/cross.png' height='15px'>";
                 }else{
