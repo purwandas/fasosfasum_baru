@@ -146,11 +146,19 @@
               if($_GET['kategori']=='dokacuan'){
                 $_SESSION['kategori']='1';
                 $note='Input Nomor Dok. Acuan atau Nama Pemegang Dok. atau Jenis Dok. Acuan';
-                $query='select detaildokacuan.nodokacuan, tgldokacuan, haldokacuan, pemegangdokacuan, ketdokacuan, jenisdokumen, kewajiban.luas from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori inner join kewajiban on kewajiban.nodokacuan=detaildokacuan.nodokacuan';
+                $query='select detaildokacuan.nodokacuan, tgldokacuan, haldokacuan, pemegangdokacuan, ketdokacuan, jenisdokumen, kewajiban.luas from detaildokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori 
+                INNER JOIN 
+                (SELECT nodokacuan as noacuan, max(versi) as versidok FROM detaildokacuan 
+                GROUP BY nodokacuan
+                ORDER BY idacuan DESC) b on detaildokacuan.nodokacuan=b.noacuan and detaildokacuan.versi=b.versidok
+                inner join kewajiban on kewajiban.nodokacuan=detaildokacuan.nodokacuan';
               }else{
                 $_SESSION['kategori']='2';
                 $note='Input Nomor Bast atau Nama Pengembang atau Jenis Dok. Acuan';
-                $query="select bast.nobast, bast.keterangan, bast.tglbast, bast.pengembangbast, detaildokacuan.nodokacuan, detaildokacuan.pemegangdokacuan,dokumenacuan.jenisdokumen, detaildokacuan.tgldokacuan from bast inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ";
+                $query="select bast.nobast, bast.keterangan, bast.tglbast, bast.pengembangbast, detaildokacuan.nodokacuan, detaildokacuan.pemegangdokacuan,dokumenacuan.jenisdokumen, detaildokacuan.tgldokacuan from bast inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori INNER JOIN 
+                  (SELECT nodokacuan as noacuan, max(versi) as versidok FROM detaildokacuan 
+                  GROUP BY nodokacuan
+                  ORDER BY idacuan DESC) b on detaildokacuan.nodokacuan=b.noacuan and detaildokacuan.versi=b.versidok";
               }
               echo"
               <option value='$_GET[kategori]'>
@@ -507,7 +515,31 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
       </select><br>
       ";
       echo "<div align='right'><button id='b$dfilter_m[name]$dfilter[name]' class='btn btn-default'>Clear</button></div>";
-
+      }
+      else if($dfilter_m['ket']=='multidok')
+      {
+        if(isset($_GET["$dfilter_m[name]$dfilter[name]"])){
+          $wp=$_GET["$dfilter_m[name]$dfilter[name]"];
+          if($dan2==0){
+            $dan=1;
+            $dan2=1;
+            $query.=" $ope (($dfilter_m[ref_table].$dfilter_m[ref_field] like '%$wp%' and kewajiban.luas >0))";
+            $filter[$jmlFilter]="$dfilter_m[nama]";
+            $jmlFilter++;
+          }else{
+            $query=substr($query,0,-1)." or ($dfilter_m[ref_table].$dfilter_m[ref_field] like '%$wp%'  and kewajiban.luas >0))";
+            $filter[$jmlFilter]="$dfilter_m[nama]";
+            $jmlFilter++;
+          }
+          $ck="checked";
+        }else{
+          $ck='';
+        }
+        echo"
+        <label>
+          <input type='checkbox' $ck $submit name='$dfilter_m[name]$dfilter[name]' value='$dfilter[keyword]'> $dfilter[display]
+        </label><br>
+        "; 
       }else{//ini normalnya
         if(isset($_GET["$dfilter_m[name]$dfilter[name]"])){
           $wp=$_GET["$dfilter_m[name]$dfilter[name]"];
@@ -774,7 +806,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                         </tr>
                         ";
                         $number=0;
-                      $query2=mysql_query("select peruntukan.deskripsi, peruntukan.jenisfasos, peruntukan.luas luasp, kewajiban.luas as luask from peruntukan inner join kewajiban on kewajiban.idkewajiban=peruntukan.idkewajiban where peruntukan.nodokacuan='$data[nodokacuan]'");//nobast='' and 
+                      $query2=mysql_query("select kewajiban.deskripsi, kewajiban.jenisfasos, kewajiban.luas, kewajiban.pelunasan from kewajiban where kewajiban.nodokacuan='$data[nodokacuan]'");//nobast='' and 
                       $mxrow=mysql_num_rows($query2);
                       if($mxrow>0){
                         echo"
@@ -802,17 +834,18 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                           }
                           while ($data2=mysql_fetch_array($query2)) {
                             $number++;
-                            if($data2['luask']=='0'){
+                            if($data2['luas']=='0'){
                               $sttskewajiban=$sudah;
                             }else{
                               $sttskewajiban=$belum;
                             }
+                            $luass=$data2['luas']+$data2['pelunasan'];
                             echo "
                             <tr>
                               <td>$number</td>
                               <td>$data2[jenisfasos]</td>
                               <td>$data2[deskripsi]</td>
-                              <td>$data2[luasp]</td>
+                              <td>$luass</td>
                               <td align='center'>$sttskewajiban</td>
                             </tr>
                             ";
