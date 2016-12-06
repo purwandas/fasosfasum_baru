@@ -37,6 +37,17 @@
               ";
               $no=0;
               $queryCheckList=mysql_query("select * from checklist where idgroup='$dataGroupCheckList[kodegroup]'");
+              if($_SESSION['SESS_LEVEL']=='1')
+              {
+                $jenisDokumen='walikota';
+              }
+              else if($_SESSION['SESS_LEVEL']=='2')
+              {
+                $jenisDokumen='badanarsip';
+                $nobast="<input type='hidden' name='nobast' value='$_GET[nobast]'>";
+              }else{
+                $jenisDokumen='penerimaanaset';
+              }
               while ($dataCheckList=mysql_fetch_array($queryCheckList)) 
               {
                 $no++;
@@ -44,7 +55,7 @@
                 <tr>
                   <td>$no</td>
                   <td>$dataCheckList[ket]</td>
-                  <td align='center'>$dataCheckList[walikota]</td>
+                  <td align='center'>$dataCheckList[$jenisDokumen]</td>
                   <td align='center'>
                     <label>
                       <input type='checkbox' $sudah name='checklist$dataCheckList[idchecklist]' value='1'>
@@ -59,6 +70,12 @@
       </div>
       <div class="modal-footer">
         <center>
+        <?php
+        if(isset($nobast))
+        {
+          echo "$nobast";
+        }
+        ?>
         <button type="submit" class="btn btn-lg btn-default">
           Simpan
         </button>

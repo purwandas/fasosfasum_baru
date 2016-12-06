@@ -405,7 +405,21 @@
 		}
 		else if($_SESSION['SESS_LEVEL']=='2')
 		{
-
+			?>
+			<nav>
+				<ul>
+					<li>
+						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=pencarian"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pencarian</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=lihatbast"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">BAST</span></a>
+					</li>
+				</ul>
+			</nav>
+			<?php
 		}
 		else if($_SESSION['SESS_LEVEL']=='3')
 		{
@@ -514,7 +528,7 @@
 								}
 								else if($_SESSION['SESS_LEVEL']==2)
 								{
-									include "$_GET[hal].php";
+									include "bpad/$_GET[hal].php";
 								}
 								else if($_SESSION['SESS_LEVEL']==3)
 								{

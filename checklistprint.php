@@ -10,17 +10,11 @@
     <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
   <style>
-    /*thead, tfoot { display: table-row-group }*/
-
-/*The table row page-break logic is now disabled by default. You will have*/
-/*to enable it for specific rows or for all tables via CSS:*/
-
-tr { page-break-inside: avoid }
-    /*td{
-        page-break-after: always;
-        page-break-inside: avoid;
-        page-break-inside: avoid !important;
-    }*/
+    .table-bordered, .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+        border-color:#333;
+        border-width: 0.5px;
+      }
+    tr { page-break-inside: avoid }
   </style>
 </head>
 <body>
@@ -39,14 +33,14 @@ tr { page-break-inside: avoid }
             </td>
           </tr>
           <tr>
-            <td valign="top" width="30%">
+            <td valign="top" width="25%">
               <h6>Yang Diserahkan</h6>
             </td>
             <td valign="top">
               <h6>:</h6>
             </td>
-            <td width="68%">
-              <h6>Tanah Kosong / Taman / Jalan / Saluran / Gedung / Bangunana Utilitas Umum - Sosial</h6>
+            <td width="73%">
+              <h6>Tanah Kosong / Taman / Jalan / Saluran / Gedung / Bangunan Utilitas Umum - Sosial</h6>
             </td>
           </tr>
           <tr>
@@ -69,6 +63,46 @@ tr { page-break-inside: avoid }
             </td>
             <td>
               <h6><?php echo $_GET['s']; ?></h6>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">
+              <h6>Nomor BAST</h6>
+            </td>
+            <td valign="top">
+              <h6>:</h6>
+            </td>
+            <td>
+              <h6><?php echo $_GET['bast']; ?></h6>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">
+              <h6>Alamat</h6>
+            </td>
+            <td valign="top">
+              <h6>:</h6>
+            </td>
+            <td>
+              <h6>
+                <?php 
+                  $ala=0;
+                  $nobast=$_GET['bast']; 
+                  $qalamat=mysql_query("select * from dataaset where nobastaset='$nobast'");
+                  while ($dalamat=mysql_fetch_array($qalamat)) 
+                  {
+                    $ala++;
+                    if($ala>1)
+                    {
+                      echo "<br>";
+                    }
+                    echo "
+                      $dalamat[alamataset], Kel. $dalamat[kelurahan], Kec. $dalamat[kecamatan], $dalamat[wilayah]. 
+                    ";
+                  }
+
+                ?>
+              </h6>
             </td>
           </tr>
         </table>
@@ -99,13 +133,26 @@ tr { page-break-inside: avoid }
             while ($dataCheckList=mysql_fetch_array($queryCheckList)) 
             {
               $no++;
+              if($dataCheckList['status']=='wajib')
+              {
+                $img="<img src='/img/check.png' height='15px'>";
+              }else{
+                $cek=mysql_query("select * from checklistdetail where nobast='$nobast' and idchecklist='$dataCheckList[idchecklist]'");
+                $cek=mysql_fetch_array($cek);
+                if($cek['user1']!='1')
+                {
+                  $img="<img src='/img/cross.png' height='15px'>";
+                }else{
+                  $img="<img src='/img/check.png' height='15px'>";
+                }
+              }
               echo"
               <tr>
                 <td align='right'>$no</td>
                 <td>$dataCheckList[ket]</td>
                 <td align='center' valign='middle'>$dataCheckList[walikota]</td>
                 <td align='center' valign='middle'>
-                  <center><img src='/img/check.png' height='15px'></center>
+                  <center>$img</center>
                 </td>
               </tr>
               ";

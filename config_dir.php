@@ -3,6 +3,7 @@
 $universal_path=dirname(__FILE__);
 $target_dir = "$universal_path/fileacuan/";
 $namadefault="F0000000000";
+$namadefaultC="C0000000000";
 
 function incrementName($awal){
 	$lng=strlen($awal)-1;
