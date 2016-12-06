@@ -41,6 +41,7 @@ if (isset($_POST['submit'])){
   }
   else
   {
+    $qUpdateChecklist=mysql_query("update checklistdetail set nobast='$nobast' where nobast='-NOBAST'");
     if($_FILES['fileacuan']['name']!='')
     {
       if (move_uploaded_file($_FILES["fileacuan"]["tmp_name"], $target_file)) {

@@ -143,8 +143,8 @@
 														</label>
 													</div>
 													<div class='col col-sm-1 col-md-1 col-lg-1'>
-											<input type='submit' value='Ubah' name='ubah' class='btn btn-info btn-sm col-md-6' style='    padding-left: 6px;'>
-											<a href='admin/hapususer.php?id=$dataUser[member_id]' class='btn btn-danger btn-sm col-md-6' style='    padding-left: 2px;'>Hapus</a>
+											<input type='submit' value='Ubah' name='ubah' class='btn btn-info btn-sm col-md-6' style='    padding-left: 3px;'>
+											<a href='admin/hapususer.php?id=$dataUser[member_id]' class='btn btn-danger btn-sm col-md-6' style='    padding-left: 0px;'>Hapus</a>
 													</div>
 												</form>
 												</td>

@@ -194,8 +194,8 @@ $(document).ready(function() {
                           <th >Perihal BAST</th>
                           <th>Pengembang BAST</th>
                           <th >Keterangan</th>
+                          <th >Checklist Walikota</th>
                           <th>No. DOkumen Acuan</th>
-                          <th>Kode Arsip</th>
                           <th>Act.</th>
                         </tr>
                       </thead>
@@ -207,6 +207,32 @@ $(document).ready(function() {
                           while ($data=mysql_fetch_array($query)) 
                           {
                             $no++;
+                              
+                              
+                                $button="
+                                  <a href='index.php?hal=editbast&id=$data[nobast]' target='_blank'  class='btn btn-sm btn-info' style='width:70px'>
+                                    Ubah
+                                  </a>
+                                  <br>
+                                ";
+                                if($data['checklistwalikota']=='1')
+                                {
+                                  $button.= "
+                                    <a href='index.php?hal=chck&nobast=$data[nobast]&noacuan=$data[nodokacuan]&pbast=$data[pengembangbast]' class='btn btn-sm btn-success' style='width:70px'>
+                                    Checklist
+                                    </a>
+                                  ";
+                                  $chck="<p style='color:green'>Sudah</p>";
+                                }else{
+                                  $button.="
+                                    <a href='index.php?hal=' class='btn btn-sm btn-danger' style='width:70px'>
+                                    Checklist
+                                    </a>
+                                  ";
+                                  $chck="<p style='color:red'>Belum</p>";
+                                }
+                              
+                              
                             echo "
                               <tr>
                                 <td>$no</td>
@@ -215,24 +241,10 @@ $(document).ready(function() {
                                 <td>$data[perihalbast]</td>
                                 <td>$data[pengembangbast]</td>
                                 <td>$data[keterangan]</td>
+                                <td>$chck</td>
                                 <td><a href='index.php?hal=bastbysippt&id=$data[nodokacuan]'>$data[nodokacuan]</a></td>
-                                <td>$data[kodearsip]</td>
                                 <td>
-                                  <a href='index.php?hal=editbast&id=$data[nobast]' target='_blank'>Ubah</a>
-                                  <br>
-                                  ";
-                                  if($data['checklistwalikota']=='1')
-                                  {
-                                    echo "
-                                      <a href='index.php'>Print Checklist</a>
-                                      <a href='index.php'>Upload Checklist</a>
-                                    ";
-                                  }else{
-                                    echo"
-                                      <a href='index.php'>Buat Checklist</a>
-                                    ";
-                                  }
-                                echo"
+                                  $button
                                 </td>
                               </tr>
                             ";

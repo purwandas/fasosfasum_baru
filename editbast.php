@@ -91,7 +91,7 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
 
 					              <tr>
 					                <td>Tgl. BAST </td>
-					                <td height="21"><label class="input"><input type="text" id="tglbast" name="tglbast" maxlength="10" required="required" value="<?php echo $data['tglbast']; ?>"/></label>
+					                <td height="21"><label class="input"><input type="text" id="tglbast" name="tglbast" maxlength="10" required="required" value="<?php echo substr($data['tglbast'],3,2).'/'.substr($data['tglbast'],0,2).'/'.substr($data['tglbast'],-4); ?>"/></label>
 					                </td>         
 					              </tr>
 					              <tr>

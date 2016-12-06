@@ -62,8 +62,9 @@
 				              </tr>
 				              <tr>
 				                  <?php 
-				                  $qr="select nama_asli,nama_file,path from upload where nodokacuan='$data[nodokacuan]'";
+				                  $qr="select nama_asli,nama_file,path from upload where idacuan='$data[nodokacuan]'";
 				                  $qp=mysql_query($qr);
+				                  echo mysql_error($koneksi);
 				                  while ($dq=mysql_fetch_array($qp)) {
 				                    echo"
 				                    <td>File Acuan </td><td>:</td>

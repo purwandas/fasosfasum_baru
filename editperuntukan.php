@@ -90,7 +90,7 @@ if (isset($_POST['submit'])){
 <article class="col-sm-12 col-md-12 col-lg-6">
 
 	<!-- Widget ID (each widget will need unique ID)-->
-	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-24" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 	<header>
 		<span class="widget-icon"> <i class="fa fa-file-text-o"></i></span>
 		<h2>Edit Data Peruntukan</h2>
@@ -161,12 +161,12 @@ if (isset($_POST['submit'])){
 				                 </tr>
 				                 <tr>
 				                   <td>Masa Berlaku</td>
-				                   <td><label class='input'><input type="text" name="masaberlaku" maxlength="10" required="required" value="<?php echo $data['masaberlaku']; ?>"/></label></td>
+				                   <td><label class='input'><input type="text" name="masaberlaku" maxlength="10"  value="<?php echo $data['masaberlaku']; ?>"/></label></td>
 				                 </tr>
 
 				                 <tr>
 				                   <td>Keterangan</td>
-				                   <td><label class='input'><input type="text" name="keterangan" maxlength="40" required="required" value="<?php echo $data['keterangan']; ?>"/></label></td>
+				                   <td><label class='input'><input type="text" name="keterangan" maxlength="40"  value="<?php echo $data['keterangan']; ?>"/></label></td>
 				                 </tr>
 
 				                 <tr>
@@ -189,7 +189,7 @@ if (isset($_POST['submit'])){
 				               </tr>
 				               <tr>
 				                 <td>No.Sertifikat</td>
-				                 <td><label class='input'><input type="text" name="nosertifikat" maxlength="20" required="required" value="<?php echo $data['nosertifikat']; ?>"/></label></td>
+				                 <td><label class='input'><input type="text" name="nosertifikat" maxlength="20"  value="<?php echo $data['nosertifikat']; ?>"/></label></td>
 				               </tr>
 				               <tr>
 				                 <td>Tgl.Sertifikat</td>
@@ -199,7 +199,7 @@ if (isset($_POST['submit'])){
 				               </tr>
 				               <tr>
 				                 <td>Luas Sertifikat</td>
-				                 <td><label class='input'><input type="text" name="luassertifikat" maxlength="10" required="required" value="<?php echo $data['luassertifikat']; ?>"/></label></td>
+				                 <td><label class='input'><input type="text" name="luassertifikat" maxlength="10"  value="<?php echo $data['luassertifikat']; ?>"/></label></td>
 				               </tr>
 				               <tr>
 				                 <td>Status Plang</td>
@@ -239,7 +239,7 @@ if (isset($_POST['submit'])){
 				           </tr>
 				           <tr>
 				           <td>No.SK</td>
-				             <td><label class='input'><input type="text" name="nosk" maxlength="20" required="required" value="<?php echo $data['nosk']; ?>"/></label></td>
+				             <td><label class='input'><input type="text" name="nosk" maxlength="20"  value="<?php echo $data['nosk']; ?>"/></label></td>
 				           </tr>
 				           <tr>
 				             <td>Tgl.SK</td>
@@ -247,7 +247,7 @@ if (isset($_POST['submit'])){
 				           </tr>
 				           <tr>
 				             <td>SKPD</td>
-				             <td><label class='input'><input type="text" name="skpd" maxlength="10" required="required" value="<?php echo $data['skpd']; ?>"/></label></td>
+				             <td><label class='input'><input type="text" name="skpd" maxlength="10"  value="<?php echo $data['skpd']; ?>"/></label></td>
 				           </tr>
 				           <tr>
 				             <td>Sensus Fasos</td>
@@ -276,6 +276,14 @@ if (isset($_POST['submit'])){
 				          <td align="center" colspan="2">
 				          <br>
 				          <input class='btn btn-lg btn-info' type="submit" name="submit" value="Simpan Perubahan"> </td>
+				        </tr>
+				        <tr>	
+				          <td align="right" colspan="2">
+				          <br>
+					          <a href="index.php?hal=akunedit&id=<?php echo $data['nobast'];?>" target="_blank">
+					          	Ubah data Akun?
+					          </a>
+				          </td>
 				        </tr>
 
 				      </table>

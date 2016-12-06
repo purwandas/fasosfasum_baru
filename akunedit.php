@@ -115,13 +115,13 @@ if (isset($_POST['submit'])){
 
 
 		}
-		echo 'Edit data akun berhasil .....';
+		// echo 'Edit data akun berhasil .....';
 
 	}
 
 	
 	$waktu = gmdate("Y-m-d H:i:s", time()+60*60*7);
-	$user = $_SESSION['SESS_FIRST_NAME'];
+	$user = $_SESSION['SESS_FIRST_NAME'].' '.$_SESSION['SESS_LAST_NAME'];
 	$query33 = mysql_query("insert into loging values('','$user','edit nilai akuntansi bast : $nobast','$waktu')") or die(mysql_error());
 }
 ?>
@@ -141,201 +141,173 @@ if (isset($_POST['submit'])){
 				<fieldset>
 					<div class="row">
 						<section class="col col-sm-12 col-md-12 col-lg-12">
-									<script language="JavaScript">
-										function konfirmasi(){
-											var pilihan = confirm("You will make data akun zero, Are you sure want to delete All Data Akun?");
-											if(pilihan){
-												return true
-											}else{
-												return false
-											}
-										}
-									</script>
+							<script language="JavaScript">
+								function konfirmasi(){
+									var pilihan = confirm("You will make data akun zero, Are you sure want to delete All Data Akun?");
+									if(pilihan){
+										return true
+									}else{
+										return false
+									}
+								}
+							</script>
 
 
 
-									<form name="akunting" action="" method=post>
+<form name="akunting" action="" method=post>
 
-											<div>
-												<table>
-													<?php 
-													include "koneksi.php";
-													$id = $_GET['id'];
-													$query3 = mysql_query("select * from dataaset where nobastaset='$id'") or die(mysql_error());
-													while ($data3 = mysql_fetch_array($query3)){
-														?>
+<div>
+<?php 
+include "koneksi.php";
+$id = $_GET['id'];
+$query3 = mysql_query("select * from dataaset where nobastaset='$id'") or die(mysql_error());
+while ($data3 = mysql_fetch_array($query3)){
+	?>
+<table>
+	<input type="hidden"  name="idaset" value="<?php echo $data3['idaset']; ?>">
+	<tr>
+		<td>ID Lokasi</td><td>:</td><td><?php echo $data3['idaset']; ?></td>
+	</tr>
+	<tr>
+		<td>Alamat lokasi</td><td>:</td><td><?php echo $data3['alamataset']; ?></td>
+	</tr>
+	<tr>
+		<td>Wilayah</td><td>:</td><td><?php echo $data3['wilayah']; ?></td>
+	</tr>
+	<tr>
+		<td>Kecamatan</td><td>:</td><td><?php echo $data3['kecamatan']; ?></td>
+	</tr>
+	<tr>
+		<td>Kelurahan</td><td>:</td><td><?php echo $data3['kelurahan']; ?></td>
+	</tr>
+</table>
 
-														<input type="hidden"  name="idaset" value="<?php echo $data3['idaset']; ?>">
-														<tr>
-															<td>ID Lokasi</td><td>:</td><td><?php echo $data3['idaset']; ?></td>
-														</tr>
-														<tr>
-															<td>Alamat lokasi</td><td>:</td><td><?php echo $data3['alamataset']; ?></td>
-														</tr>
-														<tr>
-															<td>Wilayah</td><td>:</td><td><?php echo $data3['wilayah']; ?></td>
-														</tr>
-														<tr>
-															<td>Kecamatan</td><td>:</td><td><?php echo $data3['kecamatan']; ?></td>
-														</tr>
-														<tr>
-															<td>Kelurahan</td><td>:</td><td><?php echo $data3['kelurahan']; ?></td>
-														</tr>
-													</table>
+<div style="overflow:auto;">
 
-														<div style="overflow:auto;">
+	<table class="table table-striped" >
+		<tr>
+			<td class="center">No.</td>
+			<td class="center">Peruntukan</td>
+			<td class="center">Kategori</td>
+			<td class="center">Volume</td>
+			<td class="center">Satuan</td>
+			<td class="center">Nilai Pengali (Rp)</td>
+			<td class="center">Penilaian PerGub 132 (Rp)</td>
+			<td class="center">Nilai BAST (Rp)</td>
+			<td class="center">Nilai Kombinasi (Rp)</td>
+			<td class="center">Keterangan</td>
+			<td class="center">Koreksi</td>
+		</tr>
 
-															<table class="table table-striped" >
-																	<tr>
-																		<td class="center">No.</td>
-																		<td class="center">Peruntukan</td>
-																		<td class="center">Kategori</td>
-																		<td class="center">Volume</td>
-																		<td class="center">Satuan</td>
-																		<td class="center">Nilai Pengali (Rp)</td>
-																		<td class="center">Penilaian PerGub 132 (Rp)</td>
-																		<td class="center">Nilai BAST (Rp)</td>
-																		<td class="center">Nilai Kombinasi (Rp)</td>
-																		<td class="center">Keterangan</td>
-																		<td class="center">Koreksi</td>
-																	</tr>
+	<?php 
 
-																	<?php 
+	$query2 = mysql_query("select * from akun a inner join peruntukan b on a.idperuntukan=b.idperuntukan where a.idaset='".$data3['idaset']."'") or die(mysql_error());
 
-																	$query2 = mysql_query("select * from akun a inner join peruntukan b on a.idperuntukan=b.idperuntukan where a.idaset='".$data3['idaset']."'") or die(mysql_error());
+	$no = 1;
+	while ($data2 = mysql_fetch_array($query2)){
+	?>
+			
 
-																	$no = 1;
-																	while ($data2 = mysql_fetch_array($query2)){
-																		?>
-																		
+		<tr>
+			<td class="center"><?php echo $no; ?></td>
+			<td>
+				<input type="hidden"  'text' name='idperuntukan[]' value="<?php echo $data2['idperuntukan']; ?>" >
+				<input type="hidden" name="nobast" value="<?php echo $id; ?>">
+				<input type="hidden" name="tglbast" value="<?php echo $data2['tglbast']; ?>">
+				<input type='text' name='deskripsi[]' value="<?php echo $data2['deskripsi']; ?>"></td>
 
-																		<tr>
-																			<td class="center"><?php echo $no; ?></td>
-																			<td>
-																				<input type="hidden"  'text' name='idperuntukan[]' value="<?php echo $data2['idperuntukan']; ?>" >
-																				<input type="hidden" name="nobast" value="<?php echo $id; ?>">
-																				<input type="hidden" name="tglbast" value="<?php echo $data2['tglbast']; ?>">
-																				<input type='text' name='deskripsi[]' value="<?php echo $data2['deskripsi']; ?>"></td>
+			<td><select  name='kategori[]'><option value="<?php echo $data2['kategoriaset']; ?>"><?php echo $data2['kategoriaset']; ?></option><option>KIB A</option><option>KIB B</option><option>KIB C</option><option>KIB D</option><option>KIB E</option></select>
+			</td>
+				<td><input type='text' id="volume" name='volume[]' value="<?php echo $data2['volume']; ?>" class='volume'></td>
 
-																			<td><select  name='kategori[]'><option value="<?php echo $data2['kategoriaset']; ?>"><?php echo $data2['kategoriaset']; ?></option><option>KIB A</option><option>KIB B</option><option>KIB C</option><option>KIB D</option><option>KIB E</option></select>
-																			</td>
-																				<td><input type='text' id="volume" name='volume[]' value="<?php echo $data2['volume']; ?>" class='volume'></td>
+				<td><select name='satuan[]'><option value="<?php echo $data2['satuan']; ?>"><?php echo $data2['satuan']; ?></option><option>m</option><option>m1</option><option>m2</option><option>m3</option><option>unit</option><option>paket</option> <option>titik</option> <option>buah</option><option>set</option></select>
+				</td>
+				<td><input type='text' id="nilainjop" name='nilainjop[]' value="<?php echo $data2['nilainjop']; ?>" class='nilainjop' onkeypress="return isNumberKey(event)"></td>
+				<td><input type='text' id="jmlnjop" name='jmlnjop[]' value="<?php echo $data2['jumnjop']; ?>" class='jmlnjop'></td>
+				<td><input type='text' name='nilaibast[]' value="<?php echo $data2['nilaibast']; ?>" class='nilaibast' onkeypress="return isNumberKey(event)"></td>
+				<td><input type='text' name='nilaimix[]' value="<?php echo $data2['nilaimix']; ?>" class='nilaimix' onkeypress="return isNumberKey(event)"></td>
 
-																				<td><select name='satuan[]'><option value="<?php echo $data2['satuan']; ?>"><?php echo $data2['satuan']; ?></option><option>m</option><option>m1</option><option>m2</option><option>m3</option><option>unit</option><option>paket</option> <option>titik</option> <option>buah</option><option>set</option></select>
-																				</td>
-																					<td><input type='text' id="nilainjop" name='nilainjop[]' value="<?php echo $data2['nilainjop']; ?>" class='nilainjop' onkeypress="return isNumberKey(event)"></td>
-																					<td><input type='text' id="jmlnjop" name='jmlnjop[]' value="<?php echo $data2['jumnjop']; ?>" class='jmlnjop'></td>
-																					<td><input type='text' name='nilaibast[]' value="<?php echo $data2['nilaibast']; ?>" class='nilaibast' onkeypress="return isNumberKey(event)"></td>
-																					<td><input type='text' name='nilaimix[]' value="<?php echo $data2['nilaimix']; ?>" class='nilaimix' onkeypress="return isNumberKey(event)"></td>
+				<td><input type='text' name='ketakun[]' value="<?php echo $data2['ketakun']; ?>"></td>
 
-																					<td><input type='text' name='ketakun[]' value="<?php echo $data2['ketakun']; ?>"></td>
+				<td><select name='bastdokumen[]'><option value="<?php echo $data2['bastdokumen']; ?>"><?php echo $data2['bastdokumen']; ?></option><option>Salah Entry</option><option>Belum Entry</option><option>Perolehan ke Pergub</option><option>Pergub ke Perolehan</option> <option>Lain-lain</option><option>Tidak Ada Perubahan</option></select>
+				</td>
+		</tr>
 
-																					<td><select name='bastdokumen[]'><option value="<?php echo $data2['bastdokumen']; ?>"><?php echo $data2['bastdokumen']; ?></option><option>Salah Entry</option><option>Belum Entry</option><option>Perolehan ke Pergub</option><option>Pergub ke Perolehan</option> <option>Lain-lain</option><option>Tidak Ada Perubahan</option></select>
-																			</tr>
+		<?php
+		$no++;
+		}
+		?>
 
-																					<?php
-																					$no++;
-																				}
-																				?>
-
-																		</table>
-																	</div>
-
-
-
-																		
-
-																	<table>
-																		<?php 
-
-																		$query4 = mysql_query("select distinct nobast,totnjop, totbast, totapp, totmix from akun where idaset='".$data3['idaset']."'") or die(mysql_error());
+	</table>
+</div>
 
 
-																		while ($data4 = mysql_fetch_array($query4)){
-																			?>
 
-																			<tr>
-																			<td></td>
-																			<td><b>Total Nilai PerGub132 : </b></td>
-																			<td><label class='input'><input type='text' value= "<?php echo $data4['totnjop']; ?>" name='total' id='total'/></label></td>
-																			</tr><tr>
-																			<td></td><td><b>Total Nilai BAST : </b></td><td><label class='input'><input type='text' value="<?php echo $data4['totbast']; ?>" name='total1' id='total1'/></label></td>
-																			</tr><tr>
-																			<td></td><td><b>Total Nilai Kombinasi : </b></td><td><label class='input'><input type='text' value="<?php echo $data4['totmix']; ?>" name='total3' id='total3'/></label></td>
-																			</tr><tr>
-																			<td></td><td><b>Total Nilai Appraisal : </b></td><td><label class='input'><input type='text' value="<?php echo $data4['totapp']; ?>" name='total2' id='total2'/></label></td>
-																			</tr><tr>
+					
 
-																			
-																			<?php
-																		}
-																		?>
+<table>
+	<?php 
 
-																		<td colspan='3'>
-																			 
-																		</td>
-																		</tr>
-																		<tr>
-																		<td colspan='3'>
-																			<center>
-																			<br>
-																		<input class='btn btn-info btn-sm' type=submit name="submit" value="Edit Data Akun" />
-																			</center>
-																		</td>
-
-																		</tr>
-																		</table>
-																		<br>
-																		<br>
-																		<br>
-																		<table>
-																		<tr>
-																			<td colspan='3'>
-																		<?php
-																		// echo"
-																		// <P align=left>
-																		// 		<span>
-																		// 		<a  href='akuntambahperuntukan.php?id=$data3[idaset]' >
-																		// 			<img src='view/image/add.png' border=0></a>
-																		// 			<a  href='akuntambahperuntukan.php?id=$data3[idaset]'>Tambah Peruntukan..</a></span>
-
-																		// 			<span>
-																		// 			<a  href='viewdetailbast.php?id=$data3[nobastaset]' >
-																		// 				<img src='view/image/setting.png' border=0></a>
-																		// 				<a  href='viewdetailbast.php?id=$data3[nobastaset]'>Edit Peruntukan..</a></span>
-																		// 				<span>
-																		// 				<a  href='akunhapus3.php?id=$id' >
-																		// 					<img src='view/image/filemanager/edit-delete.png' border=0></a>
-																		// 					<a  href='akunhapus3.php?id=$id' onClick='return konfirmasi()'>Reset Akun</a></span>
-																		// 					</P>
-																		// ";
-																		?>
-																			</td>
-																		</tr>
-																						</table>
+	$query4 = mysql_query("select distinct nobast,totnjop, totbast, totapp, totmix from akun where idaset='".$data3['idaset']."'") or die(mysql_error());
 
 
-																							<table>
-																								<tr>
-																									<tr><td>Keterangan :</td></tr>
-																									<tr><td>KIB A : Tanah</td></tr>
-																									<tr><td>KIB B : Peralatan dan Mesin</td></tr>
-																									<tr><td>KIB C : Gedung dan Bangunan</td></tr>
-																									<tr><td>KIB D : Jalan, Jaringan dan Instalasi</td></tr>
-																									<tr><td>KIB E : Aset Tetap Lainnya</td></tr>
-																								</tr>
-																							</table>
-																						</tr>
+	while ($data4 = mysql_fetch_array($query4)){
+		?>
 
-																						<?php
+	<tr>
+		<td></td>
+		<td><b>Total Nilai PerGub132 : </b></td>
+		<td><label class='input'><input type='text' value= "<?php echo $data4['totnjop']; ?>" name='total' id='total'/></label></td>
+		</tr><tr>
+		<td></td><td><b>Total Nilai BAST : </b></td><td><label class='input'><input type='text' value="<?php echo $data4['totbast']; ?>" name='total1' id='total1'/></label></td>
+		</tr><tr>
+		<td></td><td><b>Total Nilai Kombinasi : </b></td><td><label class='input'><input type='text' value="<?php echo $data4['totmix']; ?>" name='total3' id='total3'/></label></td>
+		</tr><tr>
+		<td></td><td><b>Total Nilai Appraisal : </b></td><td><label class='input'><input type='text' value="<?php echo $data4['totapp']; ?>" name='total2' id='total2'/></label></td>
+	</tr>
 
-																					}
-																					?>
-																						</table>
+	<?php
+	}
+	?>
+	<tr>
+		<td colspan='3'>
+		</td>
+	</tr>
+	<tr>
+		<td colspan='3'>
+			<center>
+				<br>
+				<input class='btn btn-info btn-sm' type=submit name="submit" value="Edit Data Akun" />
+			</center>
+		</td>
+	</tr>
+</table>
+
+<br>
+<br>
+<br>
+
+<table>
+	<tr>
+		<tr><td>Keterangan :</td></tr>
+		<tr><td>KIB A : Tanah</td></tr>
+		<tr><td>KIB B : Peralatan dan Mesin</td></tr>
+		<tr><td>KIB C : Gedung dan Bangunan</td></tr>
+		<tr><td>KIB D : Jalan, Jaringan dan Instalasi</td></tr>
+		<tr><td>KIB E : Aset Tetap Lainnya</td></tr>
+	</tr>
+</table>
+</tr>
+
+<?php
+
+}
+?>
+</table>
 
 
-																			</div>
-																			</form>
+						</div>
+						</form>
 
 
 

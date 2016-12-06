@@ -59,7 +59,7 @@ $data = mysql_fetch_array($query);
 			              </tr>
 			              <tr>
 			                  <?php 
-			                  $qr="select nama_asli,nama_file,path from upload where nodokacuan='$data[nodokacuan]'";
+			                  $qr="select nama_asli,nama_file,path from upload where idacuan='$data[nodokacuan]'";
 			                  $qp=mysql_query($qr);
 			                  while ($dq=mysql_fetch_array($qp)) {
 			                    echo"

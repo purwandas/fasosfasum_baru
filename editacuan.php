@@ -23,7 +23,10 @@
     $id=$_GET['nodokacuan'];
 
     $tgldokacuan= $_POST['tgldokacuan'];
-    $cekTgl=mysql_query("select tgldokacuan from detaildokacuan where nodokacuan='$id' and versi='0'");
+    $cekTgl=mysql_query("select tgldokacuan from detaildokacuan INNER JOIN 
+    (SELECT nodokacuan as noacuan, max(versi) as versidok FROM detaildokacuan 
+    GROUP BY nodokacuan
+    ORDER BY idacuan DESC) b on detaildokacuan.nodokacuan=b.noacuan and detaildokacuan.versi=b.versidok where nodokacuan='$id'");
     $cekTgl=mysql_fetch_array($cekTgl);
     if($cekTgl['tgldokacuan']!=$tgldokacuan)
     {
@@ -164,7 +167,10 @@ if(isset($_GET['delete'])){
                include "koneksi.php";
                $id = $_GET['nodokacuan'];
 
-               $query = mysql_query("select idacuan, nodokacuan, idkategori, tgldokacuan, pemegangdokacuan, haldokacuan, ketdokacuan from detaildokacuan where nodokacuan='$id' and versi='0'") or die(mysql_error());
+               $query = mysql_query("select idacuan, nodokacuan, idkategori, tgldokacuan, pemegangdokacuan, haldokacuan, ketdokacuan from detaildokacuan INNER JOIN 
+                (SELECT nodokacuan as noacuan, max(versi) as versidok FROM detaildokacuan 
+                GROUP BY nodokacuan
+                ORDER BY idacuan DESC) b on detaildokacuan.nodokacuan=b.noacuan and detaildokacuan.versi=b.versidok where nodokacuan='$id'") or die(mysql_error());
 
                $data = mysql_fetch_array($query);
                ?>
@@ -209,7 +215,9 @@ if(isset($_GET['delete'])){
                  <tr>
                   <td>Tgl. Dokumen </td>
                   <td height="21">
-                    <label class='input'><input type="text" id="tgldokacuan" name="tgldokacuan" maxlength="10" required="required" value="<?php echo $data['tgldokacuan']; ?>"/></label>
+                    <label class='input'>
+                      <input type="text" id="tgldokacuan" name="tgldokacuan" maxlength="10" required="required" value="<?php echo substr($data['tgldokacuan'],3,2).'/'.substr($data['tgldokacuan'],0,2).'/'.substr($data['tgldokacuan'],-4); ?>"/>
+                    </label>
                   </td>         
                 </tr>
                 <td>Pemegang Dokumen </td>
