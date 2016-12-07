@@ -228,7 +228,12 @@
 			<div id="logo-group">
 
 				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo" style="margin:0px;padding:0px;padding-top:5px;padding-left:5px;"> <img src="img/logo2.png" alt="Fasos Fasum DKI Jakarta" ></span>
+				<span id="logo" style="margin:0px;padding:0px;padding-top:5px;padding-left:5px;"> 
+					<img src="img/logo2.png" alt="Fasos Fasum DKI Jakarta" style="height: inherit;width: auto;float: left;">
+					<!-- <p style="height: inherit;width: auto;font-size: 10px" align="center">
+						SISTEM INFORMASI FASOS FASUM PROVINSI DKI JAKARTA
+					</p> -->
+				</span>
 				<!-- END LOGO PLACEHOLDER -->
 
 				<!-- Note: The activity badge color changes when clicked and resets the number to 0
@@ -272,15 +277,14 @@
 		<!-- Note: This width of the aside area can be adjusted through LESS variables -->
 		<aside id="left-panel">
 
-			
+			<nav>
+				<ul>
 
 			<!-- NAVIGATION : This navigation is also responsive-->
 		<?php
 		if($_SESSION['SESS_LEVEL']=='1')
 		{
 		?>
-			<nav>
-				<ul>
 					<li>
 						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
 					</li>
@@ -310,28 +314,7 @@
 						</ul>
 					</li>
 					
-					<li>
-						<a href="#"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">BOT/BTO</span></a>
-						<ul>
-							<li>
-								<a href="index.php?hal=markingbot">Marking Data BOT/BTO</a>
-							</li>
-							<li>
-								<a href="index.php?hal=botvsskpd">BOT/BTO vs SKPD</a>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">SKPD</span></a>
-						<ul>
-							<li>
-								<a href="index.php?hal=markingskpd">Marking Data SKPD</a>
-							</li>
-							<li>
-								<a href="index.php?hal=ffskpd">Fasos Fasum vs SKPD</a>
-							</li>
-						</ul>
-					</li>
+					
 					<!-- <li id="reports">
 					<a class="top"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">Laporan</span></a>
 			          <ul>
@@ -365,7 +348,86 @@
 			            
 			          </ul>
 			        </li> -->
-			        <li>
+			        
+		<?php
+		}
+		else if($_SESSION['SESS_LEVEL']=='2')
+		{
+			?>
+					<li>
+						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=pencarian"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pencarian</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=lihatbast"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">BAST</span></a>
+					</li>
+			<?php
+		}
+		else if($_SESSION['SESS_LEVEL']=='3')
+		{
+			?>
+					<li>
+						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=pencarian"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pencarian</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=lihatbast"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">BAST</span></a>
+					</li>
+			<?php
+		}
+		else if($_SESSION['SESS_LEVEL']=='4')
+		{
+			?>
+					<li>
+						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=pencarian"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pencarian</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=lihatbast"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">BAST</span></a>
+					</li>
+			<?php
+		}
+		else if($_SESSION['SESS_LEVEL']=='5')
+		{
+			?>
+					<li>
+						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=pencarian"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pencarian</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=lihatbast"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">BAST</span></a>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">BOT/BTO</span></a>
+						<ul>
+							<li>
+								<a href="index.php?hal=markingbot">Marking Data BOT/BTO</a>
+							</li>
+							<li>
+								<a href="index.php?hal=botvsskpd">BOT/BTO vs SKPD</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">SKPD</span></a>
+						<ul>
+							<li>
+								<a href="index.php?hal=markingskpd">Marking Data SKPD</a>
+							</li>
+							<li>
+								<a href="index.php?hal=ffskpd">Fasos Fasum vs SKPD</a>
+							</li>
+						</ul>
+					</li>
+					<li>
 						<a href="#"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">Master Data</a>
 						<ul>
 							<li>
@@ -399,87 +461,11 @@
 							</li> -->
 						</ul>
 					</li>
-				</ul>
-			</nav>
-		<?php
-		}
-		else if($_SESSION['SESS_LEVEL']=='2')
-		{
-			?>
-			<nav>
-				<ul>
-					<li>
-						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
-					</li>
-					<li>
-						<a href="index.php?hal=pencarian"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pencarian</span></a>
-					</li>
-					<li>
-						<a href="index.php?hal=lihatbast"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">BAST</span></a>
-					</li>
-				</ul>
-			</nav>
-			<?php
-		}
-		else if($_SESSION['SESS_LEVEL']=='3')
-		{
-			?>
-			<nav>
-				<ul>
-					<li>
-						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
-					</li>
-					<li>
-						<a href="index.php?hal=pencarian"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pencarian</span></a>
-					</li>
-					<li>
-						<a href="index.php?hal=lihatbast"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">BAST</span></a>
-					</li>
-				</ul>
-			</nav>
-			<?php
-		}
-		else if($_SESSION['SESS_LEVEL']=='4')
-		{
-			?>
-			<nav>
-				<ul>
-					<li>
-						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
-					</li>
-					<li>
-						<a href="index.php?hal=pencarian"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pencarian</span></a>
-					</li>
-					<li>
-						<a href="index.php?hal=lihatbast"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">BAST</span></a>
-					</li>
-				</ul>
-			</nav>
-			<?php
-		}
-		else if($_SESSION['SESS_LEVEL']=='5')
-		{
-			?>
-			<nav>
-				<ul>
-					<li>
-						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
-					</li>
-					<li>
-						<a href="index.php?hal=pencarian"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pencarian</span></a>
-					</li>
-					<li>
-						<a href="index.php?hal=lihatbast"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">BAST</span></a>
-					</li>
-				</ul>
-			</nav>
 			<?php
 		}
 		else if($_SESSION['SESS_LEVEL']=='6')
 		{
 			?>
-			<nav>
-				<ul>
 					<li>
 						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
 					</li>
@@ -489,13 +475,19 @@
 					<li>
 						<a href="index.php?hal=lihatuser"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Data User</span></a>
 					</li>
-				</ul>
-			</nav>
 			
 			<?php
 		}
 			
 		?>
+				</ul>
+				<ul class="text-center" style="float: right;width: 200px;height: 50px; padding-top: 19px;">
+					<?php
+						echo "<p style='font-size:24px;'>$_SESSION[SESS_JABATAN]</p> <br>";
+						echo "<p style='font-size:15px;'>( $_SESSION[SESS_FIRST_NAME] $_SESSION[SESS_LAST_NAME] )</p>";
+					?>
+				</ul>
+			</nav>
 			
 			<span class="minifyme" data-action="minifyMenu"> 
 				<i class="fa fa-arrow-circle-left hit"></i> 
