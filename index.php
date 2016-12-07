@@ -423,15 +423,57 @@
 		}
 		else if($_SESSION['SESS_LEVEL']=='3')
 		{
-
+			?>
+			<nav>
+				<ul>
+					<li>
+						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=pencarian"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pencarian</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=lihatbast"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">BAST</span></a>
+					</li>
+				</ul>
+			</nav>
+			<?php
 		}
 		else if($_SESSION['SESS_LEVEL']=='4')
 		{
-
+			?>
+			<nav>
+				<ul>
+					<li>
+						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=pencarian"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pencarian</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=lihatbast"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">BAST</span></a>
+					</li>
+				</ul>
+			</nav>
+			<?php
 		}
 		else if($_SESSION['SESS_LEVEL']=='5')
 		{
-
+			?>
+			<nav>
+				<ul>
+					<li>
+						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=pencarian"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pencarian</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=lihatbast"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">BAST</span></a>
+					</li>
+				</ul>
+			</nav>
+			<?php
 		}
 		else if($_SESSION['SESS_LEVEL']=='6')
 		{
@@ -528,19 +570,24 @@
 								}
 								else if($_SESSION['SESS_LEVEL']==2)
 								{
-									include "bpad/$_GET[hal].php";
+									// include "bpad/$_GET[hal].php";
+									if(!@include("bpad/$_GET[hal].php"))
+										echo"<img src='img/404.jpg' width='100%'>";
 								}
 								else if($_SESSION['SESS_LEVEL']==3)
 								{
-									include "$_GET[hal].php";
+									if(!@include("penerimaaset/$_GET[hal].php"))
+										echo"<img src='img/404.jpg' width='100%'>";
 								}
 								else if($_SESSION['SESS_LEVEL']==4)
 								{
-									include "$_GET[hal].php";
+									if(!@include("ppkd/$_GET[hal].php"))
+										echo"<img src='img/404.jpg' width='100%'>";
 								}
 								else if($_SESSION['SESS_LEVEL']==5)
 								{
-									include "$_GET[hal].php";
+									if(!@include("pengendaliaset/$_GET[hal].php"))
+										echo"<img src='img/404.jpg' width='100%'>";
 								}
 								else if($_SESSION['SESS_LEVEL']==6)
 								{

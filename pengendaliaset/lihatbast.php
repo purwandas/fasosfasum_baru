@@ -173,7 +173,7 @@ $(document).ready(function() {
 <article class="col-sm-12 col-md-12 col-lg-12">
 
   <!-- Widget ID (each widget will need unique ID)-->
-  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-33" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-31" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
   <header>
     <span class="widget-icon"> <i class="fa fa-file-text-o"></i></span>
     <h2>Data BAST</h2>
@@ -194,8 +194,7 @@ $(document).ready(function() {
                           <th >Perihal BAST</th>
                           <th>Pengembang BAST</th>
                           <th >Keterangan</th>
-                          <th >Checklist Walikota</th>
-                          <th >Checklist BPAD</th>
+                          <th >Status Register</th>
                           <th>No. DOkumen Acuan</th>
                           <th>Act.</th>
                         </tr>
@@ -211,52 +210,31 @@ $(document).ready(function() {
                               
                               
                                 $button="";
-                                if($data['checklistwalikota']=='1')
-                                {
-                                  if($data['checklistarsip']=='1')
-                                  {
-                                  	$button.= "
-	                                    <a href='index.php?hal=chck&nobast=$data[nobast]&noacuan=$data[nodokacuan]&pbast=$data[pengembangbast]' class='btn btn-sm btn-success' style='width:70px'>
-	                                    Checklist
-	                                    </a>
-	                                ";
-                                  }else{
-                                  	$button.= "
-	                                    <a href='index.php?hal=checklist&nobast=$data[nobast]&noacuan=$data[nodokacuan]&pbast=$data[pengembangbast]' class='btn btn-sm btn-info' style='width:70px'>
-	                                    Checklist
-	                                    </a>
-	                                ";
-                                  }
-                                  $chck="<p style='color:green'>Sudah</p>";
-                                }else{
-                                  $button.="
-                                    <a href='#' class='btn btn-sm btn-danger' style='width:70px'>
-                                    Checklist
-                                    </a>
-                                  ";
-                                  $chck="<p style='color:red'>Belum</p>";
-                                }
+                                
 
                                 //pop-up aja input nomor/kode tanggal lokasi
                                 if($data['kodearsip']!='')
                                 {
-                                	$warna="success";
+                                  $chck="<p style='color:green'>Sudah</p>";
+                                	if($data['noskgub']!='' || $data['nopks']!='')
+                                  {
+                                    $warna="success";
+                                  }else{
+                                    $warna="info";
+                                  }
+                                  $link="index.php?hal=register&nobast=$data[nobast]";
                                 }else{
-                                	$warna="info";
+                                  $chck="<p style='color:red'>Belum</p>";
+                                	$warna="danger";
+                                  $link='#';
                                 }
                                 $button.="
-                                <a href='index.php?hal=register&nobast=$data[nobast]' class='btn btn-sm btn-$warna' style='width:70px'>
+                                <a href='$link' class='btn btn-sm btn-$warna' style='width:70px'>
                                     Register
                                     </a>
                                 ";
 
-                                if($data['checklistarsip']=='1')
-                                {
-                                  $chck2="<p style='color:green'>Sudah</p>";
-                                }else{
-                                  $chck2="<p style='color:red'>Belum</p>";
-                                }
-                              
+
                             echo "
                               <tr>
                                 <td>$no</td>
@@ -266,7 +244,6 @@ $(document).ready(function() {
                                 <td>$data[pengembangbast]</td>
                                 <td>$data[keterangan]</td>
                                 <td>$chck</td>
-                                <td>$chck2</td>
                                 <td>
                                 	<a href='index.php?hal=bastbysippt&id=$data[nodokacuan]'>$data[nodokacuan]</a>
                                 </td>

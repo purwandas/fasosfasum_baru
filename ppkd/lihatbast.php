@@ -173,7 +173,7 @@ $(document).ready(function() {
 <article class="col-sm-12 col-md-12 col-lg-12">
 
   <!-- Widget ID (each widget will need unique ID)-->
-  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-33" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-34" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
   <header>
     <span class="widget-icon"> <i class="fa fa-file-text-o"></i></span>
     <h2>Data BAST</h2>
