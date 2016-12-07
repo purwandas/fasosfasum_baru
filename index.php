@@ -391,20 +391,6 @@
 					<li>
 						<a href="index.php?hal=lihatbast"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">BAST</span></a>
 					</li>
-			<?php
-		}
-		else if($_SESSION['SESS_LEVEL']=='5')
-		{
-			?>
-					<li>
-						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
-					</li>
-					<li>
-						<a href="index.php?hal=pencarian"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pencarian</span></a>
-					</li>
-					<li>
-						<a href="index.php?hal=lihatbast"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">BAST</span></a>
-					</li>
 					<li>
 						<a href="#"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">BOT/BTO</span></a>
 						<ul>
@@ -461,6 +447,21 @@
 							</li> -->
 						</ul>
 					</li>
+			<?php
+		}
+		else if($_SESSION['SESS_LEVEL']=='5')
+		{
+			?>
+					<li>
+						<a href="index.php" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=pencarian"><i class="fa fa-lg fa-fw fa-search"></i> <span class="menu-item-parent">Pencarian</span></a>
+					</li>
+					<li>
+						<a href="index.php?hal=lihatbast"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">BAST</span></a>
+					</li>
+					
 			<?php
 		}
 		else if($_SESSION['SESS_LEVEL']=='6')
