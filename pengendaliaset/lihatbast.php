@@ -11,7 +11,9 @@
 
 $(document).ready(function() {
   
-  
+  $(".showAlert").click(function(){
+    alert("Butuh Register dari BPAD dan PPKD");
+  });
   /* // DOM Position key index //
 
   l - Length changing (dropdown)
@@ -194,7 +196,8 @@ $(document).ready(function() {
                           <th >Perihal BAST</th>
                           <th>Pengembang BAST</th>
                           <th >Keterangan</th>
-                          <th >Status Register</th>
+                          <th >Status Register BPAD</th>
+                          <th >Status Register PPKD</th>
                           <th>No. DOkumen Acuan</th>
                           <th>Act.</th>
                         </tr>
@@ -216,7 +219,14 @@ $(document).ready(function() {
                                 if($data['kodearsip']!='')
                                 {
                                   $chck="<p style='color:green'>Sudah</p>";
-                                	if($data['noskgub']!='' || $data['nopks']!='')
+                                }else{
+                                  $chck="<p style='color:red'>Belum</p>";
+                                }
+
+                                if($data['kodeskpd']!='')
+                                {
+                                  $chck2="<p style='color:green'>Sudah</p>";
+                                  if($data['noskgub']!='' || $data['nopks']!='')
                                   {
                                     $warna="success";
                                   }else{
@@ -224,8 +234,8 @@ $(document).ready(function() {
                                   }
                                   $link="index.php?hal=register&nobast=$data[nobast]";
                                 }else{
-                                  $chck="<p style='color:red'>Belum</p>";
-                                	$warna="danger";
+                                  $chck2="<p style='color:red'>Belum</p>";
+                                  $warna="danger showAlert";
                                   $link='#';
                                 }
                                 $button.="
@@ -244,6 +254,7 @@ $(document).ready(function() {
                                 <td>$data[pengembangbast]</td>
                                 <td>$data[keterangan]</td>
                                 <td>$chck</td>
+                                <td>$chck2</td>
                                 <td>
                                 	<a href='index.php?hal=bastbysippt&id=$data[nodokacuan]'>$data[nodokacuan]</a>
                                 </td>
