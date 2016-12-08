@@ -143,7 +143,7 @@
 														</label>
 													</div>
 													<div class='col col-sm-1 col-md-1 col-lg-1'>
-											<input type='submit' value='Ubah' name='ubah' class='btn btn-info btn-sm col-md-6' style='    padding-left: 3px;'>
+											<input type='submit' value='Simpan' name='ubah' class='btn btn-info btn-sm col-md-6' style='    padding-left: 3px;'>
 											<a href='admin/hapususer.php?id=$dataUser[member_id]' class='btn btn-danger btn-sm col-md-6' style='    padding-left: 0px;'>Hapus</a>
 													</div>
 												</form>
@@ -167,6 +167,7 @@
 													
 													<div class='col col-sm-2 col-md-2 col-lg-2'>
 														<select class='btn btn-sm btn-default' name='wilayah'>
+															<option value='Semua Wilayah'>Semua Wilayah</option>
 														";
 														$queryWilayah=mysql_query("select wilayah from wilayah");
 														while ($dataWilayah=mysql_fetch_array($queryWilayah)) 
@@ -193,12 +194,12 @@
 													</div>
 													<div class='col col-sm-2 col-md-2 col-lg-2'>
 														<label class='input'>
-											<input type='text' name='username' placeholder='Username' required>
+											<input type='text' name='username' placeholder='Username' value='' required>
 														</label>
 													</div>
 													<div class='col col-sm-2 col-md-2 col-lg-2'>
 														<label class='input'>
-											<input type='password' name='password' placeholder='Password Baru' required>
+											<input type='password' name='password' placeholder='Password Baru' value='' required>
 														</label>
 													</div>
 													<div class='col col-sm-1 col-md-1 col-lg-1'>

@@ -82,24 +82,24 @@
           }
         });
         $("#bthnsippt").click(function(){
-          $("#thnsippt").empty();
-          $("#thnsippt2").empty();
-          $("#thnsippt").append("<option value='' > -pilih- </option>");
-          $("#thnsippt2").append("<option value='' > -pilih- </option>");
+          $("#thnsippt").val('');
+          $("#thnsippt2").val('');
+          // $("#thnsippt").append("<option value='' > -pilih- </option>");
+          // $("#thnsippt2").append("<option value='' > -pilih- </option>");
           document.getElementById("formpencarian").submit();   
         });
         $("#bthnbast").click(function(){
-          $("#thnbast").empty();
-          $("#thnbast2").empty();
-          $("#thnbast").append("<option value='' > -pilih- </option>");
-          $("#thnbast2").append("<option value='' > -pilih- </option>");
+          $("#thnbast").val('');
+          $("#thnbast2").val('');
+          // $("#thnbast").append("<option value='' > -pilih- </option>");
+          // $("#thnbast2").append("<option value='' > -pilih- </option>");
           document.getElementById("formpencarian").submit();   
         });
         $("#bthnpkk").click(function(){
-          $("#thnpkk").empty();
-          $("#thnpkk2").empty();
-          $("#thnpkk").append("<option value='' > -pilih- </option>");
-          $("#thnpkk2").append("<option value='' > -pilih- </option>");
+          $("#thnpkk").val('');
+          $("#thnpkk2").val('');
+          // $("#thnpkk").append("<option value='' > -pilih- </option>");
+          // $("#thnpkk2").append("<option value='' > -pilih- </option>");
           document.getElementById("formpencarian").submit();   
         });
 
@@ -465,13 +465,15 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
           if($dan2==0){
             $dan=1;
             $dan2=1;
-            $ye1=$_GET["$dfilter_m[name]$dfilter[name]"];
-            $ye2=$_GET["$dfilter_m[name]$dfilter[name]2"];
-            $query.=" $ope ((year(STR_TO_DATE($dfilter[ref_table].$dfilter[ref_field], '%d/%m/%Y')) between '$ye1' and '$ye2') $dfilter[clause])";
+            $tgl=$_GET["$dfilter_m[name]$dfilter[name]"];
+            $ye=substr($tgl, -4).'-'.substr($tgl, 0,2)."-".substr($tgl, 3,2);
+            $tgl2=$_GET["$dfilter_m[name]$dfilter[name]2"];
+            $ye2=substr($tgl2, -4).'-'.substr($tgl2, 0,2)."-".substr($tgl2, 3,2);
+            $query.=" $ope ((($dfilter[ref_table].$dfilter[ref_field] between '$ye' and '$ye2') $dfilter[clause]))";
             $filter[$jmlFilter]="$dfilter_m[nama] $dfilter[display]";
             $jmlFilter++;
           }else{
-            $query=substr($query,0,-1)." or (year(STR_TO_DATE($dfilter[ref_table].$dfilter[ref_field], '%d/%m/%Y')) between '$ye1' and '$ye2') $dfilter[clause])";
+            $query=substr($query,0,-1)." or (($dfilter[ref_table].$dfilter[ref_field] between '$ye1' and '$ye2') $dfilter[clause]))";
             $filter[$jmlFilter]="$dfilter_m[nama] $dfilter[display]";
             $jmlFilter++;
           }
@@ -479,44 +481,28 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
         }else{
           $ck='';
         }
-        echo "$dfilter[display]<br/>";
-        echo"<select name=$dfilter_m[name]$dfilter[name] id=$dfilter_m[name]$dfilter[name]>";
-
+        echo "
+          <script type='text/javascript'>
+            $( function() {
+                $('#$dfilter_m[name]$dfilter[name]' ).datepicker();
+                $('#$dfilter_m[name]$dfilter[name]2' ).datepicker();
+              } );
+          </script>
+        ";
         if(isset($_GET["$dfilter_m[name]$dfilter[name]"])&&$_GET["$dfilter_m[name]$dfilter[name]"]!=''){
           $ye=$_GET["$dfilter_m[name]$dfilter[name]"];
-          echo"
-          <option value='$ye'>$ye</option>
-          ";
         }else{
-          echo"
-          <option value=''>-pilih-</option>
-          ";
+          $ye='';
         }
-        for($i=date("Y");$i>=1980;$i--){
-        // for($i=1980;$i<=date("Y");$i++){
-          echo"
-          <option value='$i'>$i</option>
-          ";
-        }
-        echo"</select> s/d <select name=$dfilter_m[name]$dfilter[name]2 id=$dfilter_m[name]$dfilter[name]2>";
         if(isset($_GET["$dfilter_m[name]$dfilter[name]2"])&&$_GET["$dfilter_m[name]$dfilter[name]2"]!=''){
-          $ye=$_GET["$dfilter_m[name]$dfilter[name]2"];
-          echo"
-          <option value='$ye'>$ye</option>
-          ";
+          $ye2=$_GET["$dfilter_m[name]$dfilter[name]2"];
         }else{
-          echo"
-          <option value=''>-pilih-</option>
-          ";
+          $ye2='';
         }
-        for($i=date("Y");$i>=1980;$i--){
-          echo"
-          <option value='$i'>$i</option>
-          ";
-        }
-        echo"
-      </select><br>
-      ";
+        echo "$dfilter[display]<br/>";
+        echo "<label class='input'><input type='text' name='$dfilter_m[name]$dfilter[name]' id='$dfilter_m[name]$dfilter[name]' value='$ye'></label>";
+        echo " s/d <label class='input'><input type='text' name='$dfilter_m[name]$dfilter[name]2' id='$dfilter_m[name]$dfilter[name]2' value='$ye2'></label> <br>";
+        
       echo "<div align='right'><button id='b$dfilter_m[name]$dfilter[name]' class='btn btn-default'>Clear</button></div>";
       }
       else if($dfilter_m['ket']=='multidok')
@@ -731,7 +717,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
 						</div>
 						<br>
 				<?php
-					// echo "$query<--";
+					echo "$query<--";
                     $qs=mysql_query($query);
                     $sudah="<i class='fa fa-check-circle' aria-hidden='true' style='color:green'></i>";
                     $belum="<i class='fa fa-times-circle' aria-hidden='true' style='color:red'></i>";
