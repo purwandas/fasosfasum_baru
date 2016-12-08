@@ -11,7 +11,10 @@
 
 $(document).ready(function() {
   
-  
+  $(".showAlert").click(function(){
+    alert("Butuh Checklist dari Walikota dan BPAD");
+  });
+
   /* // DOM Position key index //
 
   l - Length changing (dropdown)
@@ -203,7 +206,7 @@ $(document).ready(function() {
                       </thead>
                       <tbody>
                         <?php
-                          $query="select * from bast order by idbast desc";
+                          $query="select * from bast INNER JOIN (SELECT DISTINCT nobast FROM bast INNER JOIN dataaset ON bast.nobast=dataaset.nobastaset WHERE dataaset.wilayah='$_SESSION[SESS_WILAYAH]') as b on bast.nobast=b.nobast order by idbast desc";
                           $query=mysql_query($query);
                           $no=0;
                           while ($data=mysql_fetch_array($query)) 
@@ -232,7 +235,7 @@ $(document).ready(function() {
                                     }
                                   }else{
                                     $button.="
-                                    <a href='#' class='btn btn-sm btn-danger' style='width:70px'>
+                                    <a href='#' class='btn btn-sm btn-danger showAlert' style='width:70px'>
                                     Checklist
                                     </a>
                                     ";	
@@ -240,7 +243,7 @@ $(document).ready(function() {
                                   $chck="<p style='color:green'>Sudah</p>";
                                 }else{
                                   $button.="
-                                    <a href='#' class='btn btn-sm btn-danger' style='width:70px'>
+                                    <a href='#' class='btn btn-sm btn-danger showAlert' style='width:70px'>
                                     Checklist
                                     </a>
                                   ";
