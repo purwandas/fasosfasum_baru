@@ -105,6 +105,7 @@
 															<option value='$dataUser[wilayah]'>
 																$dataUser[wilayah]
 															</option>
+															<option value='Semua Wilayah'>Semua Wilayah</option>
 														";
 														$queryWilayah=mysql_query("select wilayah from wilayah");
 														while ($dataWilayah=mysql_fetch_array($queryWilayah)) 

@@ -717,7 +717,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
 						</div>
 						<br>
 				<?php
-					echo "$query<--";
+					// echo "$query<--";
                     $qs=mysql_query($query);
                     $sudah="<i class='fa fa-check-circle' aria-hidden='true' style='color:green'></i>";
                     $belum="<i class='fa fa-times-circle' aria-hidden='true' style='color:red'></i>";
