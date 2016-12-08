@@ -11,7 +11,10 @@
 
 $(document).ready(function() {
   
-  
+  $(".showAlert").click(function(){
+    alert("Butuh Checklist dari Walikota");
+  });
+
   /* // DOM Position key index //
 
   l - Length changing (dropdown)
@@ -166,7 +169,9 @@ $(document).ready(function() {
   
   /* END TABLETOOLS */
 
-})
+});
+
+
 
 </script>
 
@@ -230,7 +235,7 @@ $(document).ready(function() {
                                   $chck="<p style='color:green'>Sudah</p>";
                                 }else{
                                   $button.="
-                                    <a href='#' class='btn btn-sm btn-danger' style='width:70px'>
+                                    <a href='#' class='btn btn-sm btn-danger showAlert' style='width:70px'>
                                     Checklist
                                     </a>
                                   ";
@@ -238,17 +243,22 @@ $(document).ready(function() {
                                 }
 
                                 //pop-up aja input nomor/kode tanggal lokasi
-                                if($data['kodearsip']!='')
+                                
+                                
+                                if ($data['checklistarsip']=='1') 
                                 {
-                                	$warna="success";
-                                }else{
-                                	$warna="info";
+                                  if($data['kodearsip']!='')
+                                  {
+                                    $warna="success";
+                                  }else{
+                                    $warna="info";
+                                  }
+                                  $button.="
+                                  <a href='index.php?hal=register&nobast=$data[nobast]' class='btn btn-sm btn-$warna' style='width:70px'>
+                                      Register
+                                      </a>
+                                  ";
                                 }
-                                $button.="
-                                <a href='index.php?hal=register&nobast=$data[nobast]' class='btn btn-sm btn-$warna' style='width:70px'>
-                                    Register
-                                    </a>
-                                ";
 
                                 if($data['checklistarsip']=='1')
                                 {

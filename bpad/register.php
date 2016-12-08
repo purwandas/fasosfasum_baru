@@ -59,7 +59,7 @@
 	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-27" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 	<header>
 		<span class="widget-icon"> <i class="fa fa-file-text-o"></i></span>
-		<h2>Register Arsip</h2>
+		<h2>Register Arsip BPAD</h2>
 	</header>
 		<!-- widget div-->
 		<div class="smart-form">
