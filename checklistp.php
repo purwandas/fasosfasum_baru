@@ -46,7 +46,7 @@
                 
                 if($level=='1')
                 {
-                    if(isset($_GET['nobast'])){
+                    if(isset($_POST['nobast'])){
                         $success='lihatbast';
                     }else{
                         $success='tambahbast';
