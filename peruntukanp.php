@@ -52,7 +52,7 @@
 				 `nodokacuan`, `idkewajiban`) 
 				 VALUES 
 				 ('$idperuntukan2', '{$value}', 
-				 '{$_POST['luas'][$key]}', '{$_POST['nokrk'][$key]}', '{$_POST['noimb'][$key]}',
+				 '{$_POST['volume'][$key]}', '{$_POST['nokrk'][$key]}', '{$_POST['noimb'][$key]}',
 				 '{$_POST['noblokplan'][$key]}', '-', '{$_POST['pemilik'][$key]}',
 				 '-', '{$_POST['nosertifikat'][$key]}', '{$_POST['masaberlaku'][$key]}',
 				 '{$_POST['luassertifikat'][$key]}', '{$_POST['keterangan'][$key]}', '{$nobast}',
@@ -67,15 +67,15 @@
 				$queryInsertAkun="
 				INSERT INTO akun VALUES(
 				'$idperuntukan2','$nobast','$tglsql',
-				'{$_POST['idaset'][$key]}','{$_POST['kategori'][$key]}','{$_POST['luas'][$key]}',
+				'{$_POST['idaset'][$key]}','{$_POST['kategori'][$key]}','{$_POST['volume'][$key]}',
 				'{$_POST['satuan'][$key]}','{$_POST['nilainjop'][$key]}','{$_POST['nilaibast'][$key]}',
 				'{$_POST['nilaimix'][$key]}','nilaiapp','{$_POST['jmlnjop'][$key]}',
 				'0','{$_POST['ketakun'][$key]}','0',
 				'0','0','0',
 				'Tidak Ada Perubahan')
 				";
-				$sisaKewajiban=$_POST['kewajiban'][$key]-$_POST['luas'][$key];
-				$queryUpdateKewajiban="Update kewajiban set pelunasan = '{$_POST['luas'][$key]}', luas='$sisaKewajiban' where idkewajiban='{$_POST['idkewajiban'][$key]}'";
+				$sisaKewajiban=$_POST['kewajiban'][$key]-$_POST['volume'][$key];
+				$queryUpdateKewajiban="Update kewajiban set pelunasan = '{$_POST['volume'][$key]}', luas='$sisaKewajiban' where idkewajiban='{$_POST['idkewajiban'][$key]}'";
 				// echo "$queryInsertPeruntukan<br>$queryInsertAkun<br>$queryUpdateKewajiban<hr>";
 				if(mysql_query($queryInsertPeruntukan))
 				{
@@ -112,7 +112,7 @@
 				$updateAkunAset=mysql_query($updateAkunAset);
 			}
 		}
-		header('Location: index.php?hal=checklist');
+		header('Location: index.php?hal=lihatbast');
 	}
 ?>
 

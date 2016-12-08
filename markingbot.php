@@ -90,7 +90,7 @@
 			                       <td class="center"><?php echo $data['satuan']; ?></td>
 			                       <td class="left"><?php  print number_format  ($data['nilaimix'],2); ?></td>
 
-			                       <td class="center"><a href="index.php?hal=entrybot&id=<?php echo $data['idperuntukan']; ?>">Marking BOT/BTO</a></td>
+			                       <td class="center"><a href="index.php?hal=entrybot&id=<?php echo $data['idperuntukan']; ?>" class="btn btn-info">Marking BOT/BTO</a></td>
 			                     </tr>
 			                   <?php
 			                   $no++;

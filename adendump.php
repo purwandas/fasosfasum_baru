@@ -89,26 +89,14 @@ if($_FILES["fileacuan"]["tmp_name"]!='')
   foreach($_POST['idkewajiban'] as $key => $idkewajiban){  
     if($idkewajiban){
       // echo ">--> $idperuntukan";
-      if($idkewajiban=='kosong'){
-        $check=0;
-      }else{
-        $check=1;
-      }
-      // echo "<br>$idperuntukan - $check";
-      if($check>0)
-      {
-        $sisaLuas=$_POST['luas'][$key]-$_POST['pelunasan'][$key];
-        $sql = "update kewajiban set deskripsi='{$_POST['deskripsi'][$key]}',jenisfasos='{$_POST['jenisfasos'][$key]}',luas='{$sisaLuas}' where idkewajiban='$idkewajiban';";  
-        $msg="Ubah Data Kewajiban(Adendum): $idkewajiban ($nodokacuan2)";
-      }else{
+      
         if($_POST['deskripsi'][$key]!='')
         {
-         $sql = "INSERT INTO `kewajiban` (`idkewajiban`, `idacuan`, `nodokacuan`, `deskripsi`, `jenisfasos`, `luas`, `pelunasan`) VALUES ('', '{$_POST['idacuan']}', '{$nodokacuan2}', '{$_POST['deskripsi'][$key]}', '{$_POST['jenisfasos'][$key]}', '{$_POST['luas'][$key]}', '0');";
+         $sql = "INSERT INTO `kewajiban` (`idkewajiban`, `idacuan`, `nodokacuan`, `deskripsi`, `jenisfasos`, `luas`, `pelunasan`) VALUES ('', '{$idacuanMax}', '{$nodokacuan2}', '{$_POST['deskripsi'][$key]}', '{$_POST['jenisfasos'][$key]}', '{$_POST['luas'][$key]}', '0');";
          $msg="Tambah Data Kewajiban baru(Adendum): {$_POST['deskripsi'][$key]} ($nodokacuan2)";
-       }else{
-        $sql="FAIL";
-       }
-      }
+        }else{
+          $sql="FAIL";
+        }
 
       if($sql=mysql_query($sql))
       {

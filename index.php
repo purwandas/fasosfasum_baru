@@ -482,10 +482,12 @@
 			
 		?>
 				</ul>
-				<ul class="text-center" style="float: right;width: 200px;height: 50px; padding-top: 19px;">
+				<ul class="text-center" style="float: right;width: 200px;height: 50px; padding-top: 12px;">
 					<?php
 						echo "<p style='font-size:24px;'>$_SESSION[SESS_JABATAN]</p> <br>";
-						echo "<p style='font-size:15px;'>( $_SESSION[SESS_FIRST_NAME] $_SESSION[SESS_LAST_NAME] )</p>";
+						echo "<p style='font-size:15px;'>( $_SESSION[SESS_FIRST_NAME] $_SESSION[SESS_LAST_NAME] )</p><br>";
+						echo "<p style='font-size:20px;'>$_SESSION[SESS_WILAYAH]</p>";
+
 					?>
 				</ul>
 			</nav>

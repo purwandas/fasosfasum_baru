@@ -117,27 +117,27 @@ if (isset($_POST['submit'])){
 						     ?>
 				         <tr>
 				           <td>BOT/BTO Pengguna</td>
-				           <td><label class='input'><input type="text" name="bot" maxlength="90" required="required" value="<?php echo $data2['pengguna'];?>" /></label></td>
+				           <td><label class='input'><input type="text" name="bot" maxlength="90"  value="<?php echo $data2['pengguna'];?>" /></label></td>
 				         </tr>
 
 				         <tr>
 				           <td>Alamat Aset BOT/BTO </td>
-				           <td><label class='input'><input type="text" name="alamatbot" maxlength="200" required="required" value="<?php echo $data2['alamatbot'];?>" /></label></td>
+				           <td><label class='input'><input type="text" name="alamatbot" maxlength="200"  value="<?php echo $data2['alamatbot'];?>" /></label></td>
 				         </tr>
 
 				         <tr>
 				           <td>Luas Aset BOT/BTO </td>
-				           <td><label class='input'><input type="text" name="luasbot" maxlength="200" required="required" value="<?php echo $data2['luasbot'];?>" /></label></td>
+				           <td><label class='input'><input type="text" name="luasbot" maxlength="200"  value="<?php echo $data2['luasbot'];?>" /></label></td>
 				         </tr>
 
 				         <tr>
 				           <td>Nilai Aset BOT/BTO</td>
-				           <td><label class='input'><input type="text" name="nilaibot" maxlength="200" required="required" value="<?php echo $data2['nilaibot'];?>" /></label></td>
+				           <td><label class='input'><input type="text" name="nilaibot" maxlength="200"  value="<?php echo $data2['nilaibot'];?>" /></label></td>
 				         </tr>
 
 				         <tr>
 				           <td>Keterangan</td>
-				           <td><label class='input'><input type="text" name="ketbot" maxlength="90" required="required" value="<?php echo $data2['keterangan'];?>" /></label></td>
+				           <td><label class='input'><input type="text" name="ketbot" maxlength="90"  value="<?php echo $data2['keterangan'];?>" /></label></td>
 				         </tr>
 				         <tr>		
 				          <td align="center" colspan="2">

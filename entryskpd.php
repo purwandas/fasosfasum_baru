@@ -126,27 +126,27 @@ if (isset($_POST['submit'])){
 						     ?>
 						     <tr>
 						       <td>SKPD Pengguna</td>
-						       <td><label class='input'><input type="text" name="skpd" maxlength="90" required="required" value="<?php echo $data2['pengguna'];?>" /></label></td>
+						       <td><label class='input'><input type="text" name="skpd" maxlength="90" value="<?php echo $data2['pengguna'];?>" /></label></td>
 						     </tr>
 
 						     <tr>
 						       <td>Alamat Aset SKPD </td>
-						       <td><label class='input'><input type="text" name="alamatskpd" maxlength="200" required="required" value="<?php echo $data2['alamatskpd'];?>" /></label></td>
+						       <td><label class='input'><input type="text" name="alamatskpd" maxlength="200" value="<?php echo $data2['alamatskpd'];?>" /></label></td>
 						     </tr>
 
 						     <tr>
 						       <td>Luas Aset SKPD </td>
-						       <td><label class='input'><input type="text" name="luasskpd" maxlength="200" required="required" value="<?php echo $data2['luasskpd'];?>" /></label></td>
+						       <td><label class='input'><input type="text" name="luasskpd" maxlength="200" value="<?php echo $data2['luasskpd'];?>" /></label></td>
 						     </tr>
 
 						     <tr>
 						       <td>Nilai Aset SKPD </td>
-						       <td><label class='input'><input type="text" name="nilaiskpd" maxlength="200" required="required" value="<?php echo $data2['nilaiskpd'];?>" /></label></td>
+						       <td><label class='input'><input type="text" name="nilaiskpd" maxlength="200" value="<?php echo $data2['nilaiskpd'];?>" /></label></td>
 						     </tr>
 
 						     <tr>
 						       <td>Keterangan</td>
-						       <td><label class='input'><input type="text" name="ketskpd" maxlength="90" required="required" value="<?php echo $data2['keterangan'];?>" /></label></td>
+						       <td><label class='input'><input type="text" name="ketskpd" maxlength="90" value="<?php echo $data2['keterangan'];?>" /></label></td>
 						     </tr>
 						     <tr>		
 						      <td align="center" colspan="2">

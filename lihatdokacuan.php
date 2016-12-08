@@ -3,8 +3,6 @@
 
 <script type="text/javascript">
 
-// DO NOT REMOVE : GLOBAL FUNCTIONS!
-
 	$(document).ready(function() {
 
 	    $(".rowdata").click(function(){
@@ -224,7 +222,9 @@
 															<input type="text" <?php echo $kategoriv; ?> name="kategori" onchange="submit()">
 														</label>
 													</td>
-													<td></td>
+													<td align="center">
+														<i class="fa fa-lg fa-fw fa-file-text"></i>
+													</td>
 													<td class="text-center">
 														<i class="fa fa-lg fa-fw fa-search"></i>
 													</td>
@@ -271,11 +271,11 @@
 																<tr>
 																	<td><b>Deskripsi</b></td>
 																	<td><b>Jenis Fasos Fasum</b></td>
-																	<td><b>Luas Kewajiban</b></td>
-																	<td><b>Luas Diserahkan</b></td>
+																	<td><b>Luas/Jumlah Kewajiban</b></td>
+																	<td><b>Luas/Jumlah Diserahkan</b></td>
 																</tr>
 															";
-	$queryKewajiban=mysql_query("select * from kewajiban where nodokacuan='$data[nodokacuan]'");
+	$queryKewajiban=mysql_query("select * from kewajiban where idacuan='$data[idacuan]'");
 	while ($dataKewajiban=mysql_fetch_array($queryKewajiban)) 
 	{
 		$luasKewajiban=$dataKewajiban['luas']+$dataKewajiban['pelunasan'];

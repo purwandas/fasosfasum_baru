@@ -22,7 +22,7 @@ if (isset($_POST['submit'])){
 	include"koneksi.php";
 	$id=$_POST['idperuntukan'];
   $deskripsi= $_POST['deskripsi'];
-  $jenis= $_POST['jenis'];
+  // $jenis= $_POST['jenis'];
   $luas= $_POST['luas'];
   $sertifikasi= $_POST['sertifikasi'];
   $pemilik= $_POST['pemilik'];
@@ -57,7 +57,7 @@ if (isset($_POST['submit'])){
 
 
 //update data ke database
-  $query="update peruntukan set  deskripsi='$deskripsi',jenis='$jenis',luas='$luas',deskripsi='$deskripsi',jenis='$jenis',luas='$luas',sertifikasi='$sertifikasi',pemilik='$pemilik',jenissertifikat='$jenissertifikat',masaberlaku='$masaberlaku',keterangan='$keterangan',statussertifikat='$statussertifikat', nosertifikat='$nosertifikat',tglsertifikat='$tglsertifikat', luassertifikat='$luassertifikat', statuspenggunaan='$statuspenggunaan', nosk='$nosk',tglsk='$tglsk', skpd='$skpd', statusplang='$statusplang', sensusfasos='$sensusfasos' where idperuntukan='$id'";
+  $query="update peruntukan set  deskripsi='$deskripsi',luas='$luas',deskripsi='$deskripsi',luas='$luas',sertifikasi='$sertifikasi',pemilik='$pemilik',jenissertifikat='$jenissertifikat',masaberlaku='$masaberlaku',keterangan='$keterangan',statussertifikat='$statussertifikat', nosertifikat='$nosertifikat',tglsertifikat='$tglsertifikat', luassertifikat='$luassertifikat', statuspenggunaan='$statuspenggunaan', nosk='$nosk',tglsk='$tglsk', skpd='$skpd', statusplang='$statusplang', sensusfasos='$sensusfasos' where idperuntukan='$id'";
   // echo $query."LOL";
   $query = mysql_query($query) or die(mysql_error());
 
@@ -133,11 +133,11 @@ if (isset($_POST['submit'])){
 				                <td >Deskripsi Peruntukan </td>           
 				                <td height="21"><label class='input'><input type="text" name="deskripsi" maxlength="80" required="required" value="<?php echo $data['deskripsi']; ?>"/></label></td>
 				              </tr>
-				              <tr>
+				              <!-- <tr>
 				               <td>Jenis Peruntukan</td>
 				               <td><select name="jenis" class='btn btn-sm btn-default'>
 				                 <option value="<?php echo $data['jenis']; ?>"><?php echo $data['jenis']; ?></option><option>Tanah</option><option>Non-Tanah</option></select></td> 
-				               </tr>
+				               </tr> -->
 
 				               <tr>
 				                <td>Volume </td>

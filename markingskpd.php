@@ -106,7 +106,7 @@
 			                   <td class="center"><?php echo $data['satuan']; ?></td>
 			                   <td class="left"><?php  print number_format  ($data['nilaimix'],2); ?></td>
 
-			                   <td class="center"><a href="index.php?hal=entryskpd&id=<?php echo $data['idperuntukan']; ?>">Marking SKPD</a></td>
+			                   <td class="center"><a href="index.php?hal=entryskpd&id=<?php echo $data['idperuntukan']; ?>" class="btn btn-info">Marking SKPD</a></td>
 			                 </tr>
 			               <?php
 			               $no++;

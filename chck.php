@@ -68,7 +68,7 @@
 										<br>
 										<br>
 										Checklist Terupload:
-										<a href='downloadchecklist.php?id=$fileUpload[idupload]'>
+										<a href='downloadchecklist.php?id=$fileUpload[idupload]' target='_blank'>
 										$fileUpload[namaasli]
 										</a>
 									";

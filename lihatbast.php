@@ -225,7 +225,7 @@ $(document).ready(function() {
                                   $chck="<p style='color:green'>Sudah</p>";
                                 }else{
                                   $button.="
-                                    <a href='index.php?hal=' class='btn btn-sm btn-danger' style='width:70px'>
+                                    <a href='index.php?hal=checklist&nobast=$data[nobast]' class='btn btn-sm btn-danger' style='width:70px'>
                                     Checklist
                                     </a>
                                   ";
@@ -236,7 +236,11 @@ $(document).ready(function() {
                             echo "
                               <tr>
                                 <td>$no</td>
-                                <td>$data[nobast]</td>
+                                <td>
+                                  <a href='index.php?hal=viewdetailbast&id=$data[nobast]'>
+                                  $data[nobast]
+                                  </a>
+                                </td>
                                 <td>$data[tglbast]</td>
                                 <td>$data[perihalbast]</td>
                                 <td>$data[pengembangbast]</td>

@@ -1,3 +1,16 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#checklistSemua').change(function(){
+      if($(this).is(":checked"))
+      {
+        $('.cbx').prop('checked',true);
+      }else{
+        $('.cbx').prop('checked',false);
+      }
+    });
+  });
+</script>
+
 <div id='main' role='main'>
   <?php
     if(isset($_GET['e']))
@@ -40,6 +53,8 @@
               if($_SESSION['SESS_LEVEL']=='1')
               {
                 $jenisDokumen='walikota';
+                if(isset($_GET['nobast']))
+                $nobast="<input type='hidden' name='nobast' value='$_GET[nobast]'>";
               }
               else if($_SESSION['SESS_LEVEL']=='2')
               {
@@ -59,7 +74,7 @@
                   <td align='center'>$dataCheckList[$jenisDokumen]</td>
                   <td align='center'>
                     <label>
-                      <input type='checkbox' $sudah name='checklist$dataCheckList[idchecklist]' value='1'>
+                      <input type='checkbox' $sudah name='checklist$dataCheckList[idchecklist]' value='1' class='cbx'>
                     </label>
                   </td>
                 </tr>
@@ -70,6 +85,9 @@
         </table>
       </div>
       <div class="modal-footer">
+        <label align="right">
+           <input type='checkbox' name='checklistSemua' id='checklistSemua' value='1'> Check Semua?
+        </label>
         <center>
         <?php
         if(isset($nobast))

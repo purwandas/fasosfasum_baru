@@ -284,7 +284,7 @@ if($_GET['kategoriaset']!=''){$kategoriaset="akun.kategoriaset like '%$_GET[kate
 						                <td>$dataperuntukan[kelurahan]</td>
 						                <td>$dataperuntukan[kategoriaset]</td>
 						                <td>
-						              		<a href='index.php?hal=editperuntukan&idperuntukan=$dataperuntukan[idperuntukan]&p=lihatperuntukan' target='_blank'>
+						              		<a href='index.php?hal=editperuntukan&idperuntukan=$dataperuntukan[idperuntukan]&p=lihatperuntukan' target='_blank' class='btn btn-sm btn-info'>
 							              	ubah
 							              	</a>
 							            </td>

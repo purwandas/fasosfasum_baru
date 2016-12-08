@@ -98,7 +98,7 @@
 											<td>
 												<b>Longitude</b>
 											</td>
-											<td>
+											<td align="center">
 												<b>Act.</b>
 											</td>
 										</tr>
@@ -127,7 +127,8 @@
 											<td>
 												<label class='input'><input type="text" onchange="submit()" name="longitude" placeholder="Longitude" value="<?php if(isset($_GET['longitude'])){echo $_GET['longitude'];}?>"></label>
 											</td>
-											<td>
+											<td align="center">
+												<i class="fa fa-search"></i>
 											</td>
 										</tr>
 										<?php
@@ -161,7 +162,7 @@
 															$data[longitude]
 														</td>
 														<td>
-															<a target=_blank href='index.php?hal=editaset&id=$data[idaset]'>ubah</a>
+															<a target=_blank href='index.php?hal=editaset&id=$data[idaset]' class='btn btn-sm btn-info'>ubah</a>
 														</td>
 													</tr>
 												";

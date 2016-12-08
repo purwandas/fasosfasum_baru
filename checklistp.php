@@ -24,7 +24,14 @@
                         {
                                 if ($level=='1') 
                                 {
+                                    if(isset($_POST['nobast'])){
+                                        $nobast=$_POST['nobast'];
+                                        $insertDetailChecklist=mysql_query("INSERT INTO `checklistdetail` (`no`, `nobast`, `idchecklist`, `user1`, `user2`, `user3`) VALUES ('', '$nobast', '$dataCheckList[idchecklist]', '1', '0', '0')");
+                                        $nobastq="update bast set checklistwalikota='1' where nobast='$nobast'";
+                                $nobastq=mysql_query($nobastq);
+                                    }else{
                                         $insertDetailChecklist=mysql_query("INSERT INTO `checklistdetail` (`no`, `nobast`, `idchecklist`, `user1`, `user2`, `user3`) VALUES ('', '-NOBAST', '$dataCheckList[idchecklist]', '1', '0', '0')");
+                                    }
                                 }
                                 else if ($level=='2') 
                                 {
@@ -39,7 +46,11 @@
                 
                 if($level=='1')
                 {
+                    if(isset($_GET['nobast'])){
+                        $success='lihatbast';
+                    }else{
                         $success='tambahbast';
+                    }
                 }
                 else if($level=='2')
                 {

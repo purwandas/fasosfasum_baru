@@ -168,7 +168,10 @@
            }else{
             $_SESSION['kategori']='2';
                 $note='Input Nomor Bast atau Nama Pengembang atau Jenis Dok. Acuan';
-                $query="select bast.nobast, bast.keterangan, bast.tglbast, bast.pengembangbast, detaildokacuan.nodokacuan, detaildokacuan.pemegangdokacuan,dokumenacuan.jenisdokumen, detaildokacuan.tgldokacuan from bast inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ";
+                $query="select bast.nobast, bast.keterangan, bast.tglbast, bast.pengembangbast, detaildokacuan.nodokacuan, detaildokacuan.pemegangdokacuan,dokumenacuan.jenisdokumen, detaildokacuan.tgldokacuan from bast inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori INNER JOIN 
+                  (SELECT nodokacuan as noacuan, max(versi) as versidok FROM detaildokacuan 
+                  GROUP BY nodokacuan
+                  ORDER BY idacuan DESC) b on detaildokacuan.nodokacuan=b.noacuan and detaildokacuan.versi=b.versidok ";
                 
             // $query="select bast.nobast, bast.keterangan, bast.tglbast, bast.pengembangbast, detaildokacuan.nodokacuan, detaildokacuan.pemegangdokacuan, dokumenacuan.jenisdokumen, detaildokacuan.tgldokacuan from bast inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan inner join dokumenacuan on detaildokacuan.idkategori=dokumenacuan.idkategori ";
           }
@@ -728,7 +731,7 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
 						</div>
 						<br>
 				<?php
-					// echo "$query<--";
+					echo "$query<--";
                     $qs=mysql_query($query);
                     $sudah="<i class='fa fa-check-circle' aria-hidden='true' style='color:green'></i>";
                     $belum="<i class='fa fa-times-circle' aria-hidden='true' style='color:red'></i>";
@@ -878,7 +881,12 @@ while ($dfilter_m=mysql_fetch_array($qfilter_m))
                             <td colspan=9>
                               <center>
                                 ";
-                                $query2=mysql_query("select dataaset.idaset,dataaset.wilayah,dataaset.kecamatan,dataaset.kelurahan,detaildokacuan.tgldokacuan from bast inner join dataaset on bast.nobast=dataaset.nobastaset  inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan where bast.nobast='$data[nobast]'");
+                                $query2="select dataaset.idaset,dataaset.wilayah,dataaset.kecamatan,dataaset.kelurahan,detaildokacuan.tgldokacuan from bast inner join dataaset on bast.nobast=dataaset.nobastaset  inner join detaildokacuan on bast.nodokacuan=detaildokacuan.nodokacuan  INNER JOIN 
+                  (SELECT nodokacuan as noacuan, max(versi) as versidok FROM detaildokacuan 
+                  GROUP BY nodokacuan
+                  ORDER BY idacuan DESC) b on detaildokacuan.nodokacuan=b.noacuan and detaildokacuan.versi=b.versidok where bast.nobast='$data[nobast]' ";
+                                // echo "$query2 <-- query2";
+                                $query2=mysql_query($query2);
                                 while ($data2=mysql_fetch_array($query2)) {      
                                   echo "
                                   <table border=1 style='border-collapse: collapse;' class='table table-striped'>

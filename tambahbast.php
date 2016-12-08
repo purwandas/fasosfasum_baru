@@ -51,9 +51,9 @@
     }
     ?></select>";
 
-    td5.innerHTML="<label class='input'><input type='text' required name='latitude[]'></label>";
+    td5.innerHTML="<label class='input'><input type='text' name='latitude[]'></label>";
 
-    td6.innerHTML="<label class='input'><input type='text' required name='longitude[]'></label>";
+    td6.innerHTML="<label class='input'><input type='text' name='longitude[]'></label>";
 
 
     idrow++;
@@ -118,7 +118,7 @@
                 <tr>
                   <td>Perihal</td>
                   <td>:</td>
-                  <td><label class='input'><input type="text" name=perihalbast required="required" /></label></td> 
+                  <td><label class='input'><input type="text" name=perihalbast /></label></td> 
                 </tr>
                 <tr>
                   <td>Kategori </td>
@@ -151,11 +151,11 @@
                  <?php
                  // include "koneksi.php";
                  // query untuk menampilkan wilayah
-                 $query = "SELECT * FROM detaildokacuan where versi='0'";
+                 $query = "SELECT idacuan, nodokacuan FROM detaildokacuan where versi='0'";
                  $hasil = mysql_query($query);
                  while ($data = mysql_fetch_array($hasil))
                  {
-                  echo "<option value='".$data['nodokacuan']."'>".$data['nodokacuan']."</option>";
+                  echo "<option value='".$data['idacuan']."'>".$data['nodokacuan']."</option>";
                 }
                 ?>
               </select></td>
@@ -264,8 +264,8 @@
                   </select></td>
 
                   
-                <td><label class='input'><input type='text' required name='latitude[]'></label></td>
-                <td><label class='input'><input type='text' required name='longitude[]'></label></td>
+                <td><label class='input'><input type='text' name='latitude[]'></label></td>
+                <td><label class='input'><input type='text' name='longitude[]'></label></td>
 
               </tr>
           </table>

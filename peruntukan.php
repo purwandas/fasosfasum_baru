@@ -20,7 +20,11 @@ if (isset($_POST['submit'])){
   $pengembangbast= $_POST['pengembangbast'];
   $perihalbast= $_POST['perihalbast'];
   $keterangan= $_POST['keterangan'];
-  $nodokacuan= $_POST['nodokacuan'];
+  $idacuan= $_POST['nodokacuan'];
+
+  $selectNodokacuan=mysql_query("select nodokacuan from detaildokacuan where idacuan='$idacuan'");
+  $selectNodokacuan=mysql_fetch_array($selectNodokacuan);
+  $nodokacuan=$selectNodokacuan['nodokacuan'];
   $kodearsip="";
   // $_POST['kodearsip'];
 
@@ -68,6 +72,8 @@ if (isset($_POST['submit'])){
     if($query=mysql_query($query))
     {
       tracking("Tambah BAST: $nobast");
+    }else{
+      echo mysql_error($koneksi);
     }
 
    $nobastaset=$nobast;
@@ -134,7 +140,7 @@ if (isset($_POST['submit'])){
                       <td><b>Jenis Fasos</b></td>
                       <td><b>Lokasi Aset</b></td>
                       <!-- <td><b>Jenis</b></td> -->
-                      <td><b>Luas / Jumlah</b></td>
+                      <td><b>Luas / Jumlah Kewajiban</b></td>
                       <!-- <td><b>Sertifikasi</b></td> -->
                       <td><b>Pemilik</b></td>
                       <td><b>No. KRK</b></td>
@@ -165,7 +171,7 @@ if (isset($_POST['submit'])){
                       <td><b>Keterangan</b></td>
                     </tr>
                     <?php
-                      $qrPeruntukan="select * from kewajiban where nodokacuan='$nodokacuan' and luas>0";
+                      $qrPeruntukan="select * from kewajiban where idacuan='$idacuan' and luas>0";
                       $queryP=mysql_query($qrPeruntukan);
                       while($d3=mysql_fetch_array($queryP))
                       {
@@ -228,7 +234,7 @@ if (isset($_POST['submit'])){
                             </td>
                             
                             <td>
-                              <input type='text' name='luas[]' value='$d3[luas]' class='luas'>
+                              <input type='text' name='luas[]' readonly value='$d3[luas]' class='luas'>
                               <input type='hidden' name='kewajiban[]' value='$d3[luas]'>
                             </td>
                             <td>
@@ -394,7 +400,7 @@ if (isset($_POST['submit'])){
                   </table>
                   
                 </div>
-              <input type="submit" name="peruntukan" value="Simpan Perubahan" class='btn btn-sm btn-default'>
+              <input type="submit" name="peruntukan" value="Simpan Perubahan" class='btn btn-sm btn-info'>
               </form>
             </section>
             

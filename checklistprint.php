@@ -36,6 +36,22 @@ $jabatan="$_GET[j]";
           </tr>
           <tr>
             <td valign="top" width="25%">
+              <h6>Dicek Oleh</h6>
+            </td>
+            <td valign="top">
+              <h6>:</h6>
+            </td>
+            <td width="73%">
+              <h6>
+              <?php
+                $tgl=getdate(date("U"));
+                echo $_GET['b'].' / '.$_GET['a']." / $tgl[mday]-$tgl[mon]-$tgl[year]"; 
+              ?>
+              </h6>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" width="25%">
               <h6>Yang Diserahkan</h6>
             </td>
             <td valign="top">
@@ -178,9 +194,9 @@ $jabatan="$_GET[j]";
       <div style="width:300px;float: right;">
         <br>
         <center>
-          <?php echo $_GET['a']; ?>
+          ............................
           <br><br><br><br>
-          <?php echo $_GET['b']; ?>
+          ............................
         </center>
       </div>
     </div>

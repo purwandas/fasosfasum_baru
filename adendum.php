@@ -2,11 +2,27 @@
   $( function() {
       $( "#tgldokacuan" ).datepicker();
     } );
- </script>
+
+  $(document).ready(function() {
+
+      $(".rowdata").click(function(){
+        $(this).closest('tr').next().toggle();
+      });
+  });
+</script>
+<style type="text/css">
+  .rowdata{
+        cursor: pointer;
+        cursor: hand;
+    }
+    .rowdetail{
+        display: none;
+    }
+</style>
 <article class="col-sm-12 col-md-12 col-lg-12">
 
   <!-- Widget ID (each widget will need unique ID)-->
-  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-3" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-33" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
   <header>
     <span class="widget-icon"> <i class="fa fa-file-text-o"></i></span>
     <h2>Detail Acuan</h2>
@@ -134,7 +150,7 @@
 
                         <?php
                         $row=1;
-                        $query0="select idkewajiban, deskripsi, jenisfasos, luas, pelunasan from kewajiban where nodokacuan='$data[nodokacuan]' and status='0'";
+                        $query0="select idkewajiban, deskripsi, jenisfasos, luas, pelunasan from kewajiban where idacuan='$data[idacuan]' and status='0'";
                         // echo "$query0";
                         // echo mysql_num_rows(mysql_query("select * from kewajiban where luas='0' and pelunasan='0'"))."<<- nol";
                         $query0=mysql_query($query0);
@@ -234,7 +250,7 @@
     ?>
   <article class="col-sm-12 col-md-12 col-lg-12">
   <!-- Widget ID (each widget will need unique ID)-->
-  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-6" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+  <div class="jarviswidget jarviswidget-color-darken" id="wid-id-36" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
   <header>
     <span class="widget-icon"> <i class="fa fa-file-text-o"></i></span>
     <h2>Data Adendum</h2>
@@ -276,7 +292,7 @@
                   $qp=mysql_query($qr);
                   $dq=mysql_fetch_array($qp);
                   echo "
-                    <tr>
+                    <tr class='rowdata'>
                       <td>$no</td>
                       <td>$dselectAdendum[jenisdokumen]</td>
                       <td>$dselectAdendum[tgldokacuan]</td>
@@ -287,6 +303,30 @@
                       <td>$versi</td>
                     </tr>
                   ";
+                  echo"<tr class=rowdetail><td colspan=8>
+                        <table border=1 class='table table-striped'>
+                          <tr>
+                            <td><b>Deskripsi</b></td>
+                            <td><b>Jenis Fasos Fasum</b></td>
+                            <td><b>Luas/Jumlah Kewajiban</b></td>
+                            <td><b>Luas/Jumlah Diserahkan</b></td>
+                          </tr>
+                        ";
+                  $queryKewajiban=mysql_query("select * from kewajiban where idacuan='$dselectAdendum[idacuan]'");
+                  while ($dataKewajiban=mysql_fetch_array($queryKewajiban)) 
+                  {
+                    $luasKewajiban=$dataKewajiban['luas']+$dataKewajiban['pelunasan'];
+                    echo"
+                          <tr>
+                            <td>$dataKewajiban[deskripsi]</td>
+                            <td>$dataKewajiban[jenisfasos]</td>
+                            <td>$luasKewajiban</td>
+                            <td>$dataKewajiban[pelunasan]</td>
+                          </tr>
+                    ";
+                  }
+                  echo"</table>
+                  </td></tr>";
                 }
               ?>
               </table>
