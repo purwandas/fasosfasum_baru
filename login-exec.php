@@ -75,7 +75,7 @@
 
 			include "config.php";
 			$waktu = gmdate("Y-m-d H:i:s", time()+60*60*7);
-			$user = $member['firstname'];
+			$user = $member['firstname'].' '.$member['lastname'];
 			$query = mysql_query("insert into loging values('','$user','login','$waktu')") or die(mysql_error());
 			
 			header("location: index.php?hal=home");
