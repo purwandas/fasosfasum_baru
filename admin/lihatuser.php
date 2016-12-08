@@ -57,27 +57,31 @@
 							<table class="table table-striped table-hover">
 								<tr>
 									<td>
+									<div class='col col-sm-6 col-md-6 col-lg-6'>
 										<div class='col col-sm-1 col-md-1 col-lg-1'>
 											<b>No.</b>
 										</div>
-										<div class='col col-sm-2 col-md-2 col-lg-2'>
+										<div class='col col-sm-4 col-md-4 col-lg-4'>
 											<b>Nama Lengkap</b>
 										</div>
-										<div class='col col-sm-2 col-md-2 col-lg-2'>
+										<div class='col col-sm-4 col-md-4 col-lg-4'>
 											<b>Wilayah</b>
 										</div>
-										<div class='col col-sm-2 col-md-2 col-lg-2'>
+										<div class='col col-sm-3 col-md-3 col-lg-3'>
 											<b>Jabatan</b>
 										</div>
-										<div class='col col-sm-2 col-md-2 col-lg-2'>
+									</div>
+									<div class='col col-sm-6 col-md-6 col-lg-6'>
+										<div class='col col-sm-4 col-md-4 col-lg-4'>
 											<b>Username</b>
 										</div>
-										<div class='col col-sm-2 col-md-2 col-lg-2'>
+										<div class='col col-sm-4 col-md-4 col-lg-4'>
 											<b>Password</b>
 										</div>
-										<div class='col col-sm-1 col-md-1 col-lg-1'>
-											<b>Act.</b>
+										<div class='col col-sm-4 col-md-4 col-lg-4'>
+											<b>&nbsp&nbsp&nbsp&nbspAct.</b>
 										</div>
+									</div>
 									</td>
 								</tr>
 								<?php
@@ -90,17 +94,18 @@
 											<tr>
 												<td>
 												<form method='post' action=''>
+												<div class='col col-sm-6 col-md-6 col-lg-6'>
 													<div class='col col-sm-1 col-md-1 col-lg-1'>
 														$no
 													</div>
-													<div class='col col-sm-2 col-md-2 col-lg-2'>
+													<div class='col col-sm-4 col-md-4 col-lg-4'>
 														<label class='input'>
 											<input type='text' name='nama' value='$dataUser[firstname] $dataUser[lastname]'>
 											<input type='hidden' name='id' value='$dataUser[member_id]'>
 														</label>
 													</div>
 													
-													<div class='col col-sm-2 col-md-2 col-lg-2'>
+													<div class='col col-sm-4 col-md-4 col-lg-4'>
 														<select class='btn btn-sm btn-default' name='wilayah'>
 															<option value='$dataUser[wilayah]'>
 																$dataUser[wilayah]
@@ -117,7 +122,7 @@
 														echo"
 														</select>
 													</div>
-													<div class='col col-sm-2 col-md-2 col-lg-2'>
+													<div class='col col-sm-3 col-md-3 col-lg-3'>
 														<select class='btn btn-sm btn-default' name='level'>
 															<option value='$dataUser[level]'>
 																$dataUser[role]
@@ -133,20 +138,23 @@
 														echo"
 														</select>
 													</div>
-													<div class='col col-sm-2 col-md-2 col-lg-2'>
+												</div>
+												<div class='col col-sm-6 col-md-6 col-lg-6'>
+													<div class='col col-sm-4 col-md-4 col-lg-4'>
 														<label class='input'>
 											<input type='text' name='username' value='$dataUser[login]'>
 														</label>
 													</div>
-													<div class='col col-sm-2 col-md-2 col-lg-2'>
+													<div class='col col-sm-4 col-md-4 col-lg-4'>
 														<label class='input'>
 											<input type='password' name='password' placeholder='Password Baru'>
 														</label>
 													</div>
-													<div class='col col-sm-1 col-md-1 col-lg-1'>
-											<input type='submit' value='Simpan' name='ubah' class='btn btn-info btn-sm col-md-6' style='    padding-left: 3px;'>
-											<a href='admin/hapususer.php?id=$dataUser[member_id]' class='btn btn-danger btn-sm col-md-6' style='    padding-left: 0px;'>Hapus</a>
+													<div class='col col-sm-4 col-md-4 col-lg-4'>
+											<input type='submit' value='Simpan' name='ubah' class='btn btn-info btn-sm col-md-6' style='width:62px'>
+											<a href='admin/hapususer.php?id=$dataUser[member_id]' class='btn btn-danger btn-sm col-md-6' style='width:62px'>Hapus</a>
 													</div>
+												</div>
 												</form>
 												</td>
 											</tr>
@@ -157,16 +165,17 @@
 											<tr>
 												<td>
 												<form method='post' action=''>
+												<div class='col col-sm-6 col-md-6 col-lg-6'>
 													<div class='col col-sm-1 col-md-1 col-lg-1'>
 														$no
 													</div>
-													<div class='col col-sm-2 col-md-2 col-lg-2'>
+													<div class='col col-sm-4 col-md-4 col-lg-4'>
 														<label class='input'>
 											<input type='text' name='nama' placeholder='Nama Lengkap' required>
 														</label>
 													</div>
 													
-													<div class='col col-sm-2 col-md-2 col-lg-2'>
+													<div class='col col-sm-4 col-md-4 col-lg-4'>
 														<select class='btn btn-sm btn-default' name='wilayah'>
 															<option value='Semua Wilayah'>Semua Wilayah</option>
 														";
@@ -180,7 +189,7 @@
 														echo"
 														</select>
 													</div>
-													<div class='col col-sm-2 col-md-2 col-lg-2'>
+													<div class='col col-sm-3 col-md-3 col-lg-3'>
 														<select class='btn btn-sm btn-default' name='level'>
 														";
 														$queryJabatan=mysql_query("select * from memberslevel where level < 6");
@@ -193,19 +202,22 @@
 														echo"
 														</select>
 													</div>
-													<div class='col col-sm-2 col-md-2 col-lg-2'>
+												</div>
+												<div class='col col-sm-6 col-md-6 col-lg-6'>
+													<div class='col col-sm-4 col-md-4 col-lg-4'>
 														<label class='input'>
 											<input type='text' name='username' placeholder='Username' value='' required>
 														</label>
 													</div>
-													<div class='col col-sm-2 col-md-2 col-lg-2'>
+													<div class='col col-sm-4 col-md-4 col-lg-4'>
 														<label class='input'>
 											<input type='password' name='password' placeholder='Password Baru' value='' required>
 														</label>
 													</div>
-													<div class='col col-sm-1 col-md-1 col-lg-1'>
-											<input type='submit' value='Tambah' name='tambah' class='btn btn-success btn-sm'>
+													<div class='col col-sm-4 col-md-4 col-lg-4'>
+											<input type='submit' value='Tambah' name='tambah' class='btn btn-success btn-sm' style='width:62px'>
 													</div>
+												</div>
 												</form>
 												</td>
 											</tr>
