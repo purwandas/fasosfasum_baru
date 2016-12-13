@@ -10,6 +10,10 @@
   ?>
   <div class="modal-dialog demo-modal" style="width:70%;">
     <div class="modal-content">
+    <?php
+    $level=$_SESSION['SESS_LEVEL'];
+      if($level=='1'){
+    ?>
       <form action="" id="optional-form" method="post">
       <div class="modal-header">
         Jenis CheckList: &nbsp&nbsp
@@ -20,8 +24,11 @@
         </select>
       </div>
       </form>
+      <?php
+        }
+      ?>
       <form action="checklistp.php" method="post">
-      <input type="hidden" name="jenisInput" value="<?php if(isset($_POST['optional'])){ echo $_POST['optional'];}else{echo '1';}?>">
+      <input type="hidden" name="jenisInput" value="<?php if(isset($_POST['optional'])){ echo $_POST['optional'];} else if(isset($_GET['optional'])){ echo $_GET['optional'];}else{echo '1';}?>">
       <div class="modal-body smart-form" style="font-size: 15px;">
       <center>
       <table>
@@ -156,7 +163,7 @@
                 </tr>
               ";
               $nogroup++;
-              $level=$_SESSION['SESS_LEVEL'];
+              
               if($level=='1'){
                 $jenisDokumen='walikota';
               }else if($level=='2'){

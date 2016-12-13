@@ -17,7 +17,7 @@
                 $optional=" where idgroup!='A' ";
               }
               $queryCheckList="select * from checklist $optional";
-              // echo "$queryCheckList";
+              echo "$queryCheckList";
         		$queryCheckList=mysql_query($queryCheckList);
                 while ($dataCheckList=mysql_fetch_array($queryCheckList)) 
                 {
@@ -50,7 +50,7 @@
                             $usr2='1';
                             $usr3='0';
                             $user1k='';
-                            $user2k=$_POST["input$dataCheckList[idchecklist]"];
+                            // $user2k=$_POST["input$dataCheckList[idchecklist]"];
                             $user3k='';
                             $user='checklistarsip';
                         }else{
@@ -59,7 +59,7 @@
                             $usr3='1';
                             $user1k='';
                             $user2k='';
-                            $user3k=$_POST["input$dataCheckList[idchecklist]"];
+                            // $user3k=$_POST["input$dataCheckList[idchecklist]"];
                             $user='checklistaset';
                         }
                         $check2="select no from checklistdetail where nobast='$nobast' and idchecklist='$dataCheckList[idchecklist]'";
@@ -72,10 +72,19 @@
                             $query="INSERT INTO `checklistdetail` (`no`, `nobast`, `idchecklist`, `user1`, `user2`, `user3`, user1k, user2k, user3k) VALUES ('', '$nobast', '$dataCheckList[idchecklist]', '$usr1', '$usr2', '$usr3', '$user1k', '$user2k', '$user3k')";
 
                         }else{
-                            $query="update checklistdetail set user1='$usr1',user2='$usr2',user3='$usr3', user1k='$user1k', user3k='$user3k', user3k='$user3k' where idchecklist='$dataCheckList[idchecklist]' and nobast='$nobast'";
+                            if ($level=='1') 
+                            {
+                            $query="update checklistdetail set user1='$usr1', user1k='$user1k' where idchecklist='$dataCheckList[idchecklist]' and nobast='$nobast'";
+                            }
+                            else if ($level=='2') 
+                            {
+                            $query="update checklistdetail set user2='$usr2' where idchecklist='$dataCheckList[idchecklist]' and nobast='$nobast'";
+                            }else{
+                            $query="update checklistdetail set user3='$usr3' where idchecklist='$dataCheckList[idchecklist]' and nobast='$nobast'";
+                            }
                         }
 
-                            // echo "$query <-- <hr>";
+                            echo "$query <-- <hr>";
                             $query=mysql_query($query);
                             
                     }
@@ -114,7 +123,7 @@
                                 $qUpdateChecklistDetail=mysql_query("update checklistdetail set nobast='$nobast' where nobast='-NOBAST'");
                                 tracking("Checklist BAST: ".$nobast);
                         }
-                        header("Location:index.php?hal=$success");
+                        // header("Location:index.php?hal=$success");
         	}else{
                         if($level=='2'){
                                 $nobast="&nobast=".$_POST['nobast'];

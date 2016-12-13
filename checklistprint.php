@@ -181,10 +181,10 @@ $jabatan="$_GET[j]";
                 else if ($jabatan=='BPAD') 
                 {
                   $user=$cek['user2'];
-                  $user1=$cek['user2k'];
+                  $user1=$cek['user1k'];
                 }else{
                   $user=$cek['user3'];
-                  $user1=$cek['user3k'];
+                  $user1=$cek['user1k'];
                 }
 
               if($dataCheckList['status']=='wajib')
