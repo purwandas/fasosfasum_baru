@@ -13,6 +13,10 @@
 		include "koneksi.php";
 		include"tracking.php";
 		$nobast=$_POST['nobast'];
+		$pengembang=$_POST['pengembang'];
+		$sippt=$_POST['sippt'];
+		// echo "$sippt $pengembang";
+		// die();
 		$cariTglBast=mysql_query("select tglbast from bast where nobast='$nobast'");
 		$cariTglBast=mysql_fetch_array($cariTglBast);
 		$tglsql=jin_date_sql($cariTglBast['tglbast']);
@@ -74,8 +78,10 @@
 				'0','0','0',
 				'Tidak Ada Perubahan')
 				";
+								
 				$sisaKewajiban=$_POST['kewajiban'][$key]-$_POST['volume'][$key];
-				$queryUpdateKewajiban="Update kewajiban set pelunasan = '{$_POST['volume'][$key]}', luas='$sisaKewajiban' where idkewajiban='{$_POST['idkewajiban'][$key]}'";
+				$pelunasan=$_POST['volume'][$key]+$_POST['pelunasan'][$key];
+				$queryUpdateKewajiban="Update kewajiban set pelunasan = '$pelunasan', luas='$sisaKewajiban' where idkewajiban='{$_POST['idkewajiban'][$key]}'";
 				// echo "$queryInsertPeruntukan<br>$queryInsertAkun<br>$queryUpdateKewajiban<hr>";
 				if(mysql_query($queryInsertPeruntukan))
 				{
@@ -112,7 +118,7 @@
 				$updateAkunAset=mysql_query($updateAkunAset);
 			}
 		}
-		header('Location: index.php?hal=lihatbast');
+		header("Location: index.php?hal=checklist&nobast=$nobast&p=$pengembang&s=$sippt");
 	}
 ?>
 

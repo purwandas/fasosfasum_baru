@@ -248,7 +248,11 @@
 														echo "
 															<tr class='rowdata'>
 																<td>$no</td>
-																<td>$data[nodokacuan]</td>
+																<td>
+																	<a href='index.php?hal=bastbysippt&id=$data[nodokacuan]'>
+																		$data[nodokacuan]
+																	</a>
+																</td>
 																<td>$data[tgldokacuan]</td>
 																<td>$data[haldokacuan]</td>
 																<td>$data[pemegangdokacuan]</td>

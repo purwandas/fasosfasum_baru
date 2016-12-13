@@ -141,7 +141,7 @@ if (isset($_POST['submit']))
       }
       ?></select></center>";
 
-      td3.innerHTML="<label class='input'><input type='number' name='luas[]'></label>";
+      td3.innerHTML="<label class='input'><input type='text' name='luas[]'  placeholder='Luas atau Jumlah Kewajiban'><b class='tooltip tooltip-bottom-left'>												<i class='fa fa-warning txt-color-teal'></i> 												Jika Luas Tidak Tertera pada Dokumen SIPPT, Isi dengan - (tanda STRIP)</b></label>";
 
       idrow++;
     }
@@ -229,7 +229,7 @@ if (isset($_POST['submit']))
 							<h2>Data Kewajiban</h2><br>
 
 			                      <div style="width:20;overflow:auto;">
-
+			                      
 			                        <table class="table table-bordered table-striped" id=datatable >
 			                            <tr>
 			                              <td><b>Deskripsi</b></td>
@@ -254,13 +254,24 @@ if (isset($_POST['submit']))
 			                                ?>
 			                              </select></center></td>
 
-			                              <td><label class='input'><input type='number' name='luas[]' required></label></td>         
+			                              <td>
+			                              	<label class='input'>
+			                              		<input type='text' name='luas[]' required placeholder="Luas atau Jumlah Kewajiban">
+			                              		<b class="tooltip tooltip-bottom-left">
+												<i class="fa fa-warning txt-color-teal"></i> 
+												Jika Luas Tidak Tertera pada Dokumen SIPPT, Isi dengan - (tanda STRIP)
+												</b>
+			                              	</label>
+			                              </td>
 			                            </tr>
 			                        </table>
+
 			                      </div>
+
 			                      <br>
 			                      <input type=button class='btn btn-sm btn-info' name=tambah1 value=Tambah onclick=tambah()>
 			                      <input type=button class='btn btn-sm btn-default' name=delete1 value=Delete onclick=hapus()>
+			                      <div class='text-right'><i>Catatan: Jika <b>Luas Tidak Tertera</b> pada Dokumen SIPPT, Isi dengan - (tanda STRIP)</i></div>
 						</section>
 					</div>
 					<div class="row">

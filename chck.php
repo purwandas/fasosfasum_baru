@@ -52,9 +52,13 @@
 				<fieldset>
 					<div class="row">
 						<section class="col col-sm-12 col-md-12 col-lg-6">
-							<a class='btn btn-lg btn-info' target='_blank' href='printchecklist.php?<?php echo "p=$_GET[pbast]&s=$_GET[noacuan]&bast=$_GET[nobast]"; ?>'>
-								<img src="img/printer.gif">
+							<a class='btn btn-lg btn-info' target='_blank' href='printchecklist.php?<?php echo "p=$_GET[pbast]&s=$_GET[noacuan]&bast=$_GET[nobast]"; ?>' style='width:175px'>
+								<img src="img/printer.gif" style="opacity: 0.8">
 								Print Checklist
+							</a>
+							<br><br>
+							<a class='btn btn-lg btn-info' target='_blank' href='printchecklist.php?<?php echo "p=$_GET[pbast]&s=$_GET[noacuan]&bast=$_GET[nobast]"; ?>' style='width:175px'>
+								Ubah Checklist
 							</a>
 							
 							<?php

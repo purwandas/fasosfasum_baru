@@ -52,7 +52,7 @@ if (isset($_POST['submit'])){
         $namafile=$_FILES['fileacuan']['name'];
         $upload=mysql_query("INSERT INTO `upload` (`id`, `nama_asli`, `nama_file`, `path`, `idacuan`, `nobast`) VALUES ('', '$namafile', '$namabaru.$ext', '$target_dir', '', '$nobast');");
 
-        $query ="INSERT INTO `bast` (`nobast`, `tglbast`, `tglbastd`, `perihalbast`, `pengembangbast`, `keterangan`, `nodokacuan`, `checklistwalikota`) VALUES ('$nobast', '$tglbast', '$tglbastd', '$perihalbast', '$pengembangbast', '$keterangan', '$nodokacuan', '1')";
+        $query ="INSERT INTO `bast` (`nobast`, `tglbast`, `tglbastd`, `perihalbast`, `pengembangbast`, `keterangan`, `nodokacuan`, `checklistwalikota`, `statuschecklist`) VALUES ('$nobast', '$tglbast', '$tglbastd', '$perihalbast', '$pengembangbast', '$keterangan', '$nodokacuan', '1', '1')";
         // insert into bast values('$nobast', '$tglbast', '$perihalbast', '$pengembangbast', '$keterangan', '$nodokacuan', '$kodearsip')";
       // echo "The file <a href='$target_dir$namabaru.$ext'>". basename( $_FILES["fileacuan"]["name"]). "</a> has been uploaded.";
       } 
@@ -64,7 +64,7 @@ if (isset($_POST['submit'])){
     }
     else
     {
-      $query ="INSERT INTO `bast` (`nobast`, `tglbast`, `tglbastd`, `perihalbast`, `pengembangbast`, `keterangan`, `nodokacuan`, `checklistwalikota`) VALUES ('$nobast', '$tglbast', '$tglbastd', '$perihalbast', '$pengembangbast', '$keterangan', '$nodokacuan', '1')";
+      $query ="INSERT INTO `bast` (`nobast`, `tglbast`, `tglbastd`, `perihalbast`, `pengembangbast`, `keterangan`, `nodokacuan`, `checklistwalikota`, `statuschecklist`) VALUES ('$nobast', '$tglbast', '$tglbastd', '$perihalbast', '$pengembangbast', '$keterangan', '$nodokacuan', '1', '1')";
 
     }
   
@@ -134,6 +134,8 @@ if (isset($_POST['submit'])){
                 </script>
                 <div style=" overflow:auto;">
                 <input type="hidden" name="nobast" value="<?php echo $nobast; ?>">
+                <input type="hidden" name="sippt" value="<?php echo $idacuan; ?>">
+                <input type="hidden" name="pengembang" value="<?php echo $pengembangbast; ?>">
                   <table class="table table-striped table-bordered table-hover" >
                     <tr>
                       <td><b>Peruntukan</b></td>
@@ -171,7 +173,7 @@ if (isset($_POST['submit'])){
                       <td><b>Keterangan</b></td>
                     </tr>
                     <?php
-                      $qrPeruntukan="select * from kewajiban where idacuan='$idacuan' and luas>0";
+                      $qrPeruntukan="select * from kewajiban where idacuan='$idacuan' and luas>0 or luas like '-%'";
                       $queryP=mysql_query($qrPeruntukan);
                       while($d3=mysql_fetch_array($queryP))
                       {
@@ -228,14 +230,21 @@ if (isset($_POST['submit'])){
                             //     <option value='Non-Tanah'>Non-Tanah</option>
                             //   </select>
                             // </td>    
+                                    if(substr($d3['luas'],0,1)=='-')
+                                    {
+                                      $d3luas='-';
+                                    }else{
+                                      $d3luas=$d3['luas'];
+                                    }
                               
                               echo"
                               </select>
                             </td>
                             
                             <td>
-                              <input type='text' name='luas[]' readonly value='$d3[luas]' class='luas'>
-                              <input type='hidden' name='kewajiban[]' value='$d3[luas]'>
+                              <input type='text' name='luas[]' readonly value='$d3luas' class='luas'>
+                              <input type='hidden' name='kewajiban[]' value='$d3luas'>
+                              <input type='hidden' name='pelunasan[]' value='$d3[pelunasan]'>
                             </td>
                             <td>
                               <input type='text' name='pemilik[]'>
@@ -373,7 +382,7 @@ if (isset($_POST['submit'])){
                               </select>
                             </td>
                             <td>
-                              <input type='text' id='volume' name='volume[]' class='volume' value='$d3[luas]'>
+                              <input type='text' id='volume' name='volume[]' class='volume' value='$d3luas'>
                             </td>
                             <td>
                               <select name='satuan[]' class='btn btn-sm btn-default'>

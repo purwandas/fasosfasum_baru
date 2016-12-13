@@ -229,7 +229,7 @@
 
 				<!-- PLACE YOUR LOGO HERE -->
 				<span id="logo" style="margin:0px;padding:0px;padding-top:5px;padding-left:5px;"> 
-					<img src="img/logo2.png" alt="Fasos Fasum DKI Jakarta" style="height: inherit;width: auto;float: left;">
+					<img src="img/LOGO3.png" alt="Fasos Fasum DKI Jakarta" style="height: inherit;width: auto;float: left;">
 					<!-- <p style="height: inherit;width: auto;font-size: 10px" align="center">
 						SISTEM INFORMASI FASOS FASUM PROVINSI DKI JAKARTA
 					</p> -->
@@ -306,7 +306,7 @@
 						<a href="#"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">BAST</span></a>
 						<ul>
 							<li>
-								<a href="index.php?hal=checklist">Tambah BAST</a>
+								<a href="index.php?hal=tambahbast">Tambah BAST</a>
 							</li>
 							<li>
 								<a href="index.php?hal=lihatbast">Lihat Semua BAST</a>

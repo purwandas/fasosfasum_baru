@@ -225,9 +225,9 @@ $(document).ready(function() {
 	                                    Checklist
 	                                    </a>
 	                                ";
-                                  }else{
+                                  }else if($data['statuschecklist']!=''){
                                   	$button.= "
-	                                    <a href='index.php?hal=checklist&nobast=$data[nobast]&noacuan=$data[nodokacuan]&pbast=$data[pengembangbast]' class='btn btn-sm btn-info' style='width:70px'>
+	                                    <a href='index.php?hal=checklist&nobast=$data[nobast]&s=$data[nodokacuan]&p=$data[pengembangbast]&optional=$data[statuschecklist]' class='btn btn-sm btn-info' style='width:70px'>
 	                                    Checklist
 	                                    </a>
 	                                ";

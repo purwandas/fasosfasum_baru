@@ -3,6 +3,7 @@
 	{
 		include 'tracking.php';
 	    $nobast=$_POST['nobast'];
+	    $namaskpd=$_POST['namaskpd'];
 
 		$tglsk= $_POST['tglsk'];
 	    $cekTgl=mysql_query("select tglskgub from bast where nobast='$nobast'");
@@ -16,7 +17,7 @@
 
 	    $nosk=$_POST['nosk'];
 	    $queryAset=mysql_query("update bast set namapihakketiga='', nopks='', peruntukan='', tglpks='', tglberakhirpks='' where nobast='$nobast'");
-	    $queryAset="update bast set noskgub='$nosk', tglskgub='$tglsk' where nobast='$nobast'";
+	    $queryAset="update bast set noskgub='$nosk', tglskgub='$tglsk', namaskpd2='$namaskpd' where nobast='$nobast'";
 	    // echo "$queryAset";
 	    if($queryAset=mysql_query($queryAset))
 	    {
@@ -66,7 +67,7 @@
 	if(isset($_GET['nobast']))
 	{
 		$nobast=$_GET['nobast'];
-		$queryBast=mysql_query("select noskgub, tglskgub, namapihakketiga, nopks, peruntukan, tglpks, tglberakhirpks from bast where nobast='$nobast'");
+		$queryBast=mysql_query("select noskgub, tglskgub, namaskpd2, namapihakketiga, nopks, peruntukan, tglpks, tglberakhirpks from bast where nobast='$nobast'");
 		$queryBast=mysql_fetch_array($queryBast);
 		function dateToCalendar($date)
 		{
@@ -82,6 +83,7 @@
 		$tglpks=dateToCalendar($queryBast['tglpks']);
 		$tglberakhirpks=dateToCalendar($queryBast['tglberakhirpks']);
 		$nosk=$queryBast['noskgub'];
+		$namaskpd=$queryBast['namaskpd2'];
 		$namapihakketiga=$queryBast['namapihakketiga'];
 		$nopks=$queryBast['nopks'];
 		$peruntukan=$queryBast['peruntukan'];
@@ -178,6 +180,17 @@
 									<td>
 										<label class="input">
 											<input type="text" name="tglsk" id="tglsk" value="<?php echo $tglsk;?>">
+										</label>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Nama SKPD / UKPD
+									</td>
+									<td align="center"> : </td>
+									<td>
+										<label class="input">
+											<input type="text" name="namaskpd" value="<?php echo $namaskpd;?>">
 										</label>
 									</td>
 								</tr>

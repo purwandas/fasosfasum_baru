@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en-us" style="background-image: url('img/rumput-golf.jpg');" id="bg">
 	<head>
 		<meta charset="utf-8">
 		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
@@ -27,7 +27,7 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
 
 		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
-		<link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css">
+		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css"> -->
 
 		<!-- FAVICONS -->
 		<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
@@ -52,15 +52,17 @@
 		<link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 		<link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)">
 
+		<!-- jquery.backstretch.min.js -->
+
 	</head>
 	
-	<body class="menu-on-top">
+	<body class="menu-on-top" style="background-image: url('img/bg-login-header.jpg')">
 		<!-- HEADER -->
 		<header id="header">
 			<div id="logo-group">
 
 				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="img/logo.png" alt="SmartAdmin"> </span>
+				<span id="logo"> <img src="img/LOGO31.png" style="height: inherit;width: auto;margin-top: -8px" alt="SmartAdmin"> </span>
 				<!-- END LOGO PLACEHOLDER -->
 
 				<!-- Note: The activity badge color changes when clicked and resets the number to 0
@@ -72,7 +74,7 @@
 		</header>
 		<!-- END HEADER -->
 
-		<div id='main' role='main'>
+		<div id='main' role='main' style="background-image: url('img/bg-login.jpg')">
 				
 				<div class="modal-dialog demo-modal" style="width:300px;">
 					<div class="modal-content">

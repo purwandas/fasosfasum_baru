@@ -215,21 +215,26 @@ $(document).ready(function() {
                                   </a>
                                   <br>
                                 ";
-                                if($data['checklistwalikota']=='1')
+                                if($data['statuschecklist']!='')
                                 {
-                                  $button.= "
-                                    <a href='index.php?hal=chck&nobast=$data[nobast]&noacuan=$data[nodokacuan]&pbast=$data[pengembangbast]' class='btn btn-sm btn-success' style='width:70px'>
-                                    Checklist
-                                    </a>
-                                  ";
-                                  $chck="<p style='color:green'>Sudah</p>";
+                                  if($data['checklistwalikota']=='1')
+                                  {
+                                    $button.= "
+                                      <a href='index.php?hal=chck&nobast=$data[nobast]&noacuan=$data[nodokacuan]&pbast=$data[pengembangbast]' class='btn btn-sm btn-success' style='width:70px'>
+                                      Checklist
+                                      </a>
+                                    ";
+                                    $chck="<p style='color:green'>Sudah</p>";
+                                  }else{
+                                    $button.="
+                                      <a href='index.php?hal=checklist&nobast=$data[nobast]' class='btn btn-sm btn-danger' style='width:70px'>
+                                      Checklist
+                                      </a>
+                                    ";
+                                    $chck="<p style='color:red'>Belum</p>";
+                                  }
                                 }else{
-                                  $button.="
-                                    <a href='index.php?hal=checklist&nobast=$data[nobast]' class='btn btn-sm btn-danger' style='width:70px'>
-                                    Checklist
-                                    </a>
-                                  ";
-                                  $chck="<p style='color:red'>Belum</p>";
+                                  $chck="-";
                                 }
                               
                               
@@ -245,7 +250,7 @@ $(document).ready(function() {
                                 <td>$data[perihalbast]</td>
                                 <td>$data[pengembangbast]</td>
                                 <td>$data[keterangan]</td>
-                                <td>$chck</td>
+                                <td align='center'>$chck</td>
                                 <td><a href='index.php?hal=bastbysippt&id=$data[nodokacuan]'>$data[nodokacuan]</a></td>
                                 <td>
                                   $button

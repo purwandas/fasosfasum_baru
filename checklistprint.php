@@ -136,45 +136,70 @@ $jabatan="$_GET[j]";
           <td><b>Checklist</b></td>
         </tr>
         <?php
-          $queryGroupCheckList=mysql_query("select * from checklistgroup");
+          $optionalBast="select statuschecklist from bast where nobast='$nobast'";
+          $optionalBast=mysql_query($optionalBast);
+          $optionalBast=mysql_fetch_array($optionalBast);
+              $optional=$optionalBast['statuschecklist'];
+              if($optional=='1'){
+                $optional='';
+              }else if($optional=='2'){
+                $optional=" where kodegroup!='B' ";
+              }else if($optional=='3'){
+                $optional=" where kodegroup!='A' ";
+              }
+            $group[0]='A';
+            $group[1]='B';
+            $group[2]='C';
+            $nogroup=0;
+          $queryGroupCheckList=mysql_query("select * from checklistgroup $optional");
           while ($dataGroupCheckList=mysql_fetch_array($queryGroupCheckList)) 
           {
             echo"
               <tr>
                 <td colspan=4> 
-                  <b>$dataGroupCheckList[kodegroup]. $dataGroupCheckList[deskripsi]</b>
+                  <b>".$group[$nogroup].". $dataGroupCheckList[deskripsi]</b>
                 </td>
               </tr>
             ";
+            $nogroup++;
             $no=0;
             $queryCheckList=mysql_query("select * from checklist where idgroup='$dataGroupCheckList[kodegroup]'");
             while ($dataCheckList=mysql_fetch_array($queryCheckList)) 
             {
               $no++;
-              if($dataCheckList['status']=='wajib')
-              {
-                $img="<img src='/img/check.png' height='15px'>";
-              }else{
+                
                 $cek="select * from checklistdetail where nobast='$nobast' and idchecklist='$dataCheckList[idchecklist]' ORDER BY `checklistdetail`.`no` DESC";
                 // echo "$cek <-- cek<br>";
                 $cek=mysql_query($cek);
                 $cek=mysql_fetch_array($cek);
+
                 if ($jabatan=='Walikota') 
                 {
                   $user=$cek['user1'];
+                  $user1=$cek['user1k'];
                 }
                 else if ($jabatan=='BPAD') 
                 {
                   $user=$cek['user2'];
+                  $user1=$cek['user2k'];
                 }else{
                   $user=$cek['user3'];
+                  $user1=$cek['user3k'];
                 }
+
+              if($dataCheckList['status']=='wajib')
+              {
+                // $img="<img src='/img/check.png' height='15px'>";
+                $img=$user1;
+              }else{
                 // echo "$user <-- user<br>";
                 if($user!='1')
                 {
-                  $img="<img src='/img/cross.png' height='15px'>";
+                  // $img="<img src='/img/cross.png' height='15px'>";
+                  $img='-';
                 }else{
-                  $img="<img src='/img/check.png' height='15px'>";
+                  // $img="<img src='/img/check.png' height='15px'>";
+                  $img=$user1;
                 }
               }
               echo"
