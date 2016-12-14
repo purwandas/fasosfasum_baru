@@ -67,11 +67,11 @@
                         $check2=mysql_query($check2);
                         $check2=mysql_fetch_array($check2);
                         // echo "$check2[no]<br>";
-                        if($check2['no']=='')
+                        if($check2['no']=='' && $isi!=0)
                         {
                             $query="INSERT INTO `checklistdetail` (`no`, `nobast`, `idchecklist`, `user1`, `user2`, `user3`, user1k, user2k, user3k) VALUES ('', '$nobast', '$dataCheckList[idchecklist]', '$usr1', '$usr2', '$usr3', '$user1k', '$user2k', '$user3k')";
 
-                        }else{
+                        }else if($isi!=0){
                             if ($level=='1') 
                             {
                             $query="update checklistdetail set user1='$usr1', user1k='$user1k' where idchecklist='$dataCheckList[idchecklist]' and nobast='$nobast'";
@@ -102,7 +102,7 @@
                         $success='lihatbast';
                 }
 
-            if($check1!="fail")
+            if($check!="fail")
             {
                         if($level=='1'){
                             $nobastq="update bast set $user='1', statuschecklist='$statuschecklist' where nobast='$nobast'";

@@ -222,18 +222,18 @@ $(document).ready(function() {
                                     if ($data['checklistaset']=='1') 
                                     {
                                       $button.= "
-                                      <a href='index.php?hal=chck&nobast=$data[nobast]&noacuan=$data[nodokacuan]&pbast=$data[pengembangbast]' class='btn btn-sm btn-success' style='width:70px'>
+                                      <a href='index.php?hal=chck&nobast=$data[nobast]&noacuan=$data[nodokacuan]&pbast=$data[pengembangbast]&optional=$data[statuschecklist]&optional=$data[statuschecklist]' class='btn btn-sm btn-success' style='width:70px'>
                                       Checklist
                                       </a>
                                       ";
                                     }else{
                                       $button.= "
-                                      <a href='index.php?hal=checklist&nobast=$data[nobast]&noacuan=$data[nodokacuan]&pbast=$data[pengembangbast]' class='btn btn-sm btn-info' style='width:70px'>
+                                      <a href='index.php?hal=checklist&nobast=$data[nobast]&s=$data[nodokacuan]&p=$data[pengembangbast]&optional=$data[statuschecklist]' class='btn btn-sm btn-info' style='width:70px'>
                                       Checklist
                                       </a>
                                       ";  
                                     }
-                                  }else{
+                                  }else  if($data['statuschecklist']!=''){
                                     $button.="
                                     <a href='#' class='btn btn-sm btn-danger showAlert' style='width:70px'>
                                     Checklist
@@ -241,28 +241,29 @@ $(document).ready(function() {
                                     ";	
                                   }
                                   $chck="<p style='color:green'>Sudah</p>";
-                                }else{
-                                  $button.="
-                                    <a href='#' class='btn btn-sm btn-danger showAlert' style='width:70px'>
-                                    Checklist
-                                    </a>
-                                  ";
+                                }else  if($data['statuschecklist']!=''){
                                   $chck="<p style='color:red'>Belum</p>";
+                                }else{
+                                  $chck='-';
                                 }
 
 
                                 if($data['checklistarsip']=='1')
                                 {
                                   $chck2="<p style='color:green'>Sudah</p>";
-                                }else{
+                                }else  if($data['statuschecklist']!=''){
                                   $chck2="<p style='color:red'>Belum</p>";
+                                }else{
+                                  $chck2='-';
                                 }
 
                                 if($data['checklistaset']=='1')
                                 {
                                   $chck3="<p style='color:green'>Sudah</p>";
-                                }else{
+                                }else  if($data['statuschecklist']!=''){
                                   $chck3="<p style='color:red'>Belum</p>";
+                                }else{
+                                  $chck3='-';
                                 }
                               
                             echo "

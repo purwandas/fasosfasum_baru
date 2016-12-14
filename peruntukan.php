@@ -213,12 +213,12 @@ if (isset($_POST['submit'])){
 
                                   // while ($dCariBast=mysql_fetch_array($qCariBast)) 
                                   // {
-                                    $query=mysql_query("select idaset, alamataset, kelurahan from dataaset where nobastaset='$nobast'");
+                                    $query=mysql_query("select idaset, alamataset, kecamatan, kelurahan from dataaset where nobastaset='$nobast'");
                                     while ($dset=mysql_fetch_array($query)) 
                                     {
                                       echo"
                                       <option value='$dset[idaset]'>
-                                        $dset[alamataset] - $dset[kelurahan]
+                                        $dset[alamataset] - $dset[kelurahan] - $dset[kecamatan]
                                       </option>
                                       ";
                                     }

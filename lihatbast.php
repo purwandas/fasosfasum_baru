@@ -220,7 +220,7 @@ $(document).ready(function() {
                                   if($data['checklistwalikota']=='1')
                                   {
                                     $button.= "
-                                      <a href='index.php?hal=chck&nobast=$data[nobast]&noacuan=$data[nodokacuan]&pbast=$data[pengembangbast]' class='btn btn-sm btn-success' style='width:70px'>
+                                      <a href='index.php?hal=chck&nobast=$data[nobast]&noacuan=$data[nodokacuan]&pbast=$data[pengembangbast]&optional=$data[statuschecklist]' class='btn btn-sm btn-success' style='width:70px'>
                                       Checklist
                                       </a>
                                     ";

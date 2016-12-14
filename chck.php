@@ -57,7 +57,7 @@
 								Print Checklist
 							</a>
 							<br><br>
-							<a class='btn btn-lg btn-info' target='_blank' href='printchecklist.php?<?php echo "p=$_GET[pbast]&s=$_GET[noacuan]&bast=$_GET[nobast]"; ?>' style='width:175px'>
+							<a class='btn btn-lg btn-info' target='_blank' href='index.php?hal=checklist&<?php echo "p=$_GET[pbast]&s=$_GET[noacuan]&nobast=$_GET[nobast]&optional=$_GET[optional]&upd=1"; ?>' style='width:175px'>
 								Ubah Checklist
 							</a>
 							

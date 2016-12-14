@@ -128,8 +128,9 @@
             <td align="center"><b>Checklist</b></td>
           </tr>
           <?php
+          
+
             $hiddenCode="";//untuk kasih tau form proses kalo datanya udah ada
-            $sudah="";//untuk isi input jika sudah ada input sebelumnya
             if(isset($_POST['optional']) || isset($_GET['optional']))
             {
               if (isset($_POST['optional'])) {
@@ -176,6 +177,40 @@
               while ($dataCheckList=mysql_fetch_array($queryCheckList)) 
               {
                 $no++;
+
+                if(isset($_GET['upd']))
+                {
+                  if($level=='1')
+                  {
+                    $usr='user1';
+                  }else if($level=='2'){
+                    $usr='user2';
+                  }else{
+                    $usr='user3';
+                  }
+                  $querySudah=mysql_query("select * from checklistdetail where nobast='$nobast' and idchecklist='$dataCheckList[idchecklist]'");
+                  // echo"select * from checklistdetail where nobast='$nobast' and idchecklist='$dataCheckList[idchecklist]'<hr>";
+                  $querySudah=mysql_fetch_array($querySudah);
+                  $isiCheck="value='$querySudah[user1k]'";
+                  $sudah=$querySudah[$usr];
+                  if($sudah=='1')
+                  {
+                    if($level=='1'){
+                      if($querySudah['user1k']!=''){
+                        $sudah="checked onclick='return false;' onkeydown='e = e || window.event; if(e.keyCode !== 9) return false;'";
+                      }else{
+                        $sudah='';
+                      }
+                    }else{
+                      $sudah="checked onclick='return false;' onkeydown='e = e || window.event; if(e.keyCode !== 9) return false;'";
+                    }
+                  }else{
+                    $sudah='';
+                  }
+                }else{
+                  $sudah="";//untuk isi input jika sudah ada input sebelumnya
+                }
+
                   if($level!='1')
                   {
                     $queryDetail=mysql_query("select user1k from checklistdetail where idchecklist='$dataCheckList[idchecklist]' and nobast='$nobast'");
@@ -211,7 +246,7 @@
                       <input type='checkbox' $sudah readonly name='checklist$dataCheckList[idchecklist]' value='1' class='cbx' id='checkbox$dataCheckList[idchecklist]'>
                     </label>
                     <label class='col col-sm-10 col-md-10 col-lg-10'>
-                      <input type='text' name='input$dataCheckList[idchecklist]'  id='input$dataCheckList[idchecklist]'>
+                      <input type='text' name='input$dataCheckList[idchecklist]'  id='input$dataCheckList[idchecklist]' $isiCheck>
                     </label>
                     </div>
                   </td>
