@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	if(isset($_POST['peruntukan'])){
   		function formatTahunBulanTanggal($tgl){
   			return substr($tgl,-4).'-'.substr($tgl,0,2).'-'.substr($tgl,3,2);
