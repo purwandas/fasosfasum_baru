@@ -35,6 +35,13 @@ $jabatan="$_GET[j]";
             </td>
           </tr>
           <tr>
+            <td align="center" colspan="3">
+              <h3>
+                &nbsp
+              </h3>
+            </td>
+          </tr>
+          <tr>
             <td valign="top" width="25%">
               <h6>Dicek Oleh</h6>
             </td>
