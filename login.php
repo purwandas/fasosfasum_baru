@@ -53,6 +53,13 @@
 		<link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)">
 
 		<!-- jquery.backstretch.min.js -->
+		<script>
+				document.write('<script src="JS/libs/jquery-2.1.1.min.js"><\/script>');
+		</script>
+
+		<script>
+				document.write('<script src="JS/libs/jquery-ui-1.10.3.min.js"><\/script>');
+		</script>
 
 	</head>
 	
@@ -200,5 +207,9 @@
 
 
 	</body>
-
+<script>
+$(document).ready(function(){
+    $("#login").focus();
+});
+</script>
 </html>

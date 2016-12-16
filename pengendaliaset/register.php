@@ -54,7 +54,7 @@
 	    $nopks=$_POST['nopks'];
 	    $peruntukan=$_POST['peruntukan'];
 
-	    $queryAset=mysql_query("update bast set noskgub='$nosk', tglskgub='$tglsk' where nobast='$nobast'");
+	    $queryAset=mysql_query("update bast set noskgub='', tglskgub='', namaskpd2='' where nobast='$nobast'");
 	    $queryAset="update bast set namapihakketiga='$namapihakketiga', nopks='$nopks', peruntukan='$peruntukan', tglpks='$tglpks', tglberakhirpks='$tglberakhirpks' where nobast='$nobast'";
 	    // echo "$queryAset";
 	    if($queryAset=mysql_query($queryAset))

@@ -233,7 +233,7 @@ $(document).ready(function() {
 	                                ";
                                   }
                                   $chck="<p style='color:green'>Sudah</p>";
-                                }else{
+                                }else if($data['statuschecklist']!=''){
                                   $button.="
                                     <a href='#' class='btn btn-sm btn-danger showAlert' style='width:70px'>
                                     Checklist
