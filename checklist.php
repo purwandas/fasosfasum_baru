@@ -198,17 +198,22 @@
                     if($level=='1'){
                       if($querySudah['user1k']!=''){
                         $sudah="checked onclick='return false;' onkeydown='e = e || window.event; if(e.keyCode !== 9) return false;'";
+                        $sudah2="readonly";
                       }else{
                         $sudah='';
+                        $sudah2="";
                       }
                     }else{
                       $sudah="checked onclick='return false;' onkeydown='e = e || window.event; if(e.keyCode !== 9) return false;'";
+                      $sudah2="readonly";
                     }
                   }else{
                     $sudah='';
+                    $sudah2="";
                   }
                 }else{
-                  $sudah="";//untuk isi input jika sudah ada input sebelumnya
+                  $sudah="";
+                  $sudah2="";
                 }
 
                   if($level!='1')
@@ -246,7 +251,7 @@
                       <input type='checkbox' $sudah readonly name='checklist$dataCheckList[idchecklist]' value='1' class='cbx' id='checkbox$dataCheckList[idchecklist]'>
                     </label>
                     <label class='col col-sm-10 col-md-10 col-lg-10'>
-                      <input type='text' name='input$dataCheckList[idchecklist]'  id='input$dataCheckList[idchecklist]' $isiCheck>
+                      <input type='text' $sudah2 name='input$dataCheckList[idchecklist]'  id='input$dataCheckList[idchecklist]' $isiCheck>
                     </label>
                     </div>
                   </td>
@@ -293,8 +298,8 @@ if($level=='1')
             $('#checkbox$dataCheckList[idchecklist]').removeAttr('disabled');
             $('#checkbox$dataCheckList[idchecklist]').attr('checked', true);
           } else {
-            $('#checkbox$dataCheckList[idchecklist]').attr('disabled', true);
             $('#checkbox$dataCheckList[idchecklist]').attr('checked', false);
+            $('#checkbox$dataCheckList[idchecklist]').attr('disabled', true);
           }
         });
       ";
