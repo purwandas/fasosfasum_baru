@@ -123,7 +123,7 @@
                                 $qUpdateChecklistDetail=mysql_query("update checklistdetail set nobast='$nobast' where nobast='-NOBAST'");
                                 tracking("Checklist BAST: ".$nobast);
                         }
-                        // header("Location:index.php?hal=$success");
+                        header("Location:index.php?hal=$success");
         	}else{
                         if($level=='2'){
                                 $nobast="&nobast=".$_POST['nobast'];
@@ -131,8 +131,8 @@
                         }else{
                                 $nobast="";
                         }
-                        echo "<script type='text/javascript'>alert('Lengkapi Data Checklist');history.back();</script>";
-        	        // header("Location:index.php?hal=checklist&e=1$nobast");
+                        // echo "<script type='text/javascript'>alert('Lengkapi Data Checklist');history.back();</script>";
+        	        header("Location:index.php?hal=checklist&e=1$nobast");
         	}
 	}
 ?>
