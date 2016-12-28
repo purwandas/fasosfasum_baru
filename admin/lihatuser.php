@@ -43,10 +43,10 @@
 ?>
 <article class="col-sm-12 col-md-12 col-lg-12">
 	<!-- Widget ID (each widget will need unique ID)-->
-	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-1" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
+	<div class="jarviswidget jarviswidget-color-darken" id="wid-id-51" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false">
 	<header>
 		<span class="widget-icon"> <i class="fa fa-user"></i></span>
-		<h5 style='margin-left:25px'>Semua User</h5>
+		<h2>Semua User</h2>
 	</header>
 		<!-- widget div-->
 		<div class="smart-form">
