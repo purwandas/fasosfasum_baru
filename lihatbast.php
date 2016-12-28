@@ -227,7 +227,7 @@ $(document).ready(function() {
                                     $chck="<p style='color:green'>Sudah</p>";
                                   }else{
                                     $button.="
-                                      <a href='index.php?hal=checklist&nobast=$data[nobast]' class='btn btn-sm btn-danger' style='width:70px'>
+                                      <a href='index.php?hal=checklist&nobast=$data[nobast]&p=$data[pengembangbast]&s=$data[nodokacuan]&optional=$data[statuschecklist]&upd=1' class='btn btn-sm btn-danger' style='width:70px'>
                                       Checklist
                                       </a>
                                     ";

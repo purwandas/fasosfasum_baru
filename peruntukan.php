@@ -52,7 +52,7 @@ if (isset($_POST['submit'])){
         $namafile=$_FILES['fileacuan']['name'];
         $upload=mysql_query("INSERT INTO `upload` (`id`, `nama_asli`, `nama_file`, `path`, `idacuan`, `nobast`) VALUES ('', '$namafile', '$namabaru.$ext', '$target_dir', '', '$nobast');");
 
-        $query ="INSERT INTO `bast` (`nobast`, `tglbast`, `tglbastd`, `perihalbast`, `pengembangbast`, `keterangan`, `nodokacuan`, `checklistwalikota`, `statuschecklist`) VALUES ('$nobast', '$tglbast', '$tglbastd', '$perihalbast', '$pengembangbast', '$keterangan', '$nodokacuan', '1', '1')";
+        $query ="INSERT INTO `bast` (`nobast`, `tglbast`, `tglbastd`, `perihalbast`, `pengembangbast`, `keterangan`, `nodokacuan`, `checklistwalikota`, `statuschecklist`) VALUES ('$nobast', '$tglbast', '$tglbastd', '$perihalbast', '$pengembangbast', '$keterangan', '$nodokacuan', '0', '1')";
         // insert into bast values('$nobast', '$tglbast', '$perihalbast', '$pengembangbast', '$keterangan', '$nodokacuan', '$kodearsip')";
       // echo "The file <a href='$target_dir$namabaru.$ext'>". basename( $_FILES["fileacuan"]["name"]). "</a> has been uploaded.";
       } 

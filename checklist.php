@@ -18,9 +18,10 @@
       <div class="modal-header">
         Jenis CheckList: &nbsp&nbsp
         <select name="optional" id="optional" class="btn btn-info">
-          <option value="1" <?php echo ( $_POST['optional'] == '1' ? 'selected="selected"' : '' );?>>Tanah dan Konstruksi</option>
-          <option value="2" <?php echo ( $_POST['optional'] == '2' ? 'selected="selected"' : '' );?>>Tanah saja</option>
-          <option value="3" <?php echo ( $_POST['optional'] == '3' ? 'selected="selected"' : '' );?>>Konstruksi saja</option>
+          <option value="1" <?php echo ( $_POST['optional'] == '1' ? 'selected="selected"' : $_GET['optional'] == '1' ? 'selected="selected"' : '' );?>>Tanah dan Konstruksi</option>
+          <option value="2" <?php echo ( $_POST['optional'] == '2' ? 'selected="selected"' : $_GET['optional'] == '2' ? 'selected="selected"' : '' );?>>Tanah saja</option>
+          <option value="3" <?php echo ( $_POST['optional'] == '3' ? 'selected="selected"' : $_GET['optional'] == '3' ? 'selected="selected"' : '' );?>>Konstruksi saja</option>
+          <option value="4" <?php echo ( $_POST['optional'] == '4' ? 'selected="selected"' : $_GET['optional'] == '4' ? 'selected="selected"' : '' );?>>Lainnya</option>
         </select>
       </div>
       </form>
@@ -62,6 +63,7 @@
             </td>
             <td>
               <h6><?php echo $_GET['p']; ?></h6>
+              <input type="hidden" name="p" value="<?php echo $_GET['p']; ?>">
             </td>
           </tr>
           <tr>
@@ -73,6 +75,7 @@
             </td>
             <td>
               <h6><?php echo $_GET['s']; ?></h6>
+              <input type="hidden" name="s" value="<?php echo $_GET['s']; ?>">
             </td>
           </tr>
           <tr>
@@ -144,6 +147,8 @@
                 $optional=" where kodegroup!='B' ";
               }else if($optional=='3'){
                 $optional=" where kodegroup!='A' ";
+              }else{
+                $optional=" where kodegroup!='A' and kodegroup!='B' ";
               }
             }else{
               $optional='';
@@ -269,6 +274,7 @@
           Simpan
         </button>
         </center>
+        <!-- <input type="hidden" name="url" value="<?php //echo"http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";?>"> -->
       </div>
       </form>
     </div><!-- /.modal-content -->

@@ -15,6 +15,8 @@
                 $optional=" where idgroup!='B' ";
               }else if($optional=='3'){
                 $optional=" where idgroup!='A' ";
+              }else{
+                $optional=" where idgroup!='A' and idgroup!='B' ";
               }
               $queryCheckList="select * from checklist $optional";
               echo "$queryCheckList";
@@ -89,7 +91,7 @@
                             
                     }
                 }
-                // echo "$check <<<--";
+                echo "$check <<<--";
                 
                 if($level=='1')
                 {
@@ -105,7 +107,8 @@
             if($check!="fail")
             {
                         if($level=='1'){
-                            $nobastq="update bast set $user='1', statuschecklist='$statuschecklist' where nobast='$nobast'";
+                            $nobastq="update bast set $user='1', statuschecklist='$statuschecklist', checklistwalikota='1' where nobast='$nobast'";
+                            // echo "$nobastq <----nih";
                                 $nobastq=mysql_query($nobastq);
                                 tracking("Checklist BAST: ".$nobast);
                         }else
@@ -123,8 +126,13 @@
                                 $qUpdateChecklistDetail=mysql_query("update checklistdetail set nobast='$nobast' where nobast='-NOBAST'");
                                 tracking("Checklist BAST: ".$nobast);
                         }
-                        header("Location:index.php?hal=$success");
+                        // header("Location:index.php?hal=$success");
         	}else{
+                        if($level=='1'){
+                                $nobast="&nobast=".$_POST['nobast']."&optional=".$statuschecklist."&s=".$_POST['s']."&p=".$_POST['p'];
+                                $nobastq="update bast set statuschecklist='$statuschecklist' where nobast='$nobast'";
+                                $nobastq=mysql_query($nobastq);
+                        }else
                         if($level=='2'){
                                 $nobast="&nobast=".$_POST['nobast'];
                                 
@@ -132,7 +140,7 @@
                                 $nobast="";
                         }
                         // echo "<script type='text/javascript'>alert('Lengkapi Data Checklist');history.back();</script>";
-        	        header("Location:index.php?hal=checklist&e=1$nobast");
+        	        // header("Location:index.php?hal=checklist&e=1$nobast");
         	}
 	}
 ?>
