@@ -19,7 +19,7 @@
                 $optional=" where idgroup!='A' and idgroup!='B' ";
               }
               $queryCheckList="select * from checklist $optional";
-              echo "$queryCheckList";
+              // echo "$queryCheckList";
         		$queryCheckList=mysql_query($queryCheckList);
                 while ($dataCheckList=mysql_fetch_array($queryCheckList)) 
                 {
@@ -86,12 +86,12 @@
                             }
                         }
 
-                            echo "$query <-- <hr>";
+                            // echo "$query <-- <hr>";
                             $query=mysql_query($query);
                             
                     }
                 }
-                echo "$check <<<--";
+                // echo "$check <<<--";
                 
                 if($level=='1')
                 {
@@ -126,7 +126,7 @@
                                 $qUpdateChecklistDetail=mysql_query("update checklistdetail set nobast='$nobast' where nobast='-NOBAST'");
                                 tracking("Checklist BAST: ".$nobast);
                         }
-                        // header("Location:index.php?hal=$success");
+                        header("Location:index.php?hal=$success");
         	}else{
                         if($level=='1'){
                                 $nobast="&nobast=".$_POST['nobast']."&optional=".$statuschecklist."&s=".$_POST['s']."&p=".$_POST['p'];
@@ -140,7 +140,7 @@
                                 $nobast="";
                         }
                         // echo "<script type='text/javascript'>alert('Lengkapi Data Checklist');history.back();</script>";
-        	        // header("Location:index.php?hal=checklist&e=1$nobast");
+        	        header("Location:index.php?hal=checklist&e=1$nobast");
         	}
 	}
 ?>

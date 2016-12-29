@@ -153,6 +153,8 @@ $jabatan="$_GET[j]";
                 $optional=" where kodegroup!='B' ";
               }else if($optional=='3'){
                 $optional=" where kodegroup!='A' ";
+              }else{
+                 $optional=" where kodegroup!='A' and kodegroup!='B'";
               }
             $group[0]='A';
             $group[1]='B';
